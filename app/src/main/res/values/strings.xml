@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MOC</string>
+    <string name="title_activity_category">Category</string>
+    <string name="title_home">뭐 먹지?</string>
+    <string name="title_dashboard">가게</string>
+    <string name="title_notifications">더보기</string>
+</resources>
