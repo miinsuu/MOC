@@ -128,7 +128,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/nonddureongBtn"
+                android:id="@+id/nondureongBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true">
@@ -151,7 +151,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
+                        android:text="논두렁 갈비"
+=======
                         android:text="논두렁갈비"
+>>>>>>> remotes/origin/minsu
                         android:textSize="20dp" />
 
                     <TextView
@@ -173,6 +177,7 @@
                 android:background="#000000"/>
 
             <LinearLayout
+                android:id="@+id/myeongpumBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true">
@@ -192,16 +197,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="가게이름"
+                        android:text="명품"
                         android:textSize="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="대표메뉴"/>
+                        android:text="대표메뉴 : 명품반계탕"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="최소가격-최대가격"/>
+                        android:text="6,000-12,000"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -212,6 +217,7 @@
                 android:background="#000000"/>
 
             <LinearLayout
+                android:id="@+id/imjongryeBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true">
@@ -231,16 +237,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="가게이름"
+                        android:text="임종례 밥집"
                         android:textSize="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="대표메뉴"/>
+                        android:text="대표메뉴 : 제육덮밥"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="최소가격-최대가격"/>
+                        android:text="2,500-30,000"/>
 
                 </LinearLayout>
             </LinearLayout>
