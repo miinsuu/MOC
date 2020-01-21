@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_moc_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chineseShop.Chwihyang"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".koreanShop.Nonddureong"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".koreanShop.Imjongrye"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".koreanShop.Myeongpum"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".chineseShop.Chwihyang"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".koreanShop.Nondureong"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopList.ChineseShopList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
