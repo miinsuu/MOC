@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_moc_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chineseShop.Chwihyang"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".koreanShop.Nonddureong"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".chickenShop.Real"></activity>
+        <activity android:name=".shopList.ChickenShopList" />
+        <activity
+            android:name=".chineseShop.Chwihyang"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".koreanShop.Nonddureong"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopList.ChineseShopList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
