@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".shopList.KoreanShopList">
+    tools:context=".shopList.ChickenShopList">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="한식"
+        android:text="치킨"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="30dp"
@@ -128,7 +129,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/nonddureongBtn"
+                android:id="@+id/realBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true">
@@ -151,18 +152,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="논두렁갈비"
+                        android:text="리얼후라이"
                         android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="대표메뉴 : 돼지불백" />
+                        android:text="대표메뉴 : 눈꽃오미치킨" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5,000원 - 26,000원" />
+                        android:text="13,000원 - 20,000원" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -643,6 +644,5 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>
