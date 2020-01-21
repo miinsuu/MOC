@@ -8,9 +8,10 @@
     tools:context=".koreanShop.Nonddureong">
 
     <TextView
+        android:id="@+id/storeNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="논뚜렁 갈비"
+        android:text="논두렁갈비"
         android:textStyle="bold"
         android:textSize="30dp"
         android:textAlignment="center"
