@@ -46,14 +46,9 @@ public class KoreanShopList extends AppCompatActivity {
             }
         });
 
-//        View korean = findViewById(R.id.koreanBtn);
-//        korean.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(KoreanShopList.this, KoreanShopList.class);
-//                startActivity(intent);
-//            }
-//        });
+
+
+        ////////////////////////////////가로스크롤 카테고리//////////////////////////////////////////
 
         View chicken = findViewById(R.id.chickenBtn);
         chicken.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +56,7 @@ public class KoreanShopList extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(KoreanShopList.this, ChickenShopList.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +66,17 @@ public class KoreanShopList extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(KoreanShopList.this, ChineseShopList.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        View japanese = findViewById(R.id.japaneseBtn);
+        japanese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(KoreanShopList.this, JapaneseShopList.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

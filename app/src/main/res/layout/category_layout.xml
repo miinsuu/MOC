@@ -96,7 +96,7 @@
                 android:id="@+id/japaneseBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/ramen" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
                 android:id="@+id/snackBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/noodles" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                 android:id="@+id/asianBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/dumpling" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                 android:id="@+id/fastBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/food" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
                 android:id="@+id/dessertBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/cake"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                 android:id="@+id/nightBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/mainicon" />
+                android:background="@drawable/ham" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

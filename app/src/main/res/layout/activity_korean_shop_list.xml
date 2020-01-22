@@ -151,11 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-<<<<<<< HEAD
                         android:text="논두렁 갈비"
-=======
-                        android:text="논두렁갈비"
->>>>>>> remotes/origin/minsu
                         android:textSize="20dp" />
 
                     <TextView
@@ -166,7 +162,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5,000원 - 26,000원" />
+                        android:text="5,000원 - 15,000원" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -197,7 +193,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="명품"
+                        android:text="명품고향삼계탕"
                         android:textSize="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -206,7 +202,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6,000-12,000"/>
+                        android:text="6,000원 - 12,000원"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -246,7 +242,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2,500-30,000"/>
+                        android:text="2,500원 - 30,000원"/>
 
                 </LinearLayout>
             </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.shopList.ChickenShopList;
 import com.momeokji.moc.shopList.ChineseShopList;
+import com.momeokji.moc.shopList.JapaneseShopList;
 import com.momeokji.moc.shopList.KoreanShopList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +55,15 @@ public class Category extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Category.this, ChickenShopList.class);
+                startActivity(intent);
+            }
+        });
+
+        View japanese = findViewById(R.id.japaneseBtn);
+        japanese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Category.this, JapaneseShopList.class);
                 startActivity(intent);
             }
         });
