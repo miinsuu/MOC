@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".koreanShop.Nonddureong">
+    tools:context=".japaneseShop.Mendong">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="논뚜렁 갈비"
+        android:text="멘동"
         android:textStyle="bold"
         android:textSize="30dp"
         android:textAlignment="center"
@@ -36,11 +36,11 @@
         android:layout_height="2dp"
         android:layout_marginBottom="10dp"
         android:background="@android:color/darker_gray"/>
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="2dp"-->
-<!--        android:layout_marginTop="4dp"-->
-<!--        android:background="@android:color/darker_gray"/>-->
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="2dp"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:background="@android:color/darker_gray"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,11 +58,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="돼지불백"/>
+                android:text="가츠동"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5,000원"/>
+                android:text="5,500원"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -73,11 +73,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="된장찌개"/>
+                android:text="규동"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5,000원"/>
+                android:text="5,800원"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="고추장불고기"/>
+                android:text="돈코츠라멘"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,27 +132,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="고추장불고기"/>
+                    android:text="가츠동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,11 +152,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="김치찌개"/>
+                    android:text="에비동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -192,11 +172,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="된장찌개"/>
+                    android:text="규동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,500원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -212,11 +192,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="갈비탕"/>
+                    android:text="김치가츠동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 6,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -232,11 +212,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="갈비찜"/>
+                    android:text="가츠카레"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 12,000원"/>
+                    android:text="▶ 5,500원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -252,11 +232,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="삼겹살 (200g)"/>
+                    android:text="김치규동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 4,500원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -272,11 +252,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="에비카레"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -292,11 +272,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="치킨카레"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -312,11 +292,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="규카레"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -332,11 +312,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="매콤가츠동"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -352,11 +332,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="돈코츠라멘"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,500원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -372,11 +352,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="카라이돈코츠라멘"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,800원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -392,151 +372,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
+                    android:text="소유라멘"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="돼지불백"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▶ 5,000원"/>
+                    android:text="▶ 5,300원"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -545,8 +385,7 @@
                 android:background="@android:color/darker_gray"/>
 
         </LinearLayout>
-
     </ScrollView>
 
-
 </LinearLayout>
+

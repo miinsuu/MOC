@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.momeokji.moc.R;
 
-public class Nonddureong extends AppCompatActivity {
+public class Nondureong extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nonddureong);
+        setContentView(R.layout.activity_nondureong);
     }
 }

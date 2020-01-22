@@ -8,32 +8,43 @@ import android.view.View;
 
 import com.momeokji.moc.R;
 import com.momeokji.moc.chineseShop.Chwihyang;
+import com.momeokji.moc.japaneseShop.Mendong;
 
-public class ChineseShopList extends AppCompatActivity {
+public class JapaneseShopList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chinese_shop_list);
+        setContentView(R.layout.activity_japanese_shop_list);
 
-        View chwihyang = findViewById(R.id.chwihyangBtn);
-        chwihyang.setOnClickListener(new View.OnClickListener() {
+        View mendong = findViewById(R.id.mendongBtn);
+        mendong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChineseShopList.this, Chwihyang.class);
+                Intent intent = new Intent(JapaneseShopList.this, Mendong.class);
                 startActivity(intent);
             }
         });
 
 
-        ////////////////////////////////가로스크롤 카테고리//////////////////////////////////////////
 
+        ////////////////////////////////가로스크롤 카테고리//////////////////////////////////////////
 
         View korean = findViewById(R.id.koreanBtn);
         korean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChineseShopList.this, KoreanShopList.class);
+                Intent intent = new Intent(JapaneseShopList.this, KoreanShopList.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        View chinese = findViewById(R.id.chineseBtn);
+        chinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(JapaneseShopList.this, ChineseShopList.class);
                 startActivity(intent);
                 finish();
             }
@@ -43,21 +54,11 @@ public class ChineseShopList extends AppCompatActivity {
         chicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChineseShopList.this, ChickenShopList.class);
+                Intent intent = new Intent(JapaneseShopList.this, ChickenShopList.class);
                 startActivity(intent);
                 finish();
             }
         });
-
-        View japanese = findViewById(R.id.japaneseBtn);
-        japanese.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ChineseShopList.this, JapaneseShopList.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
+
 }
