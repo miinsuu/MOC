@@ -34,6 +34,15 @@ public class ChineseShopList extends AppCompatActivity {
             }
         });
 
+        View chicken = findViewById(R.id.chickenBtn);
+        chicken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChineseShopList.this, ChickenShopList.class);
+                startActivity(intent);
+            }
+        });
+
 //        View chinese = findViewById(R.id.chineseBtn);
 //        chinese.setOnClickListener(new View.OnClickListener() {
 //            @Override
