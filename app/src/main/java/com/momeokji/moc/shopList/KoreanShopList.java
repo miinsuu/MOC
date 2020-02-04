@@ -7,22 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.momeokji.moc.R;
-import com.momeokji.moc.RecyclerViewAdapter.Adapter_shopList;
+import com.momeokji.moc.RecyclerViewAdapter.RecyclerViewAdapter_RestaurantList;
 import com.momeokji.moc.ShopPage;
 import com.momeokji.moc.data.Menu;
 import com.momeokji.moc.data.Shop;
-import com.momeokji.moc.koreanShop.Imjongrye;
-import com.momeokji.moc.koreanShop.Myeongpum;
-import com.momeokji.moc.koreanShop.Nondureong;
 
 import java.util.ArrayList;
 
 public class KoreanShopList extends AppCompatActivity {
 
-    private Adapter_shopList adapter;
+    private RecyclerViewAdapter_RestaurantList adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +29,7 @@ public class KoreanShopList extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager((this));          // 레이아웃 매니저 등록
         recyclerView_shopList.setLayoutManager(linearLayoutManager);
 
-        adapter = new Adapter_shopList();                                                   // 어댑터 등록
+        adapter = new RecyclerViewAdapter_RestaurantList();                                                   // 어댑터 등록
         recyclerView_shopList.setAdapter(adapter);
 
         //////////// 데이터 직접 등록/////////////
@@ -55,7 +51,7 @@ public class KoreanShopList extends AppCompatActivity {
         ///////////////////////////////////////////
 
 
-        adapter.setOnItemClickListener(new Adapter_shopList.OnItemClickListener() {              // 리사이클러뷰 ViewHolder 에서의 OnClick을 OnItemClock을 통해 추가 정의
+        adapter.setOnItemClickListener(new RecyclerViewAdapter_RestaurantList.OnItemClickListener() {              // 리사이클러뷰 ViewHolder 에서의 OnClick을 OnItemClock을 통해 추가 정의
             @Override
             public void OnItemClick(View view, int targetPos) {
                 Shop targetShop = fianlShopList.get(targetPos);

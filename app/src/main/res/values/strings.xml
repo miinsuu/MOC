@@ -4,4 +4,7 @@
     <string name="title_home">뭐 먹지?</string>
     <string name="title_dashboard">가게</string>
     <string name="title_notifications">더보기</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

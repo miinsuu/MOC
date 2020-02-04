@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.momeokji.moc.R;
 import com.momeokji.moc.data.Menu;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Adapter_menuList extends RecyclerView.Adapter<Adapter_menuList.ItemViewHolder>{
+public class RecyclerViewAdapter_MenuList extends RecyclerView.Adapter<RecyclerViewAdapter_MenuList.ItemViewHolder>{
     private ArrayList<Menu> menuList = new ArrayList<>();
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent , int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_menulist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_menu_list, parent, false);
         return new ItemViewHolder(view);
     }
 

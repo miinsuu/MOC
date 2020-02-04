@@ -1,6 +1,5 @@
 package com.momeokji.moc.RecyclerViewAdapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import com.momeokji.moc.data.Shop;
 
 import java.util.ArrayList;
 
-public class Adapter_shopList extends RecyclerView.Adapter<Adapter_shopList.ItemViewHolder>{
+public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
     private ArrayList<Shop> shopList = new ArrayList<>();
 
     private OnItemClickListener viewHolderListener = null;                                      //
@@ -28,7 +27,7 @@ public class Adapter_shopList extends RecyclerView.Adapter<Adapter_shopList.Item
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent , int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_shoplist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_restaurant_list, parent, false);
         return new ItemViewHolder(view);
     }
 
