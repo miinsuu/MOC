@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -33,13 +32,13 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
-                android:text="숭실대 중문"/>
-            <ImageButton
-                android:id="@+id/locationSelect_btn"
+                android:layout_gravity="center"/>
+            <Spinner
+                android:id="@+id/locationSelect_spinner"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/i_arrow_down"/>
         </LinearLayout>
 
@@ -73,15 +72,26 @@
             android:layout_marginBottom="20dp"
             android:orientation="vertical">
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="312dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20dp">
                 <ImageView
                     android:id="@+id/searchBar_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/search_bar"/>
+                    android:src="@drawable/shape_search_btn"/>
+
+                <ImageView
+                    android:id="@+id/search_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignRight="@id/searchBar_img"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/i_search" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,7 +118,7 @@
                     android:layout_marginBottom="16dp">
 
                     <Button
-                        android:id="@+id/koreanBtn"
+                        android:id="@+id/korean_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -129,7 +139,7 @@
                     android:layout_marginBottom="16dp">
 
                     <Button
-                        android:id="@+id/chineseBtn"
+                        android:id="@+id/chinese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/nudle" />
@@ -150,7 +160,7 @@
                     android:layout_marginBottom="16dp">
 
                     <Button
-                        android:id="@+id/japaneseBtn"
+                        android:id="@+id/japanese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -171,7 +181,7 @@
                     android:layout_marginBottom="16dp">
 
                     <Button
-                        android:id="@+id/westernBtn"
+                        android:id="@+id/western_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/pizza" />
@@ -190,7 +200,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
                     <Button
-                        android:id="@+id/snackBtn"
+                        android:id="@+id/snack_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -210,7 +220,7 @@
                     android:layout_marginRight="20dp">
 
                     <Button
-                        android:id="@+id/chickenBtn"
+                        android:id="@+id/chicken_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/chicken" />
@@ -230,7 +240,7 @@
                     android:layout_marginRight="20dp">
 
                     <Button
-                        android:id="@+id/asianBtn"
+                        android:id="@+id/asian_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -250,7 +260,7 @@
                     android:layout_marginRight="20dp">
 
                     <Button
-                        android:id="@+id/fastBtn"
+                        android:id="@+id/fast_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -266,7 +276,11 @@
 
         <!-- 밑줄 layout -->
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/darker_gray"/>
 
         <!-- 추천메뉴 layout -->
         <LinearLayout

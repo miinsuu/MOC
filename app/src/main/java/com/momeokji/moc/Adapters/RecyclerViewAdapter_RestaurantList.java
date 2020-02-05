@@ -1,20 +1,31 @@
-package com.momeokji.moc.RecyclerViewAdapter;
+package com.momeokji.moc.Adapters;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.momeokji.moc.ExpandedMenuFragment;
+import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
-import com.momeokji.moc.data.Shop;
+import com.momeokji.moc.RestaurantListFragment;
+import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
-    private ArrayList<Shop> shopList = new ArrayList<>();
+
+    private ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
     private OnItemClickListener viewHolderListener = null;                                      //
     public static interface OnItemClickListener{                                                       // ViewHolder의 커스텀 클릭 리스너
@@ -33,23 +44,24 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position){
-        holder.onBind(shopList.get(position));
+        holder.onBind(restaurantList.get(position));
     }
 
     @Override
     public int getItemCount(){
-        return shopList.size();
+        return restaurantList.size();
     }
 
-    public ArrayList<Shop> getShopList(){
-        return this.shopList;
+    public ArrayList<Restaurant> getRestaurantList(){
+        return this.restaurantList;
     }
-    public void setShopList(ArrayList<Shop> shopList){
-        this.shopList = shopList;
+    public void setRestaurantList(ArrayList<Restaurant> restaurantList){
+        this.restaurantList = restaurantList;
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
-        private TextView shopName_Txt, mainMenu_Txt, minmaxPrice_Txt;
+        private TextView restaurantName_txt, restaurantDescription_txt, menuPriceRange_txt;
+        private ImageButton menuExpand_imgbtn;
         ItemViewHolder(View itemView){
             super(itemView);
 
@@ -64,14 +76,15 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                     }
                 });
 
-            shopName_Txt = itemView.findViewById(R.id.shopName_Txt);
-            mainMenu_Txt = itemView.findViewById(R.id.mainMenu_Txt);
-            minmaxPrice_Txt = itemView.findViewById(R.id.minmaxPrice_Txt);
+            restaurantName_txt = itemView.findViewById(R.id.restaurantListItem_restaurantName_txt);
+            restaurantDescription_txt = itemView.findViewById(R.id.restaurantListItem_description_txt);
+            menuPriceRange_txt = itemView.findViewById(R.id.restaurantListItem_menuPriceRange_txt);
+            menuExpand_imgbtn = itemView.findViewById(R.id.restaurantListItem_menuExpand_imgbtn);
         }
-        public void onBind(Shop shop){
-            shopName_Txt.setText((shop.getShopName()));
-            mainMenu_Txt.setText((shop.getMainMenu()).getName());
-            minmaxPrice_Txt.setText((shop.getMinPrice() + " ~ " + shop.getMaxPrice()));
+        public void onBind(Restaurant restaurant){
+            restaurantName_txt.setText((restaurant.getRestaurantName()));
+            restaurantDescription_txt.setText((restaurant.getMainMenu()).getName());
+            menuPriceRange_txt.setText((restaurant.getMinPrice() + " ~ " + restaurant.getMaxPrice()));
         }
 
     }

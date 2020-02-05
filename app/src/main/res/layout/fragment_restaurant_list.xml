@@ -47,30 +47,49 @@
             android:layout_marginBottom="20dp"
             android:background="@android:color/darker_gray"/>
 
- <!--       <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/categoryTabBar_layout"
-            android:layout_widget="match_parent"
-            android:layout_height="wrap_content">&lt;!&ndash;
-            <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="전체"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="한식"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="중식"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="일식"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="양식"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="분식"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="치킨"/>
-            <android.support.design.widget.TabItem
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="아시안"/>
-            <android.support.design.widget.TabItem
-                android:text="패스트푸드"/>&ndash;&gt;
-        </android.support.design.widget.TabLayout>-->
-
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="패스트푸드"/>
+        </com.google.android.material.tabs.TabLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -79,9 +98,18 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/restaurantList_recyclerView"
-            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:scrollbars="vertical"/>
+
+<!--        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/restaurantListPage_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>-->
 
     </LinearLayout>
 

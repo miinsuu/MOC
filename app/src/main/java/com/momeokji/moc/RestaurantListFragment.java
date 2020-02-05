@@ -12,11 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.momeokji.moc.RecyclerViewAdapter.RecyclerViewAdapter_RestaurantList;
-import com.momeokji.moc.data.Menu;
-import com.momeokji.moc.data.Shop;
-
-import java.util.ArrayList;
+import com.google.android.material.tabs.TabLayout;
+import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 
 
 /**
@@ -28,6 +25,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class RestaurantListFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -76,11 +74,27 @@ public class RestaurantListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
-        /*TabLayout tabLayout = (TabLayout) view.findViewById(R.id.categoryTabBar_layout);
+
+        //* 탭 레이아웃 설정 *//
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.categoryTabBar_layout);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                // TODO 서버에서 데이터 받아 리사이클러뷰로 전시
+                int position = tab.getPosition();
+                tab.select();
+                switch (position) {
+                    case 0:
+
+                    case 1:
+                        adapter.setRestaurantList(((MainActivity) getActivity()).restaurantDATA.KoreanRestaurantList);
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 2:
+                        adapter.setRestaurantList(((MainActivity) getActivity()).restaurantDATA.ChineseRestaurantList);
+                        adapter.notifyDataSetChanged();
+                        break;
+                }
             }
 
             @Override
@@ -92,43 +106,30 @@ public class RestaurantListFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-*/
-        RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);               // 리사이클러 뷰 등록
+        //-------------------------//
+
+        //* 페이저어댑터 등록 *//
+/*
+        ViewPager restaurantListPage_viewPager = view.findViewById(R.id.restaurantListPage_viewPager);
+        PagerAdapter_RestaurantListPage restaurantListPage_pagerAdapter = new PagerAdapter_RestaurantListPage(getActivity());
+        restaurantListPage_viewPager.setAdapter(restaurantListPage_pagerAdapter);
+        //-------------------------//   */
+
+
+        //* 리사이클러 뷰 등록 *//
+        RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerViewAdapter_RestaurantList();                                                   // 어댑터 등록
+        adapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
         restaurantList_recyclerView.setAdapter(adapter);
-
-        //////////// 데이터 직접 등록/////////////
-        ArrayList<Shop> tmpShopList = new ArrayList<>();
-        // 가게 데이터 등록
-        Menu[] MainMenus = new Menu[3];
-        MainMenus[0] = new Menu("돼지불백", 5000) ;
-        MainMenus[1] = new Menu("된장찌개", 5000);
-        MainMenus[2] = new Menu("고추장불고기", 5500);
-        ArrayList<Menu> NondureongMenuList = new ArrayList<>();
-        NondureongMenuList.add(new Menu("돼지불백", 5000));
-        NondureongMenuList.add(new Menu("된장찌개", 5000));
-        NondureongMenuList.add(new Menu("고추장불고기", 5500));
-        tmpShopList.add(new Shop("논두렁갈비", MainMenus , NondureongMenuList));
-
-        final ArrayList<Shop> fianlShopList = tmpShopList;
-
-        adapter.setShopList(fianlShopList);                                                      // 리스트 등록
-
-
+        adapter.setRestaurantList(((MainActivity) getActivity()).restaurantDATA.ChineseRestaurantList);
+        //-----------------------//
 
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {

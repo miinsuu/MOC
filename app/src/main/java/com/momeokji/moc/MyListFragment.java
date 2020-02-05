@@ -9,28 +9,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link MyListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link MyListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class MyListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    TextView location_txt;
-    Spinner locationSelect_spinner;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -38,7 +31,7 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    public MyListFragment() {
         // Required empty public constructor
     }
 
@@ -48,16 +41,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment MyListFragment.
      */
     // TODO: Rename and change types and number of parameters
-
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
-
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static MyListFragment newInstance(String param1, String param2) {
+        MyListFragment fragment = new MyListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,34 +63,10 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
-
-        //* 지역 선택용 스피너 등록 *//
-        locationSelect_spinner = view.findViewById(R.id.locationSelect_spinner);
-        location_txt = view.findViewById(R.id.location_txt);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ((MainActivity) getActivity()).restaurantDATA.Location); // TODO 서버 데이터 : Fragment 생성될 때 마다 Location 리스트
-        locationSelect_spinner.setSelection(0);
-        location_txt.setText((String) locationSelect_spinner.getItemAtPosition(0));
-        locationSelect_spinner.setAdapter(arrayAdapter);
-        locationSelect_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedItem = (String) adapterView.getItemAtPosition(position);
-                location_txt.setText(selectedItem);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        view.findViewById(R.id.korean_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        return view;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_my_list, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -115,15 +79,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+/*        if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else if(context instanceof MainActivity){
-            // TODO Activity와 통신을 위해 이 부분을 지우고 MainActivity에 OnFragmentINteractionListener Override
-            }
-        else {
+        } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

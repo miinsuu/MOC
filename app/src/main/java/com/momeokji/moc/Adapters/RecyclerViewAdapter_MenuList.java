@@ -1,4 +1,4 @@
-package com.momeokji.moc.RecyclerViewAdapter;
+package com.momeokji.moc.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

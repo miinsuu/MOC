@@ -4,56 +4,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <!-- TODO 이 레이아웃 필요한지 데이터 충분히 넣은 후 판단-->
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/restaurantListItem_restaurantImage_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/restaurant" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/restaurantListItem_textLayout_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/restaurantListItem_restaurantImage_img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/shopImage_Img"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/shop" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/restaurantListItem_restaurantName_txt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:gravity="left"
-                android:orientation="vertical">
+                android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/shopName_Txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp" />
+            <TextView
+                android:id="@+id/restaurantListItem_menuPriceRange_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/mainMenu_Txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/restaurantListItem_description_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/minmaxPrice_Txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="#000000"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="메뉴"/>
+            <ImageButton
+                android:id="@+id/restaurantListItem_menuExpand_imgbtn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/i_arrow_down"/>
+        </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/restaurantListItem_menuExpand_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#000000"/>
+
 </LinearLayout>
