@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <item
+        android:id="@+id/navigationBar_home_btn"
+        android:icon="@drawable/t_home_1"
+        android:title="홈"/>
+    <item
+        android:id="@+id/navigationBar_shop_btn"
+        android:icon="@drawable/t_store_1"
+        android:title="가게"/>
+    <item
+        android:id="@+id/navigationBar_roulette_btn"
+        android:icon="@drawable/t_bbobki_1"
+        android:title="룰렛"/>
+    <item
+        android:id="@+id/navigationBar_more_btn"
+        android:icon="@drawable/t_more_1"
+        android:title="더보기"/>
+    </menu>

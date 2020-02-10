@@ -39,7 +39,7 @@ public class Opening extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Opening.this, Category.class);
+                Intent intent = new Intent(Opening.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +62,7 @@ public class Opening extends AppCompatActivity {
                     }
                 });
 
-        connectDB();
+        //connectDB();
 
 
 
