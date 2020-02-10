@@ -7,27 +7,26 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
-import com.momeokji.moc.Adapters.PagerAdapter_RestaurantListPage;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
+import com.momeokji.moc.data.Restaurant;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RestaurantListFragment.OnFragmentInteractionListener} interface
+ * {@link RestaurantListPage.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RestaurantListFragment#newInstance} factory method to
+ * Use the {@link RestaurantListPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RestaurantListFragment extends Fragment {
-
+public class RestaurantListPage extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,10 +38,11 @@ public class RestaurantListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private ViewPager restaurantListPage_viewPager;
+    private ArrayList<Restaurant> targetRestaurantArrayList;
 
-    public RestaurantListFragment() {
-        // Required empty public constructor
+    public RestaurantListPage() {    }
+    public RestaurantListPage(ArrayList<Restaurant> restaurantArrayList) {
+        this.targetRestaurantArrayList = restaurantArrayList;
     }
 
     /**
@@ -51,11 +51,11 @@ public class RestaurantListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment RestaurantListFragment.
+     * @return A new instance of fragment RestaurantListPage.
      */
     // TODO: Rename and change types and number of parameters
-    public static RestaurantListFragment newInstance(String param1, String param2) {
-        RestaurantListFragment fragment = new RestaurantListFragment();
+    public static RestaurantListPage newInstance(String param1, String param2) {
+        RestaurantListPage fragment = new RestaurantListPage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,47 +70,52 @@ public class RestaurantListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurant_list_page, container, false);
 
-        //* 페이저어댑터 등록 *//
-        restaurantListPage_viewPager = view.findViewById(R.id.restaurantListPage_viewPager);
-        PagerAdapter_RestaurantListPage restaurantListPage_pagerAdapter = new PagerAdapter_RestaurantListPage(getActivity().getSupportFragmentManager(),0 ,getActivity());
-        restaurantListPage_viewPager.setAdapter(restaurantListPage_pagerAdapter);
-        //-------------------------//
+        //* 리사이클러 뷰 등록 *//
+/*        RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
 
-        //* 탭 레이아웃 설정 *//
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.categoryTabBar_layout);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                restaurantListPage_viewPager.setCurrentItem(tab.getPosition());
-            }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
+        restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                // TODO 만들어진 아이템 리스트 삭제
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-        //-------------------------//
+        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
+        if (targetRestaurantArrayList != null)
+            recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
+        restaurantList_recyclerView.setAdapter(recyclerViewAdapter);*/
+        //-----------------------//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RecyclerView restaurantList_recyclerView = getView().findViewById(R.id.restaurantList_recyclerView);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
+        restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
+
+        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
+        if (targetRestaurantArrayList != null)
+            recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
+        restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-/*        if (context instanceof OnFragmentInteractionListener) {
+  /*      if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
@@ -137,9 +142,5 @@ public class RestaurantListFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-    public void onPause() {
-        super.onPause();
-        this.getActivity().getSupportFragmentManager().beginTransaction().remove(this);
     }
 }

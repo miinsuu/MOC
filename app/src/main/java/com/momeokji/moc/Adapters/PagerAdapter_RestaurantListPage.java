@@ -6,13 +6,47 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
+import com.momeokji.moc.RestaurantListPage;
 
-public class PagerAdapter_RestaurantListPage extends PagerAdapter {
+public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
-    private Context context = null;
+    Context context;
+
+    public PagerAdapter_RestaurantListPage(@NonNull FragmentManager fm, int behavior, Context context) {
+        super(fm, behavior);
+        this.context = context;
+    }
+    @Override
+    public Fragment getItem(int position) {
+        switch(position){
+            case 0:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.getAllList());
+            case 1:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.KoreanRestaurantList);
+            case 2:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.ChineseRestaurantList);
+            case 3:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.JapaneseRestaurantList);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public int getCount() {
+        return 4;
+    }
+/*    private Context context = null;
+
+
+
 
     public PagerAdapter_RestaurantListPage(Context context) {
         this.context = context;
@@ -24,6 +58,7 @@ public class PagerAdapter_RestaurantListPage extends PagerAdapter {
         if (context != null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.page_restaurant_list, container, false);
+
         }
 
         container.addView(view);
@@ -44,5 +79,7 @@ public class PagerAdapter_RestaurantListPage extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == (View) object);
-    }
+    }*/
+
+
 }
