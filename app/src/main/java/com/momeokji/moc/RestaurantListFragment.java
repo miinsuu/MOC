@@ -32,7 +32,8 @@ public class RestaurantListFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public int initTab = 0;
+    private int initTab = 0;
+    private TabLayout tabLayout;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -86,7 +87,7 @@ public class RestaurantListFragment extends Fragment {
         //-------------------------//
 
         //* 탭 레이아웃 설정 *//
-        TabLayout tabLayout = view.findViewById(R.id.categoryTabBar_layout);
+        tabLayout = view.findViewById(R.id.categoryTabBar_layout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -101,6 +102,11 @@ public class RestaurantListFragment extends Fragment {
         //-------------------------//
         tabLayout.getTabAt(initTab).select();
         return view;
+    }
+
+    public void setTab(int tabPos) {
+        TabLayout.Tab temp = tabLayout.getTabAt(tabPos);
+        tabLayout.getTabAt(tabPos).select();
     }
 
 

@@ -2,6 +2,7 @@ package com.momeokji.moc.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,7 +18,9 @@ import com.momeokji.moc.RestaurantListPage;
 
 public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
-    Context context = null;
+    private Context context = null;
+    private boolean isEnableSwipe = false;
+
 
     public PagerAdapter_RestaurantListPage(@NonNull FragmentManager fm, int behavior, Context context) {
         super(fm, behavior);

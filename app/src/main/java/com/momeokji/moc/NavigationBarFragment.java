@@ -93,7 +93,7 @@ public class NavigationBarFragment extends Fragment {
                         break;
                     case R.id.navigationBar_shop_btn:
                         if (mainActivity.getCurrPage() instanceof RestaurantListFragment){
-                            mainActivity.getCurrPage().set
+                            ((RestaurantListFragment)mainActivity.getCurrPage()).setTab(0);
                         }
                             else {
                                 mainActivity.ReplaceFragment(new RestaurantListFragment());

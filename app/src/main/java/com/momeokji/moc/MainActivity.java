@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         /*- 초기 Fragment 등록 -*/
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.mainActivity_frameLayout, HomeFragment.newInstance());
-        //navigationBar = NavigationBarFragment.newInstance();
-        //fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBar);
+        navigationBar = NavigationBarFragment.newInstance();
+        fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBar);
         fragmentTransaction.commit();
         currPage = navigationBar;
 

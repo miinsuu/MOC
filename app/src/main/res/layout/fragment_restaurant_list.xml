@@ -106,7 +106,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:scrollbars="vertical"/>-->
 
-        <androidx.viewpager.widget.ViewPager
+        <com.momeokji.moc.Helper.NonSwipeableViewPager
             android:id="@+id/restaurantListPage_viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
