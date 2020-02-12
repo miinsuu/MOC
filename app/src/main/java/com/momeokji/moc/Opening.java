@@ -45,16 +45,17 @@ public class Opening extends AppCompatActivity {
         });
 
         db.collection("category")
-                .whereEqualTo("priority", 5)
+                .orderBy("priority", Query.Direction.ASCENDING)
+                //.whereEqualTo("priority", 5)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                mainImageUrl[0] = document.getData().get("image").toString();
+                               // mainImageUrl[0] = document.getData().get("image").toString();
                                 Log.e("Firebase확인", document.getId() + " => " + document.getData());
-                                Log.e("Firebase확인", mainImageUrl[0]);
+                                //Log.e("Firebase확인", mainImageUrl[0]);
                             }
                         } else {
                             Log.e("Firebase확인", "Error getting documents.", task.getException());
@@ -69,8 +70,9 @@ public class Opening extends AppCompatActivity {
 
 
 
-//        Uri uri = Uri.parse(item.getImgUri());
-//        Glide.with(context).load(uri).into(imgView);
+//        Uri uri = Uri.parse("gs://mocfirebaseproject-28e15.appspot.com/"+mainImageUrl[0]);
+//        mainImage = findViewById(R.id.mainImage);
+//        Glide.with(this).load(uri).into(mainImage);
 
 //        FirebaseStorage fs = FirebaseStorage.getInstance();
 //        StorageReference imagesRef = fs.getReference().child("ramen.png");

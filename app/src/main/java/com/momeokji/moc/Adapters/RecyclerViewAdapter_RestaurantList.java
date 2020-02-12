@@ -83,8 +83,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
         }
         public void onBind(Restaurant restaurant){
             restaurantName_txt.setText((restaurant.getRestaurantName()));
-            restaurantDescription_txt.setText((restaurant.getMainMenu()).getName());
-            menuPriceRange_txt.setText((restaurant.getMinPrice() + " ~ " + restaurant.getMaxPrice()));
+            restaurantDescription_txt.setText(restaurant.getPreview());
+            menuPriceRange_txt.setText(restaurant.getMinMaxPrice());
         }
 
     }
