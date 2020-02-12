@@ -48,9 +48,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
     }
 
     @Override
-    public int getItemCount(){
-        return restaurantList.size();
-    }
+    public int getItemCount(){ return restaurantList.size();  }
 
     public ArrayList<Restaurant> getRestaurantList(){
         return this.restaurantList;

@@ -32,6 +32,7 @@ public class RestaurantListFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public int initTab = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -41,8 +42,9 @@ public class RestaurantListFragment extends Fragment {
 
     private ViewPager restaurantListPage_viewPager;
 
-    public RestaurantListFragment() {
-        // Required empty public constructor
+    public RestaurantListFragment() {    }
+    public RestaurantListFragment(int initTab) {
+        this.initTab = initTab;
     }
 
     /**
@@ -79,30 +81,25 @@ public class RestaurantListFragment extends Fragment {
 
         //* 페이저어댑터 등록 *//
         restaurantListPage_viewPager = view.findViewById(R.id.restaurantListPage_viewPager);
-        PagerAdapter_RestaurantListPage restaurantListPage_pagerAdapter = new PagerAdapter_RestaurantListPage(getActivity().getSupportFragmentManager(),0 ,getActivity());
+        PagerAdapter_RestaurantListPage restaurantListPage_pagerAdapter = new PagerAdapter_RestaurantListPage(getChildFragmentManager(),1 ,getActivity());
         restaurantListPage_viewPager.setAdapter(restaurantListPage_pagerAdapter);
         //-------------------------//
 
         //* 탭 레이아웃 설정 *//
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.categoryTabBar_layout);
+        TabLayout tabLayout = view.findViewById(R.id.categoryTabBar_layout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 restaurantListPage_viewPager.setCurrentItem(tab.getPosition());
             }
-
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                // TODO 만들어진 아이템 리스트 삭제
-            }
-
+            public void onTabUnselected(TabLayout.Tab tab) {  }
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            public void onTabReselected(TabLayout.Tab tab) {  }
         });
         //-------------------------//
-
+        tabLayout.getTabAt(initTab).select();
         return view;
     }
 
@@ -137,9 +134,5 @@ public class RestaurantListFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-    public void onPause() {
-        super.onPause();
-        this.getActivity().getSupportFragmentManager().beginTransaction().remove(this);
     }
 }

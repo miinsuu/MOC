@@ -44,28 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             }
         });
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView_bottomNavigationView);
-        BottomNavigationHelper.disableShiftMode(bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener((new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navigationBar_home_btn:
-                        ReplaceFragment(new HomeFragment());
-                        break;
-                    case R.id.navigationBar_shop_btn:
-                        ReplaceFragment(new RestaurantListFragment());
-                        break;
-                    case R.id.navigationBar_roulette_btn:
-                        break;
-                    case R.id.navigationBar_more_btn:
-                        break;
-                    default:
-                }
-                return true;
-            }
-        }));
     }
 
     /*- Fragment 교체 함수 -*/

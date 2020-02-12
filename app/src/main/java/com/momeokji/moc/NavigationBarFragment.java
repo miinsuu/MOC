@@ -4,11 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.momeokji.moc.Helper.BottomNavigationHelper;
 
 
 /**
@@ -28,6 +33,7 @@ public class NavigationBarFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private MainActivity mainActivity = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,6 +68,7 @@ public class NavigationBarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainActivity = (MainActivity) getActivity();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -74,36 +81,33 @@ public class NavigationBarFragment extends Fragment {
 
         View view =inflater.inflate(R.layout.fragment_navigation_bar, container, false);
 
-        View home_btn = view.findViewById(R.id.navigationBar_home_btn);
-        home_btn.setOnClickListener(new View.OnClickListener() {
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomNavigationView_bottomNavigationView);
+        BottomNavigationHelper.disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener((new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                if (getActivity() instanceof MainActivity) {
-                    MainActivity mainActivity = (MainActivity) getActivity();
-                    if (mainActivity.getCurrPage() instanceof HomeFragment) {
-                        return;
-                    } else {
-                        mainActivity.ReplaceFragment(new HomeFragment());
-                    }
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.navigationBar_home_btn:
+                        if (!(mainActivity.getCurrPage() instanceof HomeFragment))
+                            mainActivity.ReplaceFragment(new HomeFragment());
+                        break;
+                    case R.id.navigationBar_shop_btn:
+                        if (mainActivity.getCurrPage() instanceof RestaurantListFragment){
+                            mainActivity.getCurrPage().set
+                        }
+                            else {
+                                mainActivity.ReplaceFragment(new RestaurantListFragment());
+                            }
+                        break;
+                    case R.id.navigationBar_roulette_btn:
+                        break;
+                    case R.id.navigationBar_more_btn:
+                        break;
+                    default:
                 }
+                return true;
             }
-        });
-        View restaurant_btn = view.findViewById(R.id.navigationBar_shop_btn);
-        restaurant_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (getActivity() instanceof MainActivity) {
-                    MainActivity mainActivity = (MainActivity) getActivity();
-                    if(mainActivity.getCurrPage() instanceof RestaurantListFragment){
-                        return ;
-                    }
-                    else {
-                        mainActivity.ReplaceFragment(new RestaurantListFragment());
-                    }
-                }
-            }
-        });
-
+        }));
         return view;
     }
 
@@ -117,15 +121,6 @@ public class NavigationBarFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else if(context instanceof MainActivity){
-            // TODO Activity와 통신을 위해 이 부분을 지우고 MainActivity에 OnFragmentINteractionListener Override
-        }
-        else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override

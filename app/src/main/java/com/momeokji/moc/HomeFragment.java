@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private MainActivity mainActivity;
 
     TextView location_txt;
     Spinner locationSelect_spinner;
@@ -39,7 +41,6 @@ public class HomeFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainActivity = (MainActivity) getActivity();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -101,6 +103,30 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        //---------------------------------------------------//
+
+
+        //* 카테고리 버튼에 OnClickListener 등록 *//
+        Button[] categotyBtns = new Button[8]; //TODO 상수 class로 변경하기
+        categotyBtns[0] = view.findViewById(R.id.korean_btn);
+        categotyBtns[1] = view.findViewById(R.id.chinese_btn);
+        categotyBtns[2] = view.findViewById(R.id.japanese_btn);
+        categotyBtns[3] = view.findViewById(R.id.western_btn);
+        categotyBtns[4] = view.findViewById(R.id.snack_btn);
+        categotyBtns[5] = view.findViewById(R.id.chicken_btn);
+        categotyBtns[6] = view.findViewById(R.id.asian_btn);
+        categotyBtns[7] = view.findViewById(R.id.fast_btn);
+
+        for(int i = 0; i < 8; i++) {//TODO 상수 class로 변경하기
+            final int position = i + 1;
+            categotyBtns[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainActivity.ReplaceFragment(new RestaurantListFragment(position));//TODO 상수 class로 변경하기
+                }
+            });
+        }
+        //---------------------------------------------------//
 
         return view;
     }

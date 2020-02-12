@@ -17,7 +17,7 @@ import com.momeokji.moc.RestaurantListPage;
 
 public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
-    Context context;
+    Context context = null;
 
     public PagerAdapter_RestaurantListPage(@NonNull FragmentManager fm, int behavior, Context context) {
         super(fm, behavior);
@@ -42,16 +42,8 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 4;
-    }
-/*    private Context context = null;
-
-
-
-
-    public PagerAdapter_RestaurantListPage(Context context) {
-        this.context = context;
-    }
-
+    }//TODO 상수 클래스 만들어서 CategryNum 으로 변경
+/*
     @Override
     public Object instantiateItem(ViewGroup container, int position){
         View view = null;
@@ -64,22 +56,6 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
         container.addView(view);
 
         return view;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
-    }
-
-    @Override
-    public int getCount() {
-        return 8; //TODO 상수 클래스 만들어서 CategryNum 으로 변경
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return (view == (View) object);
     }*/
-
 
 }

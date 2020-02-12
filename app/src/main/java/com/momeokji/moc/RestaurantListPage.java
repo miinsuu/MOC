@@ -77,24 +77,7 @@ public class RestaurantListPage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_list_page, container, false);
 
         //* 리사이클러 뷰 등록 *//
-/*        RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
-        restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
-
-        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
-        if (targetRestaurantArrayList != null)
-            recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
-        restaurantList_recyclerView.setAdapter(recyclerViewAdapter);*/
-        //-----------------------//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        RecyclerView restaurantList_recyclerView = getView().findViewById(R.id.restaurantList_recyclerView);
+        RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
@@ -103,6 +86,10 @@ public class RestaurantListPage extends Fragment {
         if (targetRestaurantArrayList != null)
             recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
         restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
+
+        //-----------------------//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -115,12 +102,6 @@ public class RestaurantListPage extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-  /*      if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
     }
 
     @Override
