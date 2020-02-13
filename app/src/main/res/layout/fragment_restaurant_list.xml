@@ -51,8 +51,7 @@
             android:id="@+id/categoryTabBar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
-            android:scrollbarAlwaysDrawHorizontalTrack="true">
+            app:tabMode="scrollable">
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,16 +94,6 @@
             android:layout_height="2dp"
             android:layout_marginBottom="20dp"
             android:background="@android:color/darker_gray"/>
-<!--
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/restaurantList_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:scrollbars="vertical"/>-->
 
         <com.momeokji.moc.Helper.NonSwipeableViewPager
             android:id="@+id/restaurantListPage_viewPager"

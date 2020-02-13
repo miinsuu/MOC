@@ -19,17 +19,11 @@ public class NonSwipeableViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (this.isEnableSwipe) {
-            return super.onTouchEvent(event);
-        }
-        return false;
+            return this.isEnableSwipe && super.onTouchEvent(event);
     }
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (this.isEnableSwipe) {
-            return super.onInterceptTouchEvent(event);
-        }
-        return false;
+            return this.isEnableSwipe && super.onInterceptTouchEvent(event);
     }
 
     public void setEnableSwipe(boolean isEnableSwipe) {

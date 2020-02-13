@@ -6,11 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NavigationBarFragment">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@+id/bottomNavigationView_bottomNavigationView"
-        android:background="@android:color/darker_gray"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView_bottomNavigationView"
         android:layout_width="match_parent"
@@ -18,6 +13,7 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu_bottom_navigation_view"
         app:itemIconTint="@drawable/selecter_bottom_navigation_view"
-        app:itemTextColor="@drawable/selecter_bottom_navigation_view"/>
+        app:itemTextColor="@drawable/selecter_bottom_navigation_view"
+        android:background="@color/lightGray"/>
 
 </FrameLayout>

@@ -19,7 +19,7 @@ import com.momeokji.moc.data.DATA;
 public class MainActivity extends AppCompatActivity {
 
     private Fragment currPage;
-    private Fragment navigationBar;
+    private NavigationBarFragment navigationBar;
     public DATA restaurantDATA;
 
     @Override
@@ -74,4 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public void setCurrPage(Fragment page){
         this.currPage = page;
     }
+
+    public NavigationBarFragment getNavigationBar() { return this.navigationBar; }
 }
