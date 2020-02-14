@@ -163,7 +163,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5,000원 - 6,000원" />
+                        android:text="5,300원 - 5,800원" />
 
                 </LinearLayout>
             </LinearLayout>

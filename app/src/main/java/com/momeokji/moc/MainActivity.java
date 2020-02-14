@@ -19,7 +19,7 @@ import com.momeokji.moc.data.DATA;
 public class MainActivity extends AppCompatActivity {
 
     private Fragment currPage;
-    private Fragment navigationBar;
+    private NavigationBarFragment navigationBar;
     public DATA restaurantDATA;
 
     @Override
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         /*- 초기 Fragment 등록 -*/
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.mainActivity_frameLayout, HomeFragment.newInstance());
-        //navigationBar = NavigationBarFragment.newInstance();
-        //fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBar);
+        navigationBar = NavigationBarFragment.newInstance();
+        fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBar);
         fragmentTransaction.commit();
         currPage = navigationBar;
 
@@ -44,28 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             }
         });
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView_bottomNavigationView);
-        BottomNavigationHelper.disableShiftMode(bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener((new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navigationBar_home_btn:
-                        ReplaceFragment(new HomeFragment());
-                        break;
-                    case R.id.navigationBar_shop_btn:
-                        ReplaceFragment(new RestaurantListFragment());
-                        break;
-                    case R.id.navigationBar_roulette_btn:
-                        break;
-                    case R.id.navigationBar_more_btn:
-                        break;
-                    default:
-                }
-                return true;
-            }
-        }));
     }
 
     /*- Fragment 교체 함수 -*/
@@ -96,4 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public void setCurrPage(Fragment page){
         this.currPage = page;
     }
+
+    public NavigationBarFragment getNavigationBar() { return this.navigationBar; }
 }
