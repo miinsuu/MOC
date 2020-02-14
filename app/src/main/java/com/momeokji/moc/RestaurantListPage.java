@@ -3,14 +3,13 @@ package com.momeokji.moc;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 import com.momeokji.moc.data.Restaurant;
@@ -99,7 +98,7 @@ public class RestaurantListPage extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());         // 레이아웃 매니저 등록
         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);
 
-        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
+        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList((MainActivity)getActivity());                                          // 어댑터 등록
         if (targetRestaurantArrayList != null)
             recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
         restaurantList_recyclerView.setAdapter(recyclerViewAdapter);

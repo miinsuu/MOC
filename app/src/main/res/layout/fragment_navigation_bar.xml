@@ -9,98 +9,112 @@
         android:layout_height="2dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/darker_gray"/>
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="#0CFFEB3B"
         android:columnCount="4">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="33dp"
-            android:paddingRight="33dp"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
+            android:paddingRight="33dp"
+            android:paddingBottom="8dp">
+
             <Button
                 android:id="@+id/navigationBar_home_btn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/mainicon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
+                android:text="홈"
                 android:textColor="#578cdc"
-                android:text="홈"/>
+                android:textSize="16sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="33dp"
-            android:paddingRight="33dp"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
+            android:paddingRight="33dp"
+            android:paddingBottom="8dp">
+
             <Button
                 android:id="@+id/navigationBar_shop_btn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/mainicon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
+                android:text="가게"
                 android:textColor="#578cdc"
-                android:text="가게"/>
+                android:textSize="16sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="33dp"
-            android:paddingRight="33dp"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
+            android:paddingRight="33dp"
+            android:paddingBottom="8dp">
+
             <Button
                 android:id="@+id/navigationBar_roulette_btn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/mainicon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
+                android:text="뽑기"
                 android:textColor="#578cdc"
-                android:text="뽑기"/>
+                android:textSize="16sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="33dp"
-            android:paddingRight="33dp"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
+            android:paddingRight="33dp"
+            android:paddingBottom="8dp">
+
             <Button
                 android:id="@+id/navigationBar_more_btn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/mainicon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
+                android:text="더보기"
                 android:textColor="#578cdc"
-                android:text="더보기"/>
+                android:textSize="16sp" />
         </LinearLayout>
     </GridLayout>
 </FrameLayout>
