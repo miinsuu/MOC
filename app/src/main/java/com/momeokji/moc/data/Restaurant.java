@@ -8,7 +8,10 @@ import com.google.gson.JsonParser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class Restaurant implements Serializable {
@@ -18,7 +21,7 @@ public class Restaurant implements Serializable {
     //private Menu[] mainMenu;
     private String minMaxPrice;
     private String preview;
-    //ArrayList<Menu> menuList;
+    private ArrayList<Map> menuList = new ArrayList<>();
 
 
     public Restaurant(String json){      // restaurant 생성자
@@ -34,21 +37,44 @@ public class Restaurant implements Serializable {
         this.restaurantName = obj.get("name").getAsString(); // 가게이름
         this.minMaxPrice = obj.get("minMax").getAsString(); // 최저 최고 가격
         this.preview = obj.get("preview").getAsString(); // 짧은 가게소개
+        JsonObject menuCategoryMapJson = obj.get("menu").getAsJsonObject(); // 메뉴카테고리리스트 HashMap
 
-//        this.menuList = menuList;
-//         Iterator<Menu> iterator = menuList.iterator();
 
-//         int tmpPrice;                                          // restaurantlist에 표시될 최소, 최대 가격 찾기 - restaurant의 갯수가 많지 않기에 minmaxPrice를 문자열로 저장하는 방법도 고려
-//        if(menuList != null) {
-//            while (iterator.hasNext()) {
-//                tmpPrice = iterator.next().getPrice();
-//                if (tmpPrice < minPrice) {
-//                    this.minPrice = tmpPrice;
-//                } else if (tmpPrice > maxPrice) {
-//                    this.maxPrice = tmpPrice;
-//                }
-//            }
-//        }
+
+        String menuCategoryName;
+        String name;
+        String price;
+        for (Object o : menuCategoryMapJson.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
+            menuCategoryName = entry.getKey().toString(); //메뉴카테고리 이름
+            Log.e("메뉴카테고리TEST",menuCategoryName);
+
+            JsonObject menuMapJson = (JsonObject)entry.getValue();
+
+            Map<String, Object> menuCategoryTmp  = new HashMap<>();
+            ArrayList<Menu> menuTmp = new ArrayList<>();
+            for (Object o2 : menuMapJson.entrySet()) {
+                Map.Entry entry2 = (Map.Entry) o2;
+                name = entry2.getKey().toString(); //메뉴 이름
+                price = entry2.getValue().toString(); //메뉴 가격
+
+                menuTmp.add(new Menu(name, price)); //이름/가격 메뉴로 묶기
+                Log.e("메뉴이름가격TEST",name+":"+price);
+            }
+
+            menuCategoryTmp.put(menuCategoryName, menuTmp); //한 카테고리 저장완료
+            if(!menuCategoryTmp.isEmpty())
+                Log.e("카테고리MAP저장체크", "저장성공!!!");
+            else
+                Log.e("카테고리MAP저장체크", "실패");
+
+            this.menuList.add(menuCategoryTmp); //전체 메뉴에 완성된 카테고리 저장
+            if(!this.menuList.isEmpty())
+                Log.e("전체메뉴저장체크", "저장성공!!!");
+            else
+                Log.e("전체메뉴저장체크", "실패");
+        }
+
     }
 
     public String getRestaurantName() {

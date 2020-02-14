@@ -27,7 +27,7 @@ public class DatabaseQueryClass {
         public static void getKoreanShopList(final DataListener dataListener){
                 Log.e("ShopFromDB", "getKoreanShopList");
                 CollectionReference shopRef = db.collection("korean");
-                shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                shopRef.whereEqualTo("name", "숭실골").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -45,7 +45,7 @@ public class DatabaseQueryClass {
         public static void getChineseShopList(final DataListener dataListener){
             Log.e("ShopFromDB", "getChineseShopList");
             CollectionReference shopRef = db.collection("chinese");
-            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            shopRef.whereEqualTo("name", "숭실골").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
@@ -63,7 +63,7 @@ public class DatabaseQueryClass {
         public static void getJapaneseShopList(final DataListener dataListener){
             Log.e("ShopFromDB", "getJapaneseShopList");
             CollectionReference shopRef = db.collection("japanese");
-            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            shopRef.whereEqualTo("name", "숭실골").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
+    private String restaurantName; //선택한 가게이름
 
     private OnItemClickListener viewHolderListener = null;                                      //
     public static interface OnItemClickListener{                                                       // ViewHolder의 커스텀 클릭 리스너
