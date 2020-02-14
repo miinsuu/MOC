@@ -78,7 +78,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        mainActivity.ReplaceFragment(new RestaurantInfoFragment());
+                        ((MainActivity)context).ReplaceFragment(new RestaurantInfoFragment());
 /*                        int targetPos = getAdapterPosition();
                         if(targetPos != RecyclerView.NO_POSITION) {
                             if (viewHolderListener != null)
