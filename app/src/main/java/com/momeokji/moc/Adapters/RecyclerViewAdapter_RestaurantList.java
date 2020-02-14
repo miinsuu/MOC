@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
+import com.momeokji.moc.RestaurantInfoFragment;
 import com.momeokji.moc.data.Restaurant;
 
 import org.w3c.dom.Text;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
+    private MainActivity mainActivity;
     private int selectedRecyclerViewItemPosition = -1;
     private LinearLayout expandedMenu_linearLayout;
     private Context context;
@@ -31,6 +34,9 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
 
     public static interface OnItemClickListener{                                                       // ViewHolder의 커스텀 클릭 리스너
         void OnItemClick(View v, int position);                                                        // (클릭 리스너를 액티비티에서 구현하기 위해 defualt interface 사용)
+    }
+    public RecyclerViewAdapter_RestaurantList(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
     public void setOnItemClickListener(OnItemClickListener viewHolderListener){
         this.viewHolderListener = viewHolderListener;
@@ -72,11 +78,12 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        int targetPos = getAdapterPosition();
+                        mainActivity.ReplaceFragment(new RestaurantInfoFragment());
+/*                        int targetPos = getAdapterPosition();
                         if(targetPos != RecyclerView.NO_POSITION) {
                             if (viewHolderListener != null)
                                 viewHolderListener.OnItemClick(view, targetPos);
-                        }
+                        }*/
                     }
                 });
 

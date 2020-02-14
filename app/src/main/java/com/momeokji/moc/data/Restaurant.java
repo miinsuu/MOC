@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 @SuppressWarnings("serial")
 public class Restaurant implements Serializable {
-    private static final String TAG = "Data - Restaurant";
+    private static final String TAG = "Data - RestaurantInfoFragment";
 
     private String restaurantName;
     private Menu[] mainMenu;
@@ -18,7 +18,7 @@ public class Restaurant implements Serializable {
     public Restaurant(String restaurantName, Menu[] mainMenu, ArrayList<Menu> menuList){      // restaurant 생성자
          this.restaurantName = restaurantName;
          if (mainMenu.length != 3) {
-             Log.w(TAG, "Restaurant: The number of main menu is lower than 3");
+             Log.w(TAG, "RestaurantInfoFragment: The number of main menu is lower than 3");
              return;
          }
          this.mainMenu = mainMenu;

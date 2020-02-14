@@ -15,5 +15,4 @@
         app:itemIconTint="@drawable/selecter_bottom_navigation_view"
         app:itemTextColor="@drawable/selecter_bottom_navigation_view"
         android:background="@color/lightGray"/>
-
 </FrameLayout>
