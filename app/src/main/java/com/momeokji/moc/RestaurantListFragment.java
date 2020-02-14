@@ -61,7 +61,7 @@ public class RestaurantListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         //* 초기 탭 설정
-        //    - Fragment가 완전히 생성된 후 설정해줘야 탭 스크롤이 선택한 탭 쪽으로 움직임
+        //    - Fragment가 완전히 생성된 후 설정해줘야 탭 스크롤이 선택한 탭 쪽으로 움직임. 그래서 임시방편으로 딜레이 걸어줌
         setTab(initTab);
         Handler mHander = new Handler();    // TODO 임시방편..... 더 나은 코드 있으면 교체하자
         mHander.postDelayed(new Runnable() {

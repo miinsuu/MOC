@@ -54,7 +54,7 @@ public class RestaurantListPage extends Fragment {
                         RecyclerView restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
                         restaurantList_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));         // 레이아웃 매니저 등록
 
-                        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList();                                          // 어댑터 등록
+                        RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList(getActivity());                                          // 어댑터 등록
                         if (targetRestaurantArrayList != null)
                             recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
                         restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
@@ -72,7 +72,7 @@ public class RestaurantListPage extends Fragment {
             public void run() {
                 enableRestaurantListLoad();
             }
-        }, 1000);
+        }, 1500);
         //--------------------------------------//
 
 

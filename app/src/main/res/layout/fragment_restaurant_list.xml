@@ -92,7 +92,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginBottom="20dp"
             android:background="@android:color/darker_gray"/>
 
         <com.momeokji.moc.Helper.NonSwipeableViewPager

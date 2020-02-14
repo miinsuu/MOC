@@ -46,19 +46,4 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
     public int getCount() {
         return 4;
     }//TODO 상수 클래스 만들어서 CategryNum 으로 변경
-/*
-    @Override
-    public Object instantiateItem(ViewGroup container, int position){
-        View view = null;
-        if (context != null) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.page_restaurant_list, container, false);
-
-        }
-
-        container.addView(view);
-
-        return view;
-    }*/
-
 }
