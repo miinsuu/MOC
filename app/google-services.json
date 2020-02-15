@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "930585239158",
+    "firebase_url": "https://mocfirebaseproject-28e15.firebaseio.com",
+    "project_id": "mocfirebaseproject-28e15",
+    "storage_bucket": "mocfirebaseproject-28e15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930585239158:android:eb0fe3287c6a90e4a2c957",
+        "android_client_info": {
+          "package_name": "com.momeokji.moc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930585239158-blfj8vbtfedlnf453bhemhbrv5qtmh9n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.momeokji.moc",
+            "certificate_hash": "58ed2d16934969e83ef8ed041381704f87b81cc4"
+          }
+        },
+        {
+          "client_id": "930585239158-lh1pjd6mssef4cp5dslg90fkb6npu8c0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.momeokji.moc",
+            "certificate_hash": "5fe08e921658d4a1c0a99e02a500878c555c6248"
+          }
+        },
+        {
+          "client_id": "930585239158-7tgm2a64s84k02flcdq0r00nrr71gnm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCFZFPvmoOnDdmUlQLfTP2-y5f2R9iKD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930585239158-7tgm2a64s84k02flcdq0r00nrr71gnm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

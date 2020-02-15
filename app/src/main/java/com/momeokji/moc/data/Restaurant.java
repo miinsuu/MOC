@@ -15,10 +15,12 @@ import java.util.Set;
 
 @SuppressWarnings("serial")
 public class Restaurant implements Serializable {
-    //private static final String TAG = "Data - Restaurant";
+    private static final String TAG = "Data - RestaurantInfoFragment";
 
     private String restaurantName;
-    //private Menu[] mainMenu;
+    private String address;
+    private String phoneNumber;
+    private Menu[] mainMenu;
     private String minMaxPrice;
     private String preview;
     private ArrayList<Map> menuList = new ArrayList<>();
@@ -34,16 +36,27 @@ public class Restaurant implements Serializable {
         JsonElement ele = new JsonParser().parse(json);
         JsonObject obj = ele.getAsJsonObject();
         Log.e("Restaurant", obj.toString());
+
         this.restaurantName = obj.get("name").getAsString(); // 가게이름
+
         this.minMaxPrice = obj.get("minMax").getAsString(); // 최저 최고 가격
+
         this.preview = obj.get("preview").getAsString(); // 짧은 가게소개
-        JsonObject menuCategoryMapJson = obj.get("menu").getAsJsonObject(); // 메뉴카테고리리스트 HashMap
 
-
-
-        String menuCategoryName;
+        this.mainMenu = new Menu[3]; // 메인메뉴 3가지
+        JsonObject mainMenuMapJson = obj.get("topMenu").getAsJsonObject(); // 메인메뉴 HashMap
         String name;
         String price;
+        int i = 0;
+        for (Object o : mainMenuMapJson.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
+            name = entry.getKey().toString(); //메뉴이름
+            price = entry.getValue().toString(); //메뉴가격
+            mainMenu[i++] = new Menu(name, price);
+        }
+
+        JsonObject menuCategoryMapJson = obj.get("menu").getAsJsonObject(); // 메뉴카테고리리스트 HashMap
+        String menuCategoryName;
         for (Object o : menuCategoryMapJson.entrySet()) {
             Map.Entry entry = (Map.Entry) o;
             menuCategoryName = entry.getKey().toString(); //메뉴카테고리 이름
@@ -84,29 +97,22 @@ public class Restaurant implements Serializable {
         this.restaurantName = restaurantName;
     }
 
-//    public Menu getMainMenu() {
-//        return mainMenu[0];
-//    }
-//    public Menu[] getMainMenus() {
-//        return mainMenu;
-//    }
-//    public void setMainMenus(Menu[] mainMenu) {
-//        this.mainMenu = mainMenu;
-//    }
+    public Menu getMainMenu() {
+        return mainMenu[0];
+    }
+    public Menu[] getMainMenus() {
+        return mainMenu;
+    }
+    public void setMainMenus(Menu[] mainMenu) {
+        this.mainMenu = mainMenu;
+    }
 
-//    public int getMinPrice(){
-//        return this.minPrice;
-//    }
-//    public int getMaxPrice(){
-//        return this.maxPrice;
-//    }
-
-//    public ArrayList<Menu> getMenuList(){
-//        return this.menuList;
-//    }
-//    public void setMenuList(ArrayList<Menu> menuList){
-//        this.menuList = menuList;
-//    }
+    public ArrayList<Map> getMenuList(){
+        return this.menuList;
+    }
+    public void setMenuList(ArrayList<Map> menuList){
+        this.menuList = menuList;
+    }
 
     public String getMinMaxPrice() {
         return minMaxPrice;

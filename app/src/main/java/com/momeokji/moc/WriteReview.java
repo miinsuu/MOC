@@ -3,23 +3,22 @@ package com.momeokji.moc;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link processing_page.OnFragmentInteractionListener} interface
+ * {@link WriteReview.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link processing_page#newInstance} factory method to
+ * Use the {@link WriteReview#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class processing_page extends Fragment {
+public class WriteReview extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +30,7 @@ public class processing_page extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public processing_page() {
+    public WriteReview() {
         // Required empty public constructor
     }
 
@@ -41,11 +40,11 @@ public class processing_page extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment processing_page.
+     * @return A new instance of fragment WriteReview.
      */
     // TODO: Rename and change types and number of parameters
-    public static processing_page newInstance(String param1, String param2) {
-        processing_page fragment = new processing_page();
+    public static WriteReview newInstance(String param1, String param2) {
+        WriteReview fragment = new WriteReview();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +65,7 @@ public class processing_page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_processing_page, container, false);
+        return inflater.inflate(R.layout.fragment_write_review, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

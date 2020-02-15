@@ -3,104 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NavigationBarFragment">
-    <View
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView_bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/darker_gray"/>
-    <GridLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:columnCount="4">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="33dp"
-            android:paddingRight="33dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/navigationBar_home_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/mainicon" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:textColor="#578cdc"
-                android:text="홈"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="33dp"
-            android:paddingRight="33dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/navigationBar_shop_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/mainicon" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:textColor="#578cdc"
-                android:text="가게"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="33dp"
-            android:paddingRight="33dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/navigationBar_roulette_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/mainicon" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:textColor="#578cdc"
-                android:text="뽑기"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="33dp"
-            android:paddingRight="33dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/navigationBar_more_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/mainicon" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:textColor="#578cdc"
-                android:text="더보기"/>
-        </LinearLayout>
-    </GridLayout>
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_navigation_view"
+        app:itemIconTint="@drawable/selecter_bottom_navigation_view"
+        app:itemTextColor="@drawable/selecter_bottom_navigation_view"
+        android:background="@color/lightGray"/>
 </FrameLayout>
