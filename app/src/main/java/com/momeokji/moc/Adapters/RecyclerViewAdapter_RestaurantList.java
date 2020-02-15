@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
+    private String restaurantName; //선택한 가게이름
     private MainActivity mainActivity;
     private int selectedRecyclerViewItemPosition = -1;
     private LinearLayout expandedMenu_linearLayout;
@@ -102,12 +103,13 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
         }
         public void onBind(Restaurant restaurant, final int position){
             restaurantName_txt.setText((restaurant.getRestaurantName()));
-            restaurantDescription_txt.setText((restaurant.getMainMenu()).getName());
-            menuPriceRange_txt.setText((restaurant.getMinPrice() + " ~ " + restaurant.getMaxPrice()));
+            restaurantDescription_txt.setText(restaurant.getPreview());
+            menuPriceRange_txt.setText(restaurant.getMinMaxPrice());
             for(int i = 0; i < 3; i++) {    //TODO 상수 클래스 적용하기
                 mainMenus.get(i*2).setText(restaurant.getMainMenus()[i].getName());
                 mainMenus.get(i*2+1).setText(restaurant.getMainMenus()[i].getPrice() + "원");
             }
+
 
             menuExpand_imgbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
