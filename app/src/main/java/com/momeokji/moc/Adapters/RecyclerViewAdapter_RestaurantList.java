@@ -79,12 +79,14 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity)context).ReplaceFragment(new RestaurantInfoFragment());
-/*                        int targetPos = getAdapterPosition();
-                        if(targetPos != RecyclerView.NO_POSITION) {
-                            if (viewHolderListener != null)
-                                viewHolderListener.OnItemClick(view, targetPos);
-                        }*/
+                            int targetPos = getAdapterPosition();
+                            if(targetPos != RecyclerView.NO_POSITION) {
+                                if (viewHolderListener != null)
+                                    viewHolderListener.OnItemClick(view, targetPos);
+                            }
+                            Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
+
+                            ((MainActivity)context).ReplaceFragment(new RestaurantInfoFragment(selectedRestaurant));
                     }
                 });
 
