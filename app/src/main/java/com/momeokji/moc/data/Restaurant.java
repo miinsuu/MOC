@@ -39,6 +39,10 @@ public class Restaurant implements Serializable {
 
         this.restaurantName = obj.get("name").getAsString(); // 가게이름
 
+        this.address = obj.get("address").getAsString(); // 가게주소
+
+        this.phoneNumber = obj.get("phoneNumber").getAsString(); //가게전화번호
+
         this.minMaxPrice = obj.get("minMax").getAsString(); // 최저 최고 가격
 
         this.preview = obj.get("preview").getAsString(); // 짧은 가게소개
@@ -128,5 +132,21 @@ public class Restaurant implements Serializable {
 
     public void setPreview(String preview) {
         this.preview = preview;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
