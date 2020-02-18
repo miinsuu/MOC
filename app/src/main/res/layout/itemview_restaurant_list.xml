@@ -93,9 +93,8 @@
                     android:paddingRight="20dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/white"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/shape_main_menu">
+                    android:background="@drawable/shape_main_menu">
                     <TextView
                         android:id="@+id/mainMenu1Name_Txt"
                         android:layout_width="wrap_content"
@@ -120,9 +119,8 @@
                     android:paddingRight="20dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/white"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/shape_main_menu">
+                    android:background="@drawable/shape_main_menu">
                     <TextView
                         android:id="@+id/mainMenu2Name_Txt"
                         android:layout_width="wrap_content"
@@ -147,9 +145,8 @@
                     android:paddingRight="20dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/white"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/shape_main_menu">
+                    android:background="@drawable/shape_main_menu">
                     <TextView
                         android:id="@+id/mainMenu3Name_Txt"
                         android:layout_width="wrap_content"
