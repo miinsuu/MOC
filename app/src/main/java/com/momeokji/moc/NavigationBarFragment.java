@@ -39,7 +39,7 @@ public class NavigationBarFragment extends Fragment {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
                         if (mainActivity.getLocationSelect() == null) {
-                            mainActivity.ReplaceFragmentType(new MainContextAndNavigationBarFragment(mainActivity, MAIN_CONTEXT_WITH_LOCATION_SELECT, new HomeFragment()));
+                            mainActivity.ReplaceMainContextWithLocationSelect(new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()));
                         }
                         else if (!(mainActivity.getMainContext() instanceof HomeFragment)) {
                             mainActivity.ReplaceMainContext(new HomeFragment());
