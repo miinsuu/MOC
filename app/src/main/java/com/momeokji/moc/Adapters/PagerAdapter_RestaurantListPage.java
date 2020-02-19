@@ -18,6 +18,7 @@ import com.momeokji.moc.RestaurantListPage;
 
 public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
+    final static private int CategoryNum = 4; // TODO 민수와 데이터 받는 법 상의 후 getItem 메소드 수정
     private Context context = null;
     private boolean isEnableSwipe = false;
 
@@ -44,6 +45,6 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
-    }//TODO 상수 클래스 만들어서 CategryNum 으로 변경
+        return CategoryNum;
+    }
 }

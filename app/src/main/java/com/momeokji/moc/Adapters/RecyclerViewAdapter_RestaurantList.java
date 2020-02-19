@@ -2,6 +2,7 @@ package com.momeokji.moc.Adapters;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +24,19 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
+    final static private int MAX_MAINS_NUM = 3;
+    final static private int EXPANDABLE_MAINS_HEIGHT = 76;
+
     private ArrayList<Restaurant> restaurantList;
-    private String restaurantName; //선택한 가게이름
-    private MainActivity mainActivity;
     private int selectedRecyclerViewItemPosition = -1;
     private LinearLayout expandedMenu_linearLayout;
     private Context context;
     private boolean isCurrItemExpanded = false;
 
-    private OnItemClickListener viewHolderListener = null;                                      //
+    private OnItemClickListener viewHolderListener = null;
 
     public static interface OnItemClickListener{                                                       // ViewHolder의 커스텀 클릭 리스너
         void OnItemClick(View v, int position);                                                        // (클릭 리스너를 액티비티에서 구현하기 위해 defualt interface 사용)
-    }
-    public RecyclerViewAdapter_RestaurantList(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
-    public void setOnItemClickListener(OnItemClickListener viewHolderListener){
-        this.viewHolderListener = viewHolderListener;
     }
 
     public RecyclerViewAdapter_RestaurantList(Context context) {
@@ -103,11 +99,11 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             mainMenus.add((TextView) itemView.findViewById(R.id.mainMenu3Name_Txt));
             mainMenus.add((TextView) itemView.findViewById(R.id.mainMenu3Price_Txt));
         }
-        public void onBind(Restaurant restaurant, final int position){
+        public void onBind(final Restaurant restaurant, final int position){
             restaurantName_txt.setText((restaurant.getRestaurantName()));
             restaurantDescription_txt.setText(restaurant.getPreview());
             menuPriceRange_txt.setText(restaurant.getMinMaxPrice());
-            for(int i = 0; i < 3; i++) {    //TODO 상수 클래스 적용하기
+            for(int i = 0; i < MAX_MAINS_NUM; i++) {
                 mainMenus.get(i*2).setText(restaurant.getMainMenus()[i].getName());
                 mainMenus.get(i*2+1).setText(restaurant.getMainMenus()[i].getPrice() + "원");
             }
@@ -116,7 +112,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             menuExpand_imgbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    checkSelectedItem(position);
+
+                    checkSelectedItem(restaurantList.indexOf(restaurant));
                 }
             });
             changeVisibility(position);
@@ -136,7 +133,6 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             notifyItemChanged(selectedItemPosition);
             this.selectedRecyclerViewItemPosition = selectedItemPosition;
         }
-
     }
 
     private void changeVisibility(int position) {
@@ -144,25 +140,19 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
         if (!isCurrItemExpanded) {
             this.selectedRecyclerViewItemPosition = -1;
         }
-        int height = (int) (76 * context.getResources().getDisplayMetrics().density);
-        ValueAnimator valueAnimator;
-        if(isTargetItemExpanded) {
-            valueAnimator = ValueAnimator.ofInt(0, height);
-        }
-        else {
-            valueAnimator = ValueAnimator.ofInt(height, 0);
-        }
-        valueAnimator.setDuration(100);
+
+        int height = (int) (EXPANDABLE_MAINS_HEIGHT * context.getResources().getDisplayMetrics().density);
+        ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
+        valueAnimator.setDuration(300);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                int value = (int) animation.getAnimatedValue();
-
-                expandedMenu_linearLayout.getLayoutParams().height = value;
+                expandedMenu_linearLayout.getLayoutParams().height = (int) animation.getAnimatedValue();
                 expandedMenu_linearLayout.requestLayout();
                 expandedMenu_linearLayout.setVisibility(isTargetItemExpanded ? View.VISIBLE : View.GONE);
             }
         });
+
         valueAnimator.start();
     }
 }
