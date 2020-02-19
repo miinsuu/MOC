@@ -2,6 +2,6 @@
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
     android:propertyName="y"
     android:valueFrom="0dp"
-    android:valueTo="-50dp"
+    android:valueTo="@dimen/navigation_bar_height_negative"
     android:duration="500"
     android:valueType="floatType"/>

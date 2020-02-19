@@ -82,7 +82,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             }
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
 
-                            ((MainActivity)context).ReplaceFragment(new RestaurantInfoFragment(selectedRestaurant));
+                            ((MainActivity)context).ReplaceMainContextWithLocationSelect(new RestaurantInfoFragment(selectedRestaurant));
                     }
                 });
 

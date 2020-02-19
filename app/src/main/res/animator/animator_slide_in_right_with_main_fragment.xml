@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:propertyName="y"
-    android:valueFrom="0dp"
-    android:valueTo="50dp"
+    android:propertyName="x"
+    android:valueFrom="@dimen/parent_width"
+    android:valueTo="0dp"
     android:duration="500"
     android:valueType="floatType"/>

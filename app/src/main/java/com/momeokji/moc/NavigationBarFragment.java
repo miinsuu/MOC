@@ -16,6 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.Helper.BottomNavigationHelper;
 
 public class NavigationBarFragment extends Fragment {
+    final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
+    final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
+
     private BottomNavigationView bottomNavigationView;
     private MainActivity mainActivity = null;
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
@@ -35,19 +38,27 @@ public class NavigationBarFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        if (!(mainActivity.getCurrPage() instanceof HomeFragment))
-                            mainActivity.ReplaceFragment(new HomeFragment());
+                        if (mainActivity.getLocationSelect() == null) {
+                            mainActivity.ReplaceFragmentType(new MainContextAndNavigationBarFragment(mainActivity, MAIN_CONTEXT_WITH_LOCATION_SELECT, new HomeFragment()));
+                        }
+                        else if (!(mainActivity.getMainContext() instanceof HomeFragment)) {
+                            mainActivity.ReplaceMainContext(new HomeFragment());
+                        }
                         break;
                     case R.id.navigationBar_shop_btn:
-                        if (mainActivity.getCurrPage() instanceof RestaurantListFragment){
-                            ((RestaurantListFragment)mainActivity.getCurrPage()).setTab(0);
+                        if (!(mainActivity.getCurrFragmentType() instanceof MainContextAndNavigationBarFragment)) {
+                            mainActivity.ReplaceFragmentType(new MainContextAndNavigationBarFragment((MainActivity) getActivity(), MAIN_CONTEXT_WITH_LOCATION_SELECT, new RestaurantListFragment()));
                         }
                         else {
-                            mainActivity.ReplaceFragment(new RestaurantListFragment());
+                            if (mainActivity.getMainContext() instanceof RestaurantListFragment){
+                                ((RestaurantListFragment)mainActivity.getMainContext()).setTab(0);
+                            }
+                            else {
+                                mainActivity.ReplaceMainContext(new RestaurantListFragment());
+                            }
                         }
                         break;
                     case R.id.navigationBar_roulette_btn:
-                        mainActivity.HideNavigationBar(); // TODO HideNavigationBar 테스트용
                         break;
                     case R.id.navigationBar_more_btn:
                         break;
