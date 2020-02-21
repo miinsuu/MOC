@@ -13,4 +13,7 @@
 
     <dimen name="parent_width">415dp</dimen>
     <dimen name="parent_width_negative">-415dp</dimen>
+
+    <dimen name="floating_btn_init_bottom_margin">61dp</dimen>
+
 </resources>

@@ -20,8 +20,39 @@ public class MainContextAndNavigationBarFragment extends Fragment {
 
     private MainActivity mainActivity;
     private int fragmentType;
-    private Fragment mainContext;
+    private Fragment mainContextWithLocationSelect;
     private NavigationBarFragment navigationBarFragment;
+
+    public MainContextAndNavigationBarFragment(MainActivity mainActivity, Fragment mainContextWithLocationSelect) {
+        this.mainActivity = mainActivity;
+        this.mainContextWithLocationSelect = mainContextWithLocationSelect;
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main_context_and_navigation_bar, container, false);
+
+        mainActivity.displayedFragmentManager.fragmentManagers[1] = getChildFragmentManager();
+
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+        mainActivity.displayedFragmentManager.displayedFragments[1] = mainContextWithLocationSelect;
+
+        if (!(mainContextWithLocationSelect instanceof MainContextWithLocationSelectFragment)) {
+            mainActivity.displayedFragmentManager.locationSelect = null;
+            this.mainActivity.displayedFragmentManager.fragmentManagers[2] = null;
+        }
+        fragmentTransaction.add(R.id.mainContextWithLocationSelect_frameLayout, mainContextWithLocationSelect);
+
+        navigationBarFragment = new NavigationBarFragment();
+        mainActivity.displayedFragmentManager.navigationBar = navigationBarFragment;
+        fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBarFragment).commit();
+
+        return view;
+    }
+
+/*
 
     public MainContextAndNavigationBarFragment(MainActivity mainActivity, int fragmentType, Fragment mainContext) {
         this.mainActivity = mainActivity;
@@ -58,5 +89,17 @@ public class MainContextAndNavigationBarFragment extends Fragment {
 
     public void setMainContext(Fragment mainContext) {
         this.mainContext = mainContext;
+    }
+*/
+
+    public void setMainContextWithLocationSelect(Fragment mainContextWithLocationSelect) {
+        this.mainContextWithLocationSelect = mainContextWithLocationSelect;
+    }
+    public Fragment getMainContextWithLocationSelect() {
+        return this.mainContextWithLocationSelect;
+    }
+
+    public NavigationBarFragment getNavigationBarFragment() {
+        return this.navigationBarFragment;
     }
 }

@@ -39,5 +39,11 @@ public class MainContextWithLocationSelectFragment extends Fragment {
     public void setMainContext(Fragment targetFragment) {
         this.mainContext = targetFragment;
     }
+    public Fragment getMainContext() {
+        return this.mainContext;
+    }
 
+    public LocationSelectFragment getLocationSelectFragment() {
+        return this.locationSelectFragment;
+    }
 }

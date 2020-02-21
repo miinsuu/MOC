@@ -38,7 +38,7 @@ public class NavigationBarFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        if (!(mainActivity.displayedFragmentManager.displayedFragments[0] instanceof MainContextAndNavigationBarFragment)) {
+                        if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MainContextWithLocationSelectFragment)) {
                             mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()));
                         }
                         else if (!(mainActivity.displayedFragmentManager.displayedFragments[2] instanceof HomeFragment)) {
@@ -46,8 +46,8 @@ public class NavigationBarFragment extends Fragment {
                         }
                         break;
                     case R.id.navigationBar_shop_btn:
-                        if (!(mainActivity.displayedFragmentManager.displayedFragments[0] instanceof MainContextAndNavigationBarFragment)) {
-                            mainActivity.ReplaceFragment(0, new MainContextAndNavigationBarFragment((MainActivity) getActivity(), MAIN_CONTEXT_WITH_LOCATION_SELECT, new RestaurantListFragment()));
+                        if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MainContextWithLocationSelectFragment)) {
+                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment())));
                         }
                         else {
                             if (mainActivity.displayedFragmentManager.displayedFragments[2] instanceof RestaurantListFragment){
@@ -59,6 +59,8 @@ public class NavigationBarFragment extends Fragment {
                         }
                         break;
                     case R.id.navigationBar_roulette_btn:
+                        if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof RouletteFragment))
+                            mainActivity.ReplaceFragment(1, new RouletteFragment());
                         break;
                     case R.id.navigationBar_more_btn:
                         break;
