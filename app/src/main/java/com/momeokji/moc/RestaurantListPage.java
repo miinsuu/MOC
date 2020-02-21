@@ -62,7 +62,7 @@ public class RestaurantListPage extends Fragment {
                         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);         // 레이아웃 매니저 등록
 
-                        final RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList(getActivity());                                          // 어댑터 등록
+                        final RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList((MainActivity)getActivity());                                          // 어댑터 등록
                         if (targetRestaurantArrayList != null) {
                             if (maxItemNum > targetRestaurantArrayList.size()) {
                                 recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);

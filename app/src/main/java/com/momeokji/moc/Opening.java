@@ -2,6 +2,7 @@ package com.momeokji.moc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -80,8 +81,7 @@ public class Opening extends AppCompatActivity {
 //                .load(imagesRef)
 //                .into(mainImage);
 
-
-    }
+}
 
     public void connectDB() {
 

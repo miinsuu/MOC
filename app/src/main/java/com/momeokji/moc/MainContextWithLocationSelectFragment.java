@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 public class MainContextWithLocationSelectFragment extends Fragment {
 
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
     private LocationSelectFragment locationSelectFragment;
     private Fragment mainContext;
 
@@ -26,14 +26,18 @@ public class MainContextWithLocationSelectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_context_with_location_select, container, false);
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         locationSelectFragment = new LocationSelectFragment();
-        mainActivity.setLocationSelect(locationSelectFragment);
+        mainActivity.displayedFragmentManager.locationSelect = locationSelectFragment;
         fragmentTransaction.add(R.id.locationSelect_frameLayout, locationSelectFragment);
-        mainActivity.setMainContext(mainContext);
+        mainActivity.displayedFragmentManager.displayedFragments[2] = mainContext;
         fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext).commit();
 
-        this.mainActivity.setFragmentManagers(2, getChildFragmentManager());
+        this.mainActivity.displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
 
         return view;
+    }
+
+    public void setMainContext(Fragment targetFragment) {
+        this.mainContext = targetFragment;
     }
 
 }

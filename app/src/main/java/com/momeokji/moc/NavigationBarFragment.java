@@ -38,23 +38,23 @@ public class NavigationBarFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        if (mainActivity.getLocationSelect() == null) {
-                            mainActivity.ReplaceMainContextWithLocationSelect(new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()));
+                        if (!(mainActivity.displayedFragmentManager.displayedFragments[0] instanceof MainContextAndNavigationBarFragment)) {
+                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()));
                         }
-                        else if (!(mainActivity.getMainContext() instanceof HomeFragment)) {
-                            mainActivity.ReplaceMainContext(new HomeFragment());
+                        else if (!(mainActivity.displayedFragmentManager.displayedFragments[2] instanceof HomeFragment)) {
+                            mainActivity.ReplaceFragment(2, new HomeFragment());
                         }
                         break;
                     case R.id.navigationBar_shop_btn:
-                        if (!(mainActivity.getCurrFragmentType() instanceof MainContextAndNavigationBarFragment)) {
-                            mainActivity.ReplaceFragmentType(new MainContextAndNavigationBarFragment((MainActivity) getActivity(), MAIN_CONTEXT_WITH_LOCATION_SELECT, new RestaurantListFragment()));
+                        if (!(mainActivity.displayedFragmentManager.displayedFragments[0] instanceof MainContextAndNavigationBarFragment)) {
+                            mainActivity.ReplaceFragment(0, new MainContextAndNavigationBarFragment((MainActivity) getActivity(), MAIN_CONTEXT_WITH_LOCATION_SELECT, new RestaurantListFragment()));
                         }
                         else {
-                            if (mainActivity.getMainContext() instanceof RestaurantListFragment){
-                                ((RestaurantListFragment)mainActivity.getMainContext()).setTab(0);
+                            if (mainActivity.displayedFragmentManager.displayedFragments[2] instanceof RestaurantListFragment){
+                                ((RestaurantListFragment)mainActivity.displayedFragmentManager.displayedFragments[2]).setTab(0);
                             }
                             else {
-                                mainActivity.ReplaceMainContext(new RestaurantListFragment());
+                                mainActivity.ReplaceFragment(2, new RestaurantListFragment());
                             }
                         }
                         break;

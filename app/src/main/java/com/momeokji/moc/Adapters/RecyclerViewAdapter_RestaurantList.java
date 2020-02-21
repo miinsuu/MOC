@@ -1,8 +1,6 @@
 package com.momeokji.moc.Adapters;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
 import com.momeokji.moc.data.Restaurant;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
@@ -30,7 +26,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
     private ArrayList<Restaurant> restaurantList;
     private int selectedRecyclerViewItemPosition = -1;
     private LinearLayout expandedMenu_linearLayout;
-    private Context context;
+    private MainActivity mainActivity;
     private boolean isCurrItemExpanded = false;
 
     private OnItemClickListener viewHolderListener = null;
@@ -39,8 +35,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
         void OnItemClick(View v, int position);                                                        // (클릭 리스너를 액티비티에서 구현하기 위해 defualt interface 사용)
     }
 
-    public RecyclerViewAdapter_RestaurantList(Context context) {
-        this.context = context;
+    public RecyclerViewAdapter_RestaurantList(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -82,7 +78,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             }
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
 
-                            ((MainActivity)context).ReplaceMainContextWithLocationSelect(new RestaurantInfoFragment(selectedRestaurant));
+                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant));
                     }
                 });
 
@@ -141,7 +137,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             this.selectedRecyclerViewItemPosition = -1;
         }
 
-        int height = (int) (EXPANDABLE_MAINS_HEIGHT * context.getResources().getDisplayMetrics().density);
+        int height = (int) (EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
         ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
         valueAnimator.setDuration(300);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

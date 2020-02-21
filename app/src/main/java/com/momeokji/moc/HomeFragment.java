@@ -78,7 +78,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_home, container, false);
-
         return view;
     }
 
@@ -110,7 +109,7 @@ public class HomeFragment extends Fragment {
         //* 카테고리 버튼에 OnClickListener 등록
         //     - onStart에서 해주는 이유 : NavigationBarFragment의 BottomNavigationView를 등록하기 때문에 NavigationBarFragment가 확실히 생성된 후 작업하기 위해*//
         final View view = this.getView();
-        final NavigationBarFragment tempNavBarFrag = mainActivity.getNavigationBar();
+        final NavigationBarFragment tempNavBarFrag = mainActivity.displayedFragmentManager.navigationBar;
         final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
 
 
@@ -129,12 +128,13 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                   // mainActivity.ReplaceFragment(new RestaurantListFragment(position));//TODO 넘모 스파게티인 것..... 아이콘만 선택할 수 있는 방법 찾아보기
+                   // mainActivity.ReplaceFragment(new RestaurantListFragment(position));//TODO 넘모 스파게티인 것..... 현재 코드 : 카테고리 아이콘을 누르면 네비게이션 바에 리스너를 등록한 후 코드로 네비게이션 바 선택하게 만들어 버림
+                                                                                            //  네비게이션 바 선택 상태만 바꿀 수 있는 방법 찾아보기
                         tempBotNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                             @Override
                             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                                mainActivity.ReplaceMainContext(new RestaurantListFragment(position));
+                                mainActivity.ReplaceFragment(2, new RestaurantListFragment(position));
                                 return true;
                             }
                         });
