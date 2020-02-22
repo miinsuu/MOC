@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
@@ -66,7 +67,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
-        private TextView restaurantName_txt, restaurantDescription_txt, menuPriceRange_txt;
+        private TextView restaurantName_txt, menuPriceRange_txt;
+        private MarqueeTextView restaurantDescription_txt;
         private ArrayList<TextView> mainMenus = new ArrayList<>();
         private ImageButton menuExpand_imgbtn;
 

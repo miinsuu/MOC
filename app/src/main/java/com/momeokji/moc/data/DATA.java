@@ -25,7 +25,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                Log.e("데이터DB등록", data.toString());
+                //Log.e("데이터DB등록", data.toString());
                 KoreanRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -35,7 +35,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getChineseShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                Log.e("데이터DB등록", data.toString());
+                //Log.e("데이터DB등록", data.toString());
                 ChineseRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -45,7 +45,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getJapaneseShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                Log.e("데이터DB등록", data.toString());
+                //Log.e("데이터DB등록", data.toString());
                 JapaneseRestaurantList.add(new Restaurant(data.toString()));
             }
         });
