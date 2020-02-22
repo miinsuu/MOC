@@ -35,7 +35,7 @@ public class Restaurant implements Serializable {
 
         JsonElement ele = new JsonParser().parse(json);
         JsonObject obj = ele.getAsJsonObject();
-        Log.e("Restaurant", obj.toString());
+        //Log.e("Restaurant", obj.toString());
 
         this.restaurantName = obj.get("name").getAsString(); // 가게이름
 
@@ -64,7 +64,7 @@ public class Restaurant implements Serializable {
         for (Object o : menuCategoryMapJson.entrySet()) {
             Map.Entry entry = (Map.Entry) o;
             menuCategoryName = entry.getKey().toString(); //메뉴카테고리 이름
-            Log.e("메뉴카테고리TEST",menuCategoryName);
+            //Log.e("메뉴카테고리TEST",menuCategoryName);
 
             JsonObject menuMapJson = (JsonObject)entry.getValue();
 
@@ -76,20 +76,20 @@ public class Restaurant implements Serializable {
                 price = entry2.getValue().toString(); //메뉴 가격
 
                 menuTmp.add(new Menu(name, price)); //이름/가격 메뉴로 묶기
-                Log.e("메뉴이름가격TEST",name+":"+price);
+                //Log.e("메뉴이름가격TEST",name+":"+price);
             }
 
             menuCategoryTmp.put(menuCategoryName, menuTmp); //한 카테고리 저장완료
-            if(!menuCategoryTmp.isEmpty())
-                Log.e("카테고리MAP저장체크", "저장성공!!!");
-            else
-                Log.e("카테고리MAP저장체크", "실패");
+//            if(!menuCategoryTmp.isEmpty())
+//                Log.e("카테고리MAP저장체크", "저장성공!!!");
+//            else
+//                Log.e("카테고리MAP저장체크", "실패");
 
             this.menuList.add(menuCategoryTmp); //전체 메뉴에 완성된 카테고리 저장
-            if(!this.menuList.isEmpty())
-                Log.e("전체메뉴저장체크", "저장성공!!!");
-            else
-                Log.e("전체메뉴저장체크", "실패");
+//            if(!this.menuList.isEmpty())
+//                Log.e("전체메뉴저장체크", "저장성공!!!");
+//            else
+//                Log.e("전체메뉴저장체크", "실패");
         }
 
     }

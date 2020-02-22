@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_MenuReview;
+import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.data.Restaurant;
 
 
@@ -55,15 +56,15 @@ public class RestaurantInfoFragment extends Fragment {
 
         TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantPage_restaurantName_txt);
         TextView minMaxPrice = view.findViewById(R.id.restaurantInfoPage_restaurantRangePrice_txt);
-        TextView preview = view.findViewById(R.id.restaurantInfoPage_previewTxt);
+        MarqueeTextView preview = view.findViewById(R.id.restaurantInfoPage_previewTxt);
         TextView address = view.findViewById(R.id.restaurantInfoPage_addressTxt);
         TextView phoneNumber = view.findViewById(R.id.restaurantInfoPage_phoneNumberTxt);
 
         //restaurantPage_restaurantName_txt.setText(((MainActivity)getActivity()).restaurantDATA.KoreanRestaurantList.get(0).getRestaurantName());
         restaurantPage_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
-        preview.setSelected(true);
         preview.setText(selectedRestaurant.getPreview());
+        preview.setSelected(true);
         address.setText(selectedRestaurant.getAddress());
         phoneNumber.setText(selectedRestaurant.getPhoneNumber());
 
@@ -91,4 +92,5 @@ public class RestaurantInfoFragment extends Fragment {
 
         return view;
     }
+
 }
