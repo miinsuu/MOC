@@ -36,6 +36,7 @@ import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final int CATEGORY_NUM = 8;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private MainActivity mainActivity;
@@ -113,7 +114,7 @@ public class HomeFragment extends Fragment {
         final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
 
 
-        Button[] categoryBtns = new Button[8]; //TODO 상수 class로 변경하기
+        Button[] categoryBtns = new Button[CATEGORY_NUM];
         categoryBtns[0] = view.findViewById(R.id.korean_btn);
         categoryBtns[1] = view.findViewById(R.id.chinese_btn);
         categoryBtns[2] = view.findViewById(R.id.japanese_btn);
@@ -123,27 +124,16 @@ public class HomeFragment extends Fragment {
         categoryBtns[6] = view.findViewById(R.id.asian_btn);
         categoryBtns[7] = view.findViewById(R.id.fast_btn);
 
-        for(int i = 0; i < 8; i++) {//TODO 상수 class로 변경하기
+        for(int i = 0; i < CATEGORY_NUM; i++) {
             final int position = i + 1;
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                   // mainActivity.ReplaceFragment(new RestaurantListFragment(position));//TODO 넘모 스파게티인 것..... 현재 코드 : 카테고리 아이콘을 누르면 네비게이션 바에 리스너를 등록한 후 코드로 네비게이션 바 선택하게 만들어 버림
-                                                                                            //  네비게이션 바 선택 상태만 바꿀 수 있는 방법 찾아보기
-                        tempBotNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                            @Override
-                            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                                mainActivity.ReplaceFragment(2, new RestaurantListFragment(position));
-                                return true;
-                            }
-                        });
-                        tempBotNavView.setSelectedItemId(R.id.navigationBar_shop_btn);
-                        tempBotNavView.setOnNavigationItemSelectedListener(tempNavBarFrag.getOnNavigationItemSelectedListener());
+                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), true);
+                        tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });
         }
-        //---------------------------------------------------//
     }
 
    @Override

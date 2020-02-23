@@ -64,17 +64,19 @@ public class MainActivity extends AppCompatActivity {
 
     /*- Fragment 교체 함수 -*/
 
-    public boolean ReplaceFragment(final int level, final Fragment targetFragment) {
+    public boolean ReplaceFragment(final int level, final Fragment targetFragment, boolean animationDirection) {
         FragmentTransaction fragmentTransaction = displayedFragmentManager.fragmentManagers[level].beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment);
+
+        if (animationDirection)
+            fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment);
+        else
+            fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_left_with_main_fragment, R.animator.animator_slide_out_right_with_main_fragment);
 
         switch (level) {
             case 0:
                 checkMyListBtnPosition(targetFragment);
                 displayedFragmentManager.fragmentStackManager.PushFragment(level, displayedFragmentManager.fragmentManagers[level].findFragmentById(R.id.mainActivity_frameLayout));
                 fragmentTransaction.replace(R.id.mainActivity_frameLayout, targetFragment).commit();
-                displayedFragmentManager.fragmentManagers[1].beginTransaction().setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment).commit();
-                displayedFragmentManager.fragmentManagers[2].beginTransaction().setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment).commit();
                 break;
             case 1:
                 if (displayedFragmentManager.displayedFragments[0] instanceof MainContextAndNavigationBarFragment) {
@@ -123,8 +125,10 @@ public class MainActivity extends AppCompatActivity {
         public void UpdateDisplayedFragmentState(int level, Fragment targetFragment) {
             switch (level) {
                 case 0:
+                    //* 현재 표시되는 fragment & FragmentManager 업데이트 *//
                     displayedFragments[0] = targetFragment;
                     fragmentManagers[0] = getSupportFragmentManager();
+                    //* 새로 설정된 fragment의 하위 fragment와 그의 FragmentManager도 업데이트 *//
                     if (targetFragment instanceof MainContextAndNavigationBarFragment) {
                         displayedFragments[1] = ((MainContextAndNavigationBarFragment) displayedFragments[0]).getMainContextWithLocationSelect();
                         fragmentManagers[1] = displayedFragments[0].getChildFragmentManager();
@@ -149,12 +153,17 @@ public class MainActivity extends AppCompatActivity {
                         fragmentManagers[2] = null;
                         locationSelect = null;
                     }
+                    //* BottomNavigation Bar 선택 상태 수정 *//
+                    UpdateBottomNavigationBatSelectedItem();
                     break;
                 case 1:
+                    //* Level 1은 MainContextAndNavigationBarFragment의 윗부분 Context 이므로 해당 Context 영역이 존재하는지 확인 *//
                     if (displayedFragments[0] instanceof MainContextAndNavigationBarFragment) {
+                        //* 현재 표시되는 fragment & FragmentManager 업데이트 *//
                         ((MainContextAndNavigationBarFragment)displayedFragments[0]).setMainContextWithLocationSelect(targetFragment);
                         displayedFragments[1] = targetFragment;
                         fragmentManagers[1] = displayedFragments[0].getChildFragmentManager();
+                        //* 새로 설정된 fragment의 하위 fragment와 그의 FragmentManager도 업데이트 *//
                         if (targetFragment instanceof MainContextWithLocationSelectFragment) {
                             displayedFragments[2] = ((MainContextWithLocationSelectFragment) displayedFragments[1]).getMainContext();
                             fragmentManagers[2] = displayedFragments[1].getChildFragmentManager();
@@ -164,14 +173,21 @@ public class MainActivity extends AppCompatActivity {
                             fragmentManagers[2] = null;
                             locationSelect = null;
                         }
+                        //* BottomNavigation Bar 선택 상태 수정 *//
+                        UpdateBottomNavigationBatSelectedItem();
                     }
                     break;
                 case 2:
+                    //* Level 2는 MainContextWithLocationSelectFragment 중간 부분 Context 이므로 해당 Context 영역이 존재하는지 확인 *//
                     if ( (displayedFragments[0] instanceof MainContextAndNavigationBarFragment) && (displayedFragments[1] instanceof MainContextWithLocationSelectFragment) ) {
+                        //* 현재 표시되는 fragment 업데이트 *//
                         ((MainContextWithLocationSelectFragment)displayedFragments[1]).setMainContext(targetFragment);
                         ((MainContextAndNavigationBarFragment)displayedFragments[0]).setMainContextWithLocationSelect(displayedFragments[1]);
                         displayedFragments[2] = targetFragment;
+                        //* 설정된 fragment 의 FragmentManager 업데이트*//
                         fragmentManagers[2] = displayedFragments[1].getChildFragmentManager();
+                        //* BottomNavigation Bar 선택 상태 수정 *//
+                        UpdateBottomNavigationBatSelectedItem();
                     }
                     break;
 
@@ -181,13 +197,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkMyListBtnPosition(Fragment targetFragment) {
         if (targetFragment instanceof  MainContextAndNavigationBarFragment) {
-            setMyListBtnPosition(ABOVE_NAVIGATION_BAR);
+            SetMyListBtnPosition(ABOVE_NAVIGATION_BAR);
         }
         else {
-            setMyListBtnPosition(ABOVE_PARENT);
+            SetMyListBtnPosition(ABOVE_PARENT);
         }
     }
-    public void setMyListBtnPosition(boolean type) {
+    public void SetMyListBtnPosition(boolean type) {
         ObjectAnimator objectAnimator;
 
         if (type == ABOVE_NAVIGATION_BAR) {
@@ -198,5 +214,21 @@ public class MainActivity extends AppCompatActivity {
         }
         objectAnimator.setDuration(500);
         objectAnimator.start();
+    }
+
+    public void UpdateBottomNavigationBatSelectedItem() {
+        if (displayedFragmentManager.displayedFragments[2] instanceof HomeFragment) {
+            displayedFragmentManager.navigationBar.getBottomNavigationView().getMenu().getItem(0).setChecked(true);
+        }
+        else if (displayedFragmentManager.displayedFragments[2] instanceof RestaurantListFragment) {
+            displayedFragmentManager.navigationBar.getBottomNavigationView().getMenu().getItem(1).setChecked(true);
+        }
+        else if (displayedFragmentManager.displayedFragments[1] instanceof RouletteFragment) {
+            displayedFragmentManager.navigationBar.getBottomNavigationView().getMenu().getItem(2).setChecked(true);
+        }
+        else if (displayedFragmentManager.displayedFragments[1] instanceof MoreInfoFragment) {
+            displayedFragmentManager.navigationBar.getBottomNavigationView().getMenu().getItem(3).setChecked(true);
+        }
+
     }
 }
