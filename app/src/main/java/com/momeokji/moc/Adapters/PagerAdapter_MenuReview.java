@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.momeokji.moc.MenuTabPage;
-import com.momeokji.moc.ReviewTabPage;
+import com.momeokji.moc.RestaurantInfoMenuTabPage;
+import com.momeokji.moc.RestaurantInfoReviewTabPage;
 
 public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
     Context context;
@@ -21,9 +21,9 @@ public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MenuTabPage();
+                return new RestaurantInfoMenuTabPage();
             case 1:
-                return new ReviewTabPage();
+                return new RestaurantInfoReviewTabPage();
             default:
                 return null;
 

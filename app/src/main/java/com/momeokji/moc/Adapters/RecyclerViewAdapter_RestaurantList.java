@@ -17,8 +17,6 @@ import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
 import com.momeokji.moc.data.Restaurant;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
@@ -79,6 +77,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
+                        int targetPos = getAdapterPosition();
+                        Restaurant selectedRestaurant = restaurantList.get(targetPos);
                         ((MainActivity)context).ReplaceFragment(new RestaurantInfoFragment());
 /*                        int targetPos = getAdapterPosition();
                         if(targetPos != RecyclerView.NO_POSITION) {
