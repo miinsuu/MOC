@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.momeokji.moc.RestaurantInfoMenuTabPage;
-import com.momeokji.moc.RestaurantInfoReviewTabPage;
+import com.momeokji.moc.MenuClassificationTab;
 
-public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
-    Context context;
+public class PagerAdapter_MenuTabPage extends FragmentPagerAdapter {
 
-    public PagerAdapter_MenuReview(FragmentManager fm, int behavior, Context context) {
+    private Context context = null;
+
+    public PagerAdapter_MenuTabPage(FragmentManager fm, int behavior, Context context) {
         super(fm,behavior);
         this.context = context;
     }
@@ -21,9 +21,11 @@ public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new RestaurantInfoMenuTabPage();
+                return new MenuClassificationTab();
             case 1:
-                return new RestaurantInfoReviewTabPage();
+                return new MenuClassificationTab();
+            case 2:
+                return new MenuClassificationTab();
             default:
                 return null;
 
@@ -31,7 +33,6 @@ public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
-
 }

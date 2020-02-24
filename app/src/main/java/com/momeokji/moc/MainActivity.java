@@ -1,22 +1,14 @@
 package com.momeokji.moc;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.momeokji.moc.Database.DataListener;
-import com.momeokji.moc.Database.DatabaseQueryClass;
-import com.momeokji.moc.Helper.BottomNavigationHelper;
 import com.momeokji.moc.data.DATA;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,4 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public NavigationBarFragment getNavigationBar() { return this.navigationBar; }
+
+    //백버튼
+
 }
