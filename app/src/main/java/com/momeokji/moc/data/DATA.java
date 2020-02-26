@@ -1,10 +1,7 @@
 package com.momeokji.moc.data;
 
-import android.util.Log;
-
 import com.momeokji.moc.Database.DataListener;
 import com.momeokji.moc.Database.DatabaseQueryClass;
-import com.momeokji.moc.R;
 
 import java.util.ArrayList;
 
@@ -13,6 +10,7 @@ public class DATA {
     public ArrayList<Restaurant> ChineseRestaurantList;
     public ArrayList<Restaurant> JapaneseRestaurantList;
     public ArrayList<String> Location;
+    public Restaurant selectedRestaurant ;
 
     public DATA() {
         Location = new ArrayList<>();

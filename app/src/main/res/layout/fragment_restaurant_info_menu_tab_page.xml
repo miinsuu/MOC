@@ -15,22 +15,14 @@
             android:id="@+id/menuclassificationTabBar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextAppearance="@style/menu_classificationTab">
+            app:tabTextAppearance="@style/menu_classificationTab"
+            app:tabMode="scrollable">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대표" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tuesday" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wednesday" />
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager
