@@ -36,6 +36,11 @@ import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final int CATEGORY_NUM = 8;
+    final static private int ANIMATION_DIRECT_RIGHT = 0;
+    final static private int ANIMATION_DIRECT_LEFT = 1;
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private MainActivity mainActivity;
@@ -51,16 +56,6 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -88,24 +83,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_home, container, false);
-
-        //* 지역 선택용 스피너 등록 *//
-        locationSelect_spinner = view.findViewById(R.id.locationSelect_spinner);
-        location_txt = view.findViewById(R.id.location_txt);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ((MainActivity) getActivity()).restaurantDATA.Location); // TODO 서버 데이터 : Fragment 생성될 때 마다 Location 리스트
-        locationSelect_spinner.setSelection(0);
-        location_txt.setText((String) locationSelect_spinner.getItemAtPosition(0));
-        locationSelect_spinner.setAdapter(arrayAdapter);
-        locationSelect_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedItem = (String) adapterView.getItemAtPosition(position);
-                location_txt.setText(selectedItem);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
         return view;
     }
 
@@ -117,6 +94,10 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+/*    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -128,7 +109,7 @@ public class HomeFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onStart() {
@@ -137,11 +118,11 @@ public class HomeFragment extends Fragment {
         //* 카테고리 버튼에 OnClickListener 등록
         //     - onStart에서 해주는 이유 : NavigationBarFragment의 BottomNavigationView를 등록하기 때문에 NavigationBarFragment가 확실히 생성된 후 작업하기 위해*//
         final View view = this.getView();
-        final NavigationBarFragment tempNavBarFrag = mainActivity.getNavigationBar();
+        final NavigationBarFragment tempNavBarFrag = mainActivity.displayedFragmentManager.navigationBar;
         final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
 
 
-        Button[] categoryBtns = new Button[8]; //TODO 상수 class로 변경하기
+        Button[] categoryBtns = new Button[CATEGORY_NUM];
         categoryBtns[0] = view.findViewById(R.id.korean_btn);
         categoryBtns[1] = view.findViewById(R.id.chinese_btn);
         categoryBtns[2] = view.findViewById(R.id.japanese_btn);
@@ -151,26 +132,16 @@ public class HomeFragment extends Fragment {
         categoryBtns[6] = view.findViewById(R.id.asian_btn);
         categoryBtns[7] = view.findViewById(R.id.fast_btn);
 
-        for(int i = 0; i < 8; i++) {//TODO 상수 class로 변경하기
+        for(int i = 0; i < CATEGORY_NUM; i++) {
             final int position = i + 1;
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                   // mainActivity.ReplaceFragment(new RestaurantListFragment(position));//TODO 넘모 스파게티인 것..... 아이콘만 선택할 수 있는 방법 찾아보기
-                        tempBotNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                            @Override
-                            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                                mainActivity.ReplaceFragment(new RestaurantListFragment(position));
-                                return true;
-                            }
-                        });
-                        tempBotNavView.setSelectedItemId(R.id.navigationBar_shop_btn);
-                        tempBotNavView.setOnNavigationItemSelectedListener(tempNavBarFrag.getOnNavigationItemSelectedListener());
+                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), ANIMATION_DIRECT_RIGHT, true);
+                        tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });
         }
-        //---------------------------------------------------//
     }
 
    @Override

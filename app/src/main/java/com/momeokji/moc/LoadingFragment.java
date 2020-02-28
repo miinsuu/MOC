@@ -46,7 +46,7 @@ public class LoadingFragment extends Fragment {
     }
 
     public void GotoNextFragment() {
-        mainActivity.ReplaceFragment(nextFragment);
+        //mainActivity.ReplaceFragment(nextFragment);   TODO 추후 로딩 사용시 수정
     }
 
 }

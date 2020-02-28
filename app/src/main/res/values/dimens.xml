@@ -2,4 +2,18 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="navigation_bar_height">56dp</dimen>
+    <dimen name="navigation_bar_height_negative">-56dp</dimen>
+
+    <dimen name="location_select_bar_height">48dp</dimen>
+    <dimen name="location_select_bar_height_negative">-48dp</dimen>
+
+    <dimen name="partition_height">2dp</dimen>
+
+    <dimen name="parent_width">415dp</dimen>
+    <dimen name="parent_width_negative">-415dp</dimen>
+
+    <dimen name="floating_btn_init_bottom_margin">61dp</dimen>
+
 </resources>
