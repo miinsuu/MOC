@@ -14,6 +14,12 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.Helper.FragmentStackManager;
 
@@ -187,8 +193,4 @@ public class MainActivity extends AppCompatActivity {
             myList_btn.startAnimation(a);
         }
     }
-
-    public NavigationBarFragment getNavigationBar() { return this.navigationBar; }
-
-    //백버튼
 }
