@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -24,21 +25,34 @@ public class MainContextWithLocationSelectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_context_with_location_select, container, false);
+        mainActivity.displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        locationSelectFragment = new LocationSelectFragment();
-        mainActivity.displayedFragmentManager.locationSelect = locationSelectFragment;
-        fragmentTransaction.add(R.id.locationSelect_frameLayout, locationSelectFragment);
-        mainActivity.displayedFragmentManager.displayedFragments[2] = mainContext;
-        fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext).commit();
 
-        this.mainActivity.displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
+        if (getChildFragmentManager().findFragmentByTag(LocationSelectFragment.class.getName()) == null) {
+            locationSelectFragment = new LocationSelectFragment();
+            mainActivity.displayedFragmentManager.locationSelect = locationSelectFragment;
+            fragmentTransaction.add(R.id.locationSelect_frameLayout, locationSelectFragment, locationSelectFragment.getClass().getName());
+        }
+
+        Fragment previousMainContext = getChildFragmentManager().findFragmentById(R.id.mainContext_frameLayout);
+        if (previousMainContext != null) {
+            fragmentTransaction.hide(previousMainContext);
+        }
+
+        if (getChildFragmentManager().findFragmentByTag(mainContext.getClass().getName()) == null)
+            fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext, mainContext.getClass().getName());
+        else {
+            fragmentTransaction.show(mainContext);
+            fragmentTransaction.detach(mainContext).attach(mainContext);
+        }
+
+        fragmentTransaction.commit();
 
         return view;
     }
     @Override
     public void onResume() {
         super.onResume();
-        mainActivity.displayedFragmentManager.UpdateDisplayedFragmentState(1, this);
     }
 
     public void setMainContext(Fragment targetFragment) {

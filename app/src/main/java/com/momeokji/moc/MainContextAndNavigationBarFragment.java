@@ -20,7 +20,7 @@ public class MainContextAndNavigationBarFragment extends Fragment {
     final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
 
     private MainActivity mainActivity;
-    private Fragment mainContextWithLocationSelect;
+    private Fragment mainContextWithLocationSelect, previousMainContextWithLocationSelect;
     private NavigationBarFragment navigationBarFragment;
 
     public MainContextAndNavigationBarFragment(MainActivity mainActivity, Fragment mainContextWithLocationSelect) {
@@ -34,30 +34,30 @@ public class MainContextAndNavigationBarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_context_and_navigation_bar, container, false);
 
         mainActivity.displayedFragmentManager.fragmentManagers[1] = getChildFragmentManager();
-
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        mainActivity.displayedFragmentManager.displayedFragments[1] = mainContextWithLocationSelect;
+        if (getChildFragmentManager().findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()) == null)
+            fragmentTransaction.add(R.id.mainContextWithLocationSelect_frameLayout, mainContextWithLocationSelect, mainContextWithLocationSelect.getClass().getName());
 
-        if (!(mainContextWithLocationSelect instanceof MainContextWithLocationSelectFragment)) {
-            mainActivity.displayedFragmentManager.locationSelect = null;
-            this.mainActivity.displayedFragmentManager.fragmentManagers[2] = null;
+        if (getChildFragmentManager().findFragmentByTag(NavigationBarFragment.class.getName()) == null) {
+            navigationBarFragment = new NavigationBarFragment();
+            mainActivity.displayedFragmentManager.navigationBar = navigationBarFragment;
+            fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBarFragment, navigationBarFragment.getClass().getName());
         }
-        fragmentTransaction.add(R.id.mainContextWithLocationSelect_frameLayout, mainContextWithLocationSelect);
 
-        navigationBarFragment = new NavigationBarFragment();
-        mainActivity.displayedFragmentManager.navigationBar = navigationBarFragment;
-        fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBarFragment).commit();
+        fragmentTransaction.commit();
 
         return view;
     }
     @Override
     public void onResume() {
         super.onResume();
-        mainActivity.displayedFragmentManager.UpdateDisplayedFragmentState(0, this);
     }
     public void setMainContextWithLocationSelect(Fragment mainContextWithLocationSelect) {
-        this.mainContextWithLocationSelect = mainContextWithLocationSelect;
+        if (this.mainContextWithLocationSelect == mainContextWithLocationSelect) {
+            previousMainContextWithLocationSelect = this.mainContextWithLocationSelect;
+            this.mainContextWithLocationSelect = mainContextWithLocationSelect;
+        }
     }
     public Fragment getMainContextWithLocationSelect() {
         return this.mainContextWithLocationSelect;

@@ -32,7 +32,6 @@ public class MoreInfoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(1, this);
     }
 
 }

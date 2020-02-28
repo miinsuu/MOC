@@ -95,6 +95,5 @@ public class RestaurantInfoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(0, this);
     }
 }

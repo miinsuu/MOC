@@ -54,7 +54,6 @@ public class RestaurantListFragment extends Fragment {
             }
         });
         //--------------------------------------------------------------------//
-
         return view;
     }
     @Override
@@ -71,7 +70,7 @@ public class RestaurantListFragment extends Fragment {
             }
         }, 10);
 
-        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(2, this);
+        ((MainActivity)getActivity()).displayedFragmentManager.UpdateMyListBtnPosition();
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +50,7 @@ public class RestaurantListPage extends Fragment {
         }
         else {
             final ImageView loading_gif = view.findViewById(R.id.loading_img);
+            loading_gif.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.gif_loading));
             Glide.with(this).load(R.drawable.gif_loading).into(loading_gif);
 
             //* 데이터 로딩 되기 전까지 로딩 아이콘 *//

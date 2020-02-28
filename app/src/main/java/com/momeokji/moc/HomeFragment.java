@@ -96,7 +96,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mainActivity.displayedFragmentManager.UpdateDisplayedFragmentState(2, this);
     }
 /*    @Override
     public void onAttach(Context context) {
