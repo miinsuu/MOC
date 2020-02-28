@@ -35,6 +35,11 @@ public class MainContextWithLocationSelectFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainActivity.displayedFragmentManager.UpdateDisplayedFragmentState(1, this);
+    }
 
     public void setMainContext(Fragment targetFragment) {
         this.mainContext = targetFragment;

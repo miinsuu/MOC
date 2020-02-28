@@ -18,6 +18,8 @@ import com.momeokji.moc.Helper.BottomNavigationHelper;
 public class NavigationBarFragment extends Fragment {
     final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
     final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
+    final static private int ANIMATION_DIRECT_RIGHT = 0;
+    final static private int ANIMATION_DIRECT_LEFT = 1;
 
     private BottomNavigationView bottomNavigationView;
     private MainActivity mainActivity = null;
@@ -36,46 +38,49 @@ public class NavigationBarFragment extends Fragment {
         onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                boolean animationDirection = true;
+                int animationDirection;
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        animationDirection = false;
+                        animationDirection = ANIMATION_DIRECT_LEFT;
+
                         if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MainContextWithLocationSelectFragment)) {
-                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()), animationDirection);
+                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new HomeFragment()), animationDirection, true);
                         }
                         else if (!(mainActivity.displayedFragmentManager.displayedFragments[2] instanceof HomeFragment)) {
-                            mainActivity.ReplaceFragment(2, new HomeFragment(), animationDirection);
+                            mainActivity.ReplaceFragment(2, new HomeFragment(), animationDirection, true);
                         }
                         break;
                     case R.id.navigationBar_shop_btn:
                         if (mainActivity.displayedFragmentManager.displayedFragments[2] instanceof HomeFragment)
-                            animationDirection = true;
+                            animationDirection = ANIMATION_DIRECT_RIGHT;
                         else
-                            animationDirection = false;
+                            animationDirection = ANIMATION_DIRECT_LEFT;
+
                         if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MainContextWithLocationSelectFragment)) {
-                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment()), animationDirection);
+                            mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment()), animationDirection, true);
                         }
                         else {
                             if (mainActivity.displayedFragmentManager.displayedFragments[2] instanceof RestaurantListFragment){
                                 ((RestaurantListFragment)mainActivity.displayedFragmentManager.displayedFragments[2]).setTab(0);
                             }
                             else {
-                                mainActivity.ReplaceFragment(2, new RestaurantListFragment(), animationDirection);
+                                mainActivity.ReplaceFragment(2, new RestaurantListFragment(), animationDirection, true);
                             }
                         }
                         break;
                     case R.id.navigationBar_roulette_btn:
                         if (mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MoreInfoFragment)
-                            animationDirection = false;
+                            animationDirection = ANIMATION_DIRECT_LEFT;
                         else
-                            animationDirection = true;
+                            animationDirection = ANIMATION_DIRECT_RIGHT;
+
                         if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof RouletteFragment))
-                            mainActivity.ReplaceFragment(1, new RouletteFragment(), animationDirection);
+                            mainActivity.ReplaceFragment(1, new RouletteFragment(), animationDirection, true);
                         break;
                     case R.id.navigationBar_more_btn:
-                        animationDirection = true;
+                        animationDirection = ANIMATION_DIRECT_RIGHT;
                         if (!(mainActivity.displayedFragmentManager.displayedFragments[1] instanceof MoreInfoFragment))
-                            mainActivity.ReplaceFragment(1, new MoreInfoFragment(), animationDirection);
+                            mainActivity.ReplaceFragment(1, new MoreInfoFragment(), animationDirection, true);
                         break;
                     default:
                 }

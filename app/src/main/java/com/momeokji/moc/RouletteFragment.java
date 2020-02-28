@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,11 @@ public class RouletteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_roulette, container, false);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(1, this);
     }
 
 }

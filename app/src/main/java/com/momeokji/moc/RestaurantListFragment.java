@@ -3,7 +3,6 @@ package com.momeokji.moc;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -17,16 +16,17 @@ import com.momeokji.moc.Adapters.PagerAdapter_RestaurantListPage;
 
 public class RestaurantListFragment extends Fragment {
 
-    private int initTab;
     private TabLayout tabLayout;
     private ViewPager restaurantListPage_viewPager;
 
+    private int lastTabPos;
+
     public RestaurantListFragment() {
-        this.initTab = 0;
+        this.lastTabPos = 0;
     }
 
     public RestaurantListFragment(int initTab) {
-        this.initTab = initTab;
+        this.lastTabPos = initTab;
     }
 
     @Override
@@ -36,6 +36,7 @@ public class RestaurantListFragment extends Fragment {
         //* 페이저어댑터 등록 *//
         restaurantListPage_viewPager = view.findViewById(R.id.restaurantListPage_viewPager);
         restaurantListPage_viewPager.setAdapter(new PagerAdapter_RestaurantListPage(getChildFragmentManager(), 1, getActivity()));
+        restaurantListPage_viewPager.setOffscreenPageLimit(7);
         //------------------------------------------------------//
 
         //* 탭 레이아웃 설정 *//
@@ -52,7 +53,6 @@ public class RestaurantListFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-        //setTab(initTab);
         //--------------------------------------------------------------------//
 
         return view;
@@ -62,14 +62,22 @@ public class RestaurantListFragment extends Fragment {
         super.onResume();
         //* 초기 탭 설정
         //    - Fragment가 완전히 생성된 후 설정해줘야 탭 스크롤이 선택한 탭 쪽으로 움직임. 그래서 임시방편으로 딜레이 걸어줌
-        setTab(initTab);
+        setTab(lastTabPos);
         Handler mHander = new Handler();    // TODO 임시방편..... 더 나은 코드 있으면 교체하자
         mHander.postDelayed(new Runnable() {
             @Override
             public void run() {
-                tabLayout.setScrollPosition(initTab, 0f, true); // 딜레이 후 setTab을 해주면 0번째 탭에서부터 스크롤되어 눈아픔
+                tabLayout.setScrollPosition(lastTabPos, 0f, true); // 딜레이 후 setTab을 해주면 0번째 탭에서부터 스크롤되어 눈아픔
             }
         }, 10);
+
+        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(2, this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        lastTabPos = tabLayout.getSelectedTabPosition();
     }
 
     public void setTab(int tabPos) {

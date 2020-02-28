@@ -22,6 +22,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
 
     final static private int MAX_MAINS_NUM = 3;
     final static private int EXPANDABLE_MAINS_HEIGHT = 76;
+    final static private int ANIMATION_DIRECT_RIGHT = 0;
+    final static private int ANIMATION_DIRECT_LEFT = 1;
 
     private ArrayList<Restaurant> restaurantList;
     private int selectedRecyclerViewItemPosition = -1;
@@ -78,7 +80,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             }
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
 
-                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), true);
+                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), ANIMATION_DIRECT_RIGHT, true);
                     }
                 });
 

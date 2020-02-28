@@ -37,6 +37,10 @@ public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final int CATEGORY_NUM = 8;
+    final static private int ANIMATION_DIRECT_RIGHT = 0;
+    final static private int ANIMATION_DIRECT_LEFT = 1;
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private MainActivity mainActivity;
@@ -90,6 +94,11 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mainActivity.displayedFragmentManager.UpdateDisplayedFragmentState(2, this);
+    }
+/*    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -101,7 +110,7 @@ public class HomeFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onStart() {
@@ -129,7 +138,7 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), true);
+                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), ANIMATION_DIRECT_RIGHT, true);
                         tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });

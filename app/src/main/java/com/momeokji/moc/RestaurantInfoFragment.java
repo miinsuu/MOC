@@ -91,4 +91,10 @@ public class RestaurantInfoFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).displayedFragmentManager.UpdateDisplayedFragmentState(0, this);
+    }
 }

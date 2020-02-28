@@ -3,5 +3,5 @@
     android:propertyName="x"
     android:valueFrom="@dimen/parent_width"
     android:valueTo="0dp"
-    android:duration="500"
+    android:duration="300"
     android:valueType="floatType"/>
