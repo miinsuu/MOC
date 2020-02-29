@@ -21,6 +21,8 @@ import com.momeokji.moc.data.Restaurant;
 
 
 public class RestaurantInfoFragment extends Fragment {
+    private Restaurant selectedRestaurant;
+
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
     }
@@ -31,7 +33,7 @@ public class RestaurantInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
-        TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantPage_restaurantName_txt);
+        TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantInfoPage_restaurantName_txt);
         TextView minMaxPrice = view.findViewById(R.id.restaurantInfoPage_restaurantRangePrice_txt);
         MarqueeTextView preview = view.findViewById(R.id.restaurantInfoPage_previewTxt);
         TextView address = view.findViewById(R.id.restaurantInfoPage_addressTxt);

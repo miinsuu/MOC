@@ -25,13 +25,11 @@ public class MenuClassificationTab extends Fragment {
     private ArrayList<Menu> menuArrayList;
 
 
-    public MenuClassificationTab() {
-        // Required empty public constructor
-    }
     public MenuClassificationTab(ArrayList<Menu> arrayList) {
+
         this.menuArrayList = arrayList;
     }
-
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
