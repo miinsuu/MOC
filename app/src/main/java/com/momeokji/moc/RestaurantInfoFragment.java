@@ -28,23 +28,7 @@ import com.momeokji.moc.data.Restaurant;
 // * create an instance of this fragment.
 // */
 public class RestaurantInfoFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private Restaurant selectedRestaurant; //가게정보들이 담긴 instance
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-//    public static RestaurantInfoFragment newInstance(String param1, String param2) {
-//        RestaurantInfoFragment fragment = new RestaurantInfoFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
@@ -58,7 +42,7 @@ public class RestaurantInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
 
-        TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantPage_restaurantName_txt);
+        TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantInfoPage_restaurantName_txt);
         TextView minMaxPrice = view.findViewById(R.id.restaurantInfoPage_restaurantRangePrice_txt);
         MarqueeTextView preview = view.findViewById(R.id.restaurantInfoPage_previewTxt);
         TextView address = view.findViewById(R.id.restaurantInfoPage_addressTxt);
