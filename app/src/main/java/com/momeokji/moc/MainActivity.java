@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*- Fragment 교체 함수 -*/
 
-    public boolean ReplaceFragment(final int level, final Fragment targetFragment, int animationDirection, boolean useStack) {
+    public boolean ReplaceFragment(final int level, final Fragment targetFragment, int animationDirection) {
         final FragmentManager fragmentManager = displayedFragmentManager.fragmentManagers[level];
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String targetFragmentClassName = targetFragment.getClass().getName();

@@ -56,9 +56,15 @@ public class FragmentStackManager {
         else {
 
             // (※하드코딩)레스토랑 상세정보 -> 가게리스트 시 버튼 위쪽으로 이동. (fragment 교체 타이밍 정확히 이해하면 Update 함수로 변경하기)
-            if (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof RestaurantInfoFragment)
-                mainActivity.displayedFragmentManager.SetMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
             mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.pop()].popBackStackImmediate();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
+                        mainActivity.displayedFragmentManager.SetMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
+                }
+            }, 100);
         }
     }
 
