@@ -59,11 +59,11 @@ public class NavigationBarFragment extends Fragment {
                         if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
                             mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
                             constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
-                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
                         }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 HomeFragment로 교체
                         else if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
                             constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
-                            mainActivity.ReplaceFragment(2, constructedHomeFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(2, constructedHomeFragment, animationDirection);
                         }
                         break;
 
@@ -82,11 +82,11 @@ public class NavigationBarFragment extends Fragment {
                         if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
                             mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
                             constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
-                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
                         }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 RestaurantListFragment로 교체
                         else if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment)) {
                             constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
-                            mainActivity.ReplaceFragment(2, constructedRestaurantListFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(2, constructedRestaurantListFragment, animationDirection);
                         }
                         break;
 
@@ -103,7 +103,7 @@ public class NavigationBarFragment extends Fragment {
 
                         if (!(curr_Level1_Fragment instanceof RouletteFragment))
                             mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedRouletteFragment);
-                            mainActivity.ReplaceFragment(1, constructedRouletteFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(1, constructedRouletteFragment, animationDirection);
                         break;
 
                     case R.id.navigationBar_more_btn:
@@ -115,7 +115,7 @@ public class NavigationBarFragment extends Fragment {
                         }
 
                         if (!(curr_Level1_Fragment instanceof MoreInfoFragment))
-                            mainActivity.ReplaceFragment(1, constructedMoreInfoFragment, animationDirection, true);
+                            mainActivity.ReplaceFragment(1, constructedMoreInfoFragment, animationDirection);
                         break;
                     default:
                 }
