@@ -60,7 +60,7 @@
                 android:inputType="textCapWords"
                 android:textSize="16dp"
                 android:textColorHint="@android:color/darker_gray"
-                android:hint="식당, 메뉴 칮기" />
+                android:hint="가게 / 메뉴  찾기" />
 
             <ImageButton
                 android:id="@+id/searchRestaurant_searchIcon_imgBtn"
