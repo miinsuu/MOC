@@ -98,7 +98,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="58dp"
                         android:lineSpacingExtra="5dp"
-                        android:text="15000 - 25000 "
                         android:textColor="#777777" />
 
 
