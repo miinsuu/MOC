@@ -6,18 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <!-- 메인 프래그먼트 -->
         <FrameLayout
             android:id="@+id/mainActivity_frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_default="wrap"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/navigationBar_frameLayout"/>
+            android:layout_height="match_parent"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/myList_btn"
@@ -25,19 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/floating_btn_init_bottom_margin"
             android:clickable="true"
-            app:layout_constraintBottom_toTopOf="@+id/navigationBar_frameLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/i_mylist" />
 
-        <!-- 네비게이션 바 -->
-        <FrameLayout
-            android:id="@+id/navigationBar_frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

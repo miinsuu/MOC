@@ -15,20 +15,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_MenuReview;
+
 import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.data.Restaurant;
 
 
-///**
-// * A simple {@link Fragment} subclass.
-// * Activities that contain this fragment must implement the
-// * {@link RestaurantInfoFragment.OnFragmentInteractionListener} interface
-// * to handle interaction events.
-// * Use the {@link RestaurantInfoFragment#newInstance} factory method to
-// * create an instance of this fragment.
-// */
 public class RestaurantInfoFragment extends Fragment {
-    private Restaurant selectedRestaurant; //가게정보들이 담긴 instance
+    private Restaurant selectedRestaurant;
 
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
@@ -36,11 +29,9 @@ public class RestaurantInfoFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
-
 
         TextView restaurantPage_restaurantName_txt = view.findViewById(R.id.restaurantInfoPage_restaurantName_txt);
         TextView minMaxPrice = view.findViewById(R.id.restaurantInfoPage_restaurantRangePrice_txt);
@@ -72,9 +63,8 @@ public class RestaurantInfoFragment extends Fragment {
             }
         });
 
-
         final ViewPager restaurantInfoPage_viewPager = view.findViewById(R.id.restaurantInfoPage_viewPager);
-        restaurantInfoPage_viewPager.setAdapter(new PagerAdapter_MenuReview(getChildFragmentManager(),1,getActivity()));
+        restaurantInfoPage_viewPager.setAdapter(new PagerAdapter_MenuReview(getChildFragmentManager(), 1, getActivity()));
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.menuReviewTabBar_layout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -94,8 +84,11 @@ public class RestaurantInfoFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

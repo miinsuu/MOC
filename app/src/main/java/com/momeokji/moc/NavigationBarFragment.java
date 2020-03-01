@@ -16,6 +16,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.Helper.BottomNavigationHelper;
 
 public class NavigationBarFragment extends Fragment {
+    final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
+    final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
+    final static private int ANIMATION_DIRECT_RIGHT = 0;
+    final static private int ANIMATION_DIRECT_LEFT = 1;
+
     private BottomNavigationView bottomNavigationView;
     private MainActivity mainActivity = null;
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
@@ -33,23 +38,84 @@ public class NavigationBarFragment extends Fragment {
         onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int animationDirection;
+
+                MainContextAndNavigationBarFragment mainContextAndNavigationBarFragment
+                        = (MainContextAndNavigationBarFragment) mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName());
+                MainContextWithLocationSelectFragment constructedMainContextWithLocationSelectFragment
+                    = (MainContextWithLocationSelectFragment) mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MainContextWithLocationSelectFragment.class.getName());
+                Fragment curr_Level1_Fragment = mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout);
+
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        if (!(mainActivity.getCurrPage() instanceof HomeFragment))
-                            mainActivity.ReplaceFragment(new HomeFragment());
+                        animationDirection = ANIMATION_DIRECT_LEFT;
+
+                        HomeFragment constructedHomeFragment = (HomeFragment) mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(HomeFragment.class.getName());
+                        if (constructedHomeFragment == null) {
+                            constructedHomeFragment = new HomeFragment();
+                        }
+
+                        // 현재 frame에 LocationSelectFragment가 없는 frame 이라면 MainContextWithLocationSelectFragment로 교체
+                        if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
+                            mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
+                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
+                        }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 HomeFragment로 교체
+                        else if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
+                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
+                            mainActivity.ReplaceFragment(2, constructedHomeFragment, animationDirection);
+                        }
                         break;
+
                     case R.id.navigationBar_shop_btn:
-                        if (mainActivity.getCurrPage() instanceof RestaurantListFragment){
-                            ((RestaurantListFragment)mainActivity.getCurrPage()).setTab(0);
+                        if (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)
+                            animationDirection = ANIMATION_DIRECT_RIGHT;
+                        else
+                            animationDirection = ANIMATION_DIRECT_LEFT;
+
+                        RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
+                        if (constructedRestaurantListFragment == null) {
+                            constructedRestaurantListFragment = new RestaurantListFragment();
                         }
-                        else {
-                            mainActivity.ReplaceFragment(new RestaurantListFragment());
+
+                        // 현재 frame에 LocationSelectFragment가 없는 frame 이라면 MainContextWithLocationSelectFragment로 교체
+                        if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
+                            mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
+                            mainActivity.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
+                        }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 RestaurantListFragment로 교체
+                        else if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment)) {
+                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
+                            mainActivity.ReplaceFragment(2, constructedRestaurantListFragment, animationDirection);
                         }
                         break;
+
                     case R.id.navigationBar_roulette_btn:
-                        mainActivity.HideNavigationBar(); // TODO HideNavigationBar 테스트용
+                        if (curr_Level1_Fragment instanceof MoreInfoFragment)
+                            animationDirection = ANIMATION_DIRECT_LEFT;
+                        else
+                            animationDirection = ANIMATION_DIRECT_RIGHT;
+
+                        RouletteFragment constructedRouletteFragment = (RouletteFragment) mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(RouletteFragment.class.getName());
+                        if (constructedRouletteFragment == null) {
+                            constructedRouletteFragment = new RouletteFragment();
+                        }
+
+                        if (!(curr_Level1_Fragment instanceof RouletteFragment))
+                            mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedRouletteFragment);
+                            mainActivity.ReplaceFragment(1, constructedRouletteFragment, animationDirection);
                         break;
+
                     case R.id.navigationBar_more_btn:
+                        animationDirection = ANIMATION_DIRECT_RIGHT;
+
+                        MoreInfoFragment constructedMoreInfoFragment = (MoreInfoFragment) mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MoreInfoFragment.class.getName());
+                        if (constructedMoreInfoFragment == null) {
+                            constructedMoreInfoFragment = new MoreInfoFragment();
+                        }
+
+                        if (!(curr_Level1_Fragment instanceof MoreInfoFragment))
+                            mainActivity.ReplaceFragment(1, constructedMoreInfoFragment, animationDirection);
                         break;
                     default:
                 }
