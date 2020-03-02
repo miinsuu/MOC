@@ -18,7 +18,7 @@ import com.momeokji.moc.RestaurantListPage;
 
 public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
-    final static private int CategoryNum = 4; // TODO 민수와 데이터 받는 법 상의 후 getItem 메소드 수정
+    final static private int CategoryNum = 8; // TODO 민수와 데이터 받는 법 상의 후 getItem 메소드 수정
     private Context context = null;
     private boolean isEnableSwipe = false;
 
@@ -38,6 +38,18 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
                 return new RestaurantListPage(((MainActivity)context).restaurantDATA.ChineseRestaurantList);
             case 3:
                 return new RestaurantListPage(((MainActivity)context).restaurantDATA.JapaneseRestaurantList);
+            case 4:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.WesternRestaurantList);
+            case 5:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.SnackRestaurantList);
+            case 6:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.ChickenRestaurantList);
+            case 7:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.AsianRestaurantList);
+            case 8:
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.FastRestaurantList);
+//            case 9:
+//                return new RestaurantListPage(((MainActivity)context).restaurantDATA.NightRestaurantList);
             default:
                 return null;
         }
