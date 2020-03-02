@@ -10,6 +10,7 @@ public class DATA {
     public ArrayList<Restaurant> ChineseRestaurantList;
     public ArrayList<Restaurant> JapaneseRestaurantList;
     public ArrayList<String> Location;
+    public ArrayList<MyListMenu> MyListMenuList;
     public Restaurant selectedRestaurant ;
 
     public DATA() {
@@ -19,6 +20,8 @@ public class DATA {
 
         //////////// 데이터 직접 등록/////////////
         KoreanRestaurantList = new ArrayList<>();
+
+
 
         DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
             @Override
@@ -47,6 +50,8 @@ public class DATA {
                 JapaneseRestaurantList.add(new Restaurant(data.toString()));
             }
         });
+
+
         // 가게 데이터 등록
 //        Menu[] MainMenus = new Menu[3];
 //        MainMenus[0] = new Menu("돼지불백", 5000) ;

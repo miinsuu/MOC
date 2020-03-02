@@ -74,7 +74,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/i_arrow_down" />
+                android:src="@drawable/i_arrow_down"
+                android:background="@null"/>
         </LinearLayout>
     </RelativeLayout>
 
