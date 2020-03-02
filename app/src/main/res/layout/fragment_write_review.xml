@@ -110,11 +110,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Spinner
+                android:id="@+id/menuSelect_spinner"
+                android:layout_width="312dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp" />
+
             <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                android:id="@+id/reviewPictureAddBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="17dp"
+                android:drawableTop="@drawable/i_add_picture"
+                android:text="사진" />
         </LinearLayout>
 
         <FrameLayout
@@ -126,6 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="48dp"
                 android:background="#F2F2F2"
