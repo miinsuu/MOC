@@ -18,11 +18,13 @@ import android.view.ViewManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
+import com.momeokji.moc.data.Restaurant;
 
 
 /**
@@ -44,9 +46,6 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private MainActivity mainActivity;
-
-    TextView location_txt;
-    Spinner locationSelect_spinner;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,6 +82,13 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        RelativeLayout home_searchRestaurants_relativeLayout = view.findViewById(R.id.home_searchRestaurants_relativeLayout);
+        home_searchRestaurants_relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.ReplaceFragment(0, new SearchRestaurantFragment(), ANIMATION_DIRECT_RIGHT);
+            }
+        });
         return view;
     }
 
@@ -137,7 +143,7 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), ANIMATION_DIRECT_RIGHT, true);
+                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), ANIMATION_DIRECT_RIGHT);
                         tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });

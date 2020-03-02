@@ -106,49 +106,72 @@
                     android:background="@drawable/shop_info"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                                <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:lineSpacingExtra="10dp"
-                            android:text="주소\n전화" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginTop="13dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:lineSpacingExtra="10dp"
+                                    android:text="주소" />
 
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_addressTxt"
-                            android:layout_width="228dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="85dp"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginRight="10dp"
-                            android:text="TextView"
-                            android:textColor="#222222" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:lineSpacingExtra="10dp"
+                                    android:text="전화" />
 
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                            android:layout_width="228dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="85dp"
-                            android:layout_marginTop="39dp"
-                            android:layout_marginRight="10dp"
-                            android:text="TextView"
-                            android:textColor="#222222" />
+                            </LinearLayout>
 
-                    </RelativeLayout>
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/restaurantInfoPage_addressTxt"
+                                    android:layout_width="228dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="28dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="13dp"
+                                    android:layout_marginRight="10dp"
+                                    android:text="TextView"
+                                    android:textColor="#222222" />
+
+                                <TextView
+                                    android:id="@+id/restaurantInfoPage_phoneNumberTxt"
+                                    android:layout_width="228dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="28dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:text="TextView"
+                                    android:textColor="#222222" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
 
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:minHeight="?attr/actionBarSize"
@@ -194,6 +217,9 @@
 
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
+      
+      
+                
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -216,6 +242,11 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+
+        <com.momeokji.moc.CustomView.NonSwipeableViewPager
+            android:id="@+id/restaurantInfoPage_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

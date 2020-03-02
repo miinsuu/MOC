@@ -73,7 +73,7 @@
             android:layout_height="@dimen/partition_height"
             android:background="@android:color/darker_gray"/>
 
-        <com.momeokji.moc.Helper.NonSwipeableViewPager
+        <com.momeokji.moc.CustomView.NonSwipeableViewPager
             android:id="@+id/restaurantListPage_viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

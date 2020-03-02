@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/searchedRestaurantListItem_restaurantImage_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/restaurant" />
+
+        <LinearLayout
+            android:id="@+id/searchedRestaurantListItem_textLayout_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/searchedRestaurantListItem_restaurantImage_img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/searchedRestaurantListItem_restaurantName_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                />
+
+            <TextView
+                android:id="@+id/searchedRestaurantListItem_menuPriceRange_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                />
+
+            <com.momeokji.moc.CustomView.MarqueeTextView
+                android:id="@+id/searchedRestaurantListItem_description_txt"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:focusableInTouchMode="true"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
