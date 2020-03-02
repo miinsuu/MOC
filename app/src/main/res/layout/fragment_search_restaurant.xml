@@ -47,7 +47,7 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/shape_search_btn"/>
 
-            <EditText
+            <com.momeokji.moc.CustomView.BackPressEditText
                 android:id="@+id/searchRestaurant_searchString_editTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
