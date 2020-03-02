@@ -44,7 +44,7 @@ public class DatabaseQueryClass {
 
         public static void getChineseShopList(final DataListener dataListener){
             Log.e("ShopFromDB", "getChineseShopList");
-            CollectionReference shopRef = db.collection("chicken");
+            CollectionReference shopRef = db.collection("chinese");
             shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -62,6 +62,40 @@ public class DatabaseQueryClass {
 
         public static void getJapaneseShopList(final DataListener dataListener){
             Log.e("ShopFromDB", "getJapaneseShopList");
+            CollectionReference shopRef = db.collection("japanese");
+            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Shop", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        public static void getChickenShopList(final DataListener dataListener){
+            CollectionReference shopRef = db.collection("chicken");
+            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Shop", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        public static void getSnackShopList(final DataListener dataListener){
             CollectionReference shopRef = db.collection("snack");
             shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
@@ -77,6 +111,74 @@ public class DatabaseQueryClass {
                 }
             });
         }
+
+        public static void getWesternShopList(final DataListener dataListener){
+            CollectionReference shopRef = db.collection("western");
+            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Shop", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        public static void getAsianShopList(final DataListener dataListener){
+            CollectionReference shopRef = db.collection("asian");
+            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Shop", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+//        public static void getFastShopList(final DataListener dataListener){
+//            CollectionReference shopRef = db.collection("fast");
+//            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            Log.d("Shop", document.getId() + " => " + document.getData());
+//                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+//                        }
+//                    } else {
+//                        Log.d("Shop", "Error getting documents: ", task.getException());
+//                    }
+//                }
+//            });
+//        }
+
+//        public static void getNightShopList(final DataListener dataListener){
+//            CollectionReference shopRef = db.collection("night");
+//            shopRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            Log.d("Shop", document.getId() + " => " + document.getData());
+//                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+//                        }
+//                    } else {
+//                        Log.d("Shop", "Error getting documents: ", task.getException());
+//                    }
+//                }
+//            });
+//        }
 
     }
 }
