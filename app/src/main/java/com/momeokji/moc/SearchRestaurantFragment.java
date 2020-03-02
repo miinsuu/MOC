@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,14 +22,19 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_SearchedRestaurantList;
 import com.momeokji.moc.CustomView.BackPressEditText;
+import com.momeokji.moc.data.Menu;
 import com.momeokji.moc.data.Restaurant;
 
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Map;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class SearchRestaurantFragment extends Fragment {
@@ -58,12 +64,18 @@ public class SearchRestaurantFragment extends Fragment {
         searchRestaurant_searchString_editTxt.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (keyCode == event.KEYCODE_ENTER) {
-                        RemoveFocusFromEditText();
-                        UpdateSearchedRestaurantList(SearchTargetRestaurantList(searchRestaurant_searchString_editTxt.getText().toString()));
-                        return true;
-                    }
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == event.KEYCODE_ENTER) {
+
+                    String targetString = searchRestaurant_searchString_editTxt.getText().toString(); // 검색어
+                    targetString = targetString.trim(); // 검색어 좌우공백 제거
+
+                    if(targetString.length() < 2) // 2글자 이상 검색
+                        Toast.makeText(getContext(), "두 글자 이상 검색해 주세요.", Toast.LENGTH_SHORT).show();
+                    else
+                        UpdateSearchedRestaurantList(SearchTargetRestaurantList(targetString));
+
+                    RemoveFocusFromEditText();
+                    return true;
                 }
                 return false;
             }
@@ -99,8 +111,15 @@ public class SearchRestaurantFragment extends Fragment {
         searchRestaurant_searchIcon_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String targetString = searchRestaurant_searchString_editTxt.getText().toString(); // 검색어
+                targetString = targetString.trim(); // 검색어 좌우공백 제거
+
+                if(targetString.length() < 2) // 2글자 이상 검색
+                    Toast.makeText(getContext(), "두 글자 이상 검색해 주세요.", Toast.LENGTH_SHORT).show();
+                else
+                    UpdateSearchedRestaurantList(SearchTargetRestaurantList(targetString));
+
                 RemoveFocusFromEditText();
-                UpdateSearchedRestaurantList(SearchTargetRestaurantList(searchRestaurant_searchString_editTxt.getText().toString()));
             }
         });
 
@@ -129,13 +148,86 @@ public class SearchRestaurantFragment extends Fragment {
 
 
     public ArrayList<Restaurant> SearchTargetRestaurantList(String targetString) {
-        ArrayList<Restaurant> targetRestaurantList = new ArrayList<>();
-
         //**************** 받은 스트링을 가지고 타겟 음식점 찾기******************************//
-        targetRestaurantList = ((MainActivity)getActivity()).restaurantDATA.getAllList();
+        ArrayList<Restaurant> targetRestaurantList = new ArrayList<>();
+        ArrayList<Restaurant> allRestaurantList = ((MainActivity)getActivity()).restaurantDATA.getAllList();
+        boolean overlapCheck; // 가게중복체크
+
+        for(int i = 0; i < allRestaurantList.size(); i++)
+        {
+            overlapCheck = false; // 중복여부 초기화
+            Restaurant restaurantTmp = allRestaurantList.get(i);
+
+            if(restaurantTmp.getRestaurantName().contains(targetString)) // 검색어가 가게이름에 포함되면 결과리스트에 가게추가
+            {
+                for(int j = 0; j < targetRestaurantList.size(); j++) // 결과리스트에 추가된 가게들과 중복검사
+                {
+                    if(targetRestaurantList.get(j).getRestaurantName().equals(restaurantTmp.getRestaurantName()))
+                        overlapCheck = true; //가게가 중복되어서 추가하지 않음
+                }
+                if(!overlapCheck) // 중복되지 않은 가게는 추가
+                    targetRestaurantList.add(restaurantTmp);
+
+                continue;
+            }
+
+            Menu[] mainMenuTmp = restaurantTmp.getMainMenus();
+            for(int j = 0; j < 3; j++)
+            {
+                if(mainMenuTmp[j].getName().contains(targetString)) // 검색어가 메표메뉴이름에 포함되면 결과리스트에 가게추가
+                {
+                    for(int k = 0; k < targetRestaurantList.size(); k++) // 결과리스트에 추가된 가게들과 중복검사
+                    {
+                        if(targetRestaurantList.get(k).getRestaurantName().equals(restaurantTmp.getRestaurantName()))
+                            overlapCheck = true; //가게가 중복되어서 추가하지 않음
+                    }
+                    if(!overlapCheck) // 중복되지 않은 가게는 추가
+                    {
+                        targetRestaurantList.add(restaurantTmp);
+                        overlapCheck = true;
+                    }
+
+                    break;
+                }
+            }
+            if(overlapCheck)
+                continue;
+
+            ArrayList<Map> menuCategoryListTmp = restaurantTmp.getMenuList();
+            for(int j = 0; j < menuCategoryListTmp.size(); j++)
+            {
+                for(Object o : menuCategoryListTmp.get(j).values())
+                {
+                    ArrayList<Menu> menuListTmp = (ArrayList<Menu>)o;
+                    for(int k = 0; k < menuListTmp.size(); k++)
+                    {
+                        if(menuListTmp.get(k).getName().contains(targetString)) // 검색어가 메뉴이름에 포함되면 결과리스트에 가게추가
+                        {
+                            for(int m = 0; m < targetRestaurantList.size(); m++) // 결과리스트에 추가된 가게들과 중복검사
+                            {
+                                if(targetRestaurantList.get(m).getRestaurantName().equals(restaurantTmp.getRestaurantName()))
+                                    overlapCheck = true; // 가게가 중복되어서 추가하지 않음
+                            }
+                            if(!overlapCheck) // 중복되지 않은 가게는 추가
+                            {
+                                targetRestaurantList.add(restaurantTmp);
+                                overlapCheck = true;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+                if(overlapCheck)
+                    break;
+            }
+
+        }
 
         return targetRestaurantList;
     }
+
     public void UpdateSearchedRestaurantList(ArrayList<Restaurant> targetRestaurantList) {
         recyclerViewAdapter_searchedRestaurantList.setRestaurantList(targetRestaurantList);
         recyclerViewAdapter_searchedRestaurantList.notifyDataSetChanged();
