@@ -72,7 +72,7 @@
                     android:layout_marginLeft="15dp"
                     android:textSize="16dp"
                     android:textColor="@android:color/darker_gray"
-                    android:text="식당, 메뉴 칮기"/>
+                    android:text="가게 / 메뉴  찾기"/>
             </RelativeLayout>
             <GridLayout
                 android:layout_width="wrap_content"

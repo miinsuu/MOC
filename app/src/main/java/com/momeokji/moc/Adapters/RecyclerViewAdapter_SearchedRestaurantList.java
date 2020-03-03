@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -74,9 +75,10 @@ public class RecyclerViewAdapter_SearchedRestaurantList extends RecyclerView.Ada
                                 if (viewHolderListener != null)
                                     viewHolderListener.OnItemClick(view, targetPos);
                             }
+
+                            ((InputMethodManager) mainActivity.getSystemService(mainActivity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);      // 키보드가 닫음
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
-
                             mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), ANIMATION_DIRECT_RIGHT);
 
                     }

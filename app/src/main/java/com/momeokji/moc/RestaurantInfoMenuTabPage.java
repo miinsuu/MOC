@@ -36,15 +36,15 @@ public class RestaurantInfoMenuTabPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceStage) {
         View view = inflater.inflate(R.layout.fragment_restaurant_info_menu_tab_page, container, false);
 
-        this.AllMenuList = mainActivity.restaurantDATA.selectedRestaurant.getMenuList();
-//        this.AllMenuList = ((MainActivity)getActivity()).restaurantDATA.selectedRestaurant.getMenuList();
+//        this.AllMenuList = mainActivity.restaurantDATA.selectedRestaurant.getMenuList();
+        this.AllMenuList = ((MainActivity)getActivity()).restaurantDATA.selectedRestaurant.getMenuList();
 
         String menuCategoryName = "";
         Set<String> menuCategoryNameSet;
 
 
         restaurantInfo_menuTabPage_viewPager = view.findViewById(R.id.restaurantInfo_menuTabPage_viewPager);
-        restaurantInfo_menuTabPage_viewPager.setAdapter(new PagerAdapter_MenuTabPage(getChildFragmentManager(),1,mainActivity));
+        restaurantInfo_menuTabPage_viewPager.setAdapter(new PagerAdapter_MenuTabPage(getChildFragmentManager(),1,getActivity()));
 
         tabLayout = view.findViewById(R.id.menuclassificationTabBar_layout);
         for(int n = 0; n < AllMenuList.size(); n++){

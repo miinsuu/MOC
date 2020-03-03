@@ -9,6 +9,13 @@ public class DATA {
     public ArrayList<Restaurant> KoreanRestaurantList;
     public ArrayList<Restaurant> ChineseRestaurantList;
     public ArrayList<Restaurant> JapaneseRestaurantList;
+    public ArrayList<Restaurant> ChickenRestaurantList;
+    public ArrayList<Restaurant> AsianRestaurantList;
+    public ArrayList<Restaurant> SnackRestaurantList;
+    public ArrayList<Restaurant> WesternRestaurantList;
+    public ArrayList<Restaurant> NightRestaurantList;
+    public ArrayList<Restaurant> FastRestaurantList;
+
     public ArrayList<String> Location;
     public ArrayList<MyListMenu> MyListMenuList;
     public Restaurant selectedRestaurant ;
@@ -18,7 +25,7 @@ public class DATA {
         Location.add("숭실대 중문");
         Location.add("숭실대 정문");
 
-        //////////// 데이터 직접 등록/////////////
+        //////////// 데이터 등록/////////////
         KoreanRestaurantList = new ArrayList<>();
 
 
@@ -51,6 +58,67 @@ public class DATA {
             }
         });
 
+        ChickenRestaurantList = new ArrayList<>();
+
+        DatabaseQueryClass.ShopFromDB.getChickenShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                ChickenRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
+
+        AsianRestaurantList = new ArrayList<>();
+
+        DatabaseQueryClass.ShopFromDB.getAsianShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                AsianRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
+
+        SnackRestaurantList = new ArrayList<>();
+
+        DatabaseQueryClass.ShopFromDB.getSnackShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                SnackRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
+
+        WesternRestaurantList = new ArrayList<>();
+
+        DatabaseQueryClass.ShopFromDB.getWesternShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                WesternRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
+
+        NightRestaurantList = new ArrayList<>(); // 아직 빈 리스트
+
+//        DatabaseQueryClass.ShopFromDB.getNightShopList(new DataListener() {
+//            @Override
+//            public void getData(Object data, String id) {
+//                //Log.e("데이터DB등록", data.toString());
+//                NightRestaurantList.add(new Restaurant(data.toString()));
+//            }
+//        });
+
+        FastRestaurantList = new ArrayList<>(); // 아직 빈 리스트
+
+//        DatabaseQueryClass.ShopFromDB.getFastShopList(new DataListener() {
+//            @Override
+//            public void getData(Object data, String id) {
+//                //Log.e("데이터DB등록", data.toString());
+//                FastRestaurantList.add(new Restaurant(data.toString()));
+//            }
+//        });
+
+      
         MyListMenuList = new ArrayList<>();
     }
 
@@ -59,6 +127,32 @@ public class DATA {
         tempList.addAll(KoreanRestaurantList);
         tempList.addAll(ChineseRestaurantList);
         tempList.addAll(JapaneseRestaurantList);
-        return tempList;
+        tempList.addAll(ChickenRestaurantList);
+        tempList.addAll(AsianRestaurantList);
+        tempList.addAll(SnackRestaurantList);
+        tempList.addAll(WesternRestaurantList);
+        tempList.addAll(FastRestaurantList);
+        tempList.addAll(NightRestaurantList);
+
+        ArrayList<Restaurant> ResultRestaurantList = new ArrayList<>(); // 중복제거된 가게리스트
+        ArrayList<String> RestaurantNameList = new ArrayList<>();
+        ArrayList<String> RestaurantNameListTmp = new ArrayList<>();
+
+        for(int i = 0; i < tempList.size(); i++) // 가게 중복검사
+        {
+            RestaurantNameList.add(tempList.get(i).getRestaurantName());
+        }
+
+        for(int i = 0; i < RestaurantNameList.size(); i++) // 가게 중복검사
+        {
+            if(!RestaurantNameListTmp.contains(RestaurantNameList.get(i)))
+            {
+                RestaurantNameListTmp.add(RestaurantNameList.get(i));
+                ResultRestaurantList.add(tempList.get(i));
+            }
+
+        }
+
+        return ResultRestaurantList;
     }
 }
