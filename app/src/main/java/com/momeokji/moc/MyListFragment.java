@@ -68,14 +68,6 @@ public class MyListFragment extends DialogFragment {
         super.onStart();
 
         SetFragmentAttributes();
-
-        mainActivity.restaurantDATA.MyListMenuList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                mainActivity.restaurantDATA.MyListMenuList.add(new MyListMenu(mainActivity.restaurantDATA.KoreanRestaurantList.get(i).getMainMenus()[j], mainActivity.restaurantDATA.KoreanRestaurantList.get(i).getRestaurantName()));
-                //mainActivity.restaurantDATA.MyListMenuList.add(new MyListMenu(mainActivity.restaurantDATA.ChineseRestaurantList.get(i).getMainMenus()[j], mainActivity.restaurantDATA.ChineseRestaurantList.get(i).getRestaurantName()));
-            }
-        }
     }
 
     public void SetFragmentAttributes() {
