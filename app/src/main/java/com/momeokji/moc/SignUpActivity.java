@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.momeokji.moc.CustomView.BackPressEditText;
 import com.momeokji.moc.Helper.StringChecker;
+
+import static java.security.AccessController.getContext;
 
 public class SignUpActivity extends AppCompatActivity {
     public final static String NOT_VALID_EMAIL_FORM = "올바른 Email 형식을 입력해 주세요.";
@@ -20,14 +25,47 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        final EditText signup_email_edittxt = findViewById(R.id.signup_email_edittxt);
-        final EditText signup_password_edittxt = findViewById(R.id.signup_password_edittxt);
-        final EditText signup_password_check_edittxt = findViewById(R.id.signup_password_check_edittxt);
+        final BackPressEditText signup_email_edittxt = findViewById(R.id.signup_email_edittxt);
+        final BackPressEditText signup_password_edittxt = findViewById(R.id.signup_password_edittxt);
+        final BackPressEditText signup_password_check_edittxt = findViewById(R.id.signup_password_check_edittxt);
         Button signup_normal_sign_up_btn = findViewById(R.id.signup_normal_sign_up_btn);
         TextView  signup_log_in_txtbtn = findViewById(R.id.signup_log_in_txtbtn);
         ImageButton signup_sign_up_with_facebook_imgbtn = findViewById(R.id.signup_sign_up_with_facebook_imgbtn);
         ImageButton signup_sign_up_with_google_imgbtn = findViewById(R.id.signup_sign_up_with_google_imgbtn);
 
+        //* EditText에 엔터 클릭시 닫히는 키 리스너 등록
+        signup_email_edittxt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == event.KEYCODE_ENTER) {  // 이메일 입력란에서 키보드 엔터 누를 때
+                    RemoveFocusFromEditText(signup_email_edittxt);                                  // 포커스 해제
+                    return true;
+                }
+                return false;
+            }
+        });
+        signup_password_edittxt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == event.KEYCODE_ENTER) {  // 비밀번호 입력란에서 키보드 엔터 누를 떄
+                    RemoveFocusFromEditText(signup_password_edittxt);                               // 포커스 해제
+                    return true;
+                }
+                return false;
+            }
+        });
+        signup_password_check_edittxt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == event.KEYCODE_ENTER) {  // 비밀번호 확인 입력란에서 키보드 엔터 누를 때
+                    RemoveFocusFromEditText(signup_password_check_edittxt);                         // 포커스 해제
+                    SignUpWithMoc(signup_email_edittxt.getText().toString(), signup_password_edittxt.getText().toString(), signup_password_check_edittxt.getText().toString()); // 일반 회원가입 진행
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
         //* 로그인 문구 버튼 클릭 시 리스너 등록
         signup_log_in_txtbtn.setOnClickListener(new View.OnClickListener() {
@@ -78,5 +116,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         //TODO : 일반 회원가입 구현
 
+    }
+
+
+    public void RemoveFocusFromEditText(BackPressEditText targetEditText) {
+        ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+        targetEditText.clearFocus();
     }
 }

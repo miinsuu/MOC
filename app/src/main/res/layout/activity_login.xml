@@ -38,7 +38,7 @@
             android:text="이메일"
             android:textColor="@color/darkGray"/>
 
-        <EditText
+        <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/login_email_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="패스워드"
             android:textColor="@color/darkGray"/>
-        <EditText
+        <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/login_password_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

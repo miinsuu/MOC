@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="이메일"
             android:textColor="@color/darkGray"/>
-        <EditText
+        <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/signup_email_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="패스워드"
             android:textColor="@color/darkGray"/>
-        <EditText
+        <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/signup_password_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="패스워드 확인"
             android:textColor="@color/darkGray"/>
-        <EditText
+        <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/signup_password_check_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
