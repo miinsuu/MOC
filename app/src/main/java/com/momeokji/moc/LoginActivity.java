@@ -24,7 +24,6 @@ import static java.security.AccessController.getContext;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public final static String NOT_VALID_EMAIL_FORM = "올바른 Email 형식을 입력해 주세요.";
 
     private LoginActivity loginActivity;
 
@@ -113,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
     //* 입력된 이메일과 비밀번호가 유효한지 검사하는 함수
     public boolean CheckLoginInfo(String email, String password) {
         if (!StringChecker.CheckEmailForm(email))                                               // 이메일 형식인지 체크
-            Toast.makeText(this, NOT_VALID_EMAIL_FORM, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.not_valid_email_form, Toast.LENGTH_LONG).show();
 
         //TODO : 입력한 아이디, 비밀번호가 맞는지 체크
 
@@ -126,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);         // 메인액티비티로 이동
             startActivity(intent);
         } else {
-            Toast.makeText(loginActivity, "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(loginActivity, R.string.incorrect_emile_or_password, Toast.LENGTH_LONG).show();
         }
     }
 

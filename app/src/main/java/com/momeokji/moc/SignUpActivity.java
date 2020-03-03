@@ -19,7 +19,6 @@ import com.momeokji.moc.Helper.StringChecker;
 import static java.security.AccessController.getContext;
 
 public class SignUpActivity extends AppCompatActivity {
-    public final static String NOT_VALID_EMAIL_FORM = "올바른 Email 형식을 입력해 주세요.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +27,10 @@ public class SignUpActivity extends AppCompatActivity {
         final BackPressEditText signup_email_edittxt = findViewById(R.id.signup_email_edittxt);
         final BackPressEditText signup_password_edittxt = findViewById(R.id.signup_password_edittxt);
         final BackPressEditText signup_password_check_edittxt = findViewById(R.id.signup_password_check_edittxt);
-        Button signup_normal_sign_up_btn = findViewById(R.id.signup_normal_sign_up_btn);
+        Button signup_sign_up_with_facebook_imgbtn = findViewById(R.id.signup_sign_up_with_facebook_btn);
+        Button signup_sign_up_with_google_imgbtn = findViewById(R.id.signup_sign_up_with_google_btn);
+        Button signup_normal_sign_up_btn = findViewById(R.id.signup_general_sign_up_btn);
         TextView  signup_log_in_txtbtn = findViewById(R.id.signup_log_in_txtbtn);
-        ImageButton signup_sign_up_with_facebook_imgbtn = findViewById(R.id.signup_sign_up_with_facebook_imgbtn);
-        ImageButton signup_sign_up_with_google_imgbtn = findViewById(R.id.signup_sign_up_with_google_imgbtn);
 
         //* EditText에 엔터 클릭시 닫히는 키 리스너 등록
         signup_email_edittxt.setOnKeyListener(new View.OnKeyListener() {
@@ -107,10 +106,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void SignUpWithMoc(String email, String password, String passwordCheck) {
         if (StringChecker.CheckEmailForm(email)) {                                                              //이메일 형식 체크
-            Toast.makeText(this, NOT_VALID_EMAIL_FORM, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.not_valid_email_form, Toast.LENGTH_SHORT).show();
             return ;
         } else if (!password.equals(passwordCheck)) {                                                           // 비밀번호와 비밀번호 확인 이 같은지 체크
-            Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.do_not_match_password_and_password_check, Toast.LENGTH_SHORT).show();
             return;
         }
 
