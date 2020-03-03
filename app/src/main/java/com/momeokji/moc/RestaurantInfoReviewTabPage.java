@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.momeokji.moc.data.Restaurant;
+
 
 public class RestaurantInfoReviewTabPage extends Fragment {
 /*
@@ -53,6 +55,13 @@ public class RestaurantInfoReviewTabPage extends Fragment {
 */
 
     private Context context;
+    private Restaurant selectedRestaurant;
+
+    public RestaurantInfoReviewTabPage(Context context) {
+        this.context = context;
+        this.selectedRestaurant = ((MainActivity)context).restaurantDATA.selectedRestaurant;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +74,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                ((MainActivity)context).ReplaceFragment(new WriteReview());
+                ((MainActivity)context).ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
 
             }
         });
