@@ -9,4 +9,7 @@
     <color name="partition">#000000</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="app_color_start">#FF5353</color>
+    <color name="app_color_center">#F55979</color>
+    <color name="app_color_end">#EA5F9E</color>
 </resources>
