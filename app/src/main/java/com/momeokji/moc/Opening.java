@@ -43,7 +43,7 @@ public class Opening extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Opening.this, MainActivity.class);
+                Intent intent = new Intent(Opening.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
