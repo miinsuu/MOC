@@ -24,7 +24,7 @@ public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
             case 0:
                 return new RestaurantInfoMenuTabPage((MainActivity)context);
             case 1:
-                return new RestaurantInfoReviewTabPage();
+                return new RestaurantInfoReviewTabPage((MainActivity)context);
             default:
                 return null;
 
