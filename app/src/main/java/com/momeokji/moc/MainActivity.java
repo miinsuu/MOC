@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
     public DATA restaurantDATA;
 
+    public MainActivity() {
+        this.mainActivity = this;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                MyListFragment myListFragment = MyListFragment.getInstance(mainActivity);
+                myListFragment.show(fragmentTransaction, MyListFragment.TAG_MY_LIST_FRAGMENT);
             }
         });
     }

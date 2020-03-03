@@ -17,6 +17,7 @@ public class DATA {
     public ArrayList<Restaurant> FastRestaurantList;
 
     public ArrayList<String> Location;
+    public ArrayList<MyListMenu> MyListMenuList;
     public Restaurant selectedRestaurant ;
 
     public DATA() {
@@ -26,6 +27,8 @@ public class DATA {
 
         //////////// 데이터 등록/////////////
         KoreanRestaurantList = new ArrayList<>();
+
+
 
         DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
             @Override
@@ -115,6 +118,8 @@ public class DATA {
 //            }
 //        });
 
+      
+        MyListMenuList = new ArrayList<>();
     }
 
     public ArrayList<Restaurant> getAllList() {
