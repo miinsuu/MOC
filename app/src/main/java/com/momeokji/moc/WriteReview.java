@@ -1,5 +1,6 @@
 package com.momeokji.moc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +50,37 @@ public class WriteReview extends Fragment {
         TextView minMaxPrice = view.findViewById(R.id.writeReview_restaurantRangePrice_txt);
         MarqueeTextView preview = view.findViewById(R.id.writeReview_restaurantPreview_txt);
         reviewPicture_imageView = view.findViewById(R.id.reviewPicture_imageView);
+        LinearLayout ll = view.findViewById(R.id.ll);
+        LinearLayout ll2 = view.findViewById(R.id.ll2);
+        LinearLayout ll3 = view.findViewById(R.id.ll3);
+        final EditText writeReview_editText = view.findViewById(R.id.writeReview_editText);
 
         writetReview_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
         preview.setText(selectedRestaurant.getPreview());
         preview.setSelected(true);
 
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+            }
+        });
+        ll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm2 = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm2.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+            }
+        });
+        ll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm3 = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm3.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+            }
+        });
         writeReview_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
