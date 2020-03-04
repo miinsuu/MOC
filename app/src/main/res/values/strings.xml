@@ -4,6 +4,8 @@
     <string name="title_home">뭐 먹지?</string>
     <string name="title_dashboard">가게</string>
     <string name="title_notifications">더보기</string>
+    <string name="naver_client_id">z5hj78ij4o</string>
+    <string name="naver_client_secret">A4LjsGO9A8dy8vEi16Y83HSos4AZXR9lklRHBIz7</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
