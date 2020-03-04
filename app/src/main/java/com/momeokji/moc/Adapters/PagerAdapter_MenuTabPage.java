@@ -49,6 +49,26 @@ public class PagerAdapter_MenuTabPage extends FragmentPagerAdapter {
 
     }
     @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "대표";
+            default:
+                Set<String> menuCategoryNameSet;
+                ArrayList<String> categoryArray = new ArrayList<>();
+                for(int n = 0; n < AllMenuList.size(); n++) {
+                    menuCategoryNameSet = AllMenuList.get(n).keySet();
+                    for (String name : menuCategoryNameSet) {
+                        categoryArray.add(name);
+                    }
+                }
+                return categoryArray.get(position-1);
+
+        }
+    }
+
+
+    @Override
     public int getCount() {
         return AllMenuList.size()+1;
     }
