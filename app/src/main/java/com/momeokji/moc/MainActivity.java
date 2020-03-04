@@ -1,5 +1,6 @@
 package com.momeokji.moc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -198,5 +199,10 @@ public class MainActivity extends AppCompatActivity {
             a.setDuration(300);
             myList_btn.startAnimation(a);
         }
+    }
+
+    public void BackToOpening() {
+        Intent intent = new Intent(MainActivity.this, Opening.class);
+        startActivity(intent);
     }
 }
