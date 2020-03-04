@@ -18,4 +18,14 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="mylist_fragment_size" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">50%</item>
+        <item name="android:windowMinWidthMinor">50%</item>
+    </style>
+
+    <style name="mylist_animation">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_in_up_with_mylist</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_out_down_with_mylist</item>
+    </style>
+
 </resources>

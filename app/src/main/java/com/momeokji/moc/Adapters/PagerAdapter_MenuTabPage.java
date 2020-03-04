@@ -39,11 +39,11 @@ public class PagerAdapter_MenuTabPage extends FragmentPagerAdapter {
                 return new MenuClassificationTab(tempArray);
             default:
                 String menuCategoryName = "";
-                Set<String> menuCategoryNameSet = AllMenuList.get(position).keySet();
+                Set<String> menuCategoryNameSet = AllMenuList.get(position-1).keySet();
                 for(String name : menuCategoryNameSet)
                     menuCategoryName = name;
 
-                return new MenuClassificationTab((ArrayList<Menu>) AllMenuList.get(position).get(menuCategoryName));
+                return new MenuClassificationTab((ArrayList<Menu>) AllMenuList.get(position-1).get(menuCategoryName));
 
         }
 

@@ -1,5 +1,6 @@
 package com.momeokji.moc.Helper;
 
+import android.content.Intent;
 import android.os.Handler;
 
 import androidx.fragment.app.Fragment;
@@ -8,11 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.HomeFragment;
+import com.momeokji.moc.LoginActivity;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
 import com.momeokji.moc.MainContextWithLocationSelectFragment;
 import com.momeokji.moc.MoreInfoFragment;
 import com.momeokji.moc.NavigationBarFragment;
+import com.momeokji.moc.Opening;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
 import com.momeokji.moc.RestaurantListFragment;
@@ -32,8 +35,10 @@ public class FragmentStackManager {
     }
 
     public void onBackPressed() {
-        if (fragmentBackStack.isEmpty())
+        if (fragmentBackStack.isEmpty()) {
+            mainActivity.BackToOpening();
             return ;
+        }
 
         if ((mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
             && (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment

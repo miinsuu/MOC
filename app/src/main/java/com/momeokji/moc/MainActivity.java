@@ -1,5 +1,6 @@
 package com.momeokji.moc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
     public DATA restaurantDATA;
 
+    public MainActivity() {
+        this.mainActivity = this;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                MyListFragment myListFragment = MyListFragment.getInstance(mainActivity);
+                myListFragment.show(fragmentTransaction, MyListFragment.TAG_MY_LIST_FRAGMENT);
             }
         });
     }
@@ -192,5 +199,10 @@ public class MainActivity extends AppCompatActivity {
             a.setDuration(300);
             myList_btn.startAnimation(a);
         }
+    }
+
+    public void BackToOpening() {
+        Intent intent = new Intent(MainActivity.this, Opening.class);
+        startActivity(intent);
     }
 }

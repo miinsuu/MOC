@@ -57,6 +57,7 @@ public class RestaurantInfoFragment extends Fragment {
         TextView phoneNumber = view.findViewById(R.id.restaurantInfoPage_phoneNumberTxt);
         ImageButton callBtn = view.findViewById(R.id.call_btn);
         Button addressMapBtn = view.findViewById(R.id.restaurantInfoPage_addressMapBtn);
+        Button restaurantInfo_back_btn = view.findViewById(R.id.restaurantInfo_back_btn);
 
         //선택한 가게의 정보를 화면에 뿌려주기
         restaurantPage_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
@@ -65,6 +66,14 @@ public class RestaurantInfoFragment extends Fragment {
         preview.setSelected(true);
         address.setText(selectedRestaurant.getAddress());
         phoneNumber.setText(selectedRestaurant.getPhoneNumber());
+
+        //가게 상세페이지에서 뒤로가기
+        restaurantInfo_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).onBackPressed();
+            }
+        });
 
         //가게 전화번호로 전화다이얼화면 띄우기
         callBtn.setOnClickListener(new View.OnClickListener() {
