@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.momeokji.moc.Adapters.RecyclerViewAdapter_ReviewTabPage;
 import com.momeokji.moc.data.Restaurant;
 
 
@@ -56,6 +59,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
 
     private Context context;
     private Restaurant selectedRestaurant;
+    RecyclerViewAdapter_ReviewTabPage recyclerViewAdapter_reviewTabPage;
 
     public RestaurantInfoReviewTabPage(Context context) {
         this.context = context;
@@ -66,9 +70,14 @@ public class RestaurantInfoReviewTabPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_restaurant_info_review_tab_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_restaurant_info_review_tab_page, container, false);
 
         Button writeReviewBtn = view.findViewById(R.id.writeReview_btn);
+        RecyclerView review_recyclerView = view.findViewById(R.id.review_recyclerView);
+
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        review_recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerViewAdapter_reviewTabPage = new RecyclerViewAdapter_ReviewTabPage()
 
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override

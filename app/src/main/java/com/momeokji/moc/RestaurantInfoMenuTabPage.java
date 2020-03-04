@@ -47,12 +47,8 @@ public class RestaurantInfoMenuTabPage extends Fragment {
         restaurantInfo_menuTabPage_viewPager.setAdapter(new PagerAdapter_MenuTabPage(getChildFragmentManager(),1,getActivity()));
 
         tabLayout = view.findViewById(R.id.menuclassificationTabBar_layout);
-        for(int n = 0; n < AllMenuList.size(); n++){
-            menuCategoryNameSet = AllMenuList.get(n).keySet();
-            for(String name : menuCategoryNameSet)
-                menuCategoryName = name;
-            tabLayout.addTab(tabLayout.newTab().setText(menuCategoryName));
-        }
+
+        tabLayout.setupWithViewPager(restaurantInfo_menuTabPage_viewPager);
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
