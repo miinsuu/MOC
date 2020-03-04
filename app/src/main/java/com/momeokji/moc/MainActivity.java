@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_left_with_main_fragment, R.animator.animator_slide_out_right_with_main_fragment, R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment);
 
         int frameLayoutId = 0;
+        Fragment parentFragment;
 
         switch (level) {
             case 0:
@@ -97,18 +98,19 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 frameLayoutId = R.id.mainContextWithLocationSelect_frameLayout;
-                if (!(displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment))
-                    return false;
+                parentFragment = displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout);
+                if (parentFragment instanceof MainContextAndNavigationBarFragment)
+                    ((MainContextAndNavigationBarFragment)parentFragment).setMainContextWithLocationSelect(targetFragment);
                 else
-                    ((MainContextAndNavigationBarFragment)displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout)).setMainContextWithLocationSelect(targetFragment);
+                    return false;
                 break;
             case 2:
                 frameLayoutId = R.id.mainContext_frameLayout;
-
-                if (!(displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment))
-                    return false;
+                parentFragment = displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout);
+                if (parentFragment instanceof MainContextWithLocationSelectFragment)
+                    ((MainContextWithLocationSelectFragment)parentFragment).setMainContext(targetFragment);
                 else
-                    ((MainContextWithLocationSelectFragment)displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout)).setMainContext(targetFragment);
+                    return false;
                 break;
             default:
                 return false;

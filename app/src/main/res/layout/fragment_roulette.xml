@@ -5,11 +5,81 @@
     android:layout_height="match_parent"
     tools:context=".RouletteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="루우우울레에에엣" />
+        android:orientation="vertical"
+        android:background="@drawable/t_bbobki_1">
+        <GridLayout
+            android:id="@+id/roulette_items_gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:columnCount="3">
+            <ImageButton
+                android:id="@+id/item1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+            <ImageButton
+                android:id="@+id/item9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/food"/>
+
+        </GridLayout>
+
+        <ImageButton
+            android:id="@+id/roulette_drawing_imgbtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/roulette_items_gridLayout"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/coupon"/>
+    </RelativeLayout>
 
 </FrameLayout>
