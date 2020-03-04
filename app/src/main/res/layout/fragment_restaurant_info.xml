@@ -28,7 +28,8 @@
                 app:layout_collapseMode="parallax">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/RestaurantNameLinearLayout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:orientation="vertical">
@@ -140,9 +141,9 @@
 
                             <TextView
                                 android:id="@+id/restaurantInfoPage_addressTxt"
-                                android:layout_width="228dp"
+                                android:layout_width="178dp"
                                 android:layout_height="20dp"
-                                android:layout_marginLeft="28dp"
+                                android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginTop="13dp"
                                 android:layout_marginRight="10dp"
@@ -151,9 +152,9 @@
 
                             <TextView
                                 android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                                android:layout_width="228dp"
+                                android:layout_width="178dp"
                                 android:layout_height="20dp"
-                                android:layout_marginLeft="28dp"
+                                android:layout_marginLeft="10dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginBottom="13dp"
@@ -161,35 +162,12 @@
                                 android:textColor="#222222" />
                         </LinearLayout>
 
-
-                        <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_addressTxt"
-                            android:layout_width="228dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="28dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginRight="10dp"
-                            android:text="TextView"
-                            android:textColor="#222222" />
-
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                            android:layout_width="228dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="28dp"
+                        <Button
+                            android:id="@+id/restaurantInfoPage_addressMapBtn"
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="13dp"
-                            android:text="TextView"
-                            android:textColor="#222222" />
-                        </LinearLayout>
-
+                            android:text="가게 위치" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -198,7 +176,6 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:minHeight="?attr/actionBarSize"
@@ -245,8 +222,6 @@
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
       
-      
-                
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
