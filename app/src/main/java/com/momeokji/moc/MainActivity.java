@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.Helper.FragmentStackManager;
 
 import com.momeokji.moc.data.DATA;
+import com.momeokji.moc.data.User;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 myListFragment.show(fragmentTransaction, MyListFragment.TAG_MY_LIST_FRAGMENT);
             }
         });
+
     }
 
 

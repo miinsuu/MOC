@@ -48,6 +48,8 @@ public class Opening extends AppCompatActivity {
             }
         });
 
+        // ! 절대 지우지 말기 !
+
         //Storage에 저장된 사진 URL로 불러오는 과정
 //        db.collection("category")
 //                //.orderBy("priority", Query.Direction.ASCENDING)
