@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
         fragmentTransaction.addToBackStack(targetFragmentClassName);
-        if (fragmentManager.findFragmentByTag(targetFragmentClassName) == null)
-            fragmentTransaction.add(frameLayoutId, targetFragment, targetFragmentClassName);
-        else {
+        if (targetFragment.isAdded()){
             fragmentTransaction.show(targetFragment);
             fragmentTransaction.detach(targetFragment).attach(targetFragment);
         }
+        else
+            fragmentTransaction.add(frameLayoutId, targetFragment, targetFragmentClassName);
 
         fragmentTransaction.hide(removalFragment).commit();
         displayedFragmentManager.fragmentStackManager.PushFragment(level);
