@@ -113,6 +113,7 @@ public class RouletteFragment extends Fragment {
         this.nextItemChooseInterval = INIT_ROULETTE_INTERVAL;
 
         lever.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bbobki_lever_down));
+        lever.setClickable(false);
 
         final Random randomInterval = new Random();
         final Handler mHandler = new Handler();
@@ -146,6 +147,7 @@ public class RouletteFragment extends Fragment {
 
     public void SetLeverToRedrawState(final int targetItemIndex) {
         lever.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bbobki_lever_up));
+        lever.setClickable(true);
         roulette_drawing_txt.setText("다시뽑기");
 
         lever.setOnClickListener(new View.OnClickListener() {
