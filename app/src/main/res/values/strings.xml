@@ -15,6 +15,9 @@
     <string name="incorrect_emile_or_password">아이디와 비밀번호가 일치하지 않습니다.</string>
     <string name="do_not_match_password_and_password_check">비밀번호가 일치하지 않습니다.</string>
 
+    <string name="facebook_app_id">225721962152383</string>
+    <string name="fb_login_protocol_scheme">fb225721962152383</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
