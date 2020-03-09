@@ -10,7 +10,6 @@ public class DATA {
     public ArrayList<Restaurant> ChineseRestaurantList;
     public ArrayList<Restaurant> JapaneseRestaurantList;
     public ArrayList<Restaurant> ChickenRestaurantList;
-    public ArrayList<Restaurant> AsianRestaurantList;
     public ArrayList<Restaurant> SnackRestaurantList;
     public ArrayList<Restaurant> WesternRestaurantList;
     public ArrayList<Restaurant> NightRestaurantList;
@@ -27,8 +26,6 @@ public class DATA {
 
         //////////// 데이터 등록/////////////
         KoreanRestaurantList = new ArrayList<>();
-
-
 
         DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
             @Override
@@ -68,16 +65,6 @@ public class DATA {
             }
         });
 
-        AsianRestaurantList = new ArrayList<>();
-
-        DatabaseQueryClass.ShopFromDB.getAsianShopList(new DataListener() {
-            @Override
-            public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
-                AsianRestaurantList.add(new Restaurant(data.toString()));
-            }
-        });
-
         SnackRestaurantList = new ArrayList<>();
 
         DatabaseQueryClass.ShopFromDB.getSnackShopList(new DataListener() {
@@ -98,25 +85,25 @@ public class DATA {
             }
         });
 
-        NightRestaurantList = new ArrayList<>(); // 아직 빈 리스트
+        NightRestaurantList = new ArrayList<>();
 
-//        DatabaseQueryClass.ShopFromDB.getNightShopList(new DataListener() {
-//            @Override
-//            public void getData(Object data, String id) {
-//                //Log.e("데이터DB등록", data.toString());
-//                NightRestaurantList.add(new Restaurant(data.toString()));
-//            }
-//        });
+        DatabaseQueryClass.ShopFromDB.getNightShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                NightRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
 
-        FastRestaurantList = new ArrayList<>(); // 아직 빈 리스트
+        FastRestaurantList = new ArrayList<>();
 
-//        DatabaseQueryClass.ShopFromDB.getFastShopList(new DataListener() {
-//            @Override
-//            public void getData(Object data, String id) {
-//                //Log.e("데이터DB등록", data.toString());
-//                FastRestaurantList.add(new Restaurant(data.toString()));
-//            }
-//        });
+        DatabaseQueryClass.ShopFromDB.getFastShopList(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                //Log.e("데이터DB등록", data.toString());
+                FastRestaurantList.add(new Restaurant(data.toString()));
+            }
+        });
 
       
         MyListMenuList = new ArrayList<>();
@@ -128,7 +115,6 @@ public class DATA {
         tempList.addAll(ChineseRestaurantList);
         tempList.addAll(JapaneseRestaurantList);
         tempList.addAll(ChickenRestaurantList);
-        tempList.addAll(AsianRestaurantList);
         tempList.addAll(SnackRestaurantList);
         tempList.addAll(WesternRestaurantList);
         tempList.addAll(FastRestaurantList);
