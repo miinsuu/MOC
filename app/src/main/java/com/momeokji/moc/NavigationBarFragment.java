@@ -14,12 +14,9 @@ import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.Helper.BottomNavigationHelper;
+import com.momeokji.moc.Helper.Constants;
 
 public class NavigationBarFragment extends Fragment {
-    final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
-    final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
 
     private BottomNavigationView bottomNavigationView;
     private MainActivity mainActivity = null;
@@ -48,7 +45,7 @@ public class NavigationBarFragment extends Fragment {
 
                 switch (menuItem.getItemId()) {
                     case R.id.navigationBar_home_btn:
-                        animationDirection = ANIMATION_DIRECT_LEFT;
+                        animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
                         HomeFragment constructedHomeFragment = (HomeFragment) mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(HomeFragment.class.getName());
                         if (constructedHomeFragment == null) {
@@ -69,9 +66,9 @@ public class NavigationBarFragment extends Fragment {
 
                     case R.id.navigationBar_shop_btn:
                         if (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)
-                            animationDirection = ANIMATION_DIRECT_RIGHT;
+                            animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
                         else
-                            animationDirection = ANIMATION_DIRECT_LEFT;
+                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
                         RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
                         if (constructedRestaurantListFragment == null) {
@@ -92,9 +89,9 @@ public class NavigationBarFragment extends Fragment {
 
                     case R.id.navigationBar_roulette_btn:
                         if (curr_Level1_Fragment instanceof MoreInfoFragment)
-                            animationDirection = ANIMATION_DIRECT_LEFT;
+                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
                         else
-                            animationDirection = ANIMATION_DIRECT_RIGHT;
+                            animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         RouletteFragment constructedRouletteFragment = (RouletteFragment) mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(RouletteFragment.class.getName());
                         if (constructedRouletteFragment == null) {
@@ -107,7 +104,7 @@ public class NavigationBarFragment extends Fragment {
                         break;
 
                     case R.id.navigationBar_more_btn:
-                        animationDirection = ANIMATION_DIRECT_RIGHT;
+                        animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         MoreInfoFragment constructedMoreInfoFragment = (MoreInfoFragment) mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MoreInfoFragment.class.getName());
                         if (constructedMoreInfoFragment == null) {

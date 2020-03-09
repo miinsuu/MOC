@@ -23,10 +23,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.momeokji.moc.Helper.Constants;
 
 public class Opening extends AppCompatActivity {
 
-    private static final int BACK_PRESS_TO_CLOSE_APP_DELAY = 1000;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Context context;
     ImageView mainImage;
@@ -93,13 +93,13 @@ public class Opening extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (backKeyPressedTime == 0 || System.currentTimeMillis() > backKeyPressedTime + BACK_PRESS_TO_CLOSE_APP_DELAY) {
+        if (backKeyPressedTime == 0 || System.currentTimeMillis() > backKeyPressedTime + Constants.DELAYS.BACK_PRESS_TO_CLOSE_APP_DELAY) {
             backKeyPressedTime = System.currentTimeMillis();
             Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르면시면 종료됩니다.", Toast.LENGTH_LONG).show();
             return ;
         }
 
-        if (System.currentTimeMillis() <= backKeyPressedTime + BACK_PRESS_TO_CLOSE_APP_DELAY); {
+        if (System.currentTimeMillis() <= backKeyPressedTime + Constants.DELAYS.BACK_PRESS_TO_CLOSE_APP_DELAY); {
             finish();
             android.os.Process.killProcess(android.os.Process.myPid());
         }

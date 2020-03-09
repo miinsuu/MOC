@@ -6,7 +6,4 @@
     <corners
         android:topLeftRadius="20dp"
         android:topRightRadius="20dp"/>
-    <size
-        android:width="@dimen/parent_width"
-        android:height="@dimen/mylist_height"/>
 </shape>

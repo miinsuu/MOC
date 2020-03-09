@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_MyListMenu;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.MyListMenu;
 
 import java.util.ArrayList;
@@ -71,9 +73,9 @@ public class MyListFragment extends DialogFragment {
     }
 
     public void SetFragmentAttributes() {
-        int width = getResources().getDimensionPixelSize(R.dimen.parent_width);
-        int height = getResources().getDimensionPixelSize(R.dimen.mylist_height);
-        getDialog().getWindow().setLayout(width, height);
+        Point screenSize = new Point();
+        getActivity().getWindowManager().getDefaultDisplay().getSize(screenSize);
+        getDialog().getWindow().setLayout(screenSize.x, (int)(screenSize.y* Constants.DESIGN_SIZE.MYLIST_HEIGHT_RATIO));
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_my_list);
         getDialog().getWindow().getAttributes().windowAnimations = R.style.mylist_animation;
         getDialog().getWindow().setGravity(Gravity.BOTTOM);

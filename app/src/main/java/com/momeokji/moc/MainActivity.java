@@ -22,21 +22,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.Helper.FragmentStackManager;
 
 import com.momeokji.moc.data.DATA;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
-    final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
-    final static private boolean ABOVE_NAVIGATION_BAR = true;
-    final static private boolean ABOVE_PARENT = false;
-    final static private int NAVIGATION_BAR_HEIGHT_IN_DP = 56;
-    final static private int MY_LIST_BTN_MARGIN_IN_DP = 5;
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
 
     public static MainActivity mainActivity;
     public DisplayedFragmentManager displayedFragmentManager = new DisplayedFragmentManager(this);
@@ -58,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         /*- 초기 Fragment 등록 -*/
         displayedFragmentManager.fragmentManagers[0] = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = displayedFragmentManager.fragmentManagers[0].beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment, R.animator.animator_slide_in_left_with_main_fragment, R.animator.animator_slide_out_right_with_main_fragment);
+        fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
         fragmentTransaction.add(R.id.mainActivity_frameLayout, new MainContextAndNavigationBarFragment(this, new MainContextWithLocationSelectFragment(this, new HomeFragment())), MainContextAndNavigationBarFragment.class.getName()).addToBackStack(MainContextAndNavigationBarFragment.class.getName()).commit();
 
         //* 나의 리스트 버튼 등록 *//
@@ -84,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment removalFragment = null;
         final Fragment tempRemovalFragment;
 
-        if (animationDirection == ANIMATION_DIRECT_RIGHT)
-            fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment, R.animator.animator_slide_in_left_with_main_fragment, R.animator.animator_slide_out_right_with_main_fragment);
-        else if (animationDirection == ANIMATION_DIRECT_LEFT)
-            fragmentTransaction.setCustomAnimations(R.animator.animator_slide_in_left_with_main_fragment, R.animator.animator_slide_out_right_with_main_fragment, R.animator.animator_slide_in_right_with_main_fragment, R.animator.animator_slide_out_left_with_main_fragment);
+        if (animationDirection == Constants.ANIMATION_DIRECT.TO_RIGHT)
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+        else if (animationDirection == Constants.ANIMATION_DIRECT.TO_LEFT)
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment, R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
 
         int frameLayoutId = 0;
 
@@ -175,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
         public void SetMyListBtnPosition(final Fragment targetFragment) {
             final ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) myList_btn.getLayoutParams();
 
-            final int myListBtnMargin_in_dp = (int) (MY_LIST_BTN_MARGIN_IN_DP * getResources().getDisplayMetrics().density);
-            final int navigationBarHeight_in_dp = (int) (NAVIGATION_BAR_HEIGHT_IN_DP * getResources().getDisplayMetrics().density);
+            final int myListBtnMargin_in_dp = (int) (Constants.DESIGN_SIZE.MY_LIST_BTN_MARGIN_IN_DP * getResources().getDisplayMetrics().density);
+            final int navigationBarHeight_in_dp = (int) (Constants.DESIGN_SIZE.NAVIGATION_BAR_HEIGHT_IN_DP * getResources().getDisplayMetrics().density);
             if (targetFragment instanceof MainContextAndNavigationBarFragment) {
                 if(params.bottomMargin == myListBtnMargin_in_dp + navigationBarHeight_in_dp)
                     return;
