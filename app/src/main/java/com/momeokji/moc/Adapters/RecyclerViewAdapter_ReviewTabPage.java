@@ -42,18 +42,20 @@ public class RecyclerViewAdapter_ReviewTabPage extends RecyclerView.Adapter<Recy
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView reviewNickName, reviewText;
+        private TextView reviewMenuName, reviewNickName, reviewText, reviewTime;
         private ImageView reviewImage;
         ItemViewHolder(View ItemView){
             super(ItemView);
-            reviewNickName = ItemView.findViewById(R.id.reviewNickname);
+            reviewMenuName = ItemView.findViewById(R.id.reviewMenuName);
+            reviewNickName = ItemView.findViewById(R.id.reviewNickName);
+            reviewTime = ItemView.findViewById(R.id.reviewTime);
             reviewImage = ItemView.findViewById(R.id.reviewImageView);
             reviewText = ItemView.findViewById(R.id.reviewText);
         }
         public void onBind(Review review) {
- //           reviewNickName.setText(review);
- //           reviewImage.setImageURI();
- //           reviewText.setText();
+            //           reviewNickName.setText(review);
+            //           reviewImage.setImageURI();
+            //           reviewText.setText();
 
         }
     }

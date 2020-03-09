@@ -1,10 +1,11 @@
 package com.momeokji.moc.data;
 
-import android.widget.ImageView;
+import android.media.Image;
 
 public class Review {
-    private String reviewNickname;
-    private ImageView reviewImage;
-    private String reviewtext;
-
+    private String reviewMenu;
+    private String reviewNickName;
+    private String reviewTime;
+    private Image reviewImage;
+    private String reviewText;
 }
