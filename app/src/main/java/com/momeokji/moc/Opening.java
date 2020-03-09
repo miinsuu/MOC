@@ -23,14 +23,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.momeokji.moc.Helper.Constants;
 
 public class Opening extends AppCompatActivity {
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Context context;
     ImageView mainImage;
     final String[] mainImageUrl = new String[1];
     //FirebaseStorage 인스턴스를 생성
     FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+
+    private long backKeyPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,5 +92,20 @@ public class Opening extends AppCompatActivity {
 //                });
 
 }
+
+    @Override
+    public void onBackPressed() {
+        if (backKeyPressedTime == 0 || System.currentTimeMillis() > backKeyPressedTime + Constants.DELAYS.BACK_PRESS_TO_CLOSE_APP_DELAY) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르면시면 종료됩니다.", Toast.LENGTH_LONG).show();
+            return ;
+        }
+
+        if (System.currentTimeMillis() <= backKeyPressedTime + Constants.DELAYS.BACK_PRESS_TO_CLOSE_APP_DELAY); {
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+
+    }
 
 }

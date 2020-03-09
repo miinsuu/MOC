@@ -29,7 +29,7 @@ public class LocationSelectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_location_select, container, false);
-        //* 지역 선택용 스피너 등록 *//
+/*        //* 지역 선택용 스피너 등록
         locationSelect_spinner = view.findViewById(R.id.locationSelect_spinner);
         location_txt = view.findViewById(R.id.location_txt);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ((MainActivity) getActivity()).restaurantDATA.Location); // TODO 서버 데이터 : Fragment 생성될 때 마다 Location 리스트
@@ -45,7 +45,7 @@ public class LocationSelectFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-        });
+        });*/
         return view;
     }
 
