@@ -10,12 +10,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarLayout_Info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar_Info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentScrim="#FFFFFF"
@@ -98,80 +100,80 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/shop_info"
+                    android:orientation="horizontal">
+
                     <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="10dp"
-                      android:layout_marginTop="15dp"
-                      android:layout_marginRight="10dp"
-                      android:background="@drawable/shop_info"
-                      android:orientation="horizontal">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical">
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_marginLeft="16dp"
-                              android:layout_marginTop="13dp"
-                              android:layout_marginRight="10dp"
-                              android:layout_marginBottom="10dp"
-                              android:lineSpacingExtra="10dp"
-                              android:text="주소" />
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_marginLeft="16dp"
-                              android:layout_marginTop="5dp"
-                              android:layout_marginRight="10dp"
-                              android:layout_marginBottom="15dp"
-                              android:lineSpacingExtra="10dp"
-                              android:text="전화" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:lineSpacingExtra="10dp"
+                            android:text="주소" />
 
-                            <TextView
-                                android:id="@+id/restaurantInfoPage_addressTxt"
-                                android:layout_width="178dp"
-                                android:layout_height="20dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginTop="13dp"
-                                android:layout_marginRight="10dp"
-                                android:text="TextView"
-                                android:textColor="#222222" />
-
-                            <TextView
-                                android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                                android:layout_width="178dp"
-                                android:layout_height="20dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="13dp"
-                                android:text="TextView"
-                                android:textColor="#222222" />
-                        </LinearLayout>
-
-                        <Button
-                            android:id="@+id/restaurantInfoPage_addressMapBtn"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
                             android:layout_marginTop="5dp"
-                            android:text="가게 위치" />
-
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:lineSpacingExtra="10dp"
+                            android:text="전화" />
                     </LinearLayout>
-                </LinearLayout>
 
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/restaurantInfoPage_addressTxt"
+                            android:layout_width="178dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="TextView"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/restaurantInfoPage_phoneNumberTxt"
+                            android:layout_width="178dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="13dp"
+                            android:text="TextView"
+                            android:textColor="#222222" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/restaurantInfoPage_addressMapBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:text="가게 위치" />
+
+                </LinearLayout>
+            </LinearLayout>
 
 
             <androidx.appcompat.widget.Toolbar
@@ -190,38 +192,26 @@
                     <Button
                         android:id="@+id/restaurantInfo_back_btn"
                         style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/i_arrow_back" />
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/back" />
 
                     <ImageButton
                         android:id="@+id/call_btn"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="244dp"
+                        android:layout_marginLeft="268dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="12dp"
                         android:background="#032D2F31"
                         android:src="@drawable/i_phone" />
 
-                    <ToggleButton
-                        android:id="@+id/like_btn"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/likebtn_drawable"
-                        android:textOff=''
-                        android:textOn='' />
-
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
-      
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -229,7 +219,6 @@
             android:id="@+id/menuReviewTabBar_layout"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
             app:tabTextAppearance="@style/menu_reviewTab">
 
             <com.google.android.material.tabs.TabItem
@@ -245,14 +234,12 @@
         </com.google.android.material.tabs.TabLayout>
 
 
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.momeokji.moc.CustomView.NonSwipeableViewPager
         android:id="@+id/restaurantInfoPage_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

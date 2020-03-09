@@ -22,4 +22,5 @@
         android:text="TextView"
         android:textColor="#777777"
         android:textSize="12sp" />
+
 </LinearLayout>

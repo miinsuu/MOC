@@ -116,19 +116,19 @@
                     <Button
                         android:id="@+id/writeReview_back_btn"
                         style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/i_arrow_back" />
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/back" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="75dp"
                         android:layout_height="27dp"
-                        android:layout_marginLeft="118.5dp"
+                        android:layout_marginStart="100dp"
                         android:layout_marginTop="9dp"
+                        android:layout_marginEnd="87dp"
                         android:layout_marginBottom="12dp"
                         android:gravity="center_horizontal"
                         android:text="리뷰 쓰기"
@@ -141,13 +141,15 @@
                         android:layout_width="30dp"
                         android:layout_height="22dp"
                         android:layout_marginLeft="98.5dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginEnd="41dp"
                         android:layout_marginBottom="15dp"
                         android:background="#00FFFFFF"
                         android:lineSpacingExtra="6sp"
                         android:text="완료"
                         android:textColor="#578cdc"
                         android:textSize="16sp" />
+
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -164,7 +166,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="5dp"
                 android:drawableTop="@drawable/i_add_picture"
                 android:text="사진" />
         </LinearLayout>

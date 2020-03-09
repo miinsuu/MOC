@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,18 +19,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_MenuReview;
-
 import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.data.Restaurant;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 
 public class RestaurantInfoFragment extends Fragment {
@@ -144,3 +135,4 @@ public class RestaurantInfoFragment extends Fragment {
         super.onResume();
     }
 }
+
