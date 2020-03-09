@@ -61,7 +61,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아시안" />
+                android:text="야식" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

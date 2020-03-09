@@ -146,7 +146,7 @@ public class WriteReview extends Fragment {
             reviewPicture_imageView.setAdjustViewBounds(true);
         }
         else if (requestCode == 1 && resultCode == RESULT_CANCELED) {
-            Toast.makeText(getContext(),"취소",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"사진등록 취소",Toast.LENGTH_SHORT).show();
         }
     }
 

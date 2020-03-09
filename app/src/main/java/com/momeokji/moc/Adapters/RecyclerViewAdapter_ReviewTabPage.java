@@ -31,7 +31,7 @@ public class RecyclerViewAdapter_ReviewTabPage extends RecyclerView.Adapter<Recy
         public ViewHolder(View view) {
             super(view) ;
 
-            rtextview = (TextView) view.findViewById(R.id.reviewtext);
+            rtextview = (TextView) view.findViewById(R.id.reviewText);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +19,22 @@ import android.view.ViewManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
 import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.Restaurant;
+import com.momeokji.moc.data.User;
 
 
 public class HomeFragment extends Fragment {
@@ -41,6 +51,13 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity) getActivity();
+
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        Log.e("Login확인","사용자UID=>"+User.getUser().getUserUID());
     }
 
     @Override
@@ -74,7 +91,7 @@ public class HomeFragment extends Fragment {
         categoryBtns[3] = view.findViewById(R.id.western_btn);
         categoryBtns[4] = view.findViewById(R.id.snack_btn);
         categoryBtns[5] = view.findViewById(R.id.chicken_btn);
-        categoryBtns[6] = view.findViewById(R.id.asian_btn);
+        categoryBtns[6] = view.findViewById(R.id.night_btn);
         categoryBtns[7] = view.findViewById(R.id.fast_btn);
 
         for(int i = 0; i < Constants.COUNTS.CATEGORY_NUM; i++) {
@@ -87,5 +104,22 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+
+        // 로그아웃
+        ImageButton logoutButton = view.findViewById(R.id.moreEvent_btn);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 로그아웃
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                // 유저정보 삭제
+                User.getUser().clearUser();
+                Toast.makeText(getContext(), "로그아웃", Toast.LENGTH_SHORT).show();
+                // 로그인 화면으로 이동
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
+
     }
 }

@@ -212,7 +212,7 @@
                     android:layout_marginRight="20dp">
 
                     <Button
-                        android:id="@+id/asian_btn"
+                        android:id="@+id/night_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@drawable/mainicon" />
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="14sp"
-                        android:text="아시안"/>
+                        android:text="야식"/>
                 </LinearLayout>
 
                 <LinearLayout

@@ -45,11 +45,9 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
             case 6:
                 return new RestaurantListPage(((MainActivity)context).restaurantDATA.ChickenRestaurantList);
             case 7:
-                return new RestaurantListPage(((MainActivity)context).restaurantDATA.AsianRestaurantList);
+                return new RestaurantListPage(((MainActivity)context).restaurantDATA.NightRestaurantList);
             case 8:
                 return new RestaurantListPage(((MainActivity)context).restaurantDATA.FastRestaurantList);
-//            case 9:
-//                return new RestaurantListPage(((MainActivity)context).restaurantDATA.NightRestaurantList);
             default:
                 return null;
         }
