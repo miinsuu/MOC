@@ -1,61 +1,66 @@
 package com.momeokji.moc.Adapters;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.R;
-import com.momeokji.moc.reviewData;
+import com.momeokji.moc.data.Review;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter_ReviewTabPage extends RecyclerView.Adapter<RecyclerViewAdapter_ReviewTabPage.ViewHolder> {
+public class RecyclerViewAdapter_ReviewTabPage extends RecyclerView.Adapter<RecyclerViewAdapter_ReviewTabPage.ItemViewHolder> {
 
-    private ArrayList<reviewData> mDataset;
-    public RecyclerViewAdapter_ReviewTabPage(ArrayList<reviewData> searchDataSet, Activity activity) {
-        mDataset = searchDataSet;
+    private ArrayList<Review> reviewList;
+    public RecyclerViewAdapter_ReviewTabPage(ArrayList<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
-    public RecyclerViewAdapter_ReviewTabPage(ArrayList<reviewData> list) {
-        this.mDataset = list;
-    }
-
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView rtextview;
-
-        public ViewHolder(View view) {
-            super(view) ;
-
-            rtextview = (TextView) view.findViewById(R.id.reviewText);
-        }
-    }
-
-//    RecyclerViewAdapter_ReviewTabPage(ArrayList<String> list) {
-//        mData = list;
-//    }
-
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_review_tab_page,parent,false) ;
-        ViewHolder viewHolder = new ViewHolder(view) ;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_review_tab_page, parent, false);
+        ItemViewHolder viewHolder = new ItemViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapter_ReviewTabPage.ViewHolder holder, int position) {
-//        String text = mDataset.get(position);
-        holder.rtextview.setText(mDataset.get(position).review);
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+        holder.onBind(reviewList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size() ;
+        return reviewList.size() ;
     }
+
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        private TextView reviewNickName, reviewText;
+        private ImageView reviewImage;
+        ItemViewHolder(View ItemView){
+            super(ItemView);
+            reviewNickName = ItemView.findViewById(R.id.reviewNickname);
+            reviewImage = ItemView.findViewById(R.id.reviewImageView);
+            reviewText = ItemView.findViewById(R.id.reviewText);
+        }
+        public void onBind(Review review) {
+ //           reviewNickName.setText(review);
+ //           reviewImage.setImageURI();
+ //           reviewText.setText();
+
+        }
+    }
+
+
+
+
+
+
 }

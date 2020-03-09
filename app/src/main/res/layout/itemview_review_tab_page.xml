@@ -9,7 +9,7 @@
         android:id="@+id/reviewNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="4dp"
         android:text="TextView"
         android:textColor="#222222" />
@@ -26,9 +26,9 @@
         android:id="@+id/reviewText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="24dp"
         android:text="TextView" />
 
 </LinearLayout>
