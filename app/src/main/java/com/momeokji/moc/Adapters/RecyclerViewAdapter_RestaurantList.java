@@ -20,6 +20,8 @@ import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
@@ -80,7 +82,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
 
-                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });
@@ -140,7 +142,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             this.selectedRecyclerViewItemPosition = -1;
         }
 
-        int height = (int) (Constants.DESIGN_SIZE.EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
+        int height = (int) (Constants.XML_DESIGN.EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
         ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
         valueAnimator.setDuration(300);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

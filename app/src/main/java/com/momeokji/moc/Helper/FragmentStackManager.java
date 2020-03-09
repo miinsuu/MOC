@@ -67,7 +67,7 @@ public class FragmentStackManager {
                 @Override
                 public void run() {
                     if (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
-                        mainActivity.displayedFragmentManager.SetMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
+                        mainActivity.displayedFragmentManager.UpdateMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
                 }
             }, 100);
         }

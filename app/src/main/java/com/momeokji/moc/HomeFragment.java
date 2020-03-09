@@ -36,6 +36,8 @@ import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.Restaurant;
 import com.momeokji.moc.data.User;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 
 public class HomeFragment extends Fragment {
     private MainActivity mainActivity;
@@ -62,7 +64,7 @@ public class HomeFragment extends Fragment {
         home_searchRestaurants_relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.ReplaceFragment(0, new SearchRestaurantFragment(), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                displayedFragmentManager.ReplaceFragment(0, new SearchRestaurantFragment(), Constants.ANIMATION_DIRECT.TO_RIGHT);
             }
         });
         return view;
@@ -75,7 +77,7 @@ public class HomeFragment extends Fragment {
         //* 카테고리 버튼에 OnClickListener 등록
         //     - onStart에서 해주는 이유 : NavigationBarFragment의 BottomNavigationView를 등록하기 때문에 NavigationBarFragment가 확실히 생성된 후 작업하기 위해*//
         final View view = this.getView();
-        final NavigationBarFragment tempNavBarFrag = mainActivity.displayedFragmentManager.navigationBar;
+        final NavigationBarFragment tempNavBarFrag = displayedFragmentManager.navigationBar;
         final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
 
 
@@ -94,7 +96,7 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mainActivity.ReplaceFragment(2, new RestaurantListFragment(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                        displayedFragmentManager.ReplaceFragment(2, new RestaurantListFragment(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
                         tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });

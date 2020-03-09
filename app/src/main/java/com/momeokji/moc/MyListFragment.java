@@ -75,7 +75,7 @@ public class MyListFragment extends DialogFragment {
     public void SetFragmentAttributes() {
         Point screenSize = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(screenSize);
-        getDialog().getWindow().setLayout(screenSize.x, (int)(screenSize.y* Constants.DESIGN_SIZE.MYLIST_HEIGHT_RATIO));
+        getDialog().getWindow().setLayout(screenSize.x, (int)(screenSize.y* Constants.XML_DESIGN.MYLIST_HEIGHT_RATIO));
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_my_list);
         getDialog().getWindow().getAttributes().windowAnimations = R.style.mylist_animation;
         getDialog().getWindow().setGravity(Gravity.BOTTOM);
