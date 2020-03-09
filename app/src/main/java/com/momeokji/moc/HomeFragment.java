@@ -52,11 +52,6 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity) getActivity();
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
         Log.e("Login확인","사용자UID=>"+User.getUser().getUserUID());
     }
 
