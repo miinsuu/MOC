@@ -11,11 +11,13 @@ public class Constants {
         public static final int BACK_PRESS_TO_CLOSE_APP_DELAY = 1000;
     }
 
-    public static class DESIGN_SIZE {
+    public static class XML_DESIGN {
         public static final int NAVIGATION_BAR_HEIGHT_IN_DP = 56;
         public static final int MY_LIST_BTN_MARGIN_IN_DP = 5;
         public static final int EXPANDABLE_MAINS_HEIGHT = 76;
         public static final double MYLIST_HEIGHT_RATIO = 0.85;
+        public static final boolean MYLISY_BTN_ABOVE_POSITION = true;
+        public static final boolean MYLISY_BTN_BELOW_POSITION = false;
     }
 
     public static class ANIMATION_DIRECT {
