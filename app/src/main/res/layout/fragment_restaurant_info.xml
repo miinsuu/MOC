@@ -239,7 +239,7 @@
     <com.momeokji.moc.CustomView.NonSwipeableViewPager
         android:id="@+id/restaurantInfoPage_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
