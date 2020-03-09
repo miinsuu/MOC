@@ -147,7 +147,7 @@ public class DisplayedFragmentManager {
                 myList_btn.setLayoutParams(params);
             }
         };
-        a.setDuration(300);
+        a.setDuration(R.dimen.replace_fragment_slide_duration);
         myList_btn.startAnimation(a);
     }
 }
