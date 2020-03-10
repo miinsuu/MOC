@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.momeokji.moc.CustomView.MarqueeTextView;
@@ -29,6 +30,8 @@ import static android.app.Activity.RESULT_OK;
 public class WriteReview extends Fragment {
     private Restaurant selectedRestaurant;
     private ImageView reviewPicture_imageView;
+    private EditText writeReview_editText;
+    private static final int DIALOG_REQUEST_CODE = 1234;
 
 
     public WriteReview(Restaurant selectedRestaurant) {
@@ -45,40 +48,46 @@ public class WriteReview extends Fragment {
 
         Button writeReview_back_btn = view.findViewById(R.id.writeReview_back_btn);
         Button writeReview_done_btn = view.findViewById(R.id.writeReview_done_btn);
-        Button reviewPictureAddBtn = view.findViewById(R.id.reviewPictureAddBtn);
         TextView writetReview_restaurantName_txt = view.findViewById(R.id.writetReview_restaurantName_txt);
         TextView minMaxPrice = view.findViewById(R.id.writeReview_restaurantRangePrice_txt);
         MarqueeTextView preview = view.findViewById(R.id.writeReview_restaurantPreview_txt);
+
+        Button writeReviewMenuBtn = view.findViewById(R.id.writeReviewMenuBtn);
+        Button reviewPictureAddBtn = view.findViewById(R.id.reviewPictureAddBtn);
         reviewPicture_imageView = view.findViewById(R.id.reviewPicture_imageView);
         LinearLayout ll = view.findViewById(R.id.ll);
         LinearLayout ll2 = view.findViewById(R.id.ll2);
         LinearLayout ll3 = view.findViewById(R.id.ll3);
-        final EditText writeReview_editText = view.findViewById(R.id.writeReview_editText);
+        writeReview_editText = view.findViewById(R.id.writeReview_editText);
 
         writetReview_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
         preview.setText(selectedRestaurant.getPreview());
         preview.setSelected(true);
 
+        writeReviewMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectMenu();
+            }
+        });
+
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+                hideKeyboard();
             }
         });
         ll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm2 = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm2.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+                hideKeyboard();
             }
         });
         ll3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm3 = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm3.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+                hideKeyboard();
             }
         });
         writeReview_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +157,18 @@ public class WriteReview extends Fragment {
         else if (requestCode == 1 && resultCode == RESULT_CANCELED) {
             Toast.makeText(getContext(),"사진등록 취소",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(writeReview_editText.getWindowToken(),0);
+    }
+
+    void selectMenu(){
+        DialogFragment dialogFragment = new writeReviewMenuDialogFragment();
+        dialogFragment.setTargetFragment(this,DIALOG_REQUEST_CODE);
+        dialogFragment.show(getFragmentManager(),"dialog");
+
     }
 
 
