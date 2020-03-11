@@ -73,8 +73,6 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
- //       LayoutInflater inflater = getActivity().getLayoutInflater();
- //       View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog,null);
         builder.setView(view);
         builder.setTitle("메뉴 선택");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

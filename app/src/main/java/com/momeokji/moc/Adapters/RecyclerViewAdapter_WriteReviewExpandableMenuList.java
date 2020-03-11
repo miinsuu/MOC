@@ -31,14 +31,18 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
         float dp = context.getResources().getDisplayMetrics().density;
         int subItemPaddingLeft = (int) (18 * dp);
         int subItemPaddingTopAndBottom = (int) (5 * dp);
+        LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (type) {
             case HEADER:
-                LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.fragment_write_review_menu_dialog_header, parent, false);
                 ListHeaderViewHolder header = new ListHeaderViewHolder(view);
                 return header;
             case CHILD:
-                TextView itemtextView = new TextView(context);
+//                LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.fragment_write_review_menu_dialog_child, parent, false);
+                ListChildViewHolder child = new ListChildViewHolder(view);
+                return child;
+ /*               TextView itemtextView = new TextView(context);
                 itemtextView.setPadding(subItemPaddingLeft, subItemPaddingTopAndBottom, 0, subItemPaddingTopAndBottom);
                 itemtextView.setLayoutParams(
                         new ViewGroup.LayoutParams(
@@ -46,6 +50,8 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
                                 ViewGroup.LayoutParams.WRAP_CONTENT));
                 return new RecyclerView.ViewHolder(itemtextView) {
                 };
+
+  */
         }
         return null;
     }
@@ -90,8 +96,11 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
                 });
                 break;
             case CHILD:
-                TextView itemTextView = (TextView) holder.itemView;
-                itemTextView.setText(data.get(position).text);
+                final ListChildViewHolder childViewHolder = (ListChildViewHolder) holder;
+                childViewHolder.menuItem = item;
+                childViewHolder.menuNameText.setText(item.text);
+ //               TextView itemTextView = (TextView) holder.itemView;
+ //               itemTextView.setText(data.get(position).text);
                 break;
         }
     }
@@ -115,6 +124,17 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
             super(itemView);
             menuCategoryText = (TextView) itemView.findViewById(R.id.menuCategoryText);
             expandToggleBtn = (ImageView) itemView.findViewById(R.id.expandToggleBtn);
+        }
+    }
+
+    private static class ListChildViewHolder extends RecyclerView.ViewHolder {
+        public TextView menuNameText;
+        public Item menuItem;
+
+        public ListChildViewHolder(View itemView) {
+            super(itemView);
+            menuNameText = (TextView) itemView.findViewById(R.id.menuNameText);
+
         }
     }
 
