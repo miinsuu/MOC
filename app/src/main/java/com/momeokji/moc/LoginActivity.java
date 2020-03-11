@@ -82,9 +82,15 @@ public class LoginActivity extends AppCompatActivity {
             if (!User.getUser().isLoggedIn()) { // 자동로그인 시 유저정보 가져오기
                 String userUID = user.getUid();
                 User.getUser().putUserInfo(userUID);
-                startActivity(new Intent(loginActivity, MainActivity.class));
-            } else
-                startActivity(new Intent(loginActivity, MainActivity.class));
+                Intent intent = new Intent(loginActivity, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(loginActivity, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+
         }
     }
 
