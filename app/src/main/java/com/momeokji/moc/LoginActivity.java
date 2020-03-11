@@ -83,11 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                 String userUID = user.getUid();
                 User.getUser().putUserInfo(userUID);
                 Intent intent = new Intent(loginActivity, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(loginActivity, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
 
@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
         //* 페이스북 로그인 버튼 클릭 시 리스너 등록
         // 페이스북 콜백 등록
         callbackManager = CallbackManager.Factory.create();
-        //login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
+        login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
         login_with_facebook_imgbtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
