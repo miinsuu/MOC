@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class Restaurant implements Serializable {
             Map.Entry entry = (Map.Entry) o;
             name = entry.getKey().toString(); //메뉴이름
             price = entry.getValue().toString(); //메뉴가격
+            price = price.replace("\"", "");
             mainMenu[i++] = new Menu(name, price);
         }
 
@@ -74,6 +76,7 @@ public class Restaurant implements Serializable {
                 Map.Entry entry2 = (Map.Entry) o2;
                 name = entry2.getKey().toString(); //메뉴 이름
                 price = entry2.getValue().toString(); //메뉴 가격
+                price = price.replace("\"", "");
 
                 menuTmp.add(new Menu(name, price)); //이름/가격 메뉴로 묶기
                 //Log.e("메뉴이름가격TEST",name+":"+price);

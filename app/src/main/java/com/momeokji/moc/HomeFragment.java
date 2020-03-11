@@ -102,21 +102,6 @@ public class HomeFragment extends Fragment {
             });
         }
 
-        // 로그아웃
-        ImageButton logoutButton = view.findViewById(R.id.moreEvent_btn);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 로그아웃
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                // 유저정보 삭제
-                User.getUser().clearUser();
-                Toast.makeText(getContext(), "로그아웃", Toast.LENGTH_SHORT).show();
-                // 로그인 화면으로 이동
-                startActivity(new Intent(getContext(), LoginActivity.class));
-            }
-        });
 
     }
 }

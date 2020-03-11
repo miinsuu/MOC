@@ -1,6 +1,7 @@
 package com.momeokji.moc.Database;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -10,6 +11,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -249,6 +251,26 @@ public class DatabaseQueryClass {
             });
         }
 
+        // 유저 닉네임 업데이트
+        public static void updateNickname(String nickname, String usersMapName){
+            Log.d("updateNickname", nickname+" , "+usersMapName);
+
+            DocumentReference updateRef = db.collection("users").document(usersMapName);
+            updateRef
+                    .update("nick", nickname)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.e("닉네임업데이트", "성공");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("닉네임업데이트", "Error updating document", e);
+                        }
+                    });
+        }
 
 
 
