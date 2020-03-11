@@ -133,9 +133,10 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.e("회원가입CHECK", "EmailSignUp 성공");
-                            FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            // 닉네임 DB에 저장
-                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(email, nickname);
+                            // 사용자UID
+                            String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            // 사용자UID & 닉네임 DB에 저장
+                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(userUID, nickname);
                             // 회원가입 완료 후 로그인 페이지로 이동
                             Toast.makeText(getApplicationContext(),"회원가입 되었습니다.",Toast.LENGTH_SHORT).show();
                             moveLoginActivity();

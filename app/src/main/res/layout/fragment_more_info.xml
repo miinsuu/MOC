@@ -6,10 +6,127 @@
     tools:context=".MoreInfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="더보오오기이이" />
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+
+        <!--유저닉네임 수정 버튼 시작-->
+        <LinearLayout
+            android:id="@+id/moreInfo_fragment_userNickname_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/user"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:text="안녕하세요,"
+                android:textColor="#777777"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/moreInfo_fragment_userNicknameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="3dp"
+                android:text="NickName"
+                android:textColor="#222222"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="님"
+                android:textColor="#777777"
+                android:textSize="16sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:tint="@color/darkGray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/rightarrowicon"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <!--유저닉네임 수정 버튼 끝-->
+
+        <!--내가 쓴 리뷰 버튼 시작-->
+        <LinearLayout
+            android:id="@+id/moreInfo_fragment_myReview_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="내가 쓴 리뷰"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:tint="@color/darkGray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/rightarrowicon"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <!--내가 쓴 리뷰 버튼 끝-->
+
+
+
+
+<!--        전체 LinearLayout 끝-->
+    </LinearLayout>
+
+
+
+
 
 </FrameLayout>
