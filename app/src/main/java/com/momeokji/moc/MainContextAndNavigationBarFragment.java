@@ -16,9 +16,6 @@ import android.view.ViewGroup;
 
 public class MainContextAndNavigationBarFragment extends Fragment {
 
-    final static private int MAIN_CONTEXT_WITHOUT_LOCATION_SELECT = 0;
-    final static private int MAIN_CONTEXT_WITH_LOCATION_SELECT = 1;
-
     private MainActivity mainActivity;
     private Fragment mainContextWithLocationSelect, previousMainContextWithLocationSelect;
     private NavigationBarFragment navigationBarFragment;

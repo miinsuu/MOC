@@ -35,17 +35,17 @@ public class FragmentStackManager {
     }
 
     public void onBackPressed() {
-        if (fragmentBackStack.isEmpty()) {
+        if (fragmentBackStack.isEmpty() || mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
             mainActivity.BackToOpening();
             return ;
         }
 
         if ((mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
-            && (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment
-            || mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment
-            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment
-            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment)) {
-            for (int i = fragmentBackStack.size(); i > 0; i--) {
+        && (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment
+        || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment
+        || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment)) {
+
+            while (fragmentBackStack.size() != 0) {
                 mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.pop()].popBackStack();
             }
 
@@ -67,7 +67,7 @@ public class FragmentStackManager {
                 @Override
                 public void run() {
                     if (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
-                        mainActivity.displayedFragmentManager.SetMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
+                        mainActivity.displayedFragmentManager.UpdateMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
                 }
             }, 100);
         }

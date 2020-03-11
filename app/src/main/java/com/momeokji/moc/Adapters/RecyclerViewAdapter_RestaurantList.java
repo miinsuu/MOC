@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.CustomView.MarqueeTextView;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
@@ -19,12 +20,9 @@ import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
-    final static private int MAX_MAINS_NUM = 3;
-    final static private int EXPANDABLE_MAINS_HEIGHT = 76;
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
+public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
     private int selectedRecyclerViewItemPosition = -1;
@@ -84,7 +82,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
 
-                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), ANIMATION_DIRECT_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });
@@ -106,7 +104,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             restaurantName_txt.setText((restaurant.getRestaurantName()));
             restaurantDescription_txt.setText(restaurant.getPreview());
             menuPriceRange_txt.setText(restaurant.getMinMaxPrice());
-            for(int i = 0; i < MAX_MAINS_NUM; i++) {
+            for(int i = 0; i < Constants.COUNTS.MAX_MAINS_NUM; i++) {
                 mainMenus.get(i*2).setText(restaurant.getMainMenus()[i].getName());
                 mainMenus.get(i*2+1).setText(restaurant.getMainMenus()[i].getPrice() + "원");
             }
@@ -144,7 +142,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             this.selectedRecyclerViewItemPosition = -1;
         }
 
-        int height = (int) (EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
+        int height = (int) (Constants.XML_DESIGN.EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
         ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
         valueAnimator.setDuration(300);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

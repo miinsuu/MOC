@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.CustomView.MarqueeTextView;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
@@ -20,10 +21,9 @@ import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter_SearchedRestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_SearchedRestaurantList.ItemViewHolder>{
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
+public class RecyclerViewAdapter_SearchedRestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_SearchedRestaurantList.ItemViewHolder>{
 
     private ArrayList<Restaurant> restaurantList;
     private MainActivity mainActivity;
@@ -79,7 +79,7 @@ public class RecyclerViewAdapter_SearchedRestaurantList extends RecyclerView.Ada
                             ((InputMethodManager) mainActivity.getSystemService(mainActivity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);      // 키보드가 닫음
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
-                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), ANIMATION_DIRECT_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });

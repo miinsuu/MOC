@@ -12,13 +12,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantListPage;
 
 public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
-    final static private int CategoryNum = 9; // TODO 민수와 데이터 받는 법 상의 후 getItem 메소드 수정
     private Context context = null;
     private boolean isEnableSwipe = false;
 
@@ -55,6 +55,6 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return CategoryNum;
+        return Constants.COUNTS.CATEGORY_NUM+1;
     }
 }

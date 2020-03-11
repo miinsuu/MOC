@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_ReviewTabPage;
 import com.momeokji.moc.data.Restaurant;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 
 public class RestaurantInfoReviewTabPage extends Fragment {
 /*
@@ -83,7 +85,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ((MainActivity)context).ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
+                displayedFragmentManager.ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
 
             }
         });

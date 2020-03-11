@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
         //* 페이스북 로그인 버튼 클릭 시 리스너 등록
         // 페이스북 콜백 등록
         callbackManager = CallbackManager.Factory.create();
-        //login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
+        login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
         login_with_facebook_imgbtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
