@@ -55,6 +55,6 @@ public class PagerAdapter_RestaurantListPage extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return Constants.COUNTS.CATEGORY_NUM;
+        return Constants.COUNTS.CATEGORY_NUM+1;
     }
 }
