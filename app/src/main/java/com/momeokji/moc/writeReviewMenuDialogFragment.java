@@ -67,12 +67,6 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data = new ArrayList<>();
         RecyclerViewAdapter_WriteReviewExpandableMenuList adapter = new RecyclerViewAdapter_WriteReviewExpandableMenuList(data);
 
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, "Fruits"));
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Apple"));
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Orange"));
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Banana"));
-
-
         data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, "대표"));
         for(int i = 0; i < 3; i++) {
             data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, selectedRestaurant.getMainMenus()[i].getName()));
