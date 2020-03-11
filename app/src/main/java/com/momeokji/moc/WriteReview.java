@@ -165,7 +165,7 @@ public class WriteReview extends Fragment {
     }
 
     void selectMenu(){
-        DialogFragment dialogFragment = new writeReviewMenuDialogFragment();
+        DialogFragment dialogFragment = new writeReviewMenuDialogFragment(selectedRestaurant);
         dialogFragment.setTargetFragment(this,DIALOG_REQUEST_CODE);
         dialogFragment.show(getFragmentManager(),"dialog");
 

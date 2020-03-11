@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="4dp"
+        android:background="#0AE91E63">
 
         <TextView
             android:id="@+id/menuCategoryText"

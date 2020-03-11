@@ -7,61 +7,32 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_WriteReviewExpandableMenuList;
+import com.momeokji.moc.data.Menu;
+import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class writeReviewMenuDialogFragment extends DialogFragment {
-/*
-    private OnFragmentInteractionListener mListener;
 
-    public writeReviewMenuDialogFragment() {
-        // Required empty public constructor
+    private Restaurant selectedRestaurant;
+    private ArrayList<Map> AllMenuList;
+
+    public writeReviewMenuDialogFragment(Restaurant selectedRestaurant) {
+        this.selectedRestaurant = selectedRestaurant;
+        this.AllMenuList = selectedRestaurant.getMenuList();
     }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write_review_menu_dialog, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-*/
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -72,7 +43,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
 //        View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog, (ViewGroup) getActivity().findViewById(android.R.id.content),false);
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
         builder.setTitle("메뉴 선택");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -100,10 +71,54 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Apple"));
         data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Orange"));
         data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "Banana"));
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, "car"));
-        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, "ben"));
+
+
+        data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, "대표"));
+        for(int i = 0; i < 3; i++) {
+            data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, selectedRestaurant.getMainMenus()[i].getName()));
+        }
+
+        Set<String> menuCategoryNameSet;
+        String menuCategoryName = "";
+        ArrayList<Menu> menuNameSet;
+        for(int n = 0; n < AllMenuList.size(); n++) {
+            menuCategoryNameSet = AllMenuList.get(n).keySet();
+            for (String name : menuCategoryNameSet) {
+                menuCategoryName = name;
+                menuNameSet = (ArrayList<Menu>) AllMenuList.get(n).get(menuCategoryName);
+                data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, name));
+                for(Menu menu : menuNameSet) {
+                    data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, menu.getName()));
+                }
+            }
+        }
+
         menulist.setAdapter(new RecyclerViewAdapter_WriteReviewExpandableMenuList(data));
 
         return builder.create();
     }
+
+    @Override
+    public void onResume(){
+        Context context = requireActivity();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog_child, null);
+        final CheckBox checkBox = view.findViewById(R.id.checkBox);
+        super.onResume();
+        final AlertDialog d = (AlertDialog)getDialog();
+        if(d != null){
+            Button negativeBtn = (Button) d.getButton(Dialog.BUTTON_NEGATIVE);
+            negativeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkBox.setChecked(false);
+                    Boolean wantToCloseDialog = false;
+                    if(wantToCloseDialog)
+                        d.dismiss();
+                }
+            });
+        }
+    }
+
+
 }
