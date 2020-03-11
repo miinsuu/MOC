@@ -167,10 +167,10 @@
 
                     <Button
                         android:id="@+id/restaurantInfoPage_addressMapBtn"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                        android:text="가게 위치" />
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@drawable/mapicon3" />
 
                 </LinearLayout>
             </LinearLayout>
