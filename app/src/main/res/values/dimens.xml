@@ -17,5 +17,6 @@
     <dimen name="floating_btn_init_bottom_margin">61dp</dimen>
 
     <dimen name="replace_fragment_slide_duration">300</dimen>
+    <dimen name="expand_expandable_recyclerview_rotate_duration">300</dimen>
 
 </resources>

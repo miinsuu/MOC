@@ -58,15 +58,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/restaurantListItem_menuExpand_linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="메뉴"/>
 
             <ImageButton
@@ -74,8 +77,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/i_arrow_down"
-                android:background="@null"/>
+                android:background="@drawable/i_arrow_down"/>
         </LinearLayout>
     </RelativeLayout>
 
