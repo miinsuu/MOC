@@ -1,6 +1,7 @@
 package com.momeokji.moc.Helper;
 
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -30,6 +31,7 @@ public class DisplayedFragmentManager {
     public NavigationBarFragment navigationBar;
 
     private FloatingActionButton myList_btn;
+    private boolean isPositionAbove = true;
 
     public DisplayedFragmentManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -122,32 +124,14 @@ public class DisplayedFragmentManager {
         else
             SetMyListBtnPosition(Constants.XML_DESIGN.MYLISY_BTN_BELOW_POSITION);
     }
-    public void SetMyListBtnPosition(final boolean position) {
+    public void SetMyListBtnPosition(final boolean isTargetPositionAbove) {
         myList_btn = mainActivity.findViewById(R.id.myList_btn);
-        final ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) myList_btn.getLayoutParams();
+        if (isPositionAbove == isTargetPositionAbove)
+            return;
 
-        final int myListBtnMargin_in_dp = (int) (Constants.XML_DESIGN.MY_LIST_BTN_MARGIN_IN_DP * mainActivity.getResources().getDisplayMetrics().density);
-        final int navigationBarHeight_in_dp = (int) (Constants.XML_DESIGN.NAVIGATION_BAR_HEIGHT_IN_DP * mainActivity.getResources().getDisplayMetrics().density);
-        if (position) {
-            if(params.bottomMargin == myListBtnMargin_in_dp + navigationBarHeight_in_dp)
-                return;
-        } else {
-            if(params.bottomMargin == myListBtnMargin_in_dp)
-                return;
-        }
-
-        Animation a = new Animation() {
-            @Override
-            protected void applyTransformation(float inter, Transformation t) {
-                if (position) {
-                    params.bottomMargin = myListBtnMargin_in_dp + (int)(navigationBarHeight_in_dp * inter);
-                } else {
-                    params.bottomMargin = (myListBtnMargin_in_dp + navigationBarHeight_in_dp) - (int)(navigationBarHeight_in_dp * inter);
-                }
-                myList_btn.setLayoutParams(params);
-            }
-        };
-        a.setDuration(R.dimen.replace_fragment_slide_duration);
-        myList_btn.startAnimation(a);
+        Animation animation = AnimationUtils.loadAnimation(mainActivity.getApplicationContext(), (isTargetPositionAbove ? R.anim.anim_lift_up_with_my_list_btn : R.anim.anim_lift_down_with_my_list_btn));
+        animation.setFillAfter(true);
+        myList_btn.startAnimation(animation);
+        isPositionAbove = isTargetPositionAbove;
     }
 }

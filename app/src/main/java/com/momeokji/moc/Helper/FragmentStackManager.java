@@ -35,7 +35,10 @@ public class FragmentStackManager {
     }
 
     public void onBackPressed() {
-        if (fragmentBackStack.isEmpty() || mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
+        if (fragmentBackStack.isEmpty()
+            || (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment
+                && mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment
+                && mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)){
             mainActivity.BackToOpening();
             return ;
         }
@@ -54,22 +57,15 @@ public class FragmentStackManager {
                 ((MainContextWithLocationSelectFragment)mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()))
                         .setMainContext(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(HomeFragment.class.getName()));
             }
-
-            // (※하드코딩) 홈, 가게, 룰렛, 더보기 화면일 때 뒤로가기 시 네비게이션바 선택 상태 '홈'으로 설정. (fragment 교체 타이밍 정확히 이해하면 Update 함수로 변경하기)
             mainActivity.displayedFragmentManager.SetBottomNavigationBarSelectedItem(0);
         }
         else {
+            FragmentManager targetFragmentManager = mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.peek()];
+            Fragment beforeFragmentInBackStack = targetFragmentManager.getFragments().get(targetFragmentManager.getFragments().size()-2);
+            mainActivity.displayedFragmentManager.UpdateMyListBtnPosition(beforeFragmentInBackStack);
 
-            // (※하드코딩)레스토랑 상세정보 -> 가게리스트 시 버튼 위쪽으로 이동. (fragment 교체 타이밍 정확히 이해하면 Update 함수로 변경하기)
-            mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.pop()].popBackStackImmediate();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
-                        mainActivity.displayedFragmentManager.UpdateMyListBtnPosition(mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()));
-                }
-            }, 100);
+            targetFragmentManager.popBackStack();
+            fragmentBackStack.pop();
         }
     }
 
