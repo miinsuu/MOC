@@ -87,6 +87,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
             }
         }
 
+        menulist.setItemViewCacheSize(data.size());
         menulist.setAdapter(new RecyclerViewAdapter_WriteReviewExpandableMenuList(data));
 
         return builder.create();
