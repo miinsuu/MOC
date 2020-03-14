@@ -7,8 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +27,15 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
 
     private Restaurant selectedRestaurant;
     private ArrayList<Map> AllMenuList;
+    private ArrayList<Menu> menuNameSet;
+    private View childDialog;
+    private Set<String> menuCategoryNameSet;
+    private String menuCategoryName = "";
+//    List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data = new ArrayList<>();
+    private Context context;
+    private RecyclerView menulist;
+    private RecyclerView.Adapter adapter;
+    public static String reviewMenuName = "";
 
     public writeReviewMenuDialogFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
@@ -36,7 +44,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        Context context = requireActivity();
+        context = requireActivity();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog, null);
 //       LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -46,35 +54,52 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
         builder.setTitle("메뉴 선택");
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+/*        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                String reviewMenuName = "";
+                RecyclerViewAdapter_WriteReviewExpandableMenuList.ListChildViewHolder childHolder = ((RecyclerViewAdapter_WriteReviewExpandableMenuList.ListChildViewHolder) holder;
+                childDialog = getLayoutInflater().inflate(R.layout.fragment_write_review_menu_dialog_child, null,false);
+                CheckBox checkBoxMenu = childDialog.findViewById(R.id.checkBoxMenu);
+
+                for(int j = 0; j <data.size(); j++) {
+                    if (checkBoxMenu.isChecked()) {
+                        reviewMenuName += checkBoxMenu.getText();
+                        reviewMenuName += "aa";
+                    }
+                }
+  /*
+
+
+               // Toast.makeText(getContext(),reviewMenuName,Toast.LENGTH_SHORT).show();
+
 
             }
         });
+
+ */
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                reviewMenuName= "";
 
             }
         });
-        RecyclerView menulist = (RecyclerView) view.findViewById(R.id.menulist);
+        menulist = (RecyclerView) view.findViewById(R.id.menulist);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         menulist.setLayoutManager(linearLayoutManager);
 
-
- //       menulist.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data = new ArrayList<>();
-        RecyclerViewAdapter_WriteReviewExpandableMenuList adapter = new RecyclerViewAdapter_WriteReviewExpandableMenuList(data);
+        adapter = new RecyclerViewAdapter_WriteReviewExpandableMenuList(context,data);
 
         data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, "대표"));
         for(int i = 0; i < 3; i++) {
-            data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, selectedRestaurant.getMainMenus()[i].getName()));
+            data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, selectedRestaurant.getMainMenus()[i].getName(),false));
         }
 
-        Set<String> menuCategoryNameSet;
-        String menuCategoryName = "";
-        ArrayList<Menu> menuNameSet;
+ //       Set<String> menuCategoryNameSet;
+ //       String menuCategoryName = "";
+ //       ArrayList<Menu> menuNameSet;
         for(int n = 0; n < AllMenuList.size(); n++) {
             menuCategoryNameSet = AllMenuList.get(n).keySet();
             for (String name : menuCategoryNameSet) {
@@ -82,23 +107,47 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
                 menuNameSet = (ArrayList<Menu>) AllMenuList.get(n).get(menuCategoryName);
                 data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.HEADER, name));
                 for(Menu menu : menuNameSet) {
-                    data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, menu.getName()));
+                    data.add(new RecyclerViewAdapter_WriteReviewExpandableMenuList.Item(RecyclerViewAdapter_WriteReviewExpandableMenuList.CHILD, menu.getName(),false));
                 }
             }
         }
 
+///
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                String reviewMenuName = "";
+                List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data = ((RecyclerViewAdapter_WriteReviewExpandableMenuList)adapter).getData();
+
+//                childDialog = getLayoutInflater().inflate(R.layout.fragment_write_review_menu_dialog_child, null,false);
+//                CheckBox checkBoxMenu = childDialog.findViewById(R.id.checkBoxMenu);
+
+                for(int j = 0; j <data.size(); j++) {
+                    RecyclerViewAdapter_WriteReviewExpandableMenuList.Item itemMenu = data.get(j);
+                    if (itemMenu.isSelected == true) {
+                        reviewMenuName += itemMenu.getText();
+                        reviewMenuName += " ";
+                    }
+                }
+                Toast.makeText(context,"select\n"+reviewMenuName,Toast.LENGTH_SHORT).show();
+ //               reviewMenuName = "";
+            }
+        });
         menulist.setItemViewCacheSize(data.size());
-        menulist.setAdapter(new RecyclerViewAdapter_WriteReviewExpandableMenuList(data));
+        menulist.setAdapter(adapter);
 
         return builder.create();
     }
-
+    public String getReviewMenuName(){
+        return reviewMenuName;
+    }
+/*
     @Override
     public void onResume(){
         Context context = requireActivity();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog_child, null);
-        final CheckBox checkBox = view.findViewById(R.id.checkBox);
+        final CheckBox checkBox = view.findViewById(R.id.checkBoxMenu);
         super.onResume();
         final AlertDialog d = (AlertDialog)getDialog();
         if(d != null){
@@ -114,6 +163,8 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
             });
         }
     }
+
+ */
 
 
 }
