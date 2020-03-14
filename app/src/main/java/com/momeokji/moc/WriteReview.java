@@ -71,9 +71,11 @@ public class WriteReview extends Fragment {
         preview.setText(selectedRestaurant.getPreview());
         preview.setSelected(true);
 
- /////
+        //******* writeReviewMenuDialogFragment 에서 선택한 메뉴이름 string 보여주기 *************
         writeReviewMenuDialogFragment menuChoice = new writeReviewMenuDialogFragment(selectedRestaurant);
         String menuChoiceName = menuChoice.getReviewMenuName();
+ //       menuChoiceText.setOnClickListener(new View.OnClickListener() {
+ //       });
         menuChoiceText.setText(menuChoiceName);
 
         writeReviewMenuBtn.setOnClickListener(new View.OnClickListener() {

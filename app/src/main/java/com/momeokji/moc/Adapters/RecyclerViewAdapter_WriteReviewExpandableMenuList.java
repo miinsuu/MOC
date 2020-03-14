@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -78,6 +77,7 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
                 } else {
                     itemController.expandToggleBtn.setImageResource(R.drawable.i_arrow_down);
                 }
+/*
                 itemController.expandToggleBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -104,6 +104,8 @@ public class RecyclerViewAdapter_WriteReviewExpandableMenuList extends RecyclerV
                         }
                     }
                 });
+
+ */
                 break;
             case CHILD:
                 final ListChildViewHolder childViewHolder = (ListChildViewHolder) holder;

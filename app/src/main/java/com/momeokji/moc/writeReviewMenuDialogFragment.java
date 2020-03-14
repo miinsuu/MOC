@@ -118,7 +118,6 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
 //                String reviewMenuName = "";
                 List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data = ((RecyclerViewAdapter_WriteReviewExpandableMenuList)adapter).getData();
-//                RecyclerViewAdapter_WriteReviewExpandableMenuList.ListChildViewHolder childHolder = (RecyclerViewAdapter_WriteReviewExpandableMenuList.ListChildViewHolder) holder;
 
 //                childDialog = getLayoutInflater().inflate(R.layout.fragment_write_review_menu_dialog_child, null,false);
 //                CheckBox checkBoxMenu = childDialog.findViewById(R.id.checkBoxMenu);
