@@ -53,16 +53,20 @@ public class RecyclerViewAdapter_ReviewTabPage extends RecyclerView.Adapter<Recy
             reviewText = ItemView.findViewById(R.id.reviewText);
         }
         public void onBind(Review review) {
-            //           reviewNickName.setText(review);
-            //           reviewImage.setImageURI();
-            //           reviewText.setText();
+            reviewMenuName.setText(review.getReviewMenuName());
+            reviewNickName.setText(review.getReviewNickName());
+            reviewTime.setText(review.getReviewTime());
+            reviewImage.setImageURI(review.getReviewImage());
+            reviewText.setText(review.getReviewText());
 
         }
     }
 
+    public ArrayList<Review> getReviewList() {
+        return reviewList;
+    }
 
-
-
-
-
+    public void setReviewList(ArrayList<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
 }

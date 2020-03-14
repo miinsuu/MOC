@@ -20,8 +20,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.momeokji.moc.Adapters.RecyclerViewAdapter_WriteReviewExpandableMenuList;
 import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.data.Restaurant;
+
+import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -32,6 +35,8 @@ public class WriteReview extends Fragment {
     private ImageView reviewPicture_imageView;
     private EditText writeReview_editText;
     private static final int DIALOG_REQUEST_CODE = 1234;
+    Context context;
+    private List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data;
 
 
     public WriteReview(Restaurant selectedRestaurant) {
@@ -53,6 +58,7 @@ public class WriteReview extends Fragment {
         MarqueeTextView preview = view.findViewById(R.id.writeReview_restaurantPreview_txt);
 
         Button writeReviewMenuBtn = view.findViewById(R.id.writeReviewMenuBtn);
+        TextView menuChoiceText = view.findViewById(R.id.menuChoiceText);
         Button reviewPictureAddBtn = view.findViewById(R.id.reviewPictureAddBtn);
         reviewPicture_imageView = view.findViewById(R.id.reviewPicture_imageView);
         LinearLayout ll = view.findViewById(R.id.ll);
@@ -65,12 +71,19 @@ public class WriteReview extends Fragment {
         preview.setText(selectedRestaurant.getPreview());
         preview.setSelected(true);
 
+ /////
+        writeReviewMenuDialogFragment menuChoice = new writeReviewMenuDialogFragment(selectedRestaurant);
+        String menuChoiceName = menuChoice.getReviewMenuName();
+        menuChoiceText.setText(menuChoiceName);
+
         writeReviewMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectMenu();
             }
         });
+
+
 
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
