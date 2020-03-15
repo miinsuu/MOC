@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_WriteReviewExpandableMenuList;
 import com.momeokji.moc.CustomView.MarqueeTextView;
@@ -34,6 +36,8 @@ public class WriteReview extends Fragment {
     private Restaurant selectedRestaurant;
     private ImageView reviewPicture_imageView;
     private EditText writeReview_editText;
+    private static TextView menuChoiceText; // 선택한 메뉴이름
+    private writeReviewMenuDialogFragment menuChoice; // 메뉴선택 다이얼로그
     private static final int DIALOG_REQUEST_CODE = 1234;
     Context context;
     private List<RecyclerViewAdapter_WriteReviewExpandableMenuList.Item> data;
@@ -58,7 +62,7 @@ public class WriteReview extends Fragment {
         MarqueeTextView preview = view.findViewById(R.id.writeReview_restaurantPreview_txt);
 
         Button writeReviewMenuBtn = view.findViewById(R.id.writeReviewMenuBtn);
-        TextView menuChoiceText = view.findViewById(R.id.menuChoiceText);
+        menuChoiceText = view.findViewById(R.id.menuChoiceText);
         Button reviewPictureAddBtn = view.findViewById(R.id.reviewPictureAddBtn);
         reviewPicture_imageView = view.findViewById(R.id.reviewPicture_imageView);
         LinearLayout ll = view.findViewById(R.id.ll);
@@ -72,12 +76,9 @@ public class WriteReview extends Fragment {
         preview.setSelected(true);
 
         //******* writeReviewMenuDialogFragment 에서 선택한 메뉴이름 string 보여주기 *************
-        writeReviewMenuDialogFragment menuChoice = new writeReviewMenuDialogFragment(selectedRestaurant);
-        String menuChoiceName = menuChoice.getReviewMenuName();
- //       menuChoiceText.setOnClickListener(new View.OnClickListener() {
- //       });
-        menuChoiceText.setText(menuChoiceName);
+        menuChoice = new writeReviewMenuDialogFragment(selectedRestaurant);
 
+        // 메뉴선택 다이얼로그 버튼
         writeReviewMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,13 +181,21 @@ public class WriteReview extends Fragment {
     }
 
     void selectMenu(){
-        DialogFragment dialogFragment = new writeReviewMenuDialogFragment(selectedRestaurant);
-        dialogFragment.setTargetFragment(this,DIALOG_REQUEST_CODE);
-        dialogFragment.show(getFragmentManager(),"dialog");
+        //writeReviewMenuDialogFragment dialogFragment = new writeReviewMenuDialogFragment(selectedRestaurant);
+        menuChoice.show(getFragmentManager(),"dialog");
+        menuChoice.setTargetFragment(this,DIALOG_REQUEST_CODE);
 
     }
 
-
+    // 선택한 메뉴이름을 다이얼로그가 닫힐 때, textview에 입력되도록
+    public static void sendReviewMenuName(String menuChoiceName) {
+        menuChoiceText.setText(menuChoiceName);
+    }
 
 
 }
+
+
+
+
+
