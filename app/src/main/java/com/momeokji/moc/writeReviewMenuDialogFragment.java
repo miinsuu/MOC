@@ -5,10 +5,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,7 +48,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         context = requireActivity();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        final LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog, null);
 //       LayoutInflater inflater = LayoutInflater.from(getContext());
 //        View view = inflater.inflate(R.layout.fragment_write_review_menu_dialog, (ViewGroup) getActivity().findViewById(android.R.id.content),false);
@@ -78,13 +81,15 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         });
 
  */
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 reviewMenuName= "";
 
             }
         });
+
+
         menulist = (RecyclerView) view.findViewById(R.id.menulist);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         menulist.setLayoutManager(linearLayoutManager);
@@ -113,7 +118,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         }
 
 ///
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                String reviewMenuName = "";
@@ -126,22 +131,29 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
                     RecyclerViewAdapter_WriteReviewExpandableMenuList.Item itemMenu = data.get(j);
                     if (itemMenu.isSelected == true) {
                         reviewMenuName += itemMenu.getText();
-                        reviewMenuName += " ";
+                        reviewMenuName += ", ";
                     }
                 }
-                Toast.makeText(context,"select\n"+reviewMenuName,Toast.LENGTH_SHORT).show();
- //               reviewMenuName = "";
+                if(reviewMenuName.length() > 2)
+                    reviewMenuName = reviewMenuName.substring(0, reviewMenuName.length() - 2);
+
+                Log.e("메뉴선택",reviewMenuName);
+                // 리뷰할 메뉴 리스트보내주기
+                WriteReview.sendReviewMenuName(reviewMenuName);
+                // 리스트 리셋
+                reviewMenuName = "";
             }
         });
+
         menulist.setItemViewCacheSize(data.size());
         menulist.setAdapter(adapter);
 
         return builder.create();
     }
-    public String getReviewMenuName(){
-        return reviewMenuName;
-    }
-/*
+
+
+
+    /*
     @Override
     public void onResume(){
         Context context = requireActivity();

@@ -90,7 +90,7 @@
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
                                 android:textSize="12sp" />
-
+                                android:singleLine="true"/>
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -186,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:text="선택메뉴 : "
+                    android:text="리뷰할 메뉴 :  "
                     android:textColor="#777777" />
 
                 <TextView
@@ -194,10 +194,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginRight="50dp"
-                    android:text="TextView"
+                    android:layout_marginRight="16dp"
                     android:textColor="#222222" />
             </LinearLayout>
+
 
             <Button
                 android:id="@+id/reviewPictureAddBtn"
