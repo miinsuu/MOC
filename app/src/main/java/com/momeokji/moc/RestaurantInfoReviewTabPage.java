@@ -2,6 +2,7 @@ package com.momeokji.moc;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_ReviewTabPage;
+import com.momeokji.moc.Database.DataListener;
+import com.momeokji.moc.Database.DatabaseQueryClass;
 import com.momeokji.moc.data.Restaurant;
 import com.momeokji.moc.data.Review;
 
@@ -22,14 +27,16 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 public class RestaurantInfoReviewTabPage extends Fragment {
 
-    private Context context;
+    Context context;
     private Restaurant selectedRestaurant;
-    private ArrayList<Review> reviews;
+    private RecyclerView review_recyclerView; // 리사이클러뷰
+    private RecyclerViewAdapter_ReviewTabPage adapterReviewTabPage; // 어댑터
+    private RequestManager mGlideRequestManager; // Glide manager
 
-    public RestaurantInfoReviewTabPage(Context context, Restaurant selectedRestaurant, ArrayList<Review> reviews) {
+
+    public RestaurantInfoReviewTabPage(Context context) {
         this.context = context;
-        this.selectedRestaurant = ((MainActivity)context).restaurantDATA.selectedRestaurant;;
-        this.reviews = reviews;
+        this.selectedRestaurant = ((MainActivity)context).restaurantDATA.selectedRestaurant;
     }
 
 
@@ -39,27 +46,55 @@ public class RestaurantInfoReviewTabPage extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_restaurant_info_review_tab_page, container, false);
 
         Button writeReviewBtn = view.findViewById(R.id.writeReview_btn);
-        RecyclerView review_recyclerView = view.findViewById(R.id.review_recyclerView);
+        review_recyclerView = view.findViewById(R.id.review_recyclerView);
+        mGlideRequestManager = Glide.with(this);
 
-        reviews = Review.createContactsList(5);
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         review_recyclerView.setLayoutManager(linearLayoutManager);
-        RecyclerViewAdapter_ReviewTabPage adapterReviewTabPage= new RecyclerViewAdapter_ReviewTabPage(reviews);
-        review_recyclerView.setAdapter(adapterReviewTabPage);
+        // 어댑터 초기화
+        adapterReviewTabPage = new RecyclerViewAdapter_ReviewTabPage(context, mGlideRequestManager);
+
 
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 displayedFragmentManager.ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
-
             }
         });
 
+        // DB에서 리뷰 불러오기
+        getReviewsFromDB();
+
         return view;
     }
-/*
+
+    // DB에서 리뷰 불러오기
+    private void getReviewsFromDB() {
+        DatabaseQueryClass.ReviewDB.getReviewsByShop(selectedRestaurant.getRestaurantName(), new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                adapterReviewTabPage.addReview(new Review(data.toString(), id));
+                review_recyclerView.setAdapter(adapterReviewTabPage);
+            }
+        });
+    }
+
+    // DB연동 화면 리프레쉬
+    private void refreshFragement(){
+        androidx.fragment.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // DB연동 화면 리프레쉬
+        //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    /*
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

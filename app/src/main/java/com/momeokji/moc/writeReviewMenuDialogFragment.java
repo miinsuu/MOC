@@ -81,7 +81,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         });
 
  */
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 reviewMenuName= "";
@@ -118,7 +118,7 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
         }
 
 ///
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("선택", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                String reviewMenuName = "";
@@ -134,7 +134,8 @@ public class writeReviewMenuDialogFragment extends DialogFragment {
                         reviewMenuName += ", ";
                     }
                 }
-                reviewMenuName = reviewMenuName.substring(0, reviewMenuName.length() - 2);
+                if(reviewMenuName.length() > 2)
+                    reviewMenuName = reviewMenuName.substring(0, reviewMenuName.length() - 2);
 
                 Log.e("메뉴선택",reviewMenuName);
                 // 리뷰할 메뉴 리스트보내주기

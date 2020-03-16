@@ -20,7 +20,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.momeokji.moc.data.User;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -274,6 +278,106 @@ public class DatabaseQueryClass {
 
 
 
+
+    }
+
+
+    // DB에 리뷰 CRUD 작업
+    public static class ReviewDB {
+
+        // 리뷰 쓰기
+        public static void createReview(final String reviewMenuName,
+                                      final String reviewText,
+                                      final String reviewImageUrl,
+                                      final String reviewShopName, final MyOnSuccessListener myOnSuccessListener)
+        {
+            Map<String, Object> review  = new HashMap<>();
+            review.put("menu", reviewMenuName);
+            review.put("content",reviewText );
+            review.put("img", reviewImageUrl);
+            review.put("shopName", reviewShopName);
+            review.put("date",  (new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date())));
+            review.put("nick", User.getUser().getNickName());
+            review.put("userUID", User.getUser().getUserUID());
+            review.put("createdAt",  Long.parseLong( new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) );
+            Log.e("리뷰upload", review.toString());
+
+            db.collection("reviews")
+                    .add(review)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("uploadd", "create post upload success " + documentReference.getId());
+                            myOnSuccessListener.onSuccess();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("uploadd", "Error adding document", e);
+                        }
+                    });
+        }
+
+        // 가게마다 리뷰 가져오기
+        public static void getReviewsByShop(String shopName, final DataListener dataListener){
+            CollectionReference reviewRef = db.collection("reviews");
+            Query query = reviewRef.whereEqualTo("shopName", shopName).orderBy("createdAt", Query.Direction.DESCENDING);
+
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Review", document.getId() + " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Post", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+
+        // 유저UID로 내가 쓴 리뷰 가져오기
+        public static void getMyReviewsByUserUID(final String userUID, final DataListener dataListener){
+            CollectionReference postRef = db.collection("reviews");
+            Query query = postRef.whereEqualTo("userUID", userUID).orderBy("createdAt", Query.Direction.DESCENDING);
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("MyReview", document.getId() + " => " + document.getData());
+                            String json = new Gson().toJson(document.getData());
+                            dataListener.getData(json, document.getId());
+                        }
+                    } else {
+                        Log.d("Post", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        // 내가 쓴 리뷰에서 리뷰ID로 리뷰 삭제하기
+        public static void deleteReview(String reviewId, final MyOnSuccessListener myOnSuccessListener){
+            db.collection("reviews").document(reviewId)
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.e("리뷰삭제", "성공");
+                            myOnSuccessListener.onSuccess();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("del", "Error deleting document", e);
+                        }
+                    });
+        }
 
     }
 }

@@ -58,10 +58,19 @@ public class MoreInfoFragment extends Fragment {
             }
         });
 
+        // 유저이름 수정하기
         userNicknameLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), UpdateNicknameActivity.class));
+            }
+        });
+
+        // 내가 쓴 리뷰 보기/삭제
+        myReviewLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MyReviewDeleteActivity.class));
             }
         });
 
