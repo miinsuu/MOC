@@ -2,7 +2,6 @@ package com.momeokji.moc;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import com.momeokji.moc.Database.DataListener;
 import com.momeokji.moc.Database.DatabaseQueryClass;
 import com.momeokji.moc.data.Restaurant;
 import com.momeokji.moc.data.Review;
-
-import java.util.ArrayList;
 
 import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 

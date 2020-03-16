@@ -10,7 +10,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarLayout_Info"
+        android:id="@+id/restaurantInfo_AppbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -177,7 +177,7 @@
 
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/restaurantInfo_Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:minHeight="?attr/actionBarSize"
@@ -198,11 +198,21 @@
                         android:layout_marginBottom="11dp"
                         android:background="@drawable/back" />
 
+                    <TextView
+                        android:id="@+id/restaurantInfo_ToolbarNameTxt"
+                        android:layout_width="236dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="24dp"
+                        android:text="TextView"
+                        android:textColor="#222222"
+                        android:textSize="20sp" />
+
                     <ImageButton
                         android:id="@+id/call_btn"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="268dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="12dp"

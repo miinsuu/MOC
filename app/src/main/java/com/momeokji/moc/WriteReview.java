@@ -1,7 +1,6 @@
 package com.momeokji.moc;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,9 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,14 +30,12 @@ import com.momeokji.moc.Adapters.RecyclerViewAdapter_WriteReviewExpandableMenuLi
 import com.momeokji.moc.CustomView.MarqueeTextView;
 import com.momeokji.moc.Database.DatabaseQueryClass;
 import com.momeokji.moc.Database.MyOnSuccessListener;
-import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.Restaurant;
 
 import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 
 public class WriteReview extends Fragment {

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_MenuReview;
 import com.momeokji.moc.CustomView.MarqueeTextView;
@@ -30,6 +32,12 @@ public class RestaurantInfoFragment extends Fragment {
     private Restaurant selectedRestaurant;
     private double lat;
     private double lng;
+
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.6f;
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
+    private static final int ALPHA_ANIMATIONS_DURATION              = 50;
+    private TextView restaurantInfo_ToolbarNameTxt;
+    private boolean mIsTheTitleVisible          = false;
 
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
@@ -50,6 +58,9 @@ public class RestaurantInfoFragment extends Fragment {
         Button addressMapBtn = view.findViewById(R.id.restaurantInfoPage_addressMapBtn);
         Button restaurantInfo_back_btn = view.findViewById(R.id.restaurantInfo_back_btn);
 
+        restaurantInfo_ToolbarNameTxt = view.findViewById(R.id.restaurantInfo_ToolbarNameTxt);
+        AppBarLayout restaurantInfo_AppbarLayout = view.findViewById(R.id.restaurantInfo_AppbarLayout);
+
         //선택한 가게의 정보를 화면에 뿌려주기
         restaurantPage_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
@@ -57,6 +68,19 @@ public class RestaurantInfoFragment extends Fragment {
         preview.setSelected(true);
         address.setText(selectedRestaurant.getAddress());
         phoneNumber.setText(selectedRestaurant.getPhoneNumber());
+
+        restaurantInfo_ToolbarNameTxt.setText(selectedRestaurant.getRestaurantName());
+        restaurantInfo_AppbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                int maxScroll = appBarLayout.getTotalScrollRange();
+                float percentage = (float) Math.abs(i) / (float) maxScroll;
+
+                handleToolbarTitleVisibility(percentage);
+            }
+        });
+        startAlphaAnimation(restaurantInfo_ToolbarNameTxt,0,View.INVISIBLE);
+
 
         //가게 상세페이지에서 뒤로가기
         restaurantInfo_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +153,29 @@ public class RestaurantInfoFragment extends Fragment {
         });
         return view;
     }
+
+    private void handleToolbarTitleVisibility(float percentage) {
+        if(percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
+            if(!mIsTheTitleVisible) {
+                startAlphaAnimation(restaurantInfo_ToolbarNameTxt,ALPHA_ANIMATIONS_DURATION,View.VISIBLE);
+                mIsTheTitleVisible = true;
+            }
+        } else {
+            if (mIsTheTitleVisible) {
+                startAlphaAnimation(restaurantInfo_ToolbarNameTxt,ALPHA_ANIMATIONS_DURATION,View.INVISIBLE);
+                mIsTheTitleVisible = false;
+            }
+        }
+    }
+    public static void startAlphaAnimation(View v, long duration, int visibility) {
+        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
+                ? new AlphaAnimation(0f,1f)
+                : new AlphaAnimation(1f,0f);
+        alphaAnimation.setDuration(duration);
+        alphaAnimation.setFillAfter(true);
+        v.startAnimation(alphaAnimation);
+    }
+
 
     @Override
     public void onResume() {
