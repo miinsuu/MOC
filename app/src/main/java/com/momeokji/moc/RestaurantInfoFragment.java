@@ -35,7 +35,7 @@ public class RestaurantInfoFragment extends Fragment {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.6f;
     private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
-    private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+    private static final int ALPHA_ANIMATIONS_DURATION              = 100;
     private TextView restaurantInfo_ToolbarNameTxt;
     private boolean mIsTheTitleVisible          = false;
 
