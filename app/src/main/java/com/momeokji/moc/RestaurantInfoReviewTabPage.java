@@ -52,11 +52,19 @@ public class RestaurantInfoReviewTabPage extends Fragment {
         // 어댑터 초기화
         adapterReviewTabPage = new RecyclerViewAdapter_ReviewTabPage(context, mGlideRequestManager);
 
+        Button updateReview = view.findViewById(R.id.updateReview);
 
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayedFragmentManager.ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
+            }
+        });
+
+        updateReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateReview();
             }
         });
 
@@ -87,8 +95,14 @@ public class RestaurantInfoReviewTabPage extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        //adapterReviewTabPage.notifyDataSetChanged();
         // DB연동 화면 리프레쉬
         //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    private void updateReview() {
+        refreshFragement();
     }
 
     /*

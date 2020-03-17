@@ -278,8 +278,8 @@ public class WriteReview extends Fragment {
 
     public void goToHomePage() {
         // 리뷰 작성 후 홈화면으로 이동
-        startActivity(new Intent((MainActivity)getActivity(), MainActivity.class));
-
+        //startActivity(new Intent((MainActivity)getActivity(), MainActivity.class));
+        ((MainActivity)getActivity()).onBackPressed();
         //displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
         // 위 코드 처럼 가게 첫페이지로 이동가능하면 수정하기
     }
