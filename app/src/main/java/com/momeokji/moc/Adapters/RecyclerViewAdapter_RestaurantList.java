@@ -1,9 +1,12 @@
 package com.momeokji.moc.Adapters;
 
 import android.animation.ValueAnimator;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.CustomView.MarqueeTextView;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantInfoFragment;
@@ -19,24 +23,14 @@ import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<RecyclerViewAdapter_RestaurantList.ItemViewHolder>{
 
-    final static private int MAX_MAINS_NUM = 3;
-    final static private int EXPANDABLE_MAINS_HEIGHT = 76;
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
-
     private ArrayList<Restaurant> restaurantList;
-    private int selectedRecyclerViewItemPosition = -1;
-    private LinearLayout expandedMenu_linearLayout;
+    private int preSelectedItem = -1;
     private MainActivity mainActivity;
-    private boolean isCurrItemExpanded = false;
-
-    private OnItemClickListener viewHolderListener = null;
-
-    public static interface OnItemClickListener{                                                       // ViewHolder의 커스텀 클릭 리스너
-        void OnItemClick(View v, int position);                                                        // (클릭 리스너를 액티비티에서 구현하기 위해 defualt interface 사용)
-    }
+    private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
     public RecyclerViewAdapter_RestaurantList(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -68,23 +62,19 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
         private TextView restaurantName_txt, menuPriceRange_txt;
         private MarqueeTextView restaurantDescription_txt;
         private ArrayList<TextView> mainMenus = new ArrayList<>();
+        private LinearLayout restaurantListItem_menuExpand_linearLayout;
         private ImageButton menuExpand_imgbtn;
+        private LinearLayout expandedMenu_linearLayout;
 
         ItemViewHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-
-                            int targetPos = getAdapterPosition();
-                            if(targetPos != RecyclerView.NO_POSITION) {
-                                if (viewHolderListener != null)
-                                    viewHolderListener.OnItemClick(view, targetPos);
-                            }
-                            Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
+                            Restaurant selectedRestaurant = restaurantList.get(getAdapterPosition()); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
 
-                            mainActivity.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), ANIMATION_DIRECT_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });
@@ -92,6 +82,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             restaurantName_txt = itemView.findViewById(R.id.restaurantListItem_restaurantName_txt);
             restaurantDescription_txt = itemView.findViewById(R.id.restaurantListItem_description_txt);
             menuPriceRange_txt = itemView.findViewById(R.id.restaurantListItem_menuPriceRange_txt);
+            restaurantListItem_menuExpand_linearLayout =  itemView.findViewById(R.id.restaurantListItem_menuExpand_linearLayout);
             menuExpand_imgbtn = itemView.findViewById(R.id.restaurantListItem_menuExpand_imgbtn);
             expandedMenu_linearLayout = itemView.findViewById(R.id.expandedMenu_linearLayout);
 
@@ -106,56 +97,59 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             restaurantName_txt.setText((restaurant.getRestaurantName()));
             restaurantDescription_txt.setText(restaurant.getPreview());
             menuPriceRange_txt.setText(restaurant.getMinMaxPrice());
-            for(int i = 0; i < MAX_MAINS_NUM; i++) {
+            for(int i = 0; i < Constants.COUNTS.MAX_MAINS_NUM; i++) {
                 mainMenus.get(i*2).setText(restaurant.getMainMenus()[i].getName());
                 mainMenus.get(i*2+1).setText(restaurant.getMainMenus()[i].getPrice() + "원");
             }
 
+            TurnArrow(menuExpand_imgbtn, selectedItems.get(position));
+            changeVisibility(position);
 
-            menuExpand_imgbtn.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener onClickListener =new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     checkSelectedItem(restaurantList.indexOf(restaurant));
                 }
-            });
-            changeVisibility(position);
+            };
+            menuExpand_imgbtn.setOnClickListener(onClickListener);
+            restaurantListItem_menuExpand_linearLayout.setOnClickListener(onClickListener);
         }
-    }
 
-    public void checkSelectedItem(int selectedItemPosition) {
-        if (this.selectedRecyclerViewItemPosition == selectedItemPosition) {
-            isCurrItemExpanded = false;
-            notifyItemChanged(this.selectedRecyclerViewItemPosition);
-        }
-        else {
-            isCurrItemExpanded = true;
-            if (this.selectedRecyclerViewItemPosition != -1) {
-                notifyItemChanged(this.selectedRecyclerViewItemPosition);
+        public void checkSelectedItem(int selectedItemPosition) {
+            if (selectedItems.get(selectedItemPosition)) {
+                selectedItems.delete(selectedItemPosition);
+            }
+            else {
+                selectedItems.delete(preSelectedItem);
+                selectedItems.put(selectedItemPosition, true);
+            }
+
+            if (preSelectedItem != -1) {
+                notifyItemChanged(preSelectedItem);
             }
             notifyItemChanged(selectedItemPosition);
-            this.selectedRecyclerViewItemPosition = selectedItemPosition;
-        }
-    }
-
-    private void changeVisibility(int position) {
-        final boolean isTargetItemExpanded = (this.selectedRecyclerViewItemPosition == position) && isCurrItemExpanded;
-        if (!isCurrItemExpanded) {
-            this.selectedRecyclerViewItemPosition = -1;
+            preSelectedItem = selectedItemPosition;
         }
 
-        int height = (int) (EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
-        ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
-        valueAnimator.setDuration(300);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                expandedMenu_linearLayout.getLayoutParams().height = (int) animation.getAnimatedValue();
-                expandedMenu_linearLayout.requestLayout();
-                expandedMenu_linearLayout.setVisibility(isTargetItemExpanded ? View.VISIBLE : View.GONE);
-            }
-        });
+        private void changeVisibility(int position) {
+            final boolean isTargetItemExpanded = selectedItems.get(position);
 
-        valueAnimator.start();
+            int height = (int) (Constants.XML_DESIGN.EXPANDABLE_MAINS_HEIGHT * mainActivity.getResources().getDisplayMetrics().density);
+            ValueAnimator valueAnimator = isTargetItemExpanded ? (ValueAnimator.ofInt(0, height)) : (ValueAnimator.ofInt(height, 0));
+            valueAnimator.setDuration(300);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    expandedMenu_linearLayout.getLayoutParams().height = (int) animation.getAnimatedValue();
+                    expandedMenu_linearLayout.requestLayout();
+                    expandedMenu_linearLayout.setVisibility(isTargetItemExpanded ? View.VISIBLE : View.GONE);
+                }
+            });
+            valueAnimator.start();
+        }
+        public void TurnArrow(ImageButton arrow, boolean direction) {
+            Animation animation = AnimationUtils.loadAnimation(mainActivity.getApplicationContext(), direction ? R.anim.anim_rotate_counter_clockwise_with_arrow_down : R.anim.anim_rotate_clockwise_with_arrow_up);
+            arrow.startAnimation(animation);
+        }
     }
 }

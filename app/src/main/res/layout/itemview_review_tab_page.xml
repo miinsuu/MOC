@@ -1,11 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="7dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="7dp"
+        android:background="#6FE4DBDB"/>
+    <TextView
+        android:id="@+id/reviewMenuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="30dp"
+        android:text="TextView"
+        android:textColor="#D81b60"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/reviewNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            android:textColor="#777777" />
+
+        <TextView
+            android:id="@+id/reviewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="30dp"
+            android:text="TextView"
+            android:textColor="#777777" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/reviewImageView"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:maxWidth="312dp"
+        android:maxHeight="312dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10dp"
+         />
 
     <TextView
-        android:id="@+id/reviewtext"
+        android:id="@+id/reviewText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="10dp"
+        android:padding="17dp"
+        android:background="@drawable/shop_info"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textColor="#222222" />
+
+
+
 </LinearLayout>

@@ -11,15 +11,12 @@
 
     <dimen name="partition_height">2dp</dimen>
 
-    <dimen name="parent_width">415dp</dimen>
-    <dimen name="parent_width_negative">-415dp</dimen>
-
-
-    <dimen name="mylist_height">560dp</dimen>
-
     <dimen name="login_login_info_top_margin">50dp</dimen>
     <dimen name="login_login_btn_width">300dp</dimen>
 
     <dimen name="floating_btn_init_bottom_margin">61dp</dimen>
+
+    <dimen name="replace_fragment_slide_duration">300</dimen>
+    <dimen name="expand_expandable_recyclerview_rotate_duration">300</dimen>
 
 </resources>

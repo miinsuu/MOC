@@ -9,9 +9,15 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.RestaurantInfoMenuTabPage;
 import com.momeokji.moc.RestaurantInfoReviewTabPage;
+import com.momeokji.moc.data.Restaurant;
+import com.momeokji.moc.data.Review;
+
+import java.util.ArrayList;
 
 public class PagerAdapter_MenuReview extends FragmentPagerAdapter {
     Context context;
+    Restaurant selectedRestaurant;
+    ArrayList< Review > reviews;
 
     public PagerAdapter_MenuReview(FragmentManager fm, int behavior, Context context) {
         super(fm,behavior);

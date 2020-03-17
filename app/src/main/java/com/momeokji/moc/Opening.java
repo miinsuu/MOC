@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,14 +24,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.momeokji.moc.Helper.Constants;
 
 public class Opening extends AppCompatActivity {
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Context context;
     ImageView mainImage;
     final String[] mainImageUrl = new String[1];
     //FirebaseStorage 인스턴스를 생성
     FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+
+    private long backKeyPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class Opening extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // ! 절대 지우지 말기 !
 
         //Storage에 저장된 사진 URL로 불러오는 과정
 //        db.collection("category")
@@ -86,5 +93,38 @@ public class Opening extends AppCompatActivity {
 //                });
 
 }
+
+    @Override
+    public void onBackPressed() {
+
+        if (isAfter2Seconds()) {
+            backKeyPressedTime = System.currentTimeMillis();
+            // 현재시간을 다시 초기화
+            Toast.makeText(this, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (isBefore2Seconds()) {
+            appShutdown(); // 앱 종료
+        }
+    }
+
+    private Boolean isAfter2Seconds() {
+        return System.currentTimeMillis() > backKeyPressedTime + 2000;
+        // 2초 지났을 경우
+    }
+
+    private Boolean isBefore2Seconds() {
+        return System.currentTimeMillis() <= backKeyPressedTime + 2000;
+        // 2초가 지나지 않았을 경우
+    }
+
+    private void appShutdown() {
+        finishAffinity(); // 루트 액티비티 종료
+        System.runFinalization(); // 현재 작업중인 쓰레드가 다 종료되면 그때 종료함
+        System.exit(0); // 현재 액티비티 종료
+
+    }
+
 
 }
