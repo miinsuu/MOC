@@ -40,7 +40,7 @@ public class RouletteFragment extends Fragment {
     private ImageButton[] items;
     private Drawable[] unoutlinedIcons;
     private Drawable[] outlinedIcons;
-    private RelativeLayout lever;
+    private ImageButton lever_up_imgbtn, lever_down_imgbtn;
     private TextView roulette_drawing_txt;
 
 
@@ -97,8 +97,10 @@ public class RouletteFragment extends Fragment {
         outlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
         outlinedIcons[8] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
 
-        lever = view.findViewById(R.id.roulette_drawing_relativeLayout);
-        lever.setOnClickListener(new View.OnClickListener() {
+        lever_up_imgbtn = view.findViewById(R.id.roulette_lever_up_imgbtn);
+        lever_down_imgbtn = view.findViewById(R.id.roulette_lever_down_imgbtn);
+        SetLeverUpDown(true);
+        lever_up_imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DrawItem();
@@ -112,8 +114,7 @@ public class RouletteFragment extends Fragment {
         this.targetItemIndex = 0;
         this.nextItemChooseInterval = INIT_ROULETTE_INTERVAL;
 
-        lever.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bbobki_lever_down));
-        lever.setClickable(false);
+        SetLeverUpDown(false);
 
         final Random randomInterval = new Random();
         final Handler mHandler = new Handler();
@@ -146,11 +147,10 @@ public class RouletteFragment extends Fragment {
     }
 
     public void SetLeverToRedrawState(final int targetItemIndex) {
-        lever.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bbobki_lever_up));
-        lever.setClickable(true);
+        SetLeverUpDown(true);
         roulette_drawing_txt.setText("다시뽑기");
 
-        lever.setOnClickListener(new View.OnClickListener() {
+        lever_up_imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 items[targetItemIndex].startAnimation(AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.anim_scale_down_roulette_choosed_item));
@@ -161,5 +161,20 @@ public class RouletteFragment extends Fragment {
 
     public int CalculateZigZagIndex(int targetItemIndex) {
         return targetItemIndex % 6  +  6*((targetItemIndex/6)%2) * (1- ((targetItemIndex/3)%2));
+    }
+    public void SetLeverUpDown(boolean isLeverUp) {
+        if(isLeverUp) {
+            lever_up_imgbtn.setVisibility(View.VISIBLE);
+            lever_up_imgbtn.setClickable(true);
+            lever_down_imgbtn.setVisibility(View.INVISIBLE);
+            lever_down_imgbtn.setClickable(false);
+        }
+        else {
+            lever_down_imgbtn.setVisibility(View.VISIBLE);
+            lever_down_imgbtn.setClickable(true);
+            lever_up_imgbtn.setVisibility(View.INVISIBLE);
+            lever_up_imgbtn.setClickable(false);
+
+        }
     }
 }

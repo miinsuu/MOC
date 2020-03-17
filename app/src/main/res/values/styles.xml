@@ -28,4 +28,24 @@
         <item name="android:windowExitAnimation">@anim/anim_slide_out_down_with_mylist</item>
     </style>
 
+    <style name="roulette_relativeLayout">
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+        <item name = "android:layout_marginBottom">20dp</item>
+        <item name = "android:orientation">vertical</item>
+    </style>
+    <style name="roulette_item_imgbtn">
+        <item name = "android:layout_width">50dp</item>
+        <item name = "android:layout_height">50dp</item>
+        <item name = "android:layout_margin">20dp</item>
+    </style>
+    <style name="roulette_item_txt">
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+        <item name = "android:layout_marginTop">-15dp</item>
+        <item name = "android:layout_gravity">center_horizontal</item>
+        <item name = "android:textStyle">bold</item>
+        <item name = "android:textSize">15sp</item>
+    </style>
+
 </resources>
