@@ -61,8 +61,6 @@ public class FragmentStackManager {
         }
         else {
             FragmentManager targetFragmentManager = mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.peek()];
-            Fragment beforeFragmentInBackStack = targetFragmentManager.getFragments().get(targetFragmentManager.getFragments().size()-2);
-            mainActivity.displayedFragmentManager.UpdateMyListBtnPosition(beforeFragmentInBackStack);
 
             targetFragmentManager.popBackStack();
             fragmentBackStack.pop();

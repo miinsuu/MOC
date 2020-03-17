@@ -92,8 +92,6 @@ public class DisplayedFragmentManager {
 
         fragmentTransaction.hide(removalFragment).commit();
         fragmentStackManager.PushFragment(level);
-        if (level == 0)
-            UpdateMyListBtnPosition(targetFragment);
         return true;
     }
 
@@ -114,7 +112,7 @@ public class DisplayedFragmentManager {
     }
 
 
-    //* fragment에 따라 나의 리스트 버튼의 위치를 올바르게 표시해주는 함수
+/*    //* fragment에 따라 나의 리스트 버튼의 위치를 올바르게 표시해주는 함수
     public void UpdateMyListBtnPosition() {
         UpdateMyListBtnPosition(fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout));
     }
@@ -133,5 +131,5 @@ public class DisplayedFragmentManager {
         animation.setFillAfter(true);
         myList_btn.startAnimation(animation);
         isPositionAbove = isTargetPositionAbove;
-    }
+    }*/
 }
