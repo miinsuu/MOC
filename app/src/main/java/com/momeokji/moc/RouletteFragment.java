@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +71,7 @@ public class RouletteFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     MainActivity mainActivity = (MainActivity)getActivity();
-                    mainActivity.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
+                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
                     mainActivity.displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
                 }
             });
