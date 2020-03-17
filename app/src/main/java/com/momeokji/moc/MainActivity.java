@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 myListFragment.show(fragmentTransaction, MyListFragment.TAG_MY_LIST_FRAGMENT);
             }
         });
-
     }
 
     @Override
