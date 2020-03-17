@@ -9,10 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.Helper.DisplayedFragmentManager;
-
 import com.momeokji.moc.Helper.FragmentStackManager;
 import com.momeokji.moc.data.DATA;
-import com.momeokji.moc.data.User;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public static MainActivity mainActivity;
     public static DisplayedFragmentManager displayedFragmentManager;
     public static FragmentStackManager fragmentStackManager;
-    private FloatingActionButton myList_btn;
+    public static FloatingActionButton myList_btn;
 
     public DATA restaurantDATA;
 
