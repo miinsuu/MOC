@@ -96,7 +96,11 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayedFragmentManager.ReplaceFragment(2, new RestaurantListFragment(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                        RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
+                        if (constructedRestaurantListFragment == null) {
+                            constructedRestaurantListFragment = new RestaurantListFragment(position);
+                        }
+                        displayedFragmentManager.ReplaceFragment(2, constructedRestaurantListFragment, Constants.ANIMATION_DIRECT.TO_RIGHT);
                         tempBotNavView.getMenu().getItem(1).setChecked(true);
                 }
             });
