@@ -12,6 +12,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/updateReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="update"/>
+
+        <Button
             android:id="@+id/writeReview_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
