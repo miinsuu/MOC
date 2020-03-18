@@ -17,9 +17,6 @@ import com.momeokji.moc.data.Menu;
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MenuClassificationTab extends Fragment {
 
     private ArrayList<Menu> menuArrayList;
