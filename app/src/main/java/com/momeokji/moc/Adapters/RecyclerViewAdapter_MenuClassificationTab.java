@@ -3,6 +3,7 @@ package com.momeokji.moc.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,10 +42,14 @@ public class RecyclerViewAdapter_MenuClassificationTab extends RecyclerView.Adap
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
         private TextView menuName, menuPrice;
+        private ImageButton MyListAddBtn;
+
         ItemViewHolder(View ItemView){
             super(ItemView);
             menuName = ItemView.findViewById(R.id.menuClassificationTab_menuName);
             menuPrice = ItemView.findViewById(R.id.menuClassificationTab_menuPrice);
+            MyListAddBtn = ItemView.findViewById(R.id.MyListAddBtn);
+
         }
 
         public void onBind(Menu menu){
