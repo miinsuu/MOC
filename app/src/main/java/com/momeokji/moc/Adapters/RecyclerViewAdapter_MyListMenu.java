@@ -1,5 +1,6 @@
 package com.momeokji.moc.Adapters;
 
+import android.animation.ValueAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.R;
 import com.momeokji.moc.data.MyListMenu;
@@ -55,7 +57,7 @@ public class RecyclerViewAdapter_MyListMenu extends RecyclerView.Adapter<Recycle
 
         public void onBind(final MyListMenu myListMenu) {
             myList_menuName_Txt.setText(myListMenu.getName());
-            myList_menuPrice_Txt.setText(myListMenu.getPrice());
+            myList_menuPrice_Txt.setText(myListMenu.getPrice() + "원");
             myList_restaurant_Txt.setText(myListMenu.getRestaurantName());
         }
     }
