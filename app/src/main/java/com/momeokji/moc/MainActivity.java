@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        MainActivity.myList_btn.show();
         this.fragmentStackManager.onBackPressed();
     }
 
