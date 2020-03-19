@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="닉네임 변경"
+            android:text="내 정보 수정"
             android:textSize="18sp"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -28,43 +28,141 @@
         android:background="#6FE4DBDB"/>
 
 
-
-    <EditText
-        android:id="@+id/updateNickname_acticity_newNicknameTxt"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="17dp"
         android:layout_marginLeft="17dp"
-        android:background="@drawable/edittextcustom"
-        android:padding="15dp"
-        android:hint="새로운 닉네임을 입력해 주세요."/>
+        android:text="닉네임 변경"
+        android:textSize="15sp"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/updateNickname_acticity_cancelBtn"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/updateNickname_acticity_newNicknameTxt"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:background="@color/black"
-            android:text="취소"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:background="@drawable/edittextcustom"
+            android:padding="15dp"
+            android:hint="새로운 닉네임을 입력해 주세요."/>
 
         <Button
             android:id="@+id/updateNickname_acticity_updateBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="17dp"
             android:background="@color/black"
             android:text="변경"
             android:textColor="@color/white"
             android:textStyle="bold"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="17dp"
+        android:background="#6FE4DBDB"/>
+
+    <LinearLayout
+        android:id="@+id/passwordChange_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:text="비밀번호 변경"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/updatePassword_acticity_newPasswordTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:inputType="textPassword"
+            android:background="@drawable/edittextcustom"
+            android:padding="15dp"
+            android:hint="새 비밀번호를 입력해 주세요."/>
+
+        <EditText
+            android:id="@+id/updatePassword_acticity_newPasswordCheckTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:inputType="textPassword"
+            android:background="@drawable/edittextcustom"
+            android:padding="15dp"
+            android:hint="새 비밀번호를 한번 더 입력해 주세요."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="19dp"
+            android:text="(문자, 숫자, 특수문자 포함 8~20글자)"/>
+
+
+        <Button
+            android:id="@+id/updatePassword_acticity_updateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:background="@color/black"
+            android:text="변경"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="17dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/myPage_activity_logoutBtn"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:textSize="11sp"
+            android:text="로그아웃"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"/>
+        <TextView
+            android:id="@+id/myPage_activity_userDeleteBtn"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="11sp"
+            android:text="회원탈퇴"/>
     </LinearLayout>
 
 

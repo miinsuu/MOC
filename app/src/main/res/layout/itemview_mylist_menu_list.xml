@@ -6,8 +6,10 @@
 
         <ImageView
             android:id="@+id/myList_menuPhoto_img"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/mylisticon"
             android:layout_centerVertical="true"
             android:layout_marginLeft="24dp"

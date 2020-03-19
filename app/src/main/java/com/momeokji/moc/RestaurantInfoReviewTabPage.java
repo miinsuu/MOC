@@ -63,11 +63,9 @@ public class RestaurantInfoReviewTabPage extends Fragment {
 
         // 스와이프 새로고침
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.reviewUpdate_swipe_layout);
-        //mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 // 3초동안 업데이트 애니메이션 작동
                 new Handler().postDelayed(new Runnable() {
                     @Override public void run() {
@@ -76,7 +74,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
                         // DB 새로고침 코드
                         refreshFragement();
                     }
-                }, 3000); // Delay in millis
+                }, 3000); // 3초 딜레이
 
 
             }
