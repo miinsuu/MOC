@@ -184,13 +184,14 @@ public class DatabaseQueryClass {
 
     public static class UserInfo {
 
-        // Email주소를 이용해서 nickname을 DB에 저장하는 메소드
-        public static void putUserNickNameToDB(String userUID, final String nickname){
+        // userUID를 이용해서 nickname, account를 DB에 저장하는 메소드
+        public static void putUserNickNameToDB(String userUID, final String nickname, String account){
             Map<String, Object> user = new HashMap<>();
             user.put("userUID", userUID);
             user.put("nick", nickname);
+            user.put("account", account);
 
-            // users Collection에 [userUID:key, nickname:value]로 사용자 정보 저장
+            // users Collection에 userUID, nickname, account 사용자 정보 저장
             db.collection("users")
                     .add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -235,7 +236,7 @@ public class DatabaseQueryClass {
         }
 
         // 로그인시 DB에 있는 users Collection에 유저정보가 저장되어있는지 userUID기준으로 체크한 뒤, 없으면 저장
-        public static void checkUserDuplication(final String userUID, final String nickname){
+        public static void checkUserDuplication(final String userUID, final String nickname, final String account){
             db.collection("users")
                     .whereEqualTo("userUID", userUID)
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -244,7 +245,7 @@ public class DatabaseQueryClass {
                     if (task.isSuccessful()) {
                         if(task.getResult().isEmpty()) {
                             Log.e("LoginCheck", "신규로그인");
-                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(userUID, nickname);
+                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(userUID, nickname, account);
                         } else {
                             Log.d("LoginCheck","ReLogin");
                         }
