@@ -278,6 +278,25 @@ public class DatabaseQueryClass {
         }
 
 
+        // 회원 탈퇴 시 파이어베이스 DB에 저장되어있는, users Collection에 저장되어 있는 회원정보 삭제
+        public static void deleteUser(String usersMapName, final MyOnSuccessListener myOnSuccessListener){
+            db.collection("users").document(usersMapName)
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("del", "DocumentSnapshot successfully deleted!");
+                            myOnSuccessListener.onSuccess();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("del", "Error deleting document", e);
+                        }
+                    });
+        }
+
 
 
     }

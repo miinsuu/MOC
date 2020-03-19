@@ -100,23 +100,32 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id)
                     {
-                        // 계정 삭제 (탈퇴)
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        user.delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.e("계정탈퇴", "성공");
-                                            // 유저정보 삭제
-                                            User.getUser().clearUser();
-                                            Toast.makeText(UpdateNicknameActivity.this, "계정이 삭제되었습니다.", Toast.LENGTH_LONG).show();
-                                            // 로그인 화면으로 이동
-                                            ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
-                                            startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
+                        // DB에서 users 정보 삭제
+                        DatabaseQueryClass.UserInfo.deleteUser(User.getUser().getusersMapName(), new MyOnSuccessListener() {
+                            @Override
+                            public void onSuccess() {
+                                // 계정 삭제 (탈퇴)
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                user.delete()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.e("계정탈퇴", "성공");
+                                                // User클래스 유저정보 삭제
+                                                User.getUser().clearUser();
+                                                Toast.makeText(UpdateNicknameActivity.this, "계정이 삭제되었습니다.", Toast.LENGTH_LONG).show();
+                                                // 로그인 화면으로 이동
+                                                ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
+                                                startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
+
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+
+                                }
+                        });
+
 
                     }
                 });
