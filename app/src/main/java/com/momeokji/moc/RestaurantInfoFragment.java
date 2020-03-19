@@ -95,6 +95,7 @@ public class RestaurantInfoFragment extends Fragment {
             }
         });
 
+
         //가게 전화번호로 전화다이얼화면 띄우기
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
