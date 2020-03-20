@@ -1,35 +1,33 @@
 package com.momeokji.moc;
 
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.GestureDetector;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_MyListMenu;
 import com.momeokji.moc.Helper.Constants;
-import com.momeokji.moc.data.MyListMenu;
-
-import java.util.ArrayList;
 
 
 public class MyListFragment extends DialogFragment {
     public static final String TAG_MY_LIST_FRAGMENT = "dialog_event";
 
     private MainActivity mainActivity;
+    GestureDetector detector = null;
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
     public static MyListFragment getInstance(MainActivity mainActivity) {
         MyListFragment myListFragment = new MyListFragment(mainActivity);
@@ -41,8 +39,10 @@ public class MyListFragment extends DialogFragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_my_list, container, false);
 
+        final FrameLayout mylistDialog = view.findViewById(R.id.mylistDialog);
+        final Handler handler = new Handler();
 
         //* RecyclerViewAdapter_MyListMenu 리사이클러 뷰 어댑터 등록
         RecyclerView myList_myMenuList_recyclerView = view.findViewById(R.id.myList_myMenuList_recyclerView);
@@ -63,6 +63,73 @@ public class MyListFragment extends DialogFragment {
         myList_allDelete_txt.setOnClickListener(allDeleteOnClickListener);
         myList_allDelete_imgbtn.setOnClickListener(allDeleteOnClickListener);
 
+        mylistDialog.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                detector.onTouchEvent(event);
+                return true;
+            }
+        });
+
+        detector = new GestureDetector(getActivity(), new GestureDetector.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    dismiss();
+                }
+                return true;
+            }
+        });
+
+/*
+        myList_myMenuList_recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                final int velocityY = dy;
+                int firstvisible = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                if(firstvisible == 0 ){
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(velocityY < -100) {
+                                dismiss();
+                            }
+
+                        }
+                    },500);
+                }
+
+            }
+        });
+
+
+ */
         return view;
     }
     @Override
