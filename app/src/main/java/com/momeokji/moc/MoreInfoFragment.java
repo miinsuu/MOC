@@ -35,30 +35,14 @@ public class MoreInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_more_info, container, false);
 
-        View userNicknameLinearLayout = view.findViewById(R.id.moreInfo_fragment_userNickname_linearLayout); // 유저 닉네임 변경
+        View userNicknameLinearLayout = view.findViewById(R.id.moreInfo_fragment_userNickname_linearLayout); // 내 정보 수정 액티비티
         View myReviewLinearLayout = view.findViewById(R.id.moreInfo_fragment_myReview_linearLayout); // 내가쓴리뷰 삭제
-        View logoutLinearLayout = view.findViewById(R.id.moreInfo_fragment_logout_linearLayout); // 로그아웃
         TextView userNicknameTxt = view.findViewById(R.id.moreInfo_fragment_userNicknameTxt); // 유저 닉네임 표시
 
         // 유저 이름 띄우기
         userNicknameTxt.setText(User.getUser().getNickName());
-        // 로그아웃 리스너
-        logoutLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 파이어베이스 로그아웃
-                FirebaseAuth.getInstance().signOut();
-                // 페이스북 로그아웃
-                LoginManager.getInstance().logOut();
-                // 유저정보 삭제
-                User.getUser().clearUser();
-                Toast.makeText(getContext(), "로그아웃", Toast.LENGTH_SHORT).show();
-                // 로그인 화면으로 이동
-                startActivity(new Intent(getContext(), LoginActivity.class));
-            }
-        });
 
-        // 유저이름 수정하기
+        // 내 정보 수정 액티비티로 이동
         userNicknameLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

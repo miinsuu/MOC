@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -303,16 +304,26 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // 페이스북계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname);
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "facebook");
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
-                                Log.e("페이스북체크!","userUID:"+userUID+", nickname:"+nickname+", getUserUID():"+User.getUser().getUserUID());
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override public void run() {
+                                        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        User.getUser().putUserInfo(userUID);
+                                    }
+                                }, 2000); // 2초 딜레이
+
+                                Log.e("페이스북체크!","account:"+User.getUser().getLoginAccount()+", nickname:"+User.getUser().getNickName()+", getUserUID():"+User.getUser().getUserUID());
+
+                                // 로그인 성공 메시지
+                                Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
+                                // 메인액티비티로 이동
+                                startActivity(new Intent(loginActivity, MainActivity.class));
                             }
 
-                            // 로그인 성공 메시지
-                            Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
-                            // 메인액티비티로 이동
-                            startActivity(new Intent(loginActivity, MainActivity.class));
+
                         } else {
                             // 로그인 실패
                             Toast.makeText(loginActivity, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -344,16 +355,28 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // Google계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname);
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "google");
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
-                                Log.e("구글체크!","userUID:"+userUID+", nickname:"+nickname+", getUserUID():"+User.getUser().getUserUID());
+                                Log.e("구글체크!","account:"+User.getUser().getLoginAccount()+", nickname:"+User.getUser().getNickName()+", getUserUID():"+User.getUser().getUserUID());
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override public void run() {
+                                        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        User.getUser().putUserInfo(userUID);
+                                    }
+                                }, 2000); // 2초 딜레이
+
+                                Log.e("구글체크!","account:"+User.getUser().getLoginAccount()+", nickname:"+User.getUser().getNickName()+", getUserUID():"+User.getUser().getUserUID());
+
+
+                                // 로그인 성공 메시지
+                                Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
+                                // 메인액티비티로 이동
+                                startActivity(new Intent(loginActivity, MainActivity.class));
                             }
 
-                            // 로그인 성공 메시지
-                            Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
-                            // 메인액티비티로 이동
-                            startActivity(new Intent(loginActivity, MainActivity.class));
+
                         } else {
                             // 로그인 실패
                             Toast.makeText(loginActivity, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -398,6 +421,29 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        String userUID = null;
+        // 유저정보 갱신
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+            userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(userUID != null)
+            User.getUser().putUserInfo(userUID);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        String userUID = null;
+        // 유저정보 갱신
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+            userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(userUID != null)
+            User.getUser().putUserInfo(userUID);
+    }
 
     public void RemoveFocusFromEditText(BackPressEditText targetEditText) {
         ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);

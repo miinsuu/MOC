@@ -166,11 +166,8 @@ public class WriteReview extends Fragment {
                                     DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, uri.toString(), restaurantName, new MyOnSuccessListener() {
                                         @Override
                                         public void onSuccess() {
-                                            //Toast.makeText(((MainActivity)getActivity()), "리뷰가 작성되었습니다.", Toast.LENGTH_SHORT).show();
                                             Log.e("업로드 완료","=========");
 
-                                            // 업로드하고 뒤로가기
-                                           // backReviewPage();
                                         }
                                     });
                                 }
@@ -187,18 +184,15 @@ public class WriteReview extends Fragment {
                     DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, "", restaurantName, new MyOnSuccessListener() {
                         @Override
                         public void onSuccess() {
-                            //Toast.makeText(((MainActivity)getActivity()), "리뷰가 작성되었습니다.", Toast.LENGTH_SHORT).show();
                             Log.e("업로드 완료","=========");
 
-                            // 업로드하고 뒤로가기
-                            //backReviewPage();
                         }
                     });
                 }
                 // 성공메시지
                 Toast.makeText(((MainActivity)getActivity()), "\""+restaurantName+"\" 리뷰가 작성되었습니다.", Toast.LENGTH_SHORT).show();
-                // 업로드하고 홈화면으로 이동
-                goToHomePage();
+                // 업로드하고 리뷰페이지로 이동
+                goToReviewPage();
 
             }
         });
@@ -207,15 +201,7 @@ public class WriteReview extends Fragment {
         reviewPictureAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
- /*               Intent intent = new Intent();
-                //기본갤러리앱
-//                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                //구글앱
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
- //               intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-                startActivityForResult(intent,1);
-  */
+
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
 
@@ -230,23 +216,7 @@ public class WriteReview extends Fragment {
     //사진 화면에 보이기
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
- /*       if(requestCode == 1 && resultCode == RESULT_OK) {
-            try {
-                InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
-                Bitmap bm = BitmapFactory.decodeStream(is);
-                is.close();
-                reviewPicture_imageView.setImageBitmap(bm);
-                reviewPicture_imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                reviewPicture_imageView.setAdjustViewBounds(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else if (requestCode == 1 && resultCode == RESULT_CANCELED) {
-            Toast.makeText(getContext(),"취소",Toast.LENGTH_SHORT).show();
-        }
 
-  */
         if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             selectedImageUri = data.getData();
             reviewPicture_imageView.setImageURI(selectedImageUri);
@@ -276,12 +246,10 @@ public class WriteReview extends Fragment {
         choiceMenu = menuChoiceName;
     }
 
-    public void goToHomePage() {
-        // 리뷰 작성 후 홈화면으로 이동
-        //startActivity(new Intent((MainActivity)getActivity(), MainActivity.class));
+    public void goToReviewPage() {
+        // 리뷰 작성 후 리뷰페이지로 이동
         ((MainActivity)getActivity()).onBackPressed();
-        //displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
-        // 위 코드 처럼 가게 첫페이지로 이동가능하면 수정하기
+
     }
 
 }
