@@ -2,7 +2,6 @@ package com.momeokji.moc;
 
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +25,7 @@ public class MyListFragment extends DialogFragment {
     public static final String TAG_MY_LIST_FRAGMENT = "dialog_event";
 
     private MainActivity mainActivity;
-    GestureDetector detector = null;
+    private GestureDetector detector = null;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
@@ -42,14 +42,15 @@ public class MyListFragment extends DialogFragment {
         final View view = inflater.inflate(R.layout.fragment_my_list, container, false);
 
         final FrameLayout mylistDialog = view.findViewById(R.id.mylistDialog);
-        final Handler handler = new Handler();
 
         //* RecyclerViewAdapter_MyListMenu 리사이클러 뷰 어댑터 등록
-        RecyclerView myList_myMenuList_recyclerView = view.findViewById(R.id.myList_myMenuList_recyclerView);
+        final RecyclerView myList_myMenuList_recyclerView = view.findViewById(R.id.myList_myMenuList_recyclerView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         myList_myMenuList_recyclerView.setLayoutManager(linearLayoutManager);         // 레이아웃 매니저 등록
         final RecyclerViewAdapter_MyListMenu recyclerViewAdapter_myListMenu = new RecyclerViewAdapter_MyListMenu(mainActivity);
         myList_myMenuList_recyclerView.setAdapter(recyclerViewAdapter_myListMenu);
+
+        final int firstvisible = linearLayoutManager.findFirstVisibleItemPosition();
 
         TextView myList_allDelete_txt = view.findViewById(R.id.myList_allDelete_txt);
         ImageButton myList_allDelete_imgbtn = view.findViewById(R.id.myList_allDelete_imgbtn);
@@ -68,6 +69,28 @@ public class MyListFragment extends DialogFragment {
             public boolean onTouch(View v, MotionEvent event) {
                 detector.onTouchEvent(event);
                 return true;
+            }
+        });
+        myList_myMenuList_recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                if (firstvisible == 0){
+
+                }
+                if (!myList_myMenuList_recyclerView.canScrollVertically(-1)){
+                    detector.onTouchEvent(e);
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
             }
         });
 
@@ -106,30 +129,6 @@ public class MyListFragment extends DialogFragment {
             }
         });
 
-/*
-        myList_myMenuList_recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                final int velocityY = dy;
-                int firstvisible = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
-                if(firstvisible == 0 ){
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(velocityY < -100) {
-                                dismiss();
-                            }
-
-                        }
-                    },500);
-                }
-
-            }
-        });
-
-
- */
         return view;
     }
     @Override

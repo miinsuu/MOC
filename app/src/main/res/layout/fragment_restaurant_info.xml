@@ -180,6 +180,7 @@
                 android:id="@+id/restaurantInfo_Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:background="#FFFFFF"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_collapseMode="pin">
