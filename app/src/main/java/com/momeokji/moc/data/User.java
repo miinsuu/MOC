@@ -34,7 +34,7 @@ public class User {
                 JsonObject jobj = element.getAsJsonObject();
                 nickname = jobj.get("nick").getAsString();
                 usersMapName = jobj.get("usersMapName").getAsString();
-//                loginAccount =  jobj.get("account").getAsString();
+                loginAccount =  jobj.get("account").getAsString();
 
                 Log.e("GOOGLE정보체크", "닉네임: "+nickname + ", 로그인계정: " +loginAccount );
             }
