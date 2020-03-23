@@ -70,7 +70,15 @@ public class RouletteFragment extends Fragment {
             items[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(MainActivity.getInstance(), new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
+                    RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
+                    if (constructedRestaurantListFragment == null)
+                        constructedRestaurantListFragment = new RestaurantListFragment(position);
+                    else
+                        constructedRestaurantListFragment.setLastTabPos(position);
+                    MainContextWithLocationSelectFragment constructedMainContextWithLocationSelectFragment = (MainContextWithLocationSelectFragment) displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MainContextWithLocationSelectFragment.class.getName());
+                    constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
+                    displayedFragmentManager.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, ANIMATION_DIRECT_LEFT);
+
                     MainActivity.getInstance().displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
                 }
             });
