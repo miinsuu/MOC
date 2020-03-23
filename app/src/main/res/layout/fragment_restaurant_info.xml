@@ -138,39 +138,36 @@
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_addressTxt"
-                            android:layout_width="178dp"
+                            android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="13dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="16dp"
                             android:layout_marginBottom="10dp"
                             android:text="TextView"
+                            android:textIsSelectable="true"
                             android:textColor="#222222" />
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                            android:layout_width="178dp"
+                            android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="16dp"
                             android:layout_marginBottom="13dp"
                             android:text="TextView"
+                            android:textIsSelectable="true"
                             android:textColor="#222222" />
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/restaurantInfoPage_addressMapBtn"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="13dp"
-                        android:background="@drawable/mapicon3" />
+
 
                 </LinearLayout>
             </LinearLayout>
@@ -201,7 +198,7 @@
 
                     <TextView
                         android:id="@+id/restaurantInfo_ToolbarNameTxt"
-                        android:layout_width="236dp"
+                        android:layout_width="194dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="24dp"
@@ -209,11 +206,19 @@
                         android:textColor="#222222"
                         android:textSize="20sp" />
 
+                    <Button
+                        android:id="@+id/restaurantInfoPage_addressMapBtn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/pin" />
+
                     <ImageButton
                         android:id="@+id/call_btn"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="18dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="12dp"
