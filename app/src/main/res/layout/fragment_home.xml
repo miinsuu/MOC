@@ -154,9 +154,12 @@
 
                     <Button
                         android:id="@+id/western_btn"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/western" />
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/pizzaw" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -171,6 +174,7 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
+
                     <Button
                         android:id="@+id/snack_btn"
                         android:layout_width="48dp"
@@ -233,15 +237,20 @@
 
                     <Button
                         android:id="@+id/fast_btn"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/fast" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/burger2" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="14sp"
-                        android:text="패스트"/>
+                        android:layout_marginLeft="4dp"
+                        android:text="패스트"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </GridLayout>
         </LinearLayout>

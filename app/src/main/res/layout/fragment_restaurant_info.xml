@@ -63,6 +63,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginRight="58dp"
+                                android:fontFamily="@font/nanumsquareround_otfeb"
                                 android:textColor="#090809"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -151,8 +152,8 @@
                             android:layout_marginRight="16dp"
                             android:layout_marginBottom="10dp"
                             android:text="TextView"
-                            android:textIsSelectable="true"
-                            android:textColor="#222222" />
+                            android:textColor="#222222"
+                            android:textIsSelectable="true" />
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_phoneNumberTxt"
@@ -163,12 +164,9 @@
                             android:layout_marginRight="16dp"
                             android:layout_marginBottom="13dp"
                             android:text="TextView"
-                            android:textIsSelectable="true"
-                            android:textColor="#222222" />
+                            android:textColor="#222222"
+                            android:textIsSelectable="true" />
                     </LinearLayout>
-
-
-
                 </LinearLayout>
             </LinearLayout>
 

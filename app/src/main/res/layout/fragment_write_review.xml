@@ -60,6 +60,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginRight="58dp"
+                                android:fontFamily="@font/nanumsquareround_otfeb"
                                 android:lineSpacingExtra="6sp"
                                 android:text="TextView"
                                 android:textColor="#222222"
