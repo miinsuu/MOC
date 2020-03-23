@@ -14,6 +14,7 @@ public class User {
     private String userUID = null; // 사용자 UID , 중복불가 , 사용자구분 기준 , 서버측에서 사용자들을 구별할 수 있는 identity
     private String nickname; // 리뷰작성시 닉네임
     private String usersMapName; // users Cellection에 저장되는 Map의 무작위 String이름
+    private String loginAccount; // 로그인 계정 종류 (email / google / facebook)
 
     private User(){
 
@@ -33,8 +34,9 @@ public class User {
                 JsonObject jobj = element.getAsJsonObject();
                 nickname = jobj.get("nick").getAsString();
                 usersMapName = jobj.get("usersMapName").getAsString();
+                loginAccount =  jobj.get("account").getAsString();
 
-                Log.d("login", nickname + " : " +usersMapName );
+                Log.e("GOOGLE정보체크", "닉네임: "+nickname + ", 로그인계정: " +loginAccount );
             }
         });
     }
@@ -59,4 +61,11 @@ public class User {
         this.user = new User();
     }
 
+    public String getLoginAccount() {
+        return loginAccount;
+    }
+
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount;
+    }
 }

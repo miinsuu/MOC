@@ -246,6 +246,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="48dp"
+                    android:hint="사진은 한장만 추가 가능합니다."
+                    android:padding="20dp"
                     android:background="#F2F2F2"
                     android:ems="10"
                     android:gravity="start|top"

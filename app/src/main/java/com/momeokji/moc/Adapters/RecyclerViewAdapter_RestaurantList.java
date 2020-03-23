@@ -148,7 +148,8 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
             valueAnimator.start();
         }
         public void TurnArrow(ImageButton arrow, boolean direction) {
-            Animation animation = AnimationUtils.loadAnimation(mainActivity.getApplicationContext(), direction ? R.anim.anim_rotate_counter_clockwise_with_arrow_down : R.anim.anim_rotate_clockwise_with_arrow_up);
+            Animation animation = AnimationUtils.loadAnimation(mainActivity.getApplicationContext(), (direction ? R.anim.anim_rotate_counter_clockwise_with_arrow_down : R.anim.anim_rotate_clockwise_with_arrow_up));
+            animation.setFillAfter(true);
             arrow.startAnimation(animation);
         }
     }

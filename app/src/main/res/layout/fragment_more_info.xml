@@ -112,47 +112,47 @@
             android:background="#6FE4DBDB"/>
         <!--내가 쓴 리뷰 버튼 끝-->
 
-        <!--로그아웃 버튼 시작-->
-        <LinearLayout
-            android:id="@+id/moreInfo_fragment_logout_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="17dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
-                android:text="로그아웃"
-                android:textSize="18sp"
-                android:textColor="@color/black"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/logout"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="right">
-                <ImageView
-                    android:layout_width="11dp"
-                    android:layout_height="11dp"
-                    android:tint="@color/darkGray"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="25dp"
-                    android:src="@drawable/rightarrowicon"/>
-            </LinearLayout>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="17dp"
-            android:background="#6FE4DBDB"/>
-        <!--로그아웃 버튼 끝-->
+<!--        &lt;!&ndash;로그아웃 버튼 시작&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/moreInfo_fragment_logout_linearLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="17dp"-->
+<!--            android:layout_marginLeft="17dp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:text="로그아웃"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textColor="@color/black"/>-->
+<!--            <ImageView-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/logout"/>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:gravity="right">-->
+<!--                <ImageView-->
+<!--                    android:layout_width="11dp"-->
+<!--                    android:layout_height="11dp"-->
+<!--                    android:tint="@color/darkGray"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginRight="25dp"-->
+<!--                    android:src="@drawable/rightarrowicon"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginTop="17dp"-->
+<!--            android:background="#6FE4DBDB"/>-->
+<!--        &lt;!&ndash;로그아웃 버튼 끝&ndash;&gt;-->
 
 
 

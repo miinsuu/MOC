@@ -33,11 +33,12 @@ public class RestaurantInfoFragment extends Fragment {
     private double lat;
     private double lng;
 
-    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.6f;
-    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.3f;
+    private static final float PERCENTAGE_TO_HIDE_FloatingBtn = 0.3f;
     private static final int ALPHA_ANIMATIONS_DURATION              = 50;
     private TextView restaurantInfo_ToolbarNameTxt;
     private boolean mIsTheTitleVisible          = false;
+    private boolean mIsTheFloatingBtnVisible = true;
 
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
@@ -77,9 +78,13 @@ public class RestaurantInfoFragment extends Fragment {
                 float percentage = (float) Math.abs(i) / (float) maxScroll;
 
                 handleToolbarTitleVisibility(percentage);
+                handlefloatingBtnVisibility(percentage);
+
             }
         });
         startAlphaAnimation(restaurantInfo_ToolbarNameTxt,0,View.INVISIBLE);
+        MainActivity.myList_btn.show();
+
 
 
         //가게 상세페이지에서 뒤로가기
@@ -89,6 +94,7 @@ public class RestaurantInfoFragment extends Fragment {
                 ((MainActivity)getActivity()).onBackPressed();
             }
         });
+
 
         //가게 전화번호로 전화다이얼화면 띄우기
         callBtn.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +170,20 @@ public class RestaurantInfoFragment extends Fragment {
             if (mIsTheTitleVisible) {
                 startAlphaAnimation(restaurantInfo_ToolbarNameTxt,ALPHA_ANIMATIONS_DURATION,View.INVISIBLE);
                 mIsTheTitleVisible = false;
+            }
+        }
+    }
+    private void handlefloatingBtnVisibility(float percentage) {
+        if (percentage >= PERCENTAGE_TO_HIDE_FloatingBtn) {
+            if(mIsTheFloatingBtnVisible) {
+                MainActivity.myList_btn.hide();
+                mIsTheFloatingBtnVisible = false;
+            }
+
+        } else {
+            if (!mIsTheFloatingBtnVisible) {
+                MainActivity.myList_btn.show();
+                mIsTheFloatingBtnVisible = true;
             }
         }
     }

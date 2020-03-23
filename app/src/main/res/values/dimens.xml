@@ -10,11 +10,12 @@
     <dimen name="location_select_bar_height_negative">-48dp</dimen>
 
     <dimen name="partition_height">2dp</dimen>
+    <dimen name="basic_margin">5dp</dimen>
 
     <dimen name="login_login_info_top_margin">50dp</dimen>
     <dimen name="login_login_btn_width">300dp</dimen>
 
-    <dimen name="floating_btn_init_bottom_margin">61dp</dimen>
+    <dimen name="floating_btn_lifted_bottom_margin">61dp</dimen>
 
     <dimen name="replace_fragment_slide_duration">300</dimen>
     <dimen name="expand_expandable_recyclerview_rotate_duration">300</dimen>

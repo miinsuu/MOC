@@ -1,14 +1,13 @@
 package com.momeokji.moc;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_RestaurantListPage;
@@ -69,8 +68,6 @@ public class RestaurantListFragment extends Fragment {
                 tabLayout.setScrollPosition(lastTabPos, 0f, true); // 딜레이 후 setTab을 해주면 0번째 탭에서부터 스크롤되어 눈아픔
             }
         }, 10);
-
-        ((MainActivity)getActivity()).displayedFragmentManager.UpdateMyListBtnPosition();
     }
 
     @Override

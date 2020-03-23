@@ -2,6 +2,7 @@ package com.momeokji.moc;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -52,13 +54,32 @@ public class RestaurantInfoReviewTabPage extends Fragment {
         // 어댑터 초기화
         adapterReviewTabPage = new RecyclerViewAdapter_ReviewTabPage(context, mGlideRequestManager);
 
-
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayedFragmentManager.ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
             }
         });
+
+        // 스와이프 새로고침
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.reviewUpdate_swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // 3초동안 업데이트 애니메이션 작동
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        // 새로고침 완료
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        // DB 새로고침 코드
+                        refreshFragement();
+                    }
+                }, 3000); // 3초 딜레이
+
+
+            }
+        });
+
 
         // DB에서 리뷰 불러오기
         getReviewsFromDB();
@@ -87,8 +108,14 @@ public class RestaurantInfoReviewTabPage extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        //adapterReviewTabPage.notifyDataSetChanged();
         // DB연동 화면 리프레쉬
         //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    private void updateReview() {
+        refreshFragement();
     }
 
     /*

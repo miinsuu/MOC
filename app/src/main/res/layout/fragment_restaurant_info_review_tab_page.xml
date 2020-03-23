@@ -28,12 +28,19 @@
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/review_recyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/itemview_review_tab_page"/>
+            android:layout_height="match_parent"
+            android:id="@+id/reviewUpdate_swipe_layout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/review_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/itemview_review_tab_page"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 
