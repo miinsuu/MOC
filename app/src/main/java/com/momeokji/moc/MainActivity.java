@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentStackManager = new FragmentStackManager(this);
     }
     public static MainActivity getInstance() {
+        if (mainActivity == null)
+            return new MainActivity();
         return mainActivity;
     }
 

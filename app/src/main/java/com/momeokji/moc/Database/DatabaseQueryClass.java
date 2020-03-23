@@ -1,7 +1,6 @@
 package com.momeokji.moc.Database;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -11,7 +10,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,7 +20,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.momeokji.moc.data.User;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -311,6 +308,7 @@ public class DatabaseQueryClass {
                                       final String reviewImageUrl,
                                       final String reviewShopName, final MyOnSuccessListener myOnSuccessListener)
         {
+
             Map<String, Object> review  = new HashMap<>();
             review.put("menu", reviewMenuName);
             review.put("content",reviewText );

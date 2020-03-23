@@ -79,4 +79,8 @@ public class RestaurantListFragment extends Fragment {
     public void setTab(int tabPos) {
         tabLayout.getTabAt(tabPos).select();
     }
+
+    public void setLastTabPos(int lastTabPos) {
+        this.lastTabPos = lastTabPos;
+    }
 }

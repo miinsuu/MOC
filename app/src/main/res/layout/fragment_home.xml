@@ -93,7 +93,7 @@
                         android:id="@+id/korean_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/korean" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                         android:id="@+id/chinese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/nudle" />
+                        android:background="@drawable/chinese" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                         android:id="@+id/japanese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/japanese" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -154,9 +154,11 @@
 
                     <Button
                         android:id="@+id/western_btn"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/pizza" />
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/pizzaw" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -171,11 +173,12 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
+
                     <Button
                         android:id="@+id/snack_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/snack" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -215,7 +218,7 @@
                         android:id="@+id/night_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/night" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -233,15 +236,20 @@
 
                     <Button
                         android:id="@+id/fast_btn"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/burger2" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="14sp"
-                        android:text="패스트"/>
+                        android:layout_marginLeft="4dp"
+                        android:text="패스트"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </GridLayout>
         </LinearLayout>

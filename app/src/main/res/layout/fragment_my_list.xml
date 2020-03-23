@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/myList_title_relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
