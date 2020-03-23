@@ -1,5 +1,6 @@
 package com.momeokji.moc;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -10,8 +11,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -62,6 +65,7 @@ public class MyListFragment extends DialogFragment {
         };
         myList_allDelete_txt.setOnClickListener(allDeleteOnClickListener);
         myList_allDelete_imgbtn.setOnClickListener(allDeleteOnClickListener);
+
 
         return view;
     }
