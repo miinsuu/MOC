@@ -93,7 +93,7 @@
                         android:id="@+id/korean_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/korean" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                         android:id="@+id/chinese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/nudle" />
+                        android:background="@drawable/chinese" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                         android:id="@+id/japanese_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/japanese" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                         android:id="@+id/western_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/pizza" />
+                        android:background="@drawable/western" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                         android:id="@+id/snack_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/snack" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                         android:id="@+id/night_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/night" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
                         android:id="@+id/fast_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/mainicon" />
+                        android:background="@drawable/fast" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
