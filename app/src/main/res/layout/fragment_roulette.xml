@@ -15,7 +15,7 @@
             android:id="@+id/roulette_items_gridLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="150dp"
             android:layout_centerHorizontal="true"
             android:columnCount="3">
             <LinearLayout
@@ -23,7 +23,7 @@
                 <ImageButton
                     android:id="@+id/item1"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/korean"/>
                 <TextView
                     style="@style/roulette_item_txt"
                     android:text="한식"/>
@@ -33,80 +33,78 @@
                 <ImageButton
                     android:id="@+id/item2"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/chinese"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="중식"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item3"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/japanese"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="일식"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item4"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/western"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="양식"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/roulette_relativeLayout"
+                android:layout_gravity="center">
+                <ImageButton
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/momeokji_ci_black"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item5"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/snack"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="분식"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item6"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/chicken"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="치킨"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item7"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/night"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="야식"/>
             </LinearLayout>
             <LinearLayout
                 style="@style/roulette_relativeLayout">
                 <ImageButton
                     android:id="@+id/item8"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
+                    android:background="@drawable/fast"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="한식"/>
-            </LinearLayout>
-            <LinearLayout
-                style="@style/roulette_relativeLayout">
-                <ImageButton
-                    android:id="@+id/item9"
-                    style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/food"/>
-                <TextView
-                    style="@style/roulette_item_txt"
-                    android:text="한식"/>
+                    android:text="패스트"/>
             </LinearLayout>
         </GridLayout>
 

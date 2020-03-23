@@ -17,7 +17,7 @@ import com.momeokji.moc.data.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static MainActivity mainActivity;
+    public static MainActivity mainActivity = null;
     public static DisplayedFragmentManager displayedFragmentManager;
     public static FragmentStackManager fragmentStackManager;
     private FloatingActionButton myList_btn;
@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         this.mainActivity = this;
         displayedFragmentManager = new DisplayedFragmentManager(this);
         fragmentStackManager = new FragmentStackManager(this);
+    }
+    public static MainActivity getInstance() {
+        if (mainActivity == null)
+            return new MainActivity();
+        return mainActivity;
     }
 
     @Override

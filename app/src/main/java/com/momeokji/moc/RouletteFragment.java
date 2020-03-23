@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.momeokji.moc.Helper.Constants;
+
 import java.util.Random;
 
 import static com.momeokji.moc.MainActivity.displayedFragmentManager;
@@ -28,7 +30,6 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
  */
 public class RouletteFragment extends Fragment {
 
-    final static private int CATEGORY_NUM = 9;
     final static private int ANIMATION_DIRECT_RIGHT = 0;
     final static private int ANIMATION_DIRECT_LEFT = 1;
 
@@ -55,49 +56,45 @@ public class RouletteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_roulette, container, false);
 
-        items = new ImageButton[9];
+        items = new ImageButton[8];
         items[0] = view.findViewById(R.id.item1);
         items[1] = view.findViewById(R.id.item2);
         items[2] = view.findViewById(R.id.item3);
-        items[3] = view.findViewById(R.id.item6);
+        items[3] = view.findViewById(R.id.item4);
         items[4] = view.findViewById(R.id.item5);
-        items[5] = view.findViewById(R.id.item4);
+        items[5] = view.findViewById(R.id.item6);
         items[6] = view.findViewById(R.id.item7);
         items[7] = view.findViewById(R.id.item8);
-        items[8] = view.findViewById(R.id.item9);
-        for(int i = 0; i < CATEGORY_NUM; i++) {
+        for(int i = 0; i < Constants.COUNTS.CATEGORY_NUM; i++) {
             final int position = i + 1;
             items[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity mainActivity = (MainActivity)getActivity();
-                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
-                    mainActivity.displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
+                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(MainActivity.getInstance(), new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
+                    MainActivity.getInstance().displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
                 }
             });
             items[i].setClickable(false);
         }
-        unoutlinedIcons = new Drawable[9];
-        unoutlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.food);
-        unoutlinedIcons[8] = ContextCompat.getDrawable(getContext(), R.drawable.food);
+        unoutlinedIcons = new Drawable[8];
+        unoutlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.korean);
+        unoutlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.chinese);
+        unoutlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.japanese);
+        unoutlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.western);
+        unoutlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.snack);
+        unoutlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.chicken);
+        unoutlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.night);
+        unoutlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fast);
 
-        outlinedIcons = new Drawable[9];
-        outlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
-        outlinedIcons[8] = ContextCompat.getDrawable(getContext(), R.drawable.fork);
+        outlinedIcons = new Drawable[8];
+        outlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.korean_outlined);
+        outlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.chinese_outlined);
+        outlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.japanese_outlined);
+        outlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.western_outlined);
+        outlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.snack_outlined);
+        outlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.chicken_outlined);
+        outlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.night_outlined);
+        outlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fast_outlined);
 
         lever_up_imgbtn = view.findViewById(R.id.roulette_lever_up_imgbtn);
         lever_down_imgbtn = view.findViewById(R.id.roulette_lever_down_imgbtn);
@@ -131,7 +128,7 @@ public class RouletteFragment extends Fragment {
                 }
 
                 if (targetItemIndex != 0)
-                    items[CalculateZigZagIndex(targetItemIndex-1)].setBackground(unoutlinedIcons[CalculateZigZagIndex(targetItemIndex)]);
+                    items[CalculateZigZagIndex(targetItemIndex-1)].setBackground(unoutlinedIcons[CalculateZigZagIndex(targetItemIndex-1)]);
                 items[CalculateZigZagIndex(targetItemIndex)].setBackground(outlinedIcons[CalculateZigZagIndex(targetItemIndex)]);
                 targetItemIndex++;
                 nextItemChooseInterval += INCREMENT_ROULETTE_INTERVAL + (randomInterval.nextInt(RANDOM_INCREMENT_ROULETTE_INTERVAL*2)-RANDOM_INCREMENT_ROULETTE_INTERVAL);
@@ -162,7 +159,17 @@ public class RouletteFragment extends Fragment {
     }
 
     public int CalculateZigZagIndex(int targetItemIndex) {
-        return targetItemIndex % 6  +  6*((targetItemIndex/6)%2) * (1- ((targetItemIndex/3)%2));
+        switch (targetItemIndex % Constants.COUNTS.CATEGORY_NUM) {
+            case 0: return 0;
+            case 1: return 1;
+            case 2: return 2;
+            case 3: return 4;
+            case 4: return 7;
+            case 5: return 6;
+            case 6: return 5;
+            case 7: return 3;
+            default: return -1;
+        }
     }
     public void SetLeverUpDown(boolean isLeverUp) {
         if(isLeverUp) {
