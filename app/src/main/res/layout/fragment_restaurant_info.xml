@@ -63,6 +63,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginRight="58dp"
+                                android:fontFamily="@font/nanumsquareround_otfb"
                                 android:textColor="#090809"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -144,7 +145,7 @@
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_addressTxt"
-                            android:layout_width="178dp"
+                            android:layout_width="198dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="13dp"
@@ -155,7 +156,7 @@
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                            android:layout_width="178dp"
+                            android:layout_width="198dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
