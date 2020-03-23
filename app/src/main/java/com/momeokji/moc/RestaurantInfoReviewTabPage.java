@@ -74,7 +74,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
                         // DB 새로고침 코드
                         refreshFragement();
                     }
-                }, 3000); // 3초 딜레이
+                }, 4000); // 3.5초 딜레이
 
 
             }

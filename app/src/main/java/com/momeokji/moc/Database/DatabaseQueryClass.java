@@ -311,6 +311,7 @@ public class DatabaseQueryClass {
                                       final String reviewImageUrl,
                                       final String reviewShopName, final MyOnSuccessListener myOnSuccessListener)
         {
+
             Map<String, Object> review  = new HashMap<>();
             review.put("menu", reviewMenuName);
             review.put("content",reviewText );
