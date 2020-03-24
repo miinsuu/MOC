@@ -26,7 +26,7 @@
             android:paddingRight="15dp"
             android:text="리뷰쓰기"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <View
             android:layout_width="match_parent"
