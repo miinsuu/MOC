@@ -233,6 +233,7 @@
             android:id="@+id/menuReviewTabBar_layout"
             android:layout_width="200dp"
             android:layout_height="40dp"
+            app:tabIndicatorHeight="3.8dp"
             app:tabTextAppearance="@style/menu_reviewTab">
 
             <com.google.android.material.tabs.TabItem
@@ -246,6 +247,11 @@
                 android:text="리뷰" />
 
         </com.google.android.material.tabs.TabLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/partition_height"
+            android:background="#6FE4DBDB"/>
 
 
     </com.google.android.material.appbar.AppBarLayout>

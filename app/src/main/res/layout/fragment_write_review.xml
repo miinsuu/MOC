@@ -91,7 +91,6 @@
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
                                 android:textSize="12sp" />
-                                android:singleLine="true"/>
                         </LinearLayout>
 
                     </RelativeLayout>
