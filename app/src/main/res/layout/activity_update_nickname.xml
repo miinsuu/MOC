@@ -12,11 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="17dp"
-        android:layout_marginBottom="17dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="17dp">
+        <Button
+            android:id="@+id/updateNickname_back_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:background="@drawable/back" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="43dp"
             android:gravity="center"
             android:text="내 정보 수정"
             android:textSize="18sp"
@@ -50,7 +57,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edittextcustom"
             android:padding="15dp"
-            android:hint="새로운 닉네임을 입력해 주세요."/>
+            android:hint="새로운 닉네임을 입력해 주세요. (10자 이내)"/>
 
         <Button
             android:id="@+id/updateNickname_acticity_updateBtn"
