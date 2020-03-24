@@ -52,7 +52,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="106dp"
+                            android:layout_toRightOf="@id/imageView"
+                            android:layout_alignBottom="@id/imageView"
                             android:orientation="vertical">
 
                             <TextView
@@ -65,7 +66,7 @@
                                 android:layout_marginRight="58dp"
                                 android:fontFamily="@font/nanumsquareround_otfeb"
                                 android:textColor="#090809"
-                                android:textSize="24sp"
+                                android:textSize="24dp"
                                 android:textStyle="bold" />
 
 
@@ -74,12 +75,12 @@
                                 android:layout_width="196dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="7dp"
                                 android:layout_marginRight="58dp"
                                 android:lineSpacingExtra="5dp"
                                 android:text="15000 - 25000 "
                                 android:textColor="#777777"
-                                android:textSize="12sp" />
+                                android:textSize="12dp" />
 
 
                             <com.momeokji.moc.CustomView.MarqueeTextView
@@ -93,7 +94,7 @@
                                 android:marqueeRepeatLimit="marquee_forever"
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
-                                android:textSize="12sp" />
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -124,6 +125,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="10dp"
+                            android:textSize="14dp"
                             android:text="주소" />
 
                         <TextView
@@ -132,8 +134,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="15dp"
-                            android:lineSpacingExtra="10dp"
+                            android:layout_marginBottom="13dp"
+                            android:textSize="14dp"
                             android:text="전화" />
                     </LinearLayout>
 
@@ -146,24 +148,26 @@
                         <TextView
                             android:id="@+id/restaurantInfoPage_addressTxt"
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="13dp"
                             android:layout_marginRight="16dp"
                             android:layout_marginBottom="10dp"
                             android:text="TextView"
+                            android:textSize="14dp"
                             android:textColor="#222222"
                             android:textIsSelectable="true" />
 
                         <TextView
                             android:id="@+id/restaurantInfoPage_phoneNumberTxt"
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="16dp"
                             android:layout_marginBottom="13dp"
                             android:text="TextView"
+                            android:textSize="14dp"
                             android:textColor="#222222"
                             android:textIsSelectable="true" />
                     </LinearLayout>
@@ -202,7 +206,7 @@
                         android:layout_marginLeft="24dp"
                         android:text="TextView"
                         android:textColor="#222222"
-                        android:textSize="20sp" />
+                        android:textSize="20dp" />
 
                     <Button
                         android:id="@+id/restaurantInfoPage_addressMapBtn"

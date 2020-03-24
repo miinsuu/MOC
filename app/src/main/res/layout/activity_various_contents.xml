@@ -26,7 +26,7 @@
             android:layout_marginRight="43dp"
             android:gravity="center"
             android:text="다른 주제 더보기"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="@color/black"/>
     </LinearLayout>
     <View
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="숭실대 고민사거리 소식 !"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="@color/black"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="2019 숭실 어워드"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="@color/black"/>
         <ImageView
             android:layout_width="25dp"
@@ -113,7 +113,7 @@
         android:layout_height="match_parent"
         android:text="새로운 소식들을 준비중입니다..."
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="20dp"/>
 
 
 

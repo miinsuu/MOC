@@ -29,7 +29,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="숭실대학교"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
 <!--        <Spinner

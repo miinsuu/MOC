@@ -21,10 +21,12 @@
             android:id="@+id/alertDialogItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:fontFamily="@font/nanumsquareround_otfb"
+            android:textSize="15dp"
             android:textColor="@color/black"
             android:text="동경야네"
-            android:layout_centerInParent="true"/>
+            android:layout_alignBottom="@id/alertDialogItemImageView"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <View

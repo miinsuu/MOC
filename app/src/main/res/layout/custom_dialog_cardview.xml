@@ -20,8 +20,9 @@
             android:layout_marginBottom="30dp"
             android:gravity="center"
             android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareround_otfeb"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:text="2019 숭실대 최고의 맛집은 ?"/>
 
         <ListView
