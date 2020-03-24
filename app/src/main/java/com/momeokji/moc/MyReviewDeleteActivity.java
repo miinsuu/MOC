@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -33,6 +35,7 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_review_delete);
 
+        Button myReview_back_btn = findViewById(R.id.myReview_back_btn); // 뒤로가기 버튼
         myreview_recyclerView = findViewById(R.id.myreview_recyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -86,6 +89,15 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        // 뒤로가기 버튼 클릭 시
+        myReview_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 뒤로가기
+                finish();
             }
         });
 

@@ -40,7 +40,8 @@
         <com.momeokji.moc.CustomView.BackPressEditText
             android:id="@+id/signup_nickname_edittxt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="10글자 이내"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

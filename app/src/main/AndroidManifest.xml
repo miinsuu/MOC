@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/icon_launcher_moc_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyReviewDeleteActivity"></activity>
+        <activity android:name=".VariousContentsActivity"></activity>
+        <activity android:name=".EventPageActivity" />
+        <activity android:name=".MyReviewDeleteActivity" />
         <activity android:name=".ViewReviewImageActivity" />
         <activity android:name=".UpdateNicknameActivity" />
 
@@ -31,9 +33,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".Opening"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Opening">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

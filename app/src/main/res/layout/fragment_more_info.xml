@@ -10,9 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="내 정보"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="2dp"
             android:background="#6FE4DBDB"/>
 
         <!--유저닉네임 수정 버튼 시작-->
@@ -32,8 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
                 android:text="안녕하세요,"
                 android:textColor="#777777"
                 android:textSize="16sp"/>
@@ -42,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="3dp"
+                android:layout_marginRight="2dp"
                 android:text="NickName"
                 android:textColor="#222222"
                 android:textSize="18sp"/>
