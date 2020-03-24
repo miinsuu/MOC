@@ -15,8 +15,8 @@
         android:background="@color/colorAccent">
         <ImageView
             android:id="@+id/location_img"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
+            android:layout_width="68dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
