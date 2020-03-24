@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:paddingTop="9dp"
         android:paddingBottom="9dp"
-        android:background="@color/app_color_start">
+        android:background="@color/colorAccent">
         <ImageView
             android:id="@+id/location_img"
             android:layout_width="50dp"

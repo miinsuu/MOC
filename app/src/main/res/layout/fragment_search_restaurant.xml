@@ -15,16 +15,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/searchRestaurant_back_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/i_arrow_back"
+                android:background="@drawable/back"
                 style="?android:attr/borderlessButtonStyle" />
 
             <TextView
@@ -34,7 +34,13 @@
                 android:text="검색"
                 android:textSize="21sp"
                 android:textColor="@color/black"/>
+
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="20dp"
+            android:background="#6FE4DBDB"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="312dp"
