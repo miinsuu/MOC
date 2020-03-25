@@ -27,7 +27,7 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
  * A simple {@link Fragment} subclass.
  */
 public class RouletteFragment extends Fragment {
-
+    private static RouletteFragment rouletteFragment = null;
     final static private int CATEGORY_NUM = 9;
     final static private int ANIMATION_DIRECT_RIGHT = 0;
     final static private int ANIMATION_DIRECT_LEFT = 1;
@@ -48,6 +48,12 @@ public class RouletteFragment extends Fragment {
 
     public RouletteFragment() {
         // Required empty public constructor
+    }
+
+    public static RouletteFragment getInstance() {
+        if (rouletteFragment == null)
+            rouletteFragment = new RouletteFragment();
+        return rouletteFragment;
     }
 
 
@@ -71,7 +77,7 @@ public class RouletteFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     MainActivity mainActivity = (MainActivity)getActivity();
-                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(mainActivity, new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
+                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
                     mainActivity.displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
                 }
             });

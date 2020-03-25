@@ -42,8 +42,7 @@ public class DisplayedFragmentManager {
         final FragmentManager fragmentManager = fragmentManagers[level];
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String targetFragmentClassName = targetFragment.getClass().getName();
-        Fragment removalFragment = null;
-        final Fragment tempRemovalFragment;
+        Fragment removalFragment;
 
         if (fragmentStackManager == null)
             return false;

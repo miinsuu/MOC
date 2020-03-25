@@ -17,11 +17,18 @@ import com.momeokji.moc.R;
 
 public class LocationSelectFragment extends Fragment {
 
+    private static LocationSelectFragment locationSelectFragment = null;
     private Spinner locationSelect_spinner;
     private TextView location_txt;
 
     public LocationSelectFragment() {
         // Required empty public constructor
+    }
+
+    public static LocationSelectFragment getInstance() {
+        if (locationSelectFragment == null)
+            locationSelectFragment =  new LocationSelectFragment();
+        return locationSelectFragment;
     }
 
 

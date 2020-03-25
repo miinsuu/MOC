@@ -13,16 +13,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 
 public class MainContextAndNavigationBarFragment extends Fragment {
 
-    private MainActivity mainActivity;
-    private Fragment mainContextWithLocationSelect, previousMainContextWithLocationSelect;
+    private static MainContextAndNavigationBarFragment mainContextAndNavigationBarFragment = null;
+    private Fragment mainContextWithLocationSelect;
     private NavigationBarFragment navigationBarFragment;
 
-    public MainContextAndNavigationBarFragment(MainActivity mainActivity, Fragment mainContextWithLocationSelect) {
-        this.mainActivity = mainActivity;
+    public MainContextAndNavigationBarFragment() {
+    }
+    public MainContextAndNavigationBarFragment(Fragment mainContextWithLocationSelect) {
         this.mainContextWithLocationSelect = mainContextWithLocationSelect;
+    }
+
+    public static MainContextAndNavigationBarFragment getInstance(Fragment mainContextWithLocationSelect) {
+        if (mainContextAndNavigationBarFragment == null)
+            mainContextAndNavigationBarFragment = new MainContextAndNavigationBarFragment();
+        mainContextAndNavigationBarFragment.mainContextWithLocationSelect = mainContextWithLocationSelect;
+        return mainContextAndNavigationBarFragment;
     }
 
 
@@ -30,15 +40,15 @@ public class MainContextAndNavigationBarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_context_and_navigation_bar, container, false);
 
-        mainActivity.displayedFragmentManager.fragmentManagers[1] = getChildFragmentManager();
+        displayedFragmentManager.fragmentManagers[1] = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
 
         if (getChildFragmentManager().findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()) == null)
             fragmentTransaction.add(R.id.mainContextWithLocationSelect_frameLayout, mainContextWithLocationSelect, mainContextWithLocationSelect.getClass().getName());
 
         if (getChildFragmentManager().findFragmentByTag(NavigationBarFragment.class.getName()) == null) {
-            navigationBarFragment = new NavigationBarFragment();
-            mainActivity.displayedFragmentManager.navigationBar = navigationBarFragment;
+            navigationBarFragment = NavigationBarFragment.getInstance();
+            displayedFragmentManager.navigationBar = navigationBarFragment;
             fragmentTransaction.add(R.id.navigationBar_frameLayout, navigationBarFragment, navigationBarFragment.getClass().getName());
         }
 
@@ -52,7 +62,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
     }
     public void setMainContextWithLocationSelect(Fragment mainContextWithLocationSelect) {
         if (this.mainContextWithLocationSelect == mainContextWithLocationSelect) {
-            previousMainContextWithLocationSelect = this.mainContextWithLocationSelect;
             this.mainContextWithLocationSelect = mainContextWithLocationSelect;
         }
     }

@@ -15,23 +15,25 @@ import android.view.ViewGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.Helper.BottomNavigationHelper;
 import com.momeokji.moc.Helper.Constants;
+import com.momeokji.moc.data.Restaurant;
 
 import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 public class NavigationBarFragment extends Fragment {
 
+    private static NavigationBarFragment navigationBarFragment = null;
     private BottomNavigationView bottomNavigationView;
-    private MainActivity mainActivity = null;
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
 
-    public static NavigationBarFragment newInstance() {
-        return new NavigationBarFragment();
+    public static NavigationBarFragment getInstance() {
+        if (navigationBarFragment == null)
+            navigationBarFragment = new NavigationBarFragment();
+        return navigationBarFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
 
 
         onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,20 +51,15 @@ public class NavigationBarFragment extends Fragment {
                     case R.id.navigationBar_home_btn:
                         animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
-                        HomeFragment constructedHomeFragment = (HomeFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(HomeFragment.class.getName());
-                        if (constructedHomeFragment == null) {
-                            constructedHomeFragment = new HomeFragment();
-                        }
-
                         // 현재 frame에 LocationSelectFragment가 없는 frame 이라면 MainContextWithLocationSelectFragment로 교체
                         if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
                             mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
-                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(HomeFragment.getInstance());
                             displayedFragmentManager.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
                         }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 HomeFragment로 교체
                         else if (!(displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
-                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedHomeFragment);
-                            displayedFragmentManager.ReplaceFragment(2, constructedHomeFragment, animationDirection);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(HomeFragment.getInstance());
+                            displayedFragmentManager.ReplaceFragment(2, HomeFragment.getInstance(), animationDirection);
                         }
                         break;
 
@@ -72,20 +69,15 @@ public class NavigationBarFragment extends Fragment {
                         else
                             animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
-                        RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
-                        if (constructedRestaurantListFragment == null) {
-                            constructedRestaurantListFragment = new RestaurantListFragment();
-                        }
-
                         // 현재 frame에 LocationSelectFragment가 없는 frame 이라면 MainContextWithLocationSelectFragment로 교체
                         if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
                             mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedMainContextWithLocationSelectFragment);
-                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(RestaurantListFragment.getInstance());
                             displayedFragmentManager.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, animationDirection);
                         }   // frame은 있으나 메인컨텐츠가 다른 경우 컨텐츠만 RestaurantListFragment로 교체
                         else if (!(displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment)) {
-                            constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
-                            displayedFragmentManager.ReplaceFragment(2, constructedRestaurantListFragment, animationDirection);
+                            constructedMainContextWithLocationSelectFragment.setMainContext(RestaurantListFragment.getInstance());
+                            displayedFragmentManager.ReplaceFragment(2, RestaurantListFragment.getInstance(), animationDirection);
                         }
                         break;
 
@@ -95,26 +87,17 @@ public class NavigationBarFragment extends Fragment {
                         else
                             animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
-                        RouletteFragment constructedRouletteFragment = (RouletteFragment) displayedFragmentManager.fragmentManagers[1].findFragmentByTag(RouletteFragment.class.getName());
-                        if (constructedRouletteFragment == null) {
-                            constructedRouletteFragment = new RouletteFragment();
-                        }
-
                         if (!(curr_Level1_Fragment instanceof RouletteFragment))
-                            mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(constructedRouletteFragment);
-                            displayedFragmentManager.ReplaceFragment(1, constructedRouletteFragment, animationDirection);
+                            mainContextAndNavigationBarFragment.setMainContextWithLocationSelect(RouletteFragment.getInstance());
+                            displayedFragmentManager.ReplaceFragment(1, RouletteFragment.getInstance(), animationDirection);
                         break;
 
                     case R.id.navigationBar_more_btn:
                         animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
-                        MoreInfoFragment constructedMoreInfoFragment = (MoreInfoFragment) displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MoreInfoFragment.class.getName());
-                        if (constructedMoreInfoFragment == null) {
-                            constructedMoreInfoFragment = new MoreInfoFragment();
-                        }
 
                         if (!(curr_Level1_Fragment instanceof MoreInfoFragment))
-                            displayedFragmentManager.ReplaceFragment(1, constructedMoreInfoFragment, animationDirection);
+                            displayedFragmentManager.ReplaceFragment(1, MoreInfoFragment.getInstance(), animationDirection);
                         break;
                     default:
                 }

@@ -29,6 +29,7 @@ import java.util.List;
 
 
 public class RestaurantInfoFragment extends Fragment {
+    private static RestaurantInfoFragment restaurantInfoFragment = null;
     private Restaurant selectedRestaurant;
     private double lat;
     private double lng;
@@ -41,6 +42,14 @@ public class RestaurantInfoFragment extends Fragment {
 
     public RestaurantInfoFragment(Restaurant selectedRestaurant) {
         this.selectedRestaurant = selectedRestaurant;
+    }
+
+    public static RestaurantInfoFragment getInstance(Restaurant selectedRestaurant) {
+        if (restaurantInfoFragment == null)
+            restaurantInfoFragment = new RestaurantInfoFragment(selectedRestaurant);
+        else
+            restaurantInfoFragment.selectedRestaurant = selectedRestaurant;
+        return restaurantInfoFragment;
     }
 
 

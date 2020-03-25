@@ -12,25 +12,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+
 public class MainContextWithLocationSelectFragment extends Fragment {
 
-    private MainActivity mainActivity;
+    private static MainContextWithLocationSelectFragment mainContextWithLocationSelectFragment = null;
     private LocationSelectFragment locationSelectFragment;
     private Fragment mainContext;
 
-    public MainContextWithLocationSelectFragment(MainActivity mainActivity, Fragment mainContext) {
-        this.mainActivity = mainActivity;
+    public MainContextWithLocationSelectFragment(Fragment mainContext) {
         this.mainContext = mainContext;
+    }
+    public static MainContextWithLocationSelectFragment getInstance(Fragment mainContext) {
+        if (mainContextWithLocationSelectFragment == null)
+            mainContextWithLocationSelectFragment = new MainContextWithLocationSelectFragment(mainContext);
+        else
+            mainContextWithLocationSelectFragment.mainContext = mainContext;
+        return mainContextWithLocationSelectFragment;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_context_with_location_select, container, false);
-        mainActivity.displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
+        displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
 
         if (getChildFragmentManager().findFragmentByTag(LocationSelectFragment.class.getName()) == null) {
-            locationSelectFragment = new LocationSelectFragment();
-            mainActivity.displayedFragmentManager.locationSelect = locationSelectFragment;
+            locationSelectFragment = LocationSelectFragment.getInstance();
+            displayedFragmentManager.locationSelect = locationSelectFragment;
             fragmentTransaction.add(R.id.locationSelect_frameLayout, locationSelectFragment, locationSelectFragment.getClass().getName());
         }
 

@@ -40,19 +40,20 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 
 public class HomeFragment extends Fragment {
-    private MainActivity mainActivity;
+    private static HomeFragment homeFragment = null;
 
     public HomeFragment() {
     }
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static HomeFragment getInstance() {
+        if (homeFragment == null)
+            homeFragment = new HomeFragment();
+        return homeFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
 
         Log.e("Login확인","사용자UID=>"+User.getUser().getUserUID());
     }
@@ -79,7 +80,6 @@ public class HomeFragment extends Fragment {
         final View view = this.getView();
         final NavigationBarFragment tempNavBarFrag = displayedFragmentManager.navigationBar;
         final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
-
 
         Button[] categoryBtns = new Button[Constants.COUNTS.CATEGORY_NUM];
         categoryBtns[0] = view.findViewById(R.id.korean_btn);

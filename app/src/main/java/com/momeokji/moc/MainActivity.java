@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         displayedFragmentManager.fragmentManagers[0] = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = displayedFragmentManager.fragmentManagers[0].beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
-        fragmentTransaction.add(R.id.mainActivity_frameLayout, new MainContextAndNavigationBarFragment(this, new MainContextWithLocationSelectFragment(this, new HomeFragment())), MainContextAndNavigationBarFragment.class.getName()).addToBackStack(MainContextAndNavigationBarFragment.class.getName()).commit();
+        fragmentTransaction.add(R.id.mainActivity_frameLayout, MainContextAndNavigationBarFragment.getInstance(MainContextWithLocationSelectFragment.getInstance(HomeFragment.getInstance())), MainContextAndNavigationBarFragment.class.getName()).addToBackStack(MainContextAndNavigationBarFragment.class.getName()).commit();
 
         //* 나의 리스트 버튼 등록 *//
         myList_btn = findViewById(R.id.myList_btn);
