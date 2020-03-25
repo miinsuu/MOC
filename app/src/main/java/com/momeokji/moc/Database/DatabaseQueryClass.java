@@ -44,7 +44,7 @@ public class DatabaseQueryClass {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Shop", document.getId() + " => " + document.getData());
+                                Log.d("Shop", document.getId());
                                 dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                             }
                         } else {
@@ -62,7 +62,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -80,7 +80,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -97,7 +97,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -114,7 +114,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -131,7 +131,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -148,7 +148,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -165,7 +165,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {

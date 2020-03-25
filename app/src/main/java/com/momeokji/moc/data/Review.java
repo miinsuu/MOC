@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Review implements Serializable {
+    private String reviewRestaurantName;
     private String reviewMenuName;
     private String reviewNickName;
     private String reviewTime;
@@ -25,6 +26,7 @@ public class Review implements Serializable {
         Log.d("Review", obj.toString());
         Log.e("가게이름확인", obj.get("shopName").getAsString());
 
+        this.reviewRestaurantName = obj.get("shopName").getAsString();
         this.reviewMenuName = obj.get("menu").getAsString();
         this.reviewNickName = obj.get("nick").getAsString();
         this.reviewTime = obj.get("date").getAsString();
@@ -95,5 +97,13 @@ public class Review implements Serializable {
 
     public void setReviewId(String reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public String getReviewRestaurantName() {
+        return reviewRestaurantName;
+    }
+
+    public void setReviewRestaurantName(String reviewRestaurantName) {
+        this.reviewRestaurantName = reviewRestaurantName;
     }
 }
