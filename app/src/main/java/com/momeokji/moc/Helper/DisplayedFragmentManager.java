@@ -1,5 +1,6 @@
 package com.momeokji.moc.Helper;
 
+import android.os.Handler;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,6 +23,7 @@ public class DisplayedFragmentManager {
 
     private FloatingActionButton myList_btn;
     private boolean isPositionAbove = true;
+    private boolean isAnimating = false;
 
     public DisplayedFragmentManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -29,6 +31,9 @@ public class DisplayedFragmentManager {
 
     /*- Fragment 교체 함수 -*/
     public boolean ReplaceFragment(final int level, final Fragment targetFragment, int animationDirection) {
+        if (isAnimating)
+            return false;
+
         final FragmentManager fragmentManager = fragmentManagers[level];
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String targetFragmentClassName = targetFragment.getClass().getName();
@@ -80,6 +85,8 @@ public class DisplayedFragmentManager {
 
         fragmentTransaction.addToBackStack(targetFragmentClassName);
         fragmentStackManager.PushFragment(level);
+
+        setFlageIsAnimating();
         return true;
     }
 
@@ -121,4 +128,15 @@ public class DisplayedFragmentManager {
         myList_btn.startAnimation(animation);
         isPositionAbove = isTargetPositionAbove;
     }*/
+
+    public void setFlageIsAnimating() {
+        isAnimating = true;
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isAnimating = false;
+            }
+        }, Constants.DELAYS.ANIMATION_DELAY);
+    }
 }
