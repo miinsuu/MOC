@@ -190,7 +190,7 @@ public class WriteReview extends Fragment {
                     });
                 }
                 // 성공메시지
-                Toast.makeText(((MainActivity)getActivity()), "\""+restaurantName+"\" 리뷰가 작성되었습니다.\n리뷰를 새로고침 해주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(((MainActivity)getActivity()), "\""+restaurantName+"\" 리뷰가 작성되었습니다.\n\n리뷰를 새로고침 해주세요.", Toast.LENGTH_LONG).show();
                 // 업로드하고 리뷰페이지로 이동
                 goToReviewPage();
 
