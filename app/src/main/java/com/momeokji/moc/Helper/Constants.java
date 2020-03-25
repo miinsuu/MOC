@@ -9,7 +9,8 @@ public class Constants {
 
     public static class DELAYS {
         public static final int BACK_PRESS_TO_CLOSE_APP_DELAY = 1000;
-        public static final int LOADING_DELAY = 400;
+        public static final int LOADING_DELAY = 300;
+        public static final int ANIMATION_DELAY = 300;
     }
 
     public static class XML_DESIGN {

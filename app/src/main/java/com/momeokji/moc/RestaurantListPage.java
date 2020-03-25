@@ -58,7 +58,6 @@ public class RestaurantListPage extends Fragment {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);         // 레이아웃 매니저 등록
         final RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList((MainActivity)getActivity());
-        recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
 
         final ImageView loading_img;
         loading_img = view.findViewById(R.id.restaurantListPage_loading_img);
@@ -67,6 +66,7 @@ public class RestaurantListPage extends Fragment {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
                 restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
                 loading_img.clearAnimation();
                 loading_img.setVisibility(View.GONE);

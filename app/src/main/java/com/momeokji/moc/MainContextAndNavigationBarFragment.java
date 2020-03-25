@@ -68,10 +68,7 @@ public class MainContextAndNavigationBarFragment extends Fragment {
 
         return view;
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+
     public void setMainContextWithLocationSelect(Fragment mainContextWithLocationSelect) {
         if (this.mainContextWithLocationSelect == mainContextWithLocationSelect) {
             this.mainContextWithLocationSelect = mainContextWithLocationSelect;
@@ -86,7 +83,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
     }
 
     public BottomNavigationView.OnNavigationItemSelectedListener MakeOnNavigationItemSelectedListener() {
-
         return new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
