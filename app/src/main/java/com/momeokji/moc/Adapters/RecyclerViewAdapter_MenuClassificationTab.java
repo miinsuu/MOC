@@ -60,8 +60,12 @@ public class RecyclerViewAdapter_MenuClassificationTab extends RecyclerView.Adap
                 @Override
                 public void onClick(View v) {
                     if (MainActivity.getInstance() != null) {
-                        MainActivity.getInstance().restaurantDATA.MyListMenuList.add(new MyListMenu(menu, MainActivity.getInstance().restaurantDATA.selectedRestaurant.getRestaurantName()));
-                        Toast.makeText(MainActivity.getInstance(), "메뉴가 마이리스트에 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                        if(MainActivity.getInstance().restaurantDATA.MyListMenuList.contains(new MyListMenu(menu, MainActivity.getInstance().restaurantDATA.selectedRestaurant.getRestaurantName()))) {
+                            Toast.makeText(MainActivity.getInstance(), "이미 등록된 메뉴입니다.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            MainActivity.getInstance().restaurantDATA.MyListMenuList.add(new MyListMenu(menu, MainActivity.getInstance().restaurantDATA.selectedRestaurant.getRestaurantName()));
+                            Toast.makeText(MainActivity.getInstance(), "메뉴가 마이리스트에 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });

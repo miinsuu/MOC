@@ -15,7 +15,7 @@
             android:id="@+id/roulette_items_gridLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="120dp"
             android:layout_centerHorizontal="true"
             android:columnCount="3">
             <LinearLayout
@@ -26,6 +26,7 @@
                     android:background="@drawable/korean"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="한식"/>
             </LinearLayout>
             <LinearLayout
@@ -36,6 +37,7 @@
                     android:background="@drawable/chinese"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="중식"/>
             </LinearLayout>
             <LinearLayout
@@ -46,6 +48,7 @@
                     android:background="@drawable/japanese"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="일식"/>
             </LinearLayout>
             <LinearLayout
@@ -56,6 +59,7 @@
                     android:background="@drawable/western"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="양식"/>
             </LinearLayout>
             <LinearLayout
@@ -74,6 +78,7 @@
                     android:background="@drawable/snack"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="분식"/>
             </LinearLayout>
             <LinearLayout
@@ -84,6 +89,7 @@
                     android:background="@drawable/chicken"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="치킨"/>
             </LinearLayout>
             <LinearLayout
@@ -94,6 +100,7 @@
                     android:background="@drawable/night"/>
                 <TextView
                     style="@style/roulette_item_txt"
+                    android:textSize="14dp"
                     android:text="야식"/>
             </LinearLayout>
             <LinearLayout
@@ -104,7 +111,8 @@
                     android:background="@drawable/fast"/>
                 <TextView
                     style="@style/roulette_item_txt"
-                    android:text="패스트"/>
+                    android:textSize="14dp"
+                    android:text="패스트푸드"/>
             </LinearLayout>
         </GridLayout>
 
@@ -165,7 +173,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="랜덤뽑기"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textColor="@color/bbobki_text"/>
         </RelativeLayout>
     </RelativeLayout>

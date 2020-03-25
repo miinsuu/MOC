@@ -21,26 +21,28 @@
             android:layout_centerVertical="true"
             android:orientation="vertical"
             android:layout_marginLeft="17dp"
+            android:layout_marginRight="53dp"
             android:layout_toRightOf="@+id/myList_menuPhoto_img">
             <TextView
                 android:id="@+id/myList_menuName_Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="18dp"
+                android:fontFamily="@font/nanumsquareround_otfb"
                 android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/myList_menuPrice_Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/darkGray"/>
 
             <TextView
                 android:id="@+id/myList_restaurant_Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/darkGray"/>
         </LinearLayout>
 

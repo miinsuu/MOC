@@ -83,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == event.KEYCODE_ENTER) {  // 비밀번호 확인 입력란에서 키보드 엔터 누를 때
                     RemoveFocusFromEditText(signup_password_check_edittxt);                         // 포커스 해제
-                    SignUpWithMoc(signup_email_edittxt.getText().toString(), signup_password_edittxt.getText().toString(), signup_password_check_edittxt.getText().toString(), signup_nickname_edittxt.getText().toString()); // 일반 회원가입 진행
+                    SignUpWithMoc(signup_email_edittxt.getText().toString().trim(), signup_password_edittxt.getText().toString().trim(), signup_password_check_edittxt.getText().toString().trim(), signup_nickname_edittxt.getText().toString().trim()); // 일반 회원가입 진행
 
                     return true;
                 }
@@ -104,7 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
         signup_normal_sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignUpWithMoc(signup_email_edittxt.getText().toString(), signup_password_edittxt.getText().toString(), signup_password_check_edittxt.getText().toString(), signup_nickname_edittxt.getText().toString());
+                SignUpWithMoc(signup_email_edittxt.getText().toString().trim(), signup_password_edittxt.getText().toString().trim(), signup_password_check_edittxt.getText().toString().trim(), signup_nickname_edittxt.getText().toString().trim());
             }
         });
 
@@ -122,6 +122,12 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         } else if (!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", password)) {
             Toast.makeText(this,"비밀번호 형식을 지켜주세요.",Toast.LENGTH_SHORT).show();            //비밀번호 형식 체크
+            return;
+        } else if (nickname.equals("")) {
+            Toast.makeText(this,"닉네임을 입력해주세요.",Toast.LENGTH_SHORT).show();            //닉네임 존재 체크
+            return;
+        } else if (nickname.length() > 10) {
+            Toast.makeText(this,"닉네임을 10자 이내로 입력해주세요.",Toast.LENGTH_SHORT).show();            //닉네임 길이 체크
             return;
         }
 

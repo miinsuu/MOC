@@ -21,9 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="10dp"
-            android:text="TextView"
+            android:text="reviewMenuName"
+            android:fontFamily="@font/nanumsquareround_otfb"
             android:textColor="#D81b60"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="4dp"
-            android:text="TextView"
+            android:textSize="14dp"
+            android:text="reviewNickName"
             android:textColor="#777777" />
 
         <TextView
@@ -57,8 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="30dp"
-            android:text="TextView"
+            android:layout_marginEnd="25dp"
+            android:textSize="14dp"
+            android:text="reviewTime"
             android:textColor="#777777" />
     </RelativeLayout>
 
@@ -85,8 +88,8 @@
         android:layout_marginBottom="10dp"
         android:padding="17dp"
         android:background="@drawable/shop_info"
-        android:text="TextView"
-        android:textSize="16sp"
+        android:text="reviewText"
+        android:textSize="16dp"
         android:textColor="#222222" />
 
 
