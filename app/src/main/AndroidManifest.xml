@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/icon_launcher_moc"
+        android:icon="@mipmap/ic_launcher_moc_color_accent"
         android:label="MO먹지"
-        android:roundIcon="@mipmap/icon_launcher_moc_round"
+        android:roundIcon="@mipmap/ic_launcher_moc_color_accent_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VariousContentsActivity"></activity>
