@@ -67,10 +67,7 @@ public class NavigationBarFragment extends Fragment {
                         break;
 
                     case R.id.navigationBar_shop_btn:
-                        if (displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
-                        else
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
+                        animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
                         if (constructedRestaurantListFragment == null) {
@@ -90,10 +87,7 @@ public class NavigationBarFragment extends Fragment {
                         break;
 
                     case R.id.navigationBar_roulette_btn:
-                        if (curr_Level1_Fragment instanceof MoreInfoFragment)
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
-                        else
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
+                        animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         RouletteFragment constructedRouletteFragment = (RouletteFragment) displayedFragmentManager.fragmentManagers[1].findFragmentByTag(RouletteFragment.class.getName());
                         if (constructedRouletteFragment == null) {
