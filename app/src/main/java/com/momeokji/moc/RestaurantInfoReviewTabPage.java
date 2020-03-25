@@ -3,6 +3,7 @@ package com.momeokji.moc;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.momeokji.moc.data.Restaurant;
 import com.momeokji.moc.data.Review;
 
 import static com.momeokji.moc.MainActivity.displayedFragmentManager;
+import static com.momeokji.moc.MainActivity.mainActivity;
 
 
 public class RestaurantInfoReviewTabPage extends Fragment {
@@ -31,6 +33,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
     private RecyclerView review_recyclerView; // 리사이클러뷰
     private RecyclerViewAdapter_ReviewTabPage adapterReviewTabPage; // 어댑터
     private RequestManager mGlideRequestManager; // Glide manager
+    boolean isVisible; // 현재 프래그먼트가 화면에 보이는지 여부
 
 
     public RestaurantInfoReviewTabPage(Context context) {
@@ -72,7 +75,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
                         // 새로고침 완료
                         mSwipeRefreshLayout.setRefreshing(false);
                         // DB 새로고침 코드
-                        refreshFragement();
+                        updateReview();
                     }
                 }, 4000); // 4초 딜레이
 
@@ -102,40 +105,31 @@ public class RestaurantInfoReviewTabPage extends Fragment {
     private void refreshFragement(){
         androidx.fragment.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
+        Log.e("리뷰 refreshFragement", "성공");
+    }
 
+    private void updateReview() {
+        // 리뷰 새로고침이 돌아가는 도중에 다른화면으로 전환하면 리뷰가 업데이트 되지 않도록
+        // 리뷰프래그먼트가 보여질 때만 refreshFragement() 호출
+        if(isVisible)
+            refreshFragement();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // 프래그먼트가 화면에 보이지 않음
+        isVisible = false;
+        Log.d("ReviewFragment", "onPause");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        //adapterReviewTabPage.notifyDataSetChanged();
-        // DB연동 화면 리프레쉬
-        //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        // 프래그먼트가 화면에 보임
+        isVisible = true;
+        Log.d("ReviewFragment", "onResume");
     }
 
-    private void updateReview() {
-        refreshFragement();
-    }
-
-    /*
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initDataset();
-    }
-
-    private void initDataset() {
-        //for Test
-        ArrayList<Review> mData = new ArrayList<>();
-        mData.add(new Review("asd", "ohoh","20200312","wowowowo"));
-        mData.add(new Review("sf", "hhh","20200202","haha"));
-    }
-
- */
 }
