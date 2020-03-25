@@ -78,8 +78,6 @@ public class HomeFragment extends Fragment {
         //* 카테고리 버튼에 OnClickListener 등록
         //     - onStart에서 해주는 이유 : NavigationBarFragment의 BottomNavigationView를 등록하기 때문에 NavigationBarFragment가 확실히 생성된 후 작업하기 위해*//
         final View view = this.getView();
-        final NavigationBarFragment tempNavBarFrag = displayedFragmentManager.navigationBar;
-        final BottomNavigationView tempBotNavView = tempNavBarFrag.getBottomNavigationView();
 
         Button[] categoryBtns = new Button[Constants.COUNTS.CATEGORY_NUM];
         categoryBtns[0] = view.findViewById(R.id.korean_btn);
@@ -101,7 +99,7 @@ public class HomeFragment extends Fragment {
                             constructedRestaurantListFragment = new RestaurantListFragment(position);
                         }
                         displayedFragmentManager.ReplaceFragment(2, constructedRestaurantListFragment, Constants.ANIMATION_DIRECT.TO_RIGHT);
-                        tempBotNavView.getMenu().getItem(1).setChecked(true);
+                        MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(1).setChecked(true);
                 }
             });
         }

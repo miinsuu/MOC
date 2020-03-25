@@ -1,27 +1,16 @@
 package com.momeokji.moc.Helper;
 
-import android.content.Intent;
-import android.os.Handler;
-
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.momeokji.moc.HomeFragment;
-import com.momeokji.moc.LoginActivity;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
 import com.momeokji.moc.MainContextWithLocationSelectFragment;
 import com.momeokji.moc.MoreInfoFragment;
-import com.momeokji.moc.NavigationBarFragment;
-import com.momeokji.moc.Opening;
 import com.momeokji.moc.R;
-import com.momeokji.moc.RestaurantInfoFragment;
 import com.momeokji.moc.RestaurantListFragment;
 import com.momeokji.moc.RouletteFragment;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class FragmentStackManager {

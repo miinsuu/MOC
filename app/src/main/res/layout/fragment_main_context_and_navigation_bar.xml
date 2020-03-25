@@ -16,15 +16,18 @@
             android:layout_height="0dp"
             app:layout_constraintHeight_default="wrap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/navigationBar_frameLayout"/>
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_bottomNavigationView"/>
 
         <!-- 네비게이션 바 -->
-        <FrameLayout
-            android:id="@+id/navigationBar_frameLayout"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView_bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom_navigation_view"
+            app:itemIconTint="@drawable/selecter_bottom_navigation_view"
+            app:itemTextColor="@drawable/selecter_bottom_navigation_view"
+            android:background="@color/lightGray"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

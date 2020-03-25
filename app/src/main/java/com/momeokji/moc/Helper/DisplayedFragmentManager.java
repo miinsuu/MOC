@@ -1,23 +1,15 @@
 package com.momeokji.moc.Helper;
 
-import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Transformation;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.HomeFragment;
-import com.momeokji.moc.LocationSelectFragment;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
 import com.momeokji.moc.MainContextWithLocationSelectFragment;
 import com.momeokji.moc.MoreInfoFragment;
-import com.momeokji.moc.NavigationBarFragment;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantListFragment;
 import com.momeokji.moc.RouletteFragment;
@@ -27,9 +19,6 @@ import static com.momeokji.moc.MainActivity.fragmentStackManager;
 public class DisplayedFragmentManager {
     public MainActivity mainActivity;
     public FragmentManager[] fragmentManagers = new FragmentManager[3];
-
-    public LocationSelectFragment locationSelect;
-    public NavigationBarFragment navigationBar;
 
     private FloatingActionButton myList_btn;
     private boolean isPositionAbove = true;
@@ -122,7 +111,8 @@ public class DisplayedFragmentManager {
         }
     }
     public void SetBottomNavigationBarSelectedItem(int itemPos) {
-        navigationBar.getBottomNavigationView().getMenu().getItem(itemPos).setChecked(true);
+        if (MainContextAndNavigationBarFragment.getInstance() != null)
+            MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(itemPos).setChecked(true);
     }
 
 
