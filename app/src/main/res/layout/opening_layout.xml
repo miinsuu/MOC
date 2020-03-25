@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Opening"
+    android:background="@color/colorAccent"
     android:id="@+id/opening"
+    android:orientation="vertical"
     android:clickable="true">
 
 
@@ -13,10 +15,21 @@
         android:id="@+id/mainImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:padding="40dp"
+        android:layout_marginTop="100dp"
+        android:padding="80dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/applogoimage"
+        android:src="@drawable/momeokji_ci_coloraccent"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|bottom"
+        android:layout_marginBottom="100dp"
+        android:text="아무 곳이나 터치하세요"
+        android:textSize="16dp"
+        android:fontFamily="@font/nanumsquareround_otfb"
+        android:textColor="@color/white"
         />
 
 

@@ -111,22 +111,23 @@ public class RestaurantInfoFragment extends Fragment {
             }
         });
 
-        // 가게 주소 -> x,y좌표 변환
-        Geocoder geoCoder = new Geocoder(getContext());
-        try {
-            List<Address> resultLocation =
-                    geoCoder.getFromLocationName(address.getText().toString(), 1);
-            lat = resultLocation.get(0).getLatitude(); // 위도
-            lng = resultLocation.get(0).getLongitude(); // 경도
-            Log.e("주소변환 테스트", "위도: "+lat+", 경도: "+lng);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // 가게 주소로 네이버지도 연동 맵 띄우기
         addressMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 가게 주소 -> x,y좌표 변환
+                Geocoder geoCoder = new Geocoder(getContext());
+                try {
+                    List<Address> resultLocation =
+                            geoCoder.getFromLocationName(address.getText().toString(), 1);
+                    lat = resultLocation.get(0).getLatitude(); // 위도
+                    lng = resultLocation.get(0).getLongitude(); // 경도
+                    Log.e("주소변환 테스트", "위도: "+lat+", 경도: "+lng);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 Intent intent = new Intent(getContext(), MapFragmentActivity.class);
                 intent.putExtra("lat",lat);
                 intent.putExtra("lng",lng);
