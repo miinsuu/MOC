@@ -1,5 +1,6 @@
 package com.momeokji.moc.Helper;
 
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
@@ -42,7 +43,7 @@ public class DisplayedFragmentManager {
         final FragmentManager fragmentManager = fragmentManagers[level];
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String targetFragmentClassName = targetFragment.getClass().getName();
-        Fragment removalFragment;
+        final Fragment removalFragment;
 
         if (fragmentStackManager == null)
             return false;
@@ -76,7 +77,6 @@ public class DisplayedFragmentManager {
             default:
                 return false;
         }
-
         removalFragment = fragmentManager.findFragmentById(frameLayoutId);
         if (removalFragment == null)
             return false;
@@ -92,6 +92,21 @@ public class DisplayedFragmentManager {
         fragmentTransaction.hide(removalFragment).commit();
         fragmentStackManager.PushFragment(level);
         return true;
+/*        removalFragment = fragmentManager.findFragmentById(frameLayoutId);
+        fragmentTransaction.hide(removalFragment);
+        fragmentTransaction.add(frameLayoutId, targetFragment, targetFragmentClassName).commit();
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragmentManager.beginTransaction().remove(removalFragment).commit();
+            }
+        }, 1000);
+
+        fragmentTransaction.addToBackStack(targetFragmentClassName);
+        fragmentStackManager.PushFragment(level);
+        return true;*/
     }
 
     //* BottomNavigationBar의 선택 상태를 올바르게 표시해주는 함수

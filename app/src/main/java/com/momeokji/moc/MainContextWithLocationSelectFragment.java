@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,13 @@ public class MainContextWithLocationSelectFragment extends Fragment {
 
     public MainContextWithLocationSelectFragment(Fragment mainContext) {
         this.mainContext = mainContext;
+    }
+    public static MainContextWithLocationSelectFragment getInstance() {
+        if (mainContextWithLocationSelectFragment == null) {
+            Log.e("Usage Error", "객체의 속성값을 바꿀 때에만 getInstance()를 사용해야 합니다");
+            return null;
+        }
+        return mainContextWithLocationSelectFragment;
     }
     public static MainContextWithLocationSelectFragment getInstance(Fragment mainContext) {
         if (mainContextWithLocationSelectFragment == null)

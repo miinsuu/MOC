@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         home_searchRestaurants_relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayedFragmentManager.ReplaceFragment(0, new SearchRestaurantFragment(), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                displayedFragmentManager.ReplaceFragment(0, SearchRestaurantFragment.getInstance(), Constants.ANIMATION_DIRECT.TO_RIGHT);
             }
         });
         return view;

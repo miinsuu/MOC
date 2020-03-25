@@ -5,13 +5,16 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.momeokji.moc.Adapters.PagerAdapter_MenuReview;
 import com.momeokji.moc.CustomView.MarqueeTextView;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.Restaurant;
 
 import java.io.IOException;
@@ -140,7 +144,20 @@ public class RestaurantInfoFragment extends Fragment {
 
 
         final ViewPager restaurantInfoPage_viewPager = view.findViewById(R.id.restaurantInfoPage_viewPager);
-        restaurantInfoPage_viewPager.setAdapter(new PagerAdapter_MenuReview(getChildFragmentManager(), 1, getActivity()));
+
+        // 로딩 아이콘 띄우고 딜레이 후 페이저 어댑터 설정
+        final ImageView loading_img;
+        loading_img = view.findViewById(R.id.restaurantInfo_loading_img);
+        loading_img.setAnimation(AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.anim_rotate_with_loading_img));
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                restaurantInfoPage_viewPager.setAdapter(new PagerAdapter_MenuReview(getChildFragmentManager(), 1, getActivity()));
+                loading_img.clearAnimation();
+                loading_img.setVisibility(View.GONE);
+            }
+        }, Constants.DELAYS.LOADING_DELAY);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.menuReviewTabBar_layout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
