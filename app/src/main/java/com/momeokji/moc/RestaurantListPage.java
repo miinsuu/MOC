@@ -1,6 +1,7 @@
 package com.momeokji.moc;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.SyncStateContract;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_RestaurantList;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.data.Restaurant;
 
 import java.util.ArrayList;
@@ -50,14 +53,25 @@ public class RestaurantListPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_restaurant_list_page, container, false);
 
-
         //* 리사이클러 뷰 어댑터 등록 *//
         restaurantList_recyclerView = view.findViewById(R.id.restaurantList_recyclerView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         restaurantList_recyclerView.setLayoutManager(linearLayoutManager);         // 레이아웃 매니저 등록
         final RecyclerViewAdapter_RestaurantList recyclerViewAdapter = new RecyclerViewAdapter_RestaurantList((MainActivity)getActivity());
-        recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
-        restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
+
+        final ImageView loading_img;
+        loading_img = view.findViewById(R.id.restaurantListPage_loading_img);
+        loading_img.setAnimation(AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.anim_rotate_with_loading_img));
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recyclerViewAdapter.setRestaurantList(targetRestaurantArrayList);
+                restaurantList_recyclerView.setAdapter(recyclerViewAdapter);
+                loading_img.clearAnimation();
+                loading_img.setVisibility(View.GONE);
+            }
+        }, Constants.DELAYS.LOADING_DELAY);
 
 
 /*        //* 현재 데이터 수신 구조에서 사용 X
