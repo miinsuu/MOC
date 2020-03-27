@@ -47,6 +47,8 @@ public class MoreInfoFragment extends Fragment {
         View moreInfo_fragment_event_linearLayout = view.findViewById(R.id.moreInfo_fragment_event_linearLayout); // 이벤트 페이지
         View moreInfo_fragment_notice_linearLayout = view.findViewById(R.id.moreInfo_fragment_notice_linearLayout); // 공지사항 페이지
         View moreInfo_fragment_tos_linearLayout = view.findViewById(R.id.moreInfo_fragment_tos_linearLayout); // 서비스 약관 페이지
+        View moreInfo_fragment_inquiration_linearLayout = view.findViewById(R.id.moreInfo_fragment_inquiration_linearLayout); // 문의하기 페이지
+
 
         // 유저 이름 띄우기
         userNicknameTxt.setText(User.getUser().getNickName());
@@ -88,6 +90,14 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), NoticeActivity.class));
+            }
+        });
+
+        // 문의하기 페이지 이동
+        moreInfo_fragment_inquiration_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), InquireActivity.class));
             }
         });
 

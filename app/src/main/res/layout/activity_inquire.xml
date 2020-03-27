@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InquireActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="17dp">
+        <Button
+            android:id="@+id/inquire_back_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:background="@drawable/back" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="43dp"
+            android:gravity="center"
+            android:text="문의하기"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#6FE4DBDB"/>
+    <TextView
+        android:id="@+id/reviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:background="@drawable/shop_info"
+        android:text="아래 문의사항을 작성하여 접수해주시면 앱 개발자에게 전송됩니다. 문의사항을 빠른 시일 내에 피드백할 수 있도록 노력하겠습니다."
+        android:textSize="16dp"
+        android:lineSpacingExtra="8dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#6FE4DBDB"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:text="문의사항 제목"/>
+        <EditText
+            android:id="@+id/inquire_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shop_info"
+            android:textSize="14dp"
+            android:padding="15dp"
+            android:hint="제목을 입력하세요."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:text="문의사항 내용"/>
+        <EditText
+            android:id="@+id/inquire_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shop_info"
+            android:textSize="14dp"
+            android:padding="15dp"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:minHeight="150dp"
+            android:hint="문의사항을 입력하세요."/>
+
+        <Button
+            android:id="@+id/inquire_doneBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_background"
+            android:text="문의사항 접수"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:fontFamily="@font/nanumsquareround_otfb"/>
+    </LinearLayout>
+
+
+</LinearLayout>
