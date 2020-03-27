@@ -399,7 +399,7 @@ public class DatabaseQueryClass {
 
     }
 
-    // 기타 정보들 DB에서 가져오기
+    // 기타 정보들 DB에서 가져오기 / 저장하기
     public static class OtherInfoDB {
 
         // 서비스 약관 및 개인정보 처리방침 DB에서 가져오기
@@ -437,6 +437,38 @@ public class DatabaseQueryClass {
                     }
                 }
             });
+        }
+
+
+        // DB에 문의사항 쓰기
+        public static void createInquiration(final String inquirationTitle,
+                                        final String inquirationContent, final MyOnSuccessListener myOnSuccessListener)
+        {
+
+            Map<String, Object> inquiration  = new HashMap<>();
+            inquiration.put("title", inquirationTitle);
+            inquiration.put("content",inquirationContent);
+            inquiration.put("date",  (new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date())));
+            inquiration.put("nick", User.getUser().getNickName());
+            inquiration.put("userUID", User.getUser().getUserUID());
+            inquiration.put("createdAt",  Long.parseLong( new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) );
+            Log.e("문의사항upload", inquiration.toString());
+
+            db.collection("inquirations")
+                    .add(inquiration)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("uploadd", "create post upload success " + documentReference.getId());
+                            myOnSuccessListener.onSuccess();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("uploadd", "Error adding document", e);
+                        }
+                    });
         }
 
     }
