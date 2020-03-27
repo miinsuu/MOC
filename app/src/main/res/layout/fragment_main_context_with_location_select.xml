@@ -21,8 +21,8 @@
             android:paddingTop="9dp">
             <ImageView
                 android:id="@+id/location_img"
-                android:layout_width="60dp"
-                android:layout_height="24dp"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
                 android:layout_marginLeft="15dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -35,7 +35,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="숭실대학교"
-                android:textSize="18dp"
+                android:textSize="19dp"
                 android:fontFamily="@font/nanumsquareround_otfb"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
