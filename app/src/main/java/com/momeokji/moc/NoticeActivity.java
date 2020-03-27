@@ -48,6 +48,7 @@ public class NoticeActivity extends AppCompatActivity {
                     intent.putExtra("createAt", notice.getNoticeCreateAt());
                     intent.putExtra("content", notice.getNoticeContent());
                     startActivity(intent);
+                    overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
                 }
             }
         });
@@ -74,5 +75,13 @@ public class NoticeActivity extends AppCompatActivity {
                 noticeList_recyclerView.setAdapter(adapterNoticeList);
             }
         });
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
     }
 }

@@ -53,7 +53,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
             }
         });
 
-        // 변경 버튼 눌렀을 때 DB에 있는 정보 업데이트
+        // 닉네임변경 버튼 눌렀을 때 DB에 있는 정보 업데이트
         updateNickname_acticity_updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +77,6 @@ public class UpdateNicknameActivity extends AppCompatActivity {
 
                     // 홈 화면으로 이동
                     startActivity(new Intent(UpdateNicknameActivity.this, MainActivity.class));
-
                 }
 
             }
@@ -131,7 +130,6 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                                                 // 로그인 화면으로 이동
                                                 ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
                                                 startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
-
                                             }
                                         }
                                     });
@@ -201,5 +199,21 @@ public class UpdateNicknameActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finishAffinity() {
+        super.finishAffinity();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
     }
 }
