@@ -10,10 +10,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.MainActivity;
+import com.momeokji.moc.MyListFragment;
 import com.momeokji.moc.R;
 import com.momeokji.moc.data.MyListMenu;
 public class RecyclerViewAdapter_MyListMenu extends RecyclerView.Adapter<RecyclerViewAdapter_MyListMenu.ItemViewHolder> {
@@ -31,6 +33,7 @@ public class RecyclerViewAdapter_MyListMenu extends RecyclerView.Adapter<Recycle
     @Override
     public RecyclerViewAdapter_MyListMenu.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_mylist_menu_list, parent, false);
+
         return new ItemViewHolder(view);
     }
 
@@ -38,7 +41,7 @@ public class RecyclerViewAdapter_MyListMenu extends RecyclerView.Adapter<Recycle
     public int getItemCount(){ return mainActivity.restaurantDATA.MyListMenuList.size();  }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
-        TextView myList_menuName_Txt, myList_menuPrice_Txt, myList_restaurant_Txt;
+        TextView myList_menuName_Txt, myList_menuPrice_Txt, myList_restaurant_Txt, mylist_sumMoneyTxt;
         ImageButton myList_cancel_btn;
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -51,14 +54,20 @@ public class RecyclerViewAdapter_MyListMenu extends RecyclerView.Adapter<Recycle
                 public void onClick(View view) {
                     mainActivity.restaurantDATA.MyListMenuList.remove(getAdapterPosition());
                     notifyDataSetChanged();
+                    // 마이리스트 가격 총 합계
+                    MyListFragment.getInstance(mainActivity).calculatePrice();
                 }
             });
+            mylist_sumMoneyTxt = itemView.findViewById(R.id.mylist_sumMoneyTxt);
         }
 
         public void onBind(final MyListMenu myListMenu) {
             myList_menuName_Txt.setText(myListMenu.getName());
             myList_menuPrice_Txt.setText(myListMenu.getPrice() + "원");
             myList_restaurant_Txt.setText(myListMenu.getRestaurantName());
+
         }
+
+
     }
 }

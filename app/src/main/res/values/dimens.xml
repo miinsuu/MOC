@@ -6,8 +6,8 @@
     <dimen name="navigation_bar_height">56dp</dimen>
     <dimen name="navigation_bar_height_negative">-56dp</dimen>
 
-    <dimen name="location_select_bar_height">55dp</dimen>
-    <dimen name="location_select_bar_height_negative">-55dp</dimen>
+    <dimen name="location_select_bar_height">62dp</dimen>
+    <dimen name="location_select_bar_height_negative">-62dp</dimen>
 
     <dimen name="partition_height">2dp</dimen>
     <dimen name="basic_margin">5dp</dimen>
