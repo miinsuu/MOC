@@ -22,7 +22,7 @@ import com.momeokji.moc.data.User;
  * A simple {@link Fragment} subclass.
  */
 public class MoreInfoFragment extends Fragment {
-
+    private MainActivity mainActivity;
     private static MoreInfoFragment moreInfoFragment = null;
     public MoreInfoFragment() {
         // Required empty public constructor
@@ -38,6 +38,8 @@ public class MoreInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
+        mainActivity = MainActivity.getInstance();
+
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_more_info, container, false);
 
@@ -57,7 +59,9 @@ public class MoreInfoFragment extends Fragment {
         userNicknameLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), UpdateNicknameActivity.class));
+                Intent intent = new Intent(getContext(), UpdateNicknameActivity.class);
+                startActivity(intent);
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -66,6 +70,7 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MyReviewDeleteActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -74,6 +79,7 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), EventPageActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -82,6 +88,7 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), TosActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -90,6 +97,7 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), NoticeActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -98,6 +106,7 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), InquireActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 

@@ -84,8 +84,13 @@ public class LoginActivity extends AppCompatActivity {
                 String userUID = user.getUid();
                 User.getUser().putUserInfo(userUID);
                 startActivity(new Intent(loginActivity, MainActivity.class));
-            } else
+                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
+            } else {
                 startActivity(new Intent(loginActivity, MainActivity.class));
+                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
+            }
+
+
         }
     }
 
@@ -192,6 +197,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);  // 메인액티비티로 이동
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -321,6 +327,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
                                 // 메인액티비티로 이동
                                 startActivity(new Intent(loginActivity, MainActivity.class));
+                                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
                             }
 
 
@@ -374,6 +381,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(loginActivity, "로그인", Toast.LENGTH_SHORT).show();
                                 // 메인액티비티로 이동
                                 startActivity(new Intent(loginActivity, MainActivity.class));
+                                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
                             }
 
 
@@ -411,6 +419,7 @@ public class LoginActivity extends AppCompatActivity {
                             // 메인액티비티로 이동
                             Toast.makeText(getApplicationContext(), "로그인", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(loginActivity, MainActivity.class));
+                            overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
                         } else {
                             // 로그인 사용자인증 실패 시
                             Log.e("로그인CHECK", "Email로그인실패", task.getException());
@@ -448,5 +457,13 @@ public class LoginActivity extends AppCompatActivity {
     public void RemoveFocusFromEditText(BackPressEditText targetEditText) {
         ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         targetEditText.clearFocus();
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
     }
 }

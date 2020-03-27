@@ -50,6 +50,7 @@ public class Opening extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Opening.this, LoginActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 

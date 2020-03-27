@@ -61,9 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 myListFragment.show(fragmentTransaction, MyListFragment.TAG_MY_LIST_FRAGMENT);
             }
         });
+
+
     }
 
-
+    @Override
+    public void overridePendingTransition(int enterAnim, int exitAnim) {
+        super.overridePendingTransition(enterAnim, exitAnim);
+    }
 
     @Override
     public void onBackPressed() {
@@ -75,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Opening.class);
         startActivity(intent);
         finish();
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
     }
 
 }
