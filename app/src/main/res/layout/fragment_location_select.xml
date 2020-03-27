@@ -8,37 +8,48 @@
     <!-- 위치선택 layout -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/location_select_bar_height"
-        android:orientation="horizontal"
-        android:paddingTop="9dp"
-        android:paddingBottom="9dp"
-        android:background="@color/colorAccent">
-        <ImageView
-            android:id="@+id/location_img"
-            android:layout_width="68dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/momeokji_ci_coloraccent"/>
-        <TextView
-            android:id="@+id/location_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="숭실대학교"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
-<!--        <Spinner
-            android:id="@+id/locationSelect_spinner"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/i_arrow_down"/>-->
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/location_relativeLaytout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/location_select_bar_height"
+            android:orientation="horizontal"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:background="@color/white">
+            <ImageView
+                android:id="@+id/location_img"
+                android:layout_width="68dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/mainicon"/>
+            <TextView
+                android:id="@+id/location_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="숭실대학교"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <!--        <Spinner
+                        android:id="@+id/locationSelect_spinner"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/i_arrow_down"/>-->
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/location_relativeLaytout"
+            android:background="#6FE4DBDB"/>
     </RelativeLayout>
+
 
 </FrameLayout>

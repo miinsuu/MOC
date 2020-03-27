@@ -398,6 +398,48 @@ public class DatabaseQueryClass {
         }
 
     }
+
+    // 기타 정보들 DB에서 가져오기
+    public static class OtherInfoDB {
+
+        // 서비스 약관 및 개인정보 처리방침 DB에서 가져오기
+        public static void getTos(final DataListener dataListener){
+            CollectionReference tosRef = db.collection("tos");
+            tosRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Tos", document.getId());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Tos", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        // 공지사항 DB에서 가져오기
+        public static void getNotice(final DataListener dataListener){
+            CollectionReference noticeRef = db.collection("notice");
+            Query query = noticeRef.orderBy("index", Query.Direction.DESCENDING);
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.e("Notice", document.getId()+ " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Notice", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+    }
 }
 
 

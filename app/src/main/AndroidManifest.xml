@@ -16,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_moc_color_accent_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VariousContentsActivity"></activity>
+        <activity android:name=".NoticeContentActivity"></activity>
+        <activity android:name=".NoticeActivity" />
+        <activity android:name=".TosActivity" />
+        <activity android:name=".VariousContentsActivity" />
         <activity android:name=".EventPageActivity" />
         <activity android:name=".MyReviewDeleteActivity" />
         <activity android:name=".ViewReviewImageActivity" />
@@ -30,10 +33,16 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".MapFragmentActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:noHistory="true" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Opening">
+        <activity
+            android:name=".Opening"
+            android:theme="@style/OpeningAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
