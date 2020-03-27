@@ -81,6 +81,8 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mainActivity = MainActivity.getInstance();
+
         Log.e("Login확인","사용자UID=>"+User.getUser().getUserUID());
     }
 
