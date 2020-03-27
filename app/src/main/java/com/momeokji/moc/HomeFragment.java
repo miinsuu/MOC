@@ -40,7 +40,7 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 
 public class HomeFragment extends Fragment {
-    private MainActivity mainActivity;
+    private MainActivity mainActivity;;
 
     public HomeFragment() {
     }
