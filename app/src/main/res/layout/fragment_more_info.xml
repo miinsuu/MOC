@@ -10,9 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="내 정보"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="2dp"
             android:background="#6FE4DBDB"/>
 
         <!--유저닉네임 수정 버튼 시작-->
@@ -28,31 +43,45 @@
                 android:layout_height="65dp"
                 android:src="@drawable/user"
                 />
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="15dp"
-                android:text="안녕하세요,"
-                android:textColor="#777777"
-                android:textSize="16sp"/>
-            <TextView
-                android:id="@+id/moreInfo_fragment_userNicknameTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="3dp"
-                android:text="NickName"
-                android:textColor="#222222"
-                android:textSize="18sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="님"
-                android:textColor="#777777"
-                android:textSize="16sp"/>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="안녕하세요,"
+                    android:textColor="#777777"
+                    android:textSize="16dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/moreInfo_fragment_userNicknameTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="NickName"
+                        android:fontFamily="@font/nanumsquareround_otfb"
+                        android:textColor="#222222"
+                        android:textSize="18dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="1dp"
+                        android:text="님"
+                        android:textColor="#777777"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="내가 쓴 리뷰"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textColor="@color/black"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,47 +141,114 @@
             android:background="#6FE4DBDB"/>
         <!--내가 쓴 리뷰 버튼 끝-->
 
-<!--        &lt;!&ndash;로그아웃 버튼 시작&ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/moreInfo_fragment_logout_linearLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="17dp"-->
-<!--            android:layout_marginLeft="17dp"-->
-<!--            android:orientation="horizontal">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                android:text="로그아웃"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="@color/black"/>-->
-<!--            <ImageView-->
-<!--                android:layout_width="20dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:src="@drawable/logout"/>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:gravity="right">-->
-<!--                <ImageView-->
-<!--                    android:layout_width="11dp"-->
-<!--                    android:layout_height="11dp"-->
-<!--                    android:tint="@color/darkGray"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginRight="25dp"-->
-<!--                    android:src="@drawable/rightarrowicon"/>-->
-<!--            </LinearLayout>-->
-<!--        </LinearLayout>-->
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="2dp"-->
-<!--            android:layout_marginTop="17dp"-->
-<!--            android:background="#6FE4DBDB"/>-->
-<!--        &lt;!&ndash;로그아웃 버튼 끝&ndash;&gt;-->
+        <!--이벤트 및 광고 버튼-->
+        <LinearLayout
+            android:id="@+id/moreInfo_fragment_event_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="이벤트 및 광고"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:tint="@color/darkGray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/rightarrowicon"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <!--이벤트 및 광고 버튼 끝-->
+
+        <!--공지사항 버튼-->
+        <LinearLayout
+            android:id="@+id/moreInfo_fragment_notice_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="공지사항"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:tint="@color/darkGray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/rightarrowicon"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <!--공지사항 버튼 끝-->
+
+        <!--서비스약관 버튼-->
+        <LinearLayout
+            android:id="@+id/moreInfo_fragment_tos_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="이용약관 및 개인정보 처리방침"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:tint="@color/darkGray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/rightarrowicon"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="17dp"
+            android:background="#6FE4DBDB"/>
+        <!--서비스약관 버튼 끝-->
+
 
 
 

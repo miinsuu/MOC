@@ -82,7 +82,7 @@ public class RecyclerViewAdapter_MyReview extends RecyclerView.Adapter<RecyclerV
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView reviewMenuName, reviewNickName, reviewText, reviewTime;
+        private TextView reviewMenuName, reviewNickName, reviewText, reviewTime, reviewRestaurantName;
         private ImageView reviewImage;
         Button reviewDeleteBtn;
         ItemViewHolder(View ItemView){
@@ -92,6 +92,7 @@ public class RecyclerViewAdapter_MyReview extends RecyclerView.Adapter<RecyclerV
             reviewTime = ItemView.findViewById(R.id.reviewTime);
             reviewImage = ItemView.findViewById(R.id.reviewImageView);
             reviewText = ItemView.findViewById(R.id.reviewText);
+            reviewRestaurantName = ItemView.findViewById(R.id.reviewRestaurantName);
             reviewDeleteBtn = ItemView.findViewById(R.id.myReviewDeleteBtn);
         }
         public void onBind(final Review review) {
@@ -100,6 +101,7 @@ public class RecyclerViewAdapter_MyReview extends RecyclerView.Adapter<RecyclerV
             reviewTime.setText(review.getReviewTime());
             mGlideRequestManager.load(review.getReviewImageUri()).into(reviewImage);
             reviewText.setText(review.getReviewText());
+            reviewRestaurantName.setText(review.getReviewRestaurantName());
 
 
             reviewImage.setOnClickListener(new View.OnClickListener() {

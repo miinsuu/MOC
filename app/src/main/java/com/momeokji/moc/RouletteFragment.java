@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.momeokji.moc.Helper.Constants;
 
@@ -29,7 +30,7 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
  * A simple {@link Fragment} subclass.
  */
 public class RouletteFragment extends Fragment {
-
+    private static RouletteFragment rouletteFragment = null;
     final static private int ANIMATION_DIRECT_RIGHT = 0;
     final static private int ANIMATION_DIRECT_LEFT = 1;
 
@@ -51,6 +52,12 @@ public class RouletteFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static RouletteFragment getInstance() {
+        if (rouletteFragment == null)
+            rouletteFragment = new RouletteFragment();
+        return rouletteFragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,16 +77,8 @@ public class RouletteFragment extends Fragment {
             items[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
-                    if (constructedRestaurantListFragment == null)
-                        constructedRestaurantListFragment = new RestaurantListFragment(position);
-                    else
-                        constructedRestaurantListFragment.setLastTabPos(position);
-                    MainContextWithLocationSelectFragment constructedMainContextWithLocationSelectFragment = (MainContextWithLocationSelectFragment) displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MainContextWithLocationSelectFragment.class.getName());
-                    constructedMainContextWithLocationSelectFragment.setMainContext(constructedRestaurantListFragment);
-                    displayedFragmentManager.ReplaceFragment(1, constructedMainContextWithLocationSelectFragment, ANIMATION_DIRECT_LEFT);
-
-                    MainActivity.getInstance().displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
+                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
+                    displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
                 }
             });
             items[i].setClickable(false);

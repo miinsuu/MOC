@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/menu_classificationTab"
+            app:tabIndicatorHeight="3.8dp"
             app:tabMode="scrollable">
 
             <com.google.android.material.tabs.TabItem

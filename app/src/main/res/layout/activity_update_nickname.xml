@@ -12,14 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="17dp"
-        android:layout_marginBottom="17dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="17dp">
+        <Button
+            android:id="@+id/updateNickname_back_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:background="@drawable/back" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="43dp"
             android:gravity="center"
             android:text="내 정보 수정"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="@color/black"/>
     </LinearLayout>
     <View
@@ -34,7 +41,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginLeft="17dp"
         android:text="닉네임 변경"
-        android:textSize="15sp"/>
+        android:textSize="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,16 +56,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittextcustom"
+            android:textSize="18dp"
             android:padding="15dp"
             android:hint="새로운 닉네임을 입력해 주세요."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="2dp"
+            android:textSize="14dp"
+            android:text="(10자 이내)"/>
 
         <Button
             android:id="@+id/updateNickname_acticity_updateBtn"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="17dp"
-            android:background="@color/black"
+            android:background="@drawable/button_background"
             android:text="변경"
+            android:textSize="16dp"
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
@@ -82,7 +98,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
             android:text="비밀번호 변경"
-            android:textSize="15sp"/>
+            android:textSize="15dp"/>
 
         <EditText
             android:id="@+id/updatePassword_acticity_newPasswordTxt"
@@ -91,6 +107,7 @@
             android:layout_marginTop="17dp"
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
+            android:textSize="18dp"
             android:inputType="textPassword"
             android:background="@drawable/edittextcustom"
             android:padding="15dp"
@@ -106,6 +123,7 @@
             android:inputType="textPassword"
             android:background="@drawable/edittextcustom"
             android:padding="15dp"
+            android:textSize="18dp"
             android:hint="새 비밀번호를 한번 더 입력해 주세요."/>
 
         <TextView
@@ -113,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="19dp"
+            android:textSize="14dp"
             android:text="(문자, 숫자, 특수문자 포함 8~20글자)"/>
 
 
@@ -123,8 +142,9 @@
             android:layout_marginTop="17dp"
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
-            android:background="@color/black"
+            android:background="@drawable/button_background"
             android:text="변경"
+            android:textSize="16dp"
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
@@ -149,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:text="로그아웃"/>
         <TextView
             android:layout_width="wrap_content"
@@ -161,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:text="회원탈퇴"/>
     </LinearLayout>
 

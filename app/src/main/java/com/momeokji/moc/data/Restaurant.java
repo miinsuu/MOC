@@ -28,15 +28,9 @@ public class Restaurant implements Serializable {
 
 
     public Restaurant(String json){      // restaurant 생성자
-//         if (mainMenu.length != 3) {
-//             Log.w(TAG, "Restaurant: The number of main menu is lower than 3");
-//             return;
-//         }
-         //this.mainMenu = mainMenu;
 
         JsonElement ele = new JsonParser().parse(json);
         JsonObject obj = ele.getAsJsonObject();
-        //Log.e("Restaurant", obj.toString());
 
         this.restaurantName = obj.get("name").getAsString(); // 가게이름
 

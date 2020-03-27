@@ -42,13 +42,26 @@ public class UpdateNicknameActivity extends AppCompatActivity {
         final TextView updatePassword_acticity_newPasswordTxt = findViewById(R.id.updatePassword_acticity_newPasswordTxt); // 새 비밀번호 텍스트뷰
         final TextView updatePassword_acticity_newPasswordCheckTxt = findViewById(R.id.updatePassword_acticity_newPasswordCheckTxt); // 새 비밀번호 확인 텍스트뷰
         Button updatePassword_acticity_updateBtn = findViewById(R.id.updatePassword_acticity_updateBtn); // 비밀번호 변경 버튼
+        Button updateNickname_back_btn = findViewById(R.id.updateNickname_back_btn); // 백 버튼
+
+        // 뒤로가기 버튼
+        updateNickname_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 뒤로가기
+                finish();
+            }
+        });
 
         // 변경 버튼 눌렀을 때 DB에 있는 정보 업데이트
         updateNickname_acticity_updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(updateNickname_acticity_newNicknameTxt.getText().toString().equals("")) {
+                if(updateNickname_acticity_newNicknameTxt.getText().toString().equals("") || updateNickname_acticity_newNicknameTxt.getText().toString().trim().equals("")) {
                     Toast.makeText(UpdateNicknameActivity.this, "변경할 닉네임을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (updateNickname_acticity_newNicknameTxt.getText().toString().length() > 10) {
+                    Toast.makeText(UpdateNicknameActivity.this, "10자 이내로 입력하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     String newNickname = updateNickname_acticity_newNicknameTxt.getText().toString();
@@ -139,7 +152,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
             }
         });
 
-        Log.e("getLoginAccount()", User.getUser().getLoginAccount());
+        //Log.e("getLoginAccount()", User.getUser().getLoginAccount());
         // 만약 사용자가 이메일 계정이 아니라면(구글/페북 사용자라면) 비밀번호 변경 레이아웃이 보이지 않음
         if(User.getUser().getLoginAccount().equals("email"))
             passwordChange_linearLayout.setVisibility(View.VISIBLE);

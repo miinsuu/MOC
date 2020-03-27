@@ -31,7 +31,8 @@
                 android:id="@+id/searchedRestaurantListItem_restaurantName_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareround_otfb"
+                android:textSize="18dp"
                 android:textColor="#222222"
                 />
 
@@ -39,7 +40,8 @@
                 android:id="@+id/searchedRestaurantListItem_menuPriceRange_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 android:textColor="#777777"
                 />
 
@@ -47,7 +49,8 @@
                 android:id="@+id/searchedRestaurantListItem_description_txt"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="12dp"
+                android:layout_marginTop="2dp"
                 android:textColor="#777777"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"

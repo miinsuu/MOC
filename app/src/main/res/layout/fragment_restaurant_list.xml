@@ -13,15 +13,12 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/partition_height"
-            android:background="@android:color/darker_gray"/>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/categoryTabBar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/restaurant_categoryTab"
+            app:tabIndicatorHeight="3.8dp"
             app:tabMode="scrollable">
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -70,8 +67,8 @@
         </com.google.android.material.tabs.TabLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/partition_height"
-            android:background="@android:color/darker_gray"/>
+            android:layout_height="2dp"
+            android:background="#6FE4DBDB"/>
 
         <com.momeokji.moc.CustomView.NonSwipeableViewPager
             android:id="@+id/restaurantListPage_viewPager"

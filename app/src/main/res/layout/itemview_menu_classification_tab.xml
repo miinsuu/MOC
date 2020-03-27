@@ -24,18 +24,18 @@
                 android:layout_marginTop="11dp"
                 android:text="TextView"
                 android:textColor="#222222"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/menuClassificationTab_menuPrice"
                 android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginBottom="15dp"
                 android:text="TextView"
                 android:textColor="#777777"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 

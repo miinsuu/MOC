@@ -14,7 +14,7 @@ import com.momeokji.moc.Adapters.PagerAdapter_RestaurantListPage;
 
 
 public class RestaurantListFragment extends Fragment {
-
+    private static RestaurantListFragment restaurantListFragment = null;
     private TabLayout tabLayout;
     private ViewPager restaurantListPage_viewPager;
 
@@ -26,6 +26,19 @@ public class RestaurantListFragment extends Fragment {
 
     public RestaurantListFragment(int initTab) {
         this.lastTabPos = initTab;
+    }
+
+    public static RestaurantListFragment getInstance() {
+        if (restaurantListFragment == null)
+            restaurantListFragment = new RestaurantListFragment();
+        return restaurantListFragment;
+    }
+    public static RestaurantListFragment getInstance(int initTab) {
+        if (restaurantListFragment == null)
+            restaurantListFragment = new RestaurantListFragment(initTab);
+        else
+            restaurantListFragment.lastTabPos = initTab;
+        return restaurantListFragment;
     }
 
     @Override

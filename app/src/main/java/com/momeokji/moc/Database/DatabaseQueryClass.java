@@ -1,7 +1,6 @@
 package com.momeokji.moc.Database;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -11,7 +10,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,7 +20,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.momeokji.moc.data.User;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -47,7 +44,7 @@ public class DatabaseQueryClass {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Shop", document.getId() + " => " + document.getData());
+                                Log.d("Shop", document.getId());
                                 dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                             }
                         } else {
@@ -65,7 +62,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -83,7 +80,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -100,7 +97,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -117,7 +114,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -134,7 +131,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -151,7 +148,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -168,7 +165,7 @@ public class DatabaseQueryClass {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("Shop", document.getId() + " => " + document.getData());
+                            Log.d("Shop", document.getId());
                             dataListener.getData( new Gson().toJson(document.getData()), document.getId());
                         }
                     } else {
@@ -311,6 +308,7 @@ public class DatabaseQueryClass {
                                       final String reviewImageUrl,
                                       final String reviewShopName, final MyOnSuccessListener myOnSuccessListener)
         {
+
             Map<String, Object> review  = new HashMap<>();
             review.put("menu", reviewMenuName);
             review.put("content",reviewText );
@@ -397,6 +395,48 @@ public class DatabaseQueryClass {
                             Log.w("del", "Error deleting document", e);
                         }
                     });
+        }
+
+    }
+
+    // 기타 정보들 DB에서 가져오기
+    public static class OtherInfoDB {
+
+        // 서비스 약관 및 개인정보 처리방침 DB에서 가져오기
+        public static void getTos(final DataListener dataListener){
+            CollectionReference tosRef = db.collection("tos");
+            tosRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Tos", document.getId());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Tos", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
+        // 공지사항 DB에서 가져오기
+        public static void getNotice(final DataListener dataListener){
+            CollectionReference noticeRef = db.collection("notice");
+            Query query = noticeRef.orderBy("index", Query.Direction.DESCENDING);
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.e("Notice", document.getId()+ " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Notice", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
         }
 
     }

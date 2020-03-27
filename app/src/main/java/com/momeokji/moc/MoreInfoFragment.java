@@ -23,21 +23,30 @@ import com.momeokji.moc.data.User;
  */
 public class MoreInfoFragment extends Fragment {
 
-
+    private static MoreInfoFragment moreInfoFragment = null;
     public MoreInfoFragment() {
         // Required empty public constructor
+    }
+
+    public static MoreInfoFragment getInstance() {
+        if (moreInfoFragment == null)
+            moreInfoFragment = new MoreInfoFragment();
+        return moreInfoFragment;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_more_info, container, false);
 
         View userNicknameLinearLayout = view.findViewById(R.id.moreInfo_fragment_userNickname_linearLayout); // 내 정보 수정 액티비티
         View myReviewLinearLayout = view.findViewById(R.id.moreInfo_fragment_myReview_linearLayout); // 내가쓴리뷰 삭제
         TextView userNicknameTxt = view.findViewById(R.id.moreInfo_fragment_userNicknameTxt); // 유저 닉네임 표시
+        View moreInfo_fragment_event_linearLayout = view.findViewById(R.id.moreInfo_fragment_event_linearLayout); // 이벤트 페이지
+        View moreInfo_fragment_notice_linearLayout = view.findViewById(R.id.moreInfo_fragment_notice_linearLayout); // 공지사항 페이지
+        View moreInfo_fragment_tos_linearLayout = view.findViewById(R.id.moreInfo_fragment_tos_linearLayout); // 서비스 약관 페이지
 
         // 유저 이름 띄우기
         userNicknameTxt.setText(User.getUser().getNickName());
@@ -55,6 +64,30 @@ public class MoreInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MyReviewDeleteActivity.class));
+            }
+        });
+
+        // 이벤트 페이지 이동
+        moreInfo_fragment_event_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), EventPageActivity.class));
+            }
+        });
+
+        // 이용약관 페이지 이동
+        moreInfo_fragment_tos_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), TosActivity.class));
+            }
+        });
+
+        // 공지사항리스트 페이지 이동
+        moreInfo_fragment_notice_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), NoticeActivity.class));
             }
         });
 

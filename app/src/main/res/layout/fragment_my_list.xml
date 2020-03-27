@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/myList_title_relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
@@ -37,7 +38,7 @@
                 android:layout_toRightOf="@+id/myList_title_img"
                 android:text="나의 리스트"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="24dp" />
 
             <ImageButton
                 android:id="@+id/myList_allDelete_imgbtn"
@@ -60,7 +61,7 @@
                 android:layout_marginRight="21dp"
                 android:text="전체 삭제"
                 android:textColor="@color/darkGray"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
