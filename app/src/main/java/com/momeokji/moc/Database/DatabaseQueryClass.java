@@ -471,6 +471,26 @@ public class DatabaseQueryClass {
                     });
         }
 
+
+        // 카드뉴스 DB에서 가져오기
+        public static void getCardNews(final DataListener dataListener) {
+            CollectionReference noticeRef = db.collection("cardNews");
+            Query query = noticeRef.orderBy("index", Query.Direction.DESCENDING);
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.e("CardNews", document.getId()+ " => " + document.getData());
+                            dataListener.getData( new Gson().toJson(document.getData()), document.getId());
+                        }
+                    } else {
+                        Log.d("Notice", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+
     }
 }
 

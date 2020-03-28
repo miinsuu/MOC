@@ -27,13 +27,13 @@ public class DATA {
         //////////// 데이터 등록/////////////
         KoreanRestaurantList = new ArrayList<>();
 
-        DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
-            @Override
-            public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
-                KoreanRestaurantList.add(new Restaurant(data.toString()));
-            }
-        });
+//        DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
+//            @Override
+//            public void getData(Object data, String id) {
+//                //Log.e("데이터DB등록", data.toString());
+//                KoreanRestaurantList.add(new Restaurant(data.toString()));
+//            }
+//        });
 
         ChineseRestaurantList = new ArrayList<>();
 
