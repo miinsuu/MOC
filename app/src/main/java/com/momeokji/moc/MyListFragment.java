@@ -178,6 +178,7 @@ public class MyListFragment extends DialogFragment {
             try {
                 sum += Integer.parseInt(price);
             } catch (NumberFormatException e) {
+                // 가격이 두개이상인 메뉴는 계산 안하고 넘어감
                 if(numberFormatExceptionCount == 0) {
                     Toast.makeText(mainActivity, "가격이 정해지지 않은 메뉴는 합계에서 제외되었습니다.", Toast.LENGTH_SHORT).show();
                     numberFormatExceptionCount++;
