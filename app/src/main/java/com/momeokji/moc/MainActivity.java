@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = displayedFragmentManager.fragmentManagers[0].beginTransaction();
         if (displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()) == null) {
             fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
-            fragmentTransaction.add(R.id.mainActivity_frameLayout, MainContextAndNavigationBarFragment.getInstance(MainContextWithLocationSelectFragment.getInstance(HomeFragment.getInstance())), MainContextAndNavigationBarFragment.class.getName());
+            fragmentTransaction.add(R.id.mainActivity_frameLayout, MainContextAndNavigationBarFragment.getInstance(HomeFragment.getInstance()), MainContextAndNavigationBarFragment.class.getName());
             fragmentTransaction.addToBackStack(MainContextAndNavigationBarFragment.class.getName());
             fragmentTransaction.commit();
         }

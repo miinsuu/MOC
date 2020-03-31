@@ -39,14 +39,11 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 public class SearchRestaurantFragment extends Fragment {
 
-    private static SearchRestaurantFragment searchRestaurantFragment = null;
     RecyclerViewAdapter_SearchedRestaurantList recyclerViewAdapter_searchedRestaurantList;
     BackPressEditText searchRestaurant_searchString_editTxt;
 
     public static SearchRestaurantFragment getInstance() {
-        if (searchRestaurantFragment == null)
-            searchRestaurantFragment = new SearchRestaurantFragment();
-        return searchRestaurantFragment;
+        return new SearchRestaurantFragment();
     }
 
     @Override

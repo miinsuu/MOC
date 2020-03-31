@@ -23,15 +23,12 @@ import com.momeokji.moc.data.User;
  */
 public class MoreInfoFragment extends Fragment {
 
-    private static MoreInfoFragment moreInfoFragment = null;
     public MoreInfoFragment() {
         // Required empty public constructor
     }
 
     public static MoreInfoFragment getInstance() {
-        //if (moreInfoFragment == null)
-            moreInfoFragment = new MoreInfoFragment();
-        return moreInfoFragment;
+            return new MoreInfoFragment();
     }
 
 

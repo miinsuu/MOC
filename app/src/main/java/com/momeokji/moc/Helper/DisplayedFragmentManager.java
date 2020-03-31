@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.HomeFragment;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
-import com.momeokji.moc.MainContextWithLocationSelectFragment;
 import com.momeokji.moc.MoreInfoFragment;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantListFragment;
@@ -19,19 +19,18 @@ import static com.momeokji.moc.MainActivity.fragmentStackManager;
 
 public class DisplayedFragmentManager {
     public MainActivity mainActivity;
-    public FragmentManager[] fragmentManagers = new FragmentManager[3];
-    public int frameLayoutIDs[] = new int[3];
+    public BottomNavigationView bottomNavigationView;
+    public FragmentManager[] fragmentManagers = new FragmentManager[2];
+    public int frameLayoutIDs[] = new int[2];
 
     private FloatingActionButton myList_btn;
     private boolean isPositionAbove = true;
     private boolean isAnimating = false;
-    private boolean isadded = false;
 
     public DisplayedFragmentManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         frameLayoutIDs[0] = R.id.mainActivity_frameLayout;
-        frameLayoutIDs[1] = R.id.mainContextWithLocationSelect_frameLayout;
-        frameLayoutIDs[2] = R.id.mainContext_frameLayout;
+        frameLayoutIDs[1] = R.id.mainContent_frameLayout;
     }
 
     /*- Fragment 교체 함수 -*/
@@ -46,31 +45,7 @@ public class DisplayedFragmentManager {
 
         if (fragmentStackManager == null)
             return false;
-/*
-        int frameLayoutId = 0;
 
-        switch (level) {
-            case 0:
-                frameLayoutId = R.id.mainActivity_frameLayout;
-                break;
-            case 1:
-                frameLayoutId = R.id.mainContextWithLocationSelect_frameLayout;
-                if (!(fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment))
-                    return false;
-                else
-                    ((MainContextAndNavigationBarFragment)fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout)).setMainContextWithLocationSelect(targetFragment);
-                break;
-            case 2:
-                frameLayoutId = R.id.mainContext_frameLayout;
-
-                if (!(fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment))
-                    return false;
-                else
-                    ((MainContextWithLocationSelectFragment)fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout)).setMainContext(targetFragment);
-                break;
-            default:
-                return false;
-        }*/
         removalFragment = fragmentManager.findFragmentById(frameLayoutIDs[level]);
         if (removalFragment == null)
             return false;
@@ -89,28 +64,25 @@ public class DisplayedFragmentManager {
 
         fragmentStackManager.PushFragment(level);
 
-        FinishAnimationProcess(fragmentManager, removalFragment, targetFragment);
+        FinishAnimationProcess();
         return true;
     }
 
     //* BottomNavigationBar의 선택 상태를 올바르게 표시해주는 함수
     public void UpdateBottomNavigationBarSelectedItem() {
-        if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment) {
-            if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
-                SetBottomNavigationBarSelectedItem(0);
-            } else if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
-                SetBottomNavigationBarSelectedItem(1);
-            }
-        }
-        else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment) {
-            SetBottomNavigationBarSelectedItem(2);
-        } else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment) {
-            SetBottomNavigationBarSelectedItem(3);
+         if (fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
+                SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.HOME);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContent_frameLayout) instanceof RouletteFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.ROULETTE);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContent_frameLayout) instanceof MoreInfoFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.MORE_INFO);
         }
     }
     public void SetBottomNavigationBarSelectedItem(int itemPos) {
-        if (MainContextAndNavigationBarFragment.getInstance() != null)
-            MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(itemPos).setChecked(true);
+        if (bottomNavigationView != null)
+            bottomNavigationView.getMenu().getItem(itemPos).setChecked(true);
     }
 
 
@@ -135,7 +107,7 @@ public class DisplayedFragmentManager {
         isPositionAbove = isTargetPositionAbove;
     }*/
 
-    public void FinishAnimationProcess(final FragmentManager fragmentManager, final Fragment removalFragment, final Fragment targetFragment) {
+    public void FinishAnimationProcess() {
         isAnimating = true;
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {

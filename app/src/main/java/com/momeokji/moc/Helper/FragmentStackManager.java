@@ -1,18 +1,15 @@
 package com.momeokji.moc.Helper;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.momeokji.moc.HomeFragment;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
-import com.momeokji.moc.MainContextWithLocationSelectFragment;
-import com.momeokji.moc.MoreInfoFragment;
 import com.momeokji.moc.R;
-import com.momeokji.moc.RestaurantListFragment;
-import com.momeokji.moc.RouletteFragment;
 
 import java.util.Stack;
+
+import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 public class FragmentStackManager {
 
@@ -25,44 +22,19 @@ public class FragmentStackManager {
     }
 
     public void onBackPressed() {
-        if (fragmentBackStack.isEmpty()
-            || (mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment
-                && mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment
-                && mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)){
+        if (fragmentBackStack.isEmpty()) {
             mainActivity.BackToOpening();
             return ;
         }
 
-        if ((mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
-        && (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment
-            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment
-            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment)) {
+        if (displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment
+        && !(displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
 
-/*            while (fragmentBackStack.size() != 0) {
-                mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.pop()].popBackStack();
-            }*/
-            while (!fragmentBackStack.empty())
-                fragmentBackStack.pop();
-            while (mainActivity.displayedFragmentManager.fragmentManagers[2].getBackStackEntryCount() != 1)
-                mainActivity.displayedFragmentManager.fragmentManagers[2].popBackStackImmediate();
-            while (mainActivity.displayedFragmentManager.fragmentManagers[1].getBackStackEntryCount() != 1)
-                mainActivity.displayedFragmentManager.fragmentManagers[1].popBackStackImmediate();
-            while (mainActivity.displayedFragmentManager.fragmentManagers[0].getBackStackEntryCount() != 1)
-                mainActivity.displayedFragmentManager.fragmentManagers[0].popBackStackImmediate();
-
-            mainActivity.displayedFragmentManager.ReplaceFragment(0, MainContextAndNavigationBarFragment.getInstance(MainContextWithLocationSelectFragment.getInstance(HomeFragment.getInstance())), Constants.ANIMATION_DIRECT.TO_LEFT);
-
-
-            // (※하드코딩) 첫 홈 화면 -> 룰렛or더보기 -> 가게리스트 -> 뒤로가기 하면 MainContextWithLocationSelect 프레임이 설정이 꼬임 => 홈 화면이 아니게되면 홈으로 설정. (추후 변경하기)
-            if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
-                ((MainContextWithLocationSelectFragment)mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()))
-                        .setMainContext(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentByTag(HomeFragment.class.getName()));
-            }
-            mainActivity.displayedFragmentManager.SetBottomNavigationBarSelectedItem(0);
+            ClearStack();
+            displayedFragmentManager.SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.HOME);
         }
         else {
-            FragmentManager targetFragmentManager = mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.peek()];
-
+            FragmentManager targetFragmentManager = displayedFragmentManager.fragmentManagers[fragmentBackStack.peek()];
             targetFragmentManager.popBackStackImmediate();
             fragmentBackStack.pop();
         }
@@ -70,5 +42,13 @@ public class FragmentStackManager {
 
     public void PushFragment(int fragmentLevel) {
         fragmentBackStack.add(fragmentLevel);
+    }
+    public void ClearStack() {
+        while (!fragmentBackStack.empty())
+            fragmentBackStack.pop();
+        while (displayedFragmentManager.fragmentManagers[1].getBackStackEntryCount() != 1)
+            displayedFragmentManager.fragmentManagers[1].popBackStackImmediate();
+        while (displayedFragmentManager.fragmentManagers[0].getBackStackEntryCount() != 1)
+            displayedFragmentManager.fragmentManagers[0].popBackStackImmediate();
     }
 }

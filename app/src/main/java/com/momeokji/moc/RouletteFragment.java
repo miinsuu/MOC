@@ -30,7 +30,6 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
  * A simple {@link Fragment} subclass.
  */
 public class RouletteFragment extends Fragment {
-    private static RouletteFragment rouletteFragment = null;
 
     private static int targetItemIndex = 0;
     private static int nextItemChooseInterval = Constants.ROULETTE.INIT_ROULETTE_INTERVAL;
@@ -46,9 +45,7 @@ public class RouletteFragment extends Fragment {
     }
 
     public static RouletteFragment getInstance() {
-        //if (rouletteFragment == null)
-            rouletteFragment = new RouletteFragment();
-        return rouletteFragment;
+        return new RouletteFragment();
     }
 
 
@@ -70,7 +67,8 @@ public class RouletteFragment extends Fragment {
             items[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displayedFragmentManager.ReplaceFragment(1, MainContextWithLocationSelectFragment.getInstance(RestaurantListFragment.getInstance(position)), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                    displayedFragmentManager.ReplaceFragment(1, RestaurantListFragment.getInstance(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                    displayedFragmentManager.SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST);
                 }
             });
             items[i].setClickable(false);
