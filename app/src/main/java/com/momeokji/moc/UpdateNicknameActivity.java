@@ -76,6 +76,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                     Toast.makeText(UpdateNicknameActivity.this, "닉네임 업데이트", Toast.LENGTH_LONG).show();
 
                     // 홈 화면으로 이동
+                    //MainActivity.getInstance().finish();
                     startActivity(new Intent(UpdateNicknameActivity.this, MainActivity.class));
                 }
 
@@ -190,6 +191,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                                     Toast.makeText(UpdateNicknameActivity.this,"비밀번호가 변경되었습니다.",Toast.LENGTH_SHORT).show();
                                     // 홈 화면으로 이동
                                     finish();
+                                    MainActivity.getInstance().finish();
                                     startActivity(new Intent(UpdateNicknameActivity.this, MainActivity.class));
                                 }
                             }

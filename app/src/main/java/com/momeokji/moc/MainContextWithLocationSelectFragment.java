@@ -17,51 +17,10 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 public class MainContextWithLocationSelectFragment extends Fragment {
 
-    private static MainContextWithLocationSelectFragment mainContextWithLocationSelectFragment = null;
-    private Fragment mainContext;
-
-    public MainContextWithLocationSelectFragment(Fragment mainContext) {
-        this.mainContext = mainContext;
-    }
-    public static MainContextWithLocationSelectFragment getInstance() {
-        if (mainContextWithLocationSelectFragment == null) {
-            Log.e("Usage Error", "객체의 속성값을 바꿀 때에만 getInstance()를 사용해야 합니다");
-            return null;
-        }
-        return mainContextWithLocationSelectFragment;
-    }
-    public static MainContextWithLocationSelectFragment getInstance(Fragment mainContext) {
-        if (mainContextWithLocationSelectFragment == null)
-            mainContextWithLocationSelectFragment = new MainContextWithLocationSelectFragment(mainContext);
-        else
-            mainContextWithLocationSelectFragment.mainContext = mainContext;
-        return mainContextWithLocationSelectFragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_context_with_location_select, container, false);
-
         // AddLocationSelectSpinner();
-
-        displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-
-        Fragment previousMainContext = getChildFragmentManager().findFragmentById(R.id.mainContext_frameLayout);
-        if (previousMainContext != null) {
-            fragmentTransaction.hide(previousMainContext);
-        }
-
-        if (getChildFragmentManager().findFragmentByTag(mainContext.getClass().getName()) == null)
-            fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext, mainContext.getClass().getName());
-        else {
-            fragmentTransaction.show(mainContext);
-            fragmentTransaction.detach(mainContext).attach(mainContext);
-        }
-
-        fragmentTransaction.commit();
-
         return view;
     }
 
@@ -85,12 +44,5 @@ public class MainContextWithLocationSelectFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });*/
-    }
-
-    public void setMainContext(Fragment targetFragment) {
-        this.mainContext = targetFragment;
-    }
-    public Fragment getMainContext() {
-        return this.mainContext;
     }
 }

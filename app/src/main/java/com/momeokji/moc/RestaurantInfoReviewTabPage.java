@@ -60,7 +60,7 @@ public class RestaurantInfoReviewTabPage extends Fragment {
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayedFragmentManager.ReplaceFragment(0, new WriteReview(selectedRestaurant),0);
+                displayedFragmentManager.ReplaceFragment(0, WriteReview.getInstance(selectedRestaurant),0);
             }
         });
 

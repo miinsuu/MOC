@@ -53,7 +53,6 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
 
 
 public class HomeFragment extends Fragment {
-    private static HomeFragment homeFragment = null;
     private static final String TAG_TEXT = "text";
     private static final String TAG_IMAGE = "image";
 
@@ -72,9 +71,7 @@ public class HomeFragment extends Fragment {
     }
 
     public static HomeFragment getInstance() {
-        if (homeFragment == null)
-            homeFragment = new HomeFragment();
-        return homeFragment;
+            return new HomeFragment();
     }
 
     @Override
@@ -237,12 +234,8 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
-                        if (constructedRestaurantListFragment == null) {
-                            constructedRestaurantListFragment = new RestaurantListFragment(position);
-                        }
-                        displayedFragmentManager.ReplaceFragment(2, constructedRestaurantListFragment, Constants.ANIMATION_DIRECT.TO_RIGHT);
-                        MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(1).setChecked(true);
+                        displayedFragmentManager.ReplaceFragment(1, RestaurantListFragment.getInstance(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                        displayedFragmentManager.bottomNavigationView.getMenu().getItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST).setChecked(true);
                 }
             });
         }

@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.Helper.DisplayedFragmentManager;
 import com.momeokji.moc.Helper.FragmentStackManager;
 import com.momeokji.moc.data.DATA;
@@ -46,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
         /*- 초기 Fragment 등록 -*/
         displayedFragmentManager.fragmentManagers[0] = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = displayedFragmentManager.fragmentManagers[0].beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
-        fragmentTransaction.add(R.id.mainActivity_frameLayout, MainContextAndNavigationBarFragment.getInstance(MainContextWithLocationSelectFragment.getInstance(HomeFragment.getInstance())), MainContextAndNavigationBarFragment.class.getName());
-        fragmentTransaction.addToBackStack(MainContextAndNavigationBarFragment.class.getName());
-        fragmentTransaction.commit();
+        if (displayedFragmentManager.fragmentManagers[0].findFragmentByTag(MainContextAndNavigationBarFragment.class.getName()) == null) {
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+            fragmentTransaction.add(R.id.mainActivity_frameLayout, MainContextAndNavigationBarFragment.getInstance(HomeFragment.getInstance()), MainContextAndNavigationBarFragment.class.getName());
+            fragmentTransaction.addToBackStack(MainContextAndNavigationBarFragment.class.getName());
+            fragmentTransaction.commit();
+        }
 
         //* 나의 리스트 버튼 등록 *//
         myList_btn = findViewById(R.id.myList_btn);

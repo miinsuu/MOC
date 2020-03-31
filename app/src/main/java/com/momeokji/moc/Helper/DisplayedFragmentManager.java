@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.momeokji.moc.HomeFragment;
 import com.momeokji.moc.MainActivity;
 import com.momeokji.moc.MainContextAndNavigationBarFragment;
-import com.momeokji.moc.MainContextWithLocationSelectFragment;
 import com.momeokji.moc.MoreInfoFragment;
 import com.momeokji.moc.R;
 import com.momeokji.moc.RestaurantListFragment;
@@ -19,7 +19,9 @@ import static com.momeokji.moc.MainActivity.fragmentStackManager;
 
 public class DisplayedFragmentManager {
     public MainActivity mainActivity;
-    public FragmentManager[] fragmentManagers = new FragmentManager[3];
+    public BottomNavigationView bottomNavigationView;
+    public FragmentManager[] fragmentManagers = new FragmentManager[2];
+    public int frameLayoutIDs[] = new int[2];
 
     private FloatingActionButton myList_btn;
     private boolean isPositionAbove = true;
@@ -27,6 +29,8 @@ public class DisplayedFragmentManager {
 
     public DisplayedFragmentManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+        frameLayoutIDs[0] = R.id.mainActivity_frameLayout;
+        frameLayoutIDs[1] = R.id.mainContent_frameLayout;
     }
 
     /*- Fragment 교체 함수 -*/
@@ -42,69 +46,43 @@ public class DisplayedFragmentManager {
         if (fragmentStackManager == null)
             return false;
 
+        removalFragment = fragmentManager.findFragmentById(frameLayoutIDs[level]);
+        if (removalFragment == null)
+            return false;
+
+        fragmentTransaction.addToBackStack(targetFragmentClassName);
+
         if (animationDirection == Constants.ANIMATION_DIRECT.TO_RIGHT)
             fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
         else if (animationDirection == Constants.ANIMATION_DIRECT.TO_LEFT)
             fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment, R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
 
-        int frameLayoutId = 0;
+        fragmentTransaction.add(frameLayoutIDs[level], targetFragment, targetFragmentClassName);
+        fragmentTransaction.hide(removalFragment);
 
-        switch (level) {
-            case 0:
-                frameLayoutId = R.id.mainActivity_frameLayout;
-                break;
-            case 1:
-                frameLayoutId = R.id.mainContextWithLocationSelect_frameLayout;
-                if (!(fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment))
-                    return false;
-                else
-                    ((MainContextAndNavigationBarFragment)fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout)).setMainContextWithLocationSelect(targetFragment);
-                break;
-            case 2:
-                frameLayoutId = R.id.mainContext_frameLayout;
+        fragmentTransaction.commit();
 
-                if (!(fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment))
-                    return false;
-                else
-                    ((MainContextWithLocationSelectFragment)fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout)).setMainContext(targetFragment);
-                break;
-            default:
-                return false;
-        }
-        removalFragment = fragmentManager.findFragmentById(frameLayoutId);
-        if (removalFragment == null)
-            return false;
-
-        if (fragmentManager.findFragmentByTag(targetFragmentClassName) == null)
-            fragmentTransaction.add(frameLayoutId, targetFragment, targetFragmentClassName);
-        else {
-            fragmentTransaction.show(targetFragment);
-            fragmentTransaction.detach(targetFragment).attach(targetFragment);
-        }
-        fragmentTransaction.hide(removalFragment).commit();
-
-        fragmentTransaction.addToBackStack(targetFragmentClassName);
         fragmentStackManager.PushFragment(level);
 
-        setFlageIsAnimating();
+        FinishAnimationProcess();
         return true;
     }
 
     //* BottomNavigationBar의 선택 상태를 올바르게 표시해주는 함수
     public void UpdateBottomNavigationBarSelectedItem() {
-        if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
-            SetBottomNavigationBarSelectedItem(0);
-        } else if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
-            SetBottomNavigationBarSelectedItem(1);
-        } else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment) {
-            SetBottomNavigationBarSelectedItem(2);
-        } else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment) {
-            SetBottomNavigationBarSelectedItem(3);
+         if (fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
+                SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.HOME);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContent_frameLayout) instanceof RouletteFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.ROULETTE);
+        } else if (fragmentManagers[1].findFragmentById(R.id.mainContent_frameLayout) instanceof MoreInfoFragment) {
+            SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.MORE_INFO);
         }
     }
     public void SetBottomNavigationBarSelectedItem(int itemPos) {
-        if (MainContextAndNavigationBarFragment.getInstance() != null)
-            MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(itemPos).setChecked(true);
+        if (bottomNavigationView != null)
+            bottomNavigationView.getMenu().getItem(itemPos).setChecked(true);
     }
 
 
@@ -129,14 +107,19 @@ public class DisplayedFragmentManager {
         isPositionAbove = isTargetPositionAbove;
     }*/
 
-    public void setFlageIsAnimating() {
+    public void FinishAnimationProcess() {
         isAnimating = true;
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 isAnimating = false;
+                UpdateBottomNavigationBarSelectedItem();
             }
         }, Constants.DELAYS.ANIMATION_DELAY);
+    }
+
+    public boolean getIsAnimating() {
+        return this.isAnimating;
     }
 }

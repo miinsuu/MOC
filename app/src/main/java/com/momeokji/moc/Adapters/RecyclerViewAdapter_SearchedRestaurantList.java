@@ -79,7 +79,7 @@ public class RecyclerViewAdapter_SearchedRestaurantList extends RecyclerView.Ada
                             ((InputMethodManager) mainActivity.getSystemService(mainActivity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);      // 키보드가 닫음
                             Restaurant selectedRestaurant = restaurantList.get(targetPos); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
-                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, RestaurantInfoFragment.getInstance(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });

@@ -39,7 +39,6 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class WriteReview extends Fragment {
-    private static WriteReview writeReview = null;
     private Restaurant selectedRestaurant;
     private ImageView reviewPicture_imageView;
     private EditText writeReview_editText;
@@ -59,11 +58,7 @@ public class WriteReview extends Fragment {
     }
 
     public static WriteReview getInstance(Restaurant selectedRestaurant) {
-        if (writeReview == null)
-            writeReview = new WriteReview(selectedRestaurant);
-        else
-            writeReview.selectedRestaurant = selectedRestaurant;
-        return writeReview;
+        return new WriteReview(selectedRestaurant);
     }
 
 

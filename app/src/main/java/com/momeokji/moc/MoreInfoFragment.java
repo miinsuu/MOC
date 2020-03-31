@@ -22,16 +22,12 @@ import com.momeokji.moc.data.User;
  * A simple {@link Fragment} subclass.
  */
 public class MoreInfoFragment extends Fragment {
-    private MainActivity mainActivity;
-    private static MoreInfoFragment moreInfoFragment = null;
     public MoreInfoFragment() {
         // Required empty public constructor
     }
 
     public static MoreInfoFragment getInstance() {
-        if (moreInfoFragment == null)
-            moreInfoFragment = new MoreInfoFragment();
-        return moreInfoFragment;
+            return new MoreInfoFragment();
     }
 
 

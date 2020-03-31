@@ -30,17 +30,9 @@ import static com.momeokji.moc.MainActivity.displayedFragmentManager;
  * A simple {@link Fragment} subclass.
  */
 public class RouletteFragment extends Fragment {
-    private static RouletteFragment rouletteFragment = null;
-    final static private int ANIMATION_DIRECT_RIGHT = 0;
-    final static private int ANIMATION_DIRECT_LEFT = 1;
-
-    public final static int INIT_ROULETTE_INTERVAL = 100;
-    public final static int INCREMENT_ROULETTE_INTERVAL = 10;
-    public final static int RANDOM_INCREMENT_ROULETTE_INTERVAL = 15;
-    public final static int MAX_ROULETTE_INTERVAL = 400;
 
     private static int targetItemIndex = 0;
-    private static int nextItemChooseInterval = INIT_ROULETTE_INTERVAL;
+    private static int nextItemChooseInterval = Constants.ROULETTE.INIT_ROULETTE_INTERVAL;
     private ImageButton[] items;
     private Drawable[] unoutlinedIcons;
     private Drawable[] outlinedIcons;
@@ -53,9 +45,7 @@ public class RouletteFragment extends Fragment {
     }
 
     public static RouletteFragment getInstance() {
-        if (rouletteFragment == null)
-            rouletteFragment = new RouletteFragment();
-        return rouletteFragment;
+        return new RouletteFragment();
     }
 
 
@@ -77,8 +67,8 @@ public class RouletteFragment extends Fragment {
             items[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displayedFragmentManager.ReplaceFragment(1, new MainContextWithLocationSelectFragment(new RestaurantListFragment(position)), ANIMATION_DIRECT_LEFT);
-                    displayedFragmentManager.SetBottomNavigationBarSelectedItem(1);
+                    displayedFragmentManager.ReplaceFragment(1, RestaurantListFragment.getInstance(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                    displayedFragmentManager.SetBottomNavigationBarSelectedItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST);
                 }
             });
             items[i].setClickable(false);
@@ -118,7 +108,7 @@ public class RouletteFragment extends Fragment {
 
     public void DrawItem() {
         this.targetItemIndex = 0;
-        this.nextItemChooseInterval = INIT_ROULETTE_INTERVAL;
+        this.nextItemChooseInterval = Constants.ROULETTE.INIT_ROULETTE_INTERVAL;
 
         SetLeverUpDown(false);
 
@@ -127,7 +117,7 @@ public class RouletteFragment extends Fragment {
         final Runnable rouletteRun = new Runnable() {
             @Override
             public void run() {
-                if (nextItemChooseInterval > MAX_ROULETTE_INTERVAL) {
+                if (nextItemChooseInterval > Constants.ROULETTE.MAX_ROULETTE_INTERVAL) {
                     targetItemIndex = CalculateZigZagIndex(targetItemIndex-1);
                     SetTargetItemToResult(targetItemIndex);
                     SetLeverToRedrawState(targetItemIndex);
@@ -138,7 +128,7 @@ public class RouletteFragment extends Fragment {
                     items[CalculateZigZagIndex(targetItemIndex-1)].setBackground(unoutlinedIcons[CalculateZigZagIndex(targetItemIndex-1)]);
                 items[CalculateZigZagIndex(targetItemIndex)].setBackground(outlinedIcons[CalculateZigZagIndex(targetItemIndex)]);
                 targetItemIndex++;
-                nextItemChooseInterval += INCREMENT_ROULETTE_INTERVAL + (randomInterval.nextInt(RANDOM_INCREMENT_ROULETTE_INTERVAL*2)-RANDOM_INCREMENT_ROULETTE_INTERVAL);
+                nextItemChooseInterval += Constants.ROULETTE.INCREMENT_ROULETTE_INTERVAL + (randomInterval.nextInt(Constants.ROULETTE.RANDOM_INCREMENT_ROULETTE_INTERVAL*2)-Constants.ROULETTE.RANDOM_INCREMENT_ROULETTE_INTERVAL);
                 mHandler.postDelayed(this, nextItemChooseInterval);
 
             }
