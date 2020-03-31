@@ -87,8 +87,7 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                     case R.id.navigationBar_home_btn:
                         animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
-                       if (!(displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
-                            //MainContextWithLocationSelectFragment.getInstance().setMainContext(HomeFragment.getInstance());
+                       if (!(curr_Level1_Fragment instanceof HomeFragment)) {
                             displayedFragmentManager.ReplaceFragment(1, HomeFragment.getInstance(), animationDirection);
                             fragmentStackManager.ClearStack();
                         }
@@ -97,8 +96,7 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                     case R.id.navigationBar_shop_btn:
                             animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
-                        if (!(displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment)) {
-                            //MainContextWithLocationSelectFragment.getInstance().setMainContext(RestaurantListFragment.getInstance());
+                        if (!(curr_Level1_Fragment instanceof RestaurantListFragment)) {
                             displayedFragmentManager.ReplaceFragment(1, RestaurantListFragment.getInstance(), animationDirection);
                         }
                         break;
@@ -107,7 +105,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                             animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         if (!(curr_Level1_Fragment instanceof RouletteFragment))
-                            //MainContextAndNavigationBarFragment.getInstance().setMainContextWithLocationSelect(RouletteFragment.getInstance());
                             displayedFragmentManager.ReplaceFragment(1, RouletteFragment.getInstance(), animationDirection);
                         break;
 
@@ -115,7 +112,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                         animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         if (!(curr_Level1_Fragment instanceof MoreInfoFragment))
-                            //MainContextAndNavigationBarFragment.getInstance().setMainContextWithLocationSelect(MoreInfoFragment.getInstance());
                             displayedFragmentManager.ReplaceFragment(1, MoreInfoFragment.getInstance(), animationDirection);
                         break;
                     default:
