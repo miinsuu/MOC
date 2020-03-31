@@ -77,21 +77,21 @@ public class RouletteFragment extends Fragment {
         unoutlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.korean);
         unoutlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.chinese);
         unoutlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.japanese);
-        unoutlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.western);
+        unoutlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.pizzaw);
         unoutlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.snack);
         unoutlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.chicken);
         unoutlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.night);
-        unoutlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fast);
+        unoutlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.burger2);
 
         outlinedIcons = new Drawable[8];
         outlinedIcons[0] = ContextCompat.getDrawable(getContext(), R.drawable.korean_outlined);
         outlinedIcons[1] = ContextCompat.getDrawable(getContext(), R.drawable.chinese_outlined);
         outlinedIcons[2] = ContextCompat.getDrawable(getContext(), R.drawable.japanese_outlined);
-        outlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.western_outlined);
+        outlinedIcons[3] = ContextCompat.getDrawable(getContext(), R.drawable.pizzaw_outlined);
         outlinedIcons[4] = ContextCompat.getDrawable(getContext(), R.drawable.snack_outlined);
         outlinedIcons[5] = ContextCompat.getDrawable(getContext(), R.drawable.chicken_outlined);
         outlinedIcons[6] = ContextCompat.getDrawable(getContext(), R.drawable.night_outlined);
-        outlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.fast_outlined);
+        outlinedIcons[7] = ContextCompat.getDrawable(getContext(), R.drawable.burger2_outlined);
 
         lever_up_imgbtn = view.findViewById(R.id.roulette_lever_up_imgbtn);
         lever_down_imgbtn = view.findViewById(R.id.roulette_lever_down_imgbtn);
@@ -107,7 +107,7 @@ public class RouletteFragment extends Fragment {
     }
 
     public void DrawItem() {
-        items[(targetItemIndex)].setBackground(unoutlinedIcons[(targetItemIndex)]);
+        items[targetItemIndex].setBackground(unoutlinedIcons[targetItemIndex]);
         this.targetItemIndex = 0;
         this.nextItemChooseInterval = Constants.ROULETTE.INIT_ROULETTE_INTERVAL;
 
