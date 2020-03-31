@@ -29,7 +29,7 @@ public class MoreInfoFragment extends Fragment {
     }
 
     public static MoreInfoFragment getInstance() {
-        if (moreInfoFragment == null)
+        //if (moreInfoFragment == null)
             moreInfoFragment = new MoreInfoFragment();
         return moreInfoFragment;
     }

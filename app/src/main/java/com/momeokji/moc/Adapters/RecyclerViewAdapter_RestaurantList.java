@@ -74,7 +74,7 @@ public class RecyclerViewAdapter_RestaurantList extends RecyclerView.Adapter<Rec
                             Restaurant selectedRestaurant = restaurantList.get(getAdapterPosition()); //선택된 가게의 정보가 담긴 instance
                             mainActivity.restaurantDATA.selectedRestaurant = selectedRestaurant;
 
-                            displayedFragmentManager.ReplaceFragment(0, new RestaurantInfoFragment(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                            displayedFragmentManager.ReplaceFragment(0, RestaurantInfoFragment.getInstance(selectedRestaurant), Constants.ANIMATION_DIRECT.TO_RIGHT);
 
                     }
                 });

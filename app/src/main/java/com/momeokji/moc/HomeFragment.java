@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
     }
 
     public static HomeFragment getInstance() {
-        if (homeFragment == null)
+        //if (homeFragment == null)
             homeFragment = new HomeFragment();
         return homeFragment;
     }
@@ -235,12 +235,8 @@ public class HomeFragment extends Fragment {
             categoryBtns[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        RestaurantListFragment constructedRestaurantListFragment = (RestaurantListFragment) displayedFragmentManager.fragmentManagers[2].findFragmentByTag(RestaurantListFragment.class.getName());
-                        if (constructedRestaurantListFragment == null) {
-                            constructedRestaurantListFragment = new RestaurantListFragment(position);
-                        }
-                        displayedFragmentManager.ReplaceFragment(2, constructedRestaurantListFragment, Constants.ANIMATION_DIRECT.TO_RIGHT);
-                        MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(1).setChecked(true);
+                        displayedFragmentManager.ReplaceFragment(2, RestaurantListFragment.getInstance(position), Constants.ANIMATION_DIRECT.TO_RIGHT);
+                        MainContextAndNavigationBarFragment.getInstance().getBottomNavigationView().getMenu().getItem(Constants.NAVIGATION_ITEM.RESTAURANT_LIST).setChecked(true);
                 }
             });
         }

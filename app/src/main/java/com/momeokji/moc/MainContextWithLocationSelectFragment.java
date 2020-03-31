@@ -30,11 +30,11 @@ public class MainContextWithLocationSelectFragment extends Fragment {
         }
         return mainContextWithLocationSelectFragment;
     }
-    public static MainContextWithLocationSelectFragment getInstance(Fragment mainContext) {
-        if (mainContextWithLocationSelectFragment == null)
-            mainContextWithLocationSelectFragment = new MainContextWithLocationSelectFragment(mainContext);
+    public static MainContextWithLocationSelectFragment getInstance(Fragment mainContext) {/*
+        if (mainContextWithLocationSelectFragment == null)*/
+            mainContextWithLocationSelectFragment = new MainContextWithLocationSelectFragment(mainContext);/*
         else
-            mainContextWithLocationSelectFragment.mainContext = mainContext;
+            mainContextWithLocationSelectFragment.mainContext = mainContext;*/
         return mainContextWithLocationSelectFragment;
     }
 
@@ -48,20 +48,17 @@ public class MainContextWithLocationSelectFragment extends Fragment {
         displayedFragmentManager.fragmentManagers[2] = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        Fragment previousMainContext = getChildFragmentManager().findFragmentById(R.id.mainContext_frameLayout);
-        if (previousMainContext != null) {
-            fragmentTransaction.hide(previousMainContext);
+        if (displayedFragmentManager.fragmentManagers[2].findFragmentByTag(mainContext.getClass().getName()) == null) {
+            Fragment previousMainContext = getChildFragmentManager().findFragmentById(R.id.mainContext_frameLayout);
+            if (previousMainContext != mainContext) {
+                if (previousMainContext != null) {
+                    fragmentTransaction.remove(previousMainContext);
+                }
+                fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext, mainContext.getClass().getName());
+                fragmentTransaction.addToBackStack(mainContext.getClass().getName());
+                fragmentTransaction.commit();
+            }
         }
-
-        if (getChildFragmentManager().findFragmentByTag(mainContext.getClass().getName()) == null)
-            fragmentTransaction.add(R.id.mainContext_frameLayout, mainContext, mainContext.getClass().getName());
-        else {
-            fragmentTransaction.show(mainContext);
-            fragmentTransaction.detach(mainContext).attach(mainContext);
-        }
-
-        fragmentTransaction.commit();
-
         return view;
     }
 

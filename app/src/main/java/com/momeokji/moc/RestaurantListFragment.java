@@ -29,15 +29,15 @@ public class RestaurantListFragment extends Fragment {
     }
 
     public static RestaurantListFragment getInstance() {
-        if (restaurantListFragment == null)
+        //if (restaurantListFragment == null)
             restaurantListFragment = new RestaurantListFragment();
         return restaurantListFragment;
     }
-    public static RestaurantListFragment getInstance(int initTab) {
-        if (restaurantListFragment == null)
-            restaurantListFragment = new RestaurantListFragment(initTab);
+    public static RestaurantListFragment getInstance(int initTab) {/*
+        if (restaurantListFragment == null)*/
+            restaurantListFragment = new RestaurantListFragment(initTab);/*
         else
-            restaurantListFragment.lastTabPos = initTab;
+            restaurantListFragment.lastTabPos = initTab;*/
         return restaurantListFragment;
     }
 

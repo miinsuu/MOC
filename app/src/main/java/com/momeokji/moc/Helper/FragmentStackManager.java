@@ -1,5 +1,6 @@
 package com.momeokji.moc.Helper;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.momeokji.moc.HomeFragment;
@@ -34,12 +35,23 @@ public class FragmentStackManager {
 
         if ((mainActivity.displayedFragmentManager.fragmentManagers[0].findFragmentById(R.id.mainActivity_frameLayout) instanceof MainContextAndNavigationBarFragment)
         && (mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment
-        || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment
-        || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment)) {
+            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment
+            || mainActivity.displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment)) {
 
-            while (fragmentBackStack.size() != 0) {
+/*            while (fragmentBackStack.size() != 0) {
                 mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.pop()].popBackStack();
-            }
+            }*/
+            while (!fragmentBackStack.empty())
+                fragmentBackStack.pop();
+            while (mainActivity.displayedFragmentManager.fragmentManagers[2].getBackStackEntryCount() != 1)
+                mainActivity.displayedFragmentManager.fragmentManagers[2].popBackStackImmediate();
+            while (mainActivity.displayedFragmentManager.fragmentManagers[1].getBackStackEntryCount() != 1)
+                mainActivity.displayedFragmentManager.fragmentManagers[1].popBackStackImmediate();
+            while (mainActivity.displayedFragmentManager.fragmentManagers[0].getBackStackEntryCount() != 1)
+                mainActivity.displayedFragmentManager.fragmentManagers[0].popBackStackImmediate();
+
+            mainActivity.displayedFragmentManager.ReplaceFragment(0, MainContextAndNavigationBarFragment.getInstance(MainContextWithLocationSelectFragment.getInstance(HomeFragment.getInstance())), Constants.ANIMATION_DIRECT.TO_LEFT);
+
 
             // (※하드코딩) 첫 홈 화면 -> 룰렛or더보기 -> 가게리스트 -> 뒤로가기 하면 MainContextWithLocationSelect 프레임이 설정이 꼬임 => 홈 화면이 아니게되면 홈으로 설정. (추후 변경하기)
             if (!(mainActivity.displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)) {
@@ -51,7 +63,7 @@ public class FragmentStackManager {
         else {
             FragmentManager targetFragmentManager = mainActivity.displayedFragmentManager.fragmentManagers[fragmentBackStack.peek()];
 
-            targetFragmentManager.popBackStack();
+            targetFragmentManager.popBackStackImmediate();
             fragmentBackStack.pop();
         }
     }

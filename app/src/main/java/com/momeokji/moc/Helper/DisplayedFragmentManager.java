@@ -20,13 +20,18 @@ import static com.momeokji.moc.MainActivity.fragmentStackManager;
 public class DisplayedFragmentManager {
     public MainActivity mainActivity;
     public FragmentManager[] fragmentManagers = new FragmentManager[3];
+    public int frameLayoutIDs[] = new int[3];
 
     private FloatingActionButton myList_btn;
     private boolean isPositionAbove = true;
     private boolean isAnimating = false;
+    private boolean isadded = false;
 
     public DisplayedFragmentManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+        frameLayoutIDs[0] = R.id.mainActivity_frameLayout;
+        frameLayoutIDs[1] = R.id.mainContextWithLocationSelect_frameLayout;
+        frameLayoutIDs[2] = R.id.mainContext_frameLayout;
     }
 
     /*- Fragment 교체 함수 -*/
@@ -41,12 +46,7 @@ public class DisplayedFragmentManager {
 
         if (fragmentStackManager == null)
             return false;
-
-        if (animationDirection == Constants.ANIMATION_DIRECT.TO_RIGHT)
-            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
-        else if (animationDirection == Constants.ANIMATION_DIRECT.TO_LEFT)
-            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment, R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
-
+/*
         int frameLayoutId = 0;
 
         switch (level) {
@@ -70,33 +70,39 @@ public class DisplayedFragmentManager {
                 break;
             default:
                 return false;
-        }
-        removalFragment = fragmentManager.findFragmentById(frameLayoutId);
+        }*/
+        removalFragment = fragmentManager.findFragmentById(frameLayoutIDs[level]);
         if (removalFragment == null)
             return false;
 
-        if (fragmentManager.findFragmentByTag(targetFragmentClassName) == null)
-            fragmentTransaction.add(frameLayoutId, targetFragment, targetFragmentClassName);
-        else {
-            fragmentTransaction.show(targetFragment);
-            fragmentTransaction.detach(targetFragment).attach(targetFragment);
-        }
-        fragmentTransaction.hide(removalFragment).commit();
-
         fragmentTransaction.addToBackStack(targetFragmentClassName);
+
+        if (animationDirection == Constants.ANIMATION_DIRECT.TO_RIGHT)
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment, R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+        else if (animationDirection == Constants.ANIMATION_DIRECT.TO_LEFT)
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment, R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
+
+        fragmentTransaction.add(frameLayoutIDs[level], targetFragment, targetFragmentClassName);
+        fragmentTransaction.hide(removalFragment);
+
+        fragmentTransaction.commit();
+
         fragmentStackManager.PushFragment(level);
 
-        setFlageIsAnimating();
+        FinishAnimationProcess(fragmentManager, removalFragment, targetFragment);
         return true;
     }
 
     //* BottomNavigationBar의 선택 상태를 올바르게 표시해주는 함수
     public void UpdateBottomNavigationBarSelectedItem() {
-        if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
-            SetBottomNavigationBarSelectedItem(0);
-        } else if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
-            SetBottomNavigationBarSelectedItem(1);
-        } else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment) {
+        if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MainContextWithLocationSelectFragment) {
+            if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment) {
+                SetBottomNavigationBarSelectedItem(0);
+            } else if (fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof RestaurantListFragment) {
+                SetBottomNavigationBarSelectedItem(1);
+            }
+        }
+        else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof RouletteFragment) {
             SetBottomNavigationBarSelectedItem(2);
         } else if (fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout) instanceof MoreInfoFragment) {
             SetBottomNavigationBarSelectedItem(3);
@@ -129,14 +135,19 @@ public class DisplayedFragmentManager {
         isPositionAbove = isTargetPositionAbove;
     }*/
 
-    public void setFlageIsAnimating() {
+    public void FinishAnimationProcess(final FragmentManager fragmentManager, final Fragment removalFragment, final Fragment targetFragment) {
         isAnimating = true;
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 isAnimating = false;
+                UpdateBottomNavigationBarSelectedItem();
             }
         }, Constants.DELAYS.ANIMATION_DELAY);
+    }
+
+    public boolean getIsAnimating() {
+        return this.isAnimating;
     }
 }

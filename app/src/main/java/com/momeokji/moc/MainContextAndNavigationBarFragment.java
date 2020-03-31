@@ -42,13 +42,12 @@ public class MainContextAndNavigationBarFragment extends Fragment {
         }
         return mainContextAndNavigationBarFragment;
     }
-    public static MainContextAndNavigationBarFragment getInstance(Fragment mainContextWithLocationSelect) {
-        if (mainContextAndNavigationBarFragment == null)
-            mainContextAndNavigationBarFragment = new MainContextAndNavigationBarFragment();
-        mainContextAndNavigationBarFragment.mainContextWithLocationSelect = mainContextWithLocationSelect;
+    public static MainContextAndNavigationBarFragment getInstance(Fragment mainContextWithLocationSelect) {/*
+        if (mainContextAndNavigationBarFragment == null)*/
+            mainContextAndNavigationBarFragment = new MainContextAndNavigationBarFragment(mainContextWithLocationSelect);/*
+        mainContextAndNavigationBarFragment.mainContextWithLocationSelect = mainContextWithLocationSelect;*/
         return mainContextAndNavigationBarFragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,14 +58,21 @@ public class MainContextAndNavigationBarFragment extends Fragment {
         bottomNavigationView.setOnNavigationItemSelectedListener(MakeOnNavigationItemSelectedListener());
 
         displayedFragmentManager.fragmentManagers[1] = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        if (getChildFragmentManager().findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()) == null)
+        if (getChildFragmentManager().findFragmentByTag(MainContextWithLocationSelectFragment.class.getName()) == null) {
+            FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.mainContextWithLocationSelect_frameLayout, mainContextWithLocationSelect, mainContextWithLocationSelect.getClass().getName());
-
-        fragmentTransaction.commit();
+            fragmentTransaction.addToBackStack(MainContextWithLocationSelectFragment.class.getName());
+            fragmentTransaction.commit();
+        }
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //displayedFragmentManager.UpdateBottomNavigationBarSelectedItem();
     }
 
     public void setMainContextWithLocationSelect(Fragment mainContextWithLocationSelect) {
@@ -86,6 +92,9 @@ public class MainContextAndNavigationBarFragment extends Fragment {
         return new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                if (displayedFragmentManager.getIsAnimating())
+                    return false;
+
                 int animationDirection;
 
                 Fragment curr_Level1_Fragment = displayedFragmentManager.fragmentManagers[1].findFragmentById(R.id.mainContextWithLocationSelect_frameLayout);
@@ -106,10 +115,7 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                         break;
 
                     case R.id.navigationBar_shop_btn:
-                        if (displayedFragmentManager.fragmentManagers[2].findFragmentById(R.id.mainContext_frameLayout) instanceof HomeFragment)
                             animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
-                        else
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
 
                         // 현재 frame에 LocationSelectFragment가 없는 frame 이라면 MainContextWithLocationSelectFragment로 교체
                         if (!(curr_Level1_Fragment instanceof MainContextWithLocationSelectFragment)) {
@@ -123,9 +129,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
                         break;
 
                     case R.id.navigationBar_roulette_btn:
-                        if (curr_Level1_Fragment instanceof MoreInfoFragment)
-                            animationDirection = Constants.ANIMATION_DIRECT.TO_LEFT;
-                        else
                             animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
 
                         if (!(curr_Level1_Fragment instanceof RouletteFragment))
@@ -135,7 +138,6 @@ public class MainContextAndNavigationBarFragment extends Fragment {
 
                     case R.id.navigationBar_more_btn:
                         animationDirection = Constants.ANIMATION_DIRECT.TO_RIGHT;
-
 
                         if (!(curr_Level1_Fragment instanceof MoreInfoFragment))
                             //MainContextAndNavigationBarFragment.getInstance().setMainContextWithLocationSelect(MoreInfoFragment.getInstance());
