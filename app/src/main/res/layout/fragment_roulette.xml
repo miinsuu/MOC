@@ -57,7 +57,7 @@
                 <ImageButton
                     android:id="@+id/item4"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/western"/>
+                    android:background="@drawable/pizzaw"/>
                 <TextView
                     style="@style/roulette_item_txt"
                     android:textSize="14dp"
@@ -109,7 +109,7 @@
                 <ImageButton
                     android:id="@+id/item8"
                     style="@style/roulette_item_imgbtn"
-                    android:background="@drawable/fast"/>
+                    android:background="@drawable/burger2"/>
                 <TextView
                     style="@style/roulette_item_txt"
                     android:textSize="14dp"
