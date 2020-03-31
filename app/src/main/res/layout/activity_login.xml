@@ -161,7 +161,11 @@
                         android:textSize="14dp"
                         android:clickable="true"/>
                 </LinearLayout>
+
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
 
         </LinearLayout>
 
