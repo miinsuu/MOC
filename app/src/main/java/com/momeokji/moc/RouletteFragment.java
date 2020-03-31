@@ -107,6 +107,7 @@ public class RouletteFragment extends Fragment {
     }
 
     public void DrawItem() {
+        items[(targetItemIndex)].setBackground(unoutlinedIcons[(targetItemIndex)]);
         this.targetItemIndex = 0;
         this.nextItemChooseInterval = Constants.ROULETTE.INIT_ROULETTE_INTERVAL;
 
