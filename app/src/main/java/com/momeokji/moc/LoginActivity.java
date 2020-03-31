@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private LoginActivity loginActivity;
     // 페이스북 콜백 매니저
-    private CallbackManager callbackManager;
+    //private CallbackManager callbackManager;
 
     // 구글로그인 result 상수
     private static final int RC_SIGN_IN = 900;
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView login_find_password_txtbtn = findViewById(R.id.login_find_password_txtbtn);
         Button login_log_in_btn = findViewById(R.id.login_log_in_btn);
         TextView login_sign_up_txtbtn = findViewById(R.id.login_sign_up_txtbtn);
-        LoginButton login_with_facebook_imgbtn = findViewById(R.id.login_facebook_btn);
+        View login_with_facebook_imgbtn = findViewById(R.id.login_facebook_btn);
         com.google.android.gms.common.SignInButton login_with_google_imgbtn = findViewById(R.id.login_google_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -204,27 +204,35 @@ public class LoginActivity extends AppCompatActivity {
 
         //* 페이스북 로그인 버튼 클릭 시 리스너 등록
         // 페이스북 콜백 등록
-        callbackManager = CallbackManager.Factory.create();
-        login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
-        login_with_facebook_imgbtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        login_with_facebook_imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("FACEBOOK", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
+            public void onClick(View view) {
+                Toast.makeText(loginActivity, "신종 코로나바이러스로 인해 페이스북 로그인 앱 검수 지연 중입니다 ㅠㅠ", Toast.LENGTH_LONG).show();
             }
+        });
 
-            @Override
-            public void onCancel() {
-                Log.d("FACEBOOK", "facebook:onCancel");
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.e("FACEBOOK",  error.toString());
-                // ...
-            }
-        });// ...
+        // 코로나 바이러스 끝나면 주석해제
+//        callbackManager = CallbackManager.Factory.create();
+//        login_with_facebook_imgbtn.setReadPermissions("email", "public_profile");
+//        login_with_facebook_imgbtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Log.d("FACEBOOK", "facebook:onSuccess:" + loginResult);
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d("FACEBOOK", "facebook:onCancel");
+//                // ...
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.e("FACEBOOK",  error.toString());
+//                // ...
+//            }
+//        });// ...
 
 
         // Google 로그인을 앱에 통합
@@ -271,7 +279,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // 페이스북 콜백 등록
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        //callbackManager.onActivityResult(requestCode, resultCode, data);
         // 구글로그인 버튼 응답
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
