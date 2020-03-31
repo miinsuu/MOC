@@ -92,26 +92,45 @@
             android:id="@+id/login_log_in_btn"
             android:layout_width="@dimen/login_login_btn_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:text="로그인"
             android:textSize="14dp"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:background="@drawable/shape_app_color"/>
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_facebook_btn"
-            android:layout_width="280dp"
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="or"
+            android:fontFamily="@font/nanumsquareround_otfb"
+            android:textSize="16dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:background="@color/com_facebook_button_background_color"
+            android:layout_gravity="center_horizontal">
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_facebook_btn"
+                android:layout_width="@dimen/login_login_btn_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                />
+        </LinearLayout>
+
+
         <com.google.android.gms.common.SignInButton
             android:id="@+id/login_google_btn"
-            android:layout_width="287dp"
-            android:layout_height="50dp"
+            android:layout_width="307dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="14dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
