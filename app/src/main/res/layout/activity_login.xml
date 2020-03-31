@@ -118,19 +118,37 @@
                     android:textSize="16dp"
                     android:layout_gravity="center_horizontal"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/login_facebook_btn"
+                    android:layout_width="@dimen/login_login_btn_width"
                     android:layout_height="50dp"
                     android:background="@color/com_facebook_button_background_color"
                     android:layout_gravity="center_horizontal">
-                    <com.facebook.login.widget.LoginButton
-                        android:id="@+id/login_facebook_btn"
-                        android:layout_width="@dimen/login_login_btn_width"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14dp"
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/facebookTxt"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/com_facebook_button_icon"
                         />
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/facebookTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nanumsquareround_otfeb"
+                        android:textSize="14dp"
+                        android:textColor="@color/white"
+                        android:text="Facebook으로 계속하기"/>
+<!--                    <com.facebook.login.widget.LoginButton-->
+<!--                        -->
+<!--                        android:layout_width="@dimen/login_login_btn_width"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textSize="14dp"-->
+<!--                        />-->
+                </RelativeLayout>
 
 
                 <com.google.android.gms.common.SignInButton
