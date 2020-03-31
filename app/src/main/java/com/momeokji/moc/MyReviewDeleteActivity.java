@@ -29,6 +29,7 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
     RecyclerView myreview_recyclerView; // 리사이클러뷰
     RecyclerViewAdapter_MyReview MyReviewAdapter; // 어댑터
     RequestManager mGlideRequestManager; // Glide 매니저
+    boolean isUpdate = false; // 업데이트를 위한 finish()인지 구분하기 위한 변수
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
                                 public void onSuccess() {
                                     Toast.makeText(getApplicationContext(), "리뷰를 삭제하였습니다.", Toast.LENGTH_SHORT).show();
                                     // 리뷰 삭제 후 화면 업데이트
+                                    isUpdate = true;
                                     finish();
                                     startActivity(new Intent(MyReviewDeleteActivity.this, MyReviewDeleteActivity.class));
                                 }
@@ -116,5 +118,12 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
         });
     }
 
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+        if(!isUpdate)
+            overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+    }
 
 }

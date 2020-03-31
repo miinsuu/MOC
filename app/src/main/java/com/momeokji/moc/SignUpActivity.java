@@ -97,6 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);  // 로그인으로 다시 이동
                 startActivity(intent);
+                overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
             }
         });
 
@@ -150,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
                         else {
                             // 회원가입 실패 시
                             Log.e("회원가입CHECK", "EmailSignUp 실패", task.getException());
-                            Toast.makeText(SignUpActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "이미 존재하는 이메일 계정입니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -167,5 +168,13 @@ public class SignUpActivity extends AppCompatActivity {
     public void RemoveFocusFromEditText(BackPressEditText targetEditText) {
         ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         targetEditText.clearFocus();
+    }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
     }
 }

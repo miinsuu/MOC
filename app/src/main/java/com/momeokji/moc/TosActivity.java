@@ -91,4 +91,12 @@ public class TosActivity extends AppCompatActivity {
 
 
     }
+
+    // 뒤로가기 애니메이션
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition( R.anim.anim_slide_in_left_with_main_fragment, R.anim.anim_slide_out_right_with_main_fragment);
+    }
 }

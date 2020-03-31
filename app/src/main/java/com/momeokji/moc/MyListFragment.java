@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -23,14 +24,17 @@ import com.momeokji.moc.Helper.Constants;
 
 public class MyListFragment extends DialogFragment {
     public static final String TAG_MY_LIST_FRAGMENT = "dialog_event";
+    private static MyListFragment myListFragment = null;
 
     private MainActivity mainActivity;
     private GestureDetector detector = null;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    TextView mylist_sumMoneyTxt;
 
     public static MyListFragment getInstance(MainActivity mainActivity) {
-        MyListFragment myListFragment = new MyListFragment(mainActivity);
+        if(myListFragment == null)
+            myListFragment = new MyListFragment(mainActivity);
         return myListFragment;
     }
 
@@ -52,6 +56,7 @@ public class MyListFragment extends DialogFragment {
 
         final int firstvisible = linearLayoutManager.findFirstVisibleItemPosition();
 
+        mylist_sumMoneyTxt = view.findViewById(R.id.mylist_sumMoneyTxt);
         TextView myList_allDelete_txt = view.findViewById(R.id.myList_allDelete_txt);
         ImageButton myList_allDelete_imgbtn = view.findViewById(R.id.myList_allDelete_imgbtn);
         View.OnClickListener allDeleteOnClickListener = new View.OnClickListener() {
@@ -59,6 +64,7 @@ public class MyListFragment extends DialogFragment {
             public void onClick(View v) {
                 mainActivity.restaurantDATA.MyListMenuList.clear();
                 recyclerViewAdapter_myListMenu.notifyDataSetChanged();
+                calculatePrice();
             }
         };
         myList_allDelete_txt.setOnClickListener(allDeleteOnClickListener);
@@ -129,6 +135,10 @@ public class MyListFragment extends DialogFragment {
             }
         });
 
+        // 금액 총 합계
+        calculatePrice();
+
+
         return view;
     }
     @Override
@@ -145,5 +155,48 @@ public class MyListFragment extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_my_list);
         getDialog().getWindow().getAttributes().windowAnimations = R.style.mylist_animation;
         getDialog().getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    // 마이리스트 가격 총 합계
+    public void calculatePrice() {
+        int sum = 0;
+        int numberFormatExceptionCount = 0;
+        String sumStr;
+
+        // 아무것도 없으면 0원
+        if(mainActivity.restaurantDATA.MyListMenuList.size() == 0) {
+            sumStr = "0";
+            mylist_sumMoneyTxt.setText(sumStr);
+            return;
+        }
+
+        // 가격 합계 계산
+        for(int i = 0; i < mainActivity.restaurantDATA.MyListMenuList.size(); i++) {
+            String price = mainActivity.restaurantDATA.MyListMenuList.get(i).getPrice().replace(",","");
+            price = price.replace("원","");
+
+            try {
+                sum += Integer.parseInt(price);
+            } catch (NumberFormatException e) {
+                // 가격이 두개이상인 메뉴는 계산 안하고 넘어감
+                if(numberFormatExceptionCount == 0) {
+                    Toast.makeText(mainActivity, "가격이 정해지지 않은 메뉴는 합계에서 제외되었습니다.", Toast.LENGTH_SHORT).show();
+                    numberFormatExceptionCount++;
+                }
+            }
+
+
+            // 정수형 범위를 넘어서면 0으로 초기화
+            if(sum > 2147000000) {
+                sumStr = "0";
+                mylist_sumMoneyTxt.setText(sumStr);
+                return;
+            }
+        }
+
+        // 천단위 콤마찍어서 화면에 뿌리기
+        sumStr = String.format("%,d", sum);
+        mylist_sumMoneyTxt.setText(sumStr);
+        return;
     }
 }

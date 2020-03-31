@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_moc_color_accent_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InquireActivity"></activity>
+        <activity android:name=".CardNewsActivity"></activity>
+        <activity android:name=".CardNewsListActivity" />
+        <activity android:name=".InquireActivity" />
         <activity android:name=".NoticeContentActivity" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".TosActivity" />

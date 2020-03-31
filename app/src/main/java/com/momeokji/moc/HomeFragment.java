@@ -142,6 +142,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 // 이벤트 및 광고 모아보기 페이지로 이동
                 startActivity(new Intent(getContext(), EventPageActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
@@ -175,6 +176,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 // 다른 주제 더보기 액티비티로 이동
                 startActivity(new Intent(mainActivity, VariousContentsActivity.class));
+                mainActivity.overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
 
