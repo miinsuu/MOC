@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView login_find_password_txtbtn = findViewById(R.id.login_find_password_txtbtn);
         Button login_log_in_btn = findViewById(R.id.login_log_in_btn);
         TextView login_sign_up_txtbtn = findViewById(R.id.login_sign_up_txtbtn);
-        LoginButton login_with_facebook_imgbtn = findViewById(R.id.login_facebook_btn);
+        View login_with_facebook_imgbtn = findViewById(R.id.login_facebook_btn);
         com.google.android.gms.common.SignInButton login_with_google_imgbtn = findViewById(R.id.login_google_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
