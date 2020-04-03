@@ -207,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
         login_with_facebook_imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(loginActivity, "신종 코로나바이러스로 인해 페이스북 로그인 앱 검수 지연 중입니다 ㅠㅠ", Toast.LENGTH_LONG).show();
+                Toast.makeText(loginActivity, "신종 코로나바이러스로 인해\n페이스북 본사 측 앱 검수가\n지연 중입니다 ㅠㅠ", Toast.LENGTH_LONG).show();
             }
         });
 
