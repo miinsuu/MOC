@@ -103,76 +103,72 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/shop_info"
-                    android:orientation="horizontal">
+                    android:background="@drawable/shop_info">
 
-                    <LinearLayout
+
+                    <TextView
+                        android:id="@+id/addressStaticText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:lineSpacingExtra="10dp"
+                        android:textSize="14dp"
+                        android:text="주소" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:lineSpacingExtra="10dp"
-                            android:textSize="14dp"
-                            android:text="주소" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="13dp"
-                            android:textSize="14dp"
-                            android:text="전화" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/phoneStaticText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/addressStaticText"
+                        android:layout_alignBaseline="@id/restaurantInfoPage_phoneNumberTxt"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="13dp"
+                        android:textSize="14dp"
+                        android:text="전화" />
 
 
-                    <LinearLayout
+
+                    <TextView
+                        android:id="@+id/restaurantInfoPage_addressTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_toRightOf="@id/addressStaticText"
+                        android:layout_alignBaseline="@id/addressStaticText"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView"
+                        android:textSize="14dp"
+                        android:textColor="#222222"
+                        android:textIsSelectable="true" />
 
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_addressTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="13dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="TextView"
-                            android:textSize="14dp"
-                            android:textColor="#222222"
-                            android:textIsSelectable="true" />
-
-                        <TextView
-                            android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="13dp"
-                            android:text="TextView"
-                            android:textSize="14dp"
-                            android:textColor="#222222"
-                            android:textIsSelectable="true" />
-                    </LinearLayout>
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/restaurantInfoPage_phoneNumberTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/restaurantInfoPage_addressTxt"
+                        android:layout_alignStart="@id/restaurantInfoPage_addressTxt"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="13dp"
+                        android:text="TextView"
+                        android:textSize="14dp"
+                        android:textColor="#222222"
+                        android:textIsSelectable="true" />
+                </RelativeLayout>
             </LinearLayout>
 
 

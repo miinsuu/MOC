@@ -160,14 +160,16 @@ public class WriteReview extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Log.d("uploadd", taskSnapshot.getMetadata().toString());
-                            StorageReference imageRef = storageRef.child("images/" + selectedImageUri.getLastPathSegment());
+                            final String imageName = selectedImageUri.getLastPathSegment();
+
+                            StorageReference imageRef = storageRef.child("images/" + imageName);
 
                             imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     Log.d("uploadd", uri.toString());
                                     // 사진 업로드가 성공적으로 끝나면 나머지 데이터를 DB에 올리기
-                                    DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, uri.toString(), restaurantName, new MyOnSuccessListener() {
+                                    DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, uri.toString(), restaurantName, imageName, new MyOnSuccessListener() {
                                         @Override
                                         public void onSuccess() {
                                             Log.e("업로드 완료","=========");
@@ -185,7 +187,7 @@ public class WriteReview extends Fragment {
 
                 } else {
                     // 업로드할 사진이 없다면
-                    DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, "", restaurantName, new MyOnSuccessListener() {
+                    DatabaseQueryClass.ReviewDB.createReview(choiceMenu, reivewContent, "", restaurantName, "", new MyOnSuccessListener() {
                         @Override
                         public void onSuccess() {
                             Log.e("업로드 완료","=========");

@@ -1,5 +1,6 @@
 package com.momeokji.moc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,12 +11,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_MyReview;
 import com.momeokji.moc.Adapters.RecyclerViewAdapter_ReviewTabPage;
 import com.momeokji.moc.Database.DataListener;
@@ -57,6 +63,26 @@ public class MyReviewDeleteActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
+                            // storage에서 사진 삭제
+                            FirebaseStorage storage = FirebaseStorage.getInstance("gs://mocfirebaseproject-28e15.appspot.com");
+                            final StorageReference storageRef = storage.getReference();
+                            StorageReference desertRef = storageRef.child("images/" + review.getReviewImageName());
+
+                            // Delete the file
+                            desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // File deleted successfully
+                                    Log.e("Storage 이미지삭제", "성공");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Uh-oh, an error occurred!
+                                    Log.e("Storage 이미지삭제", "실패");
+                                }
+                            });
+
                             // DB에서 리뷰 삭제
                             DatabaseQueryClass.ReviewDB.deleteReview(review.getReviewId(), new MyOnSuccessListener() {
                                 @Override
