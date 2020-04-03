@@ -16,6 +16,7 @@ public class Review implements Serializable {
     private String reviewNickName;
     private String reviewTime;
     private Uri reviewImageUri;
+    private String reviewImageName;
     private String reviewText;
     private String reviewUserUID;
     private String reviewId; // 저장되는 MAP 고유ID
@@ -31,10 +32,13 @@ public class Review implements Serializable {
         this.reviewNickName = obj.get("nick").getAsString();
         this.reviewTime = obj.get("date").getAsString();
         String uri = obj.get("img").getAsString();
-        if(uri.equals(""))
+        if(uri.equals("")) {
             this.reviewImageUri = null;
-        else
+            this.reviewImageName = null;
+        } else {
             this.reviewImageUri = Uri.parse(uri);
+            this.reviewImageName = obj.get("imgName").getAsString();
+        }
         this.reviewText = obj.get("content").getAsString();
         this.reviewUserUID = obj.get("userUID").getAsString();
         this.reviewId = id;
@@ -105,5 +109,13 @@ public class Review implements Serializable {
 
     public void setReviewRestaurantName(String reviewRestaurantName) {
         this.reviewRestaurantName = reviewRestaurantName;
+    }
+
+    public String getReviewImageName() {
+        return reviewImageName;
+    }
+
+    public void setReviewImageName(String reviewImageName) {
+        this.reviewImageName = reviewImageName;
     }
 }
