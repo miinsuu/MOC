@@ -143,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
                             // 사용자UID
                             String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             // 사용자UID & 닉네임 DB에 저장
-                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(userUID, nickname, "email");
+                            DatabaseQueryClass.UserInfo.putUserNickNameToDB(userUID, nickname, "email", "");
                             // 회원가입 완료 후 로그인 페이지로 이동
                             Toast.makeText(getApplicationContext(),"회원가입 되었습니다.",Toast.LENGTH_SHORT).show();
                             moveLoginActivity();

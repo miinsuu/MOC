@@ -84,6 +84,7 @@ public class WriteReview extends Fragment {
         LinearLayout ll3 = view.findViewById(R.id.ll3);
         writeReview_editText = view.findViewById(R.id.writeReview_editText);
 
+        choiceMenu = "";
         writetReview_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         restaurantName = selectedRestaurant.getRestaurantName();
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
@@ -257,6 +258,7 @@ public class WriteReview extends Fragment {
         ((MainActivity)getActivity()).onBackPressed();
 
     }
+
 
 }
 

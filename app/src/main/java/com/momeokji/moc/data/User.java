@@ -15,6 +15,7 @@ public class User {
     private String nickname; // 리뷰작성시 닉네임
     private String usersMapName; // users Cellection에 저장되는 Map의 무작위 String이름
     private String loginAccount; // 로그인 계정 종류 (email / google / facebook)
+    private String idToken; // 구글/페이스북 탈퇴 시 사용
 
     private User(){
 
@@ -35,6 +36,7 @@ public class User {
                 nickname = jobj.get("nick").getAsString();
                 usersMapName = jobj.get("usersMapName").getAsString();
                 loginAccount =  jobj.get("account").getAsString();
+                idToken = jobj.get("idToken").getAsString();
 
                 Log.e("GOOGLE정보체크", "닉네임: "+nickname + ", 로그인계정: " +loginAccount );
             }
@@ -67,5 +69,13 @@ public class User {
 
     public void setLoginAccount(String loginAccount) {
         this.loginAccount = loginAccount;
+    }
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
     }
 }
