@@ -298,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
     // 사용자가 정상적으로 로그인한 후 페이스북 로그인 버튼의 onSuccess 콜백 메소드에서 로그인한 사용자의
     // 액세스 토큰을 가져와서 Firebase 사용자 인증 정보로 교환하고,
     // Firebase 사용자 인증 정보를 사용해 Firebase에 인증.
-    private void handleFacebookAccessToken(AccessToken token) {
+    private void handleFacebookAccessToken(final AccessToken token) {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential)
@@ -311,6 +311,7 @@ public class LoginActivity extends AppCompatActivity {
                             //페이스북 사용자 정보 추출 (사용자이름=닉네임)
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             String nickname = null;
+                            String idToken = token.getToken();
                             String userUID = user.getUid();
                             if (user != null) {
                                 for (UserInfo profile : user.getProviderData()) {
@@ -318,7 +319,7 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // 페이스북계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "facebook");
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "facebook", idToken);
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
 
@@ -350,7 +351,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // 사용자가 정상적으로 로그인한 후에 GoogleSignInAccount 개체에서 ID 토큰을 가져와서
     // Firebase 사용자 인증 정보로 교환하고 Firebase 사용자 인증 정보를 사용해 Firebase에 인증
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential)
@@ -363,6 +364,7 @@ public class LoginActivity extends AppCompatActivity {
                             //Google 사용자 정보 추출 (사용자이름=닉네임)
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             String nickname = null;
+                            String idToken = acct.getIdToken();
                             String userUID = user.getUid();
                             if (user != null) {
                                 for (UserInfo profile : user.getProviderData()) {
@@ -370,7 +372,7 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // Google계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "google");
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "google", idToken);
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
                                 Log.e("구글체크!","account:"+User.getUser().getLoginAccount()+", nickname:"+User.getUser().getNickName()+", getUserUID():"+User.getUser().getUserUID());

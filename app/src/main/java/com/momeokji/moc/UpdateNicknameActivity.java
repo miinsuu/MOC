@@ -12,14 +12,23 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.momeokji.moc.Database.DatabaseQueryClass;
 import com.momeokji.moc.Database.MyOnSuccessListener;
 import com.momeokji.moc.data.User;
@@ -43,6 +52,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
         final TextView updatePassword_acticity_newPasswordCheckTxt = findViewById(R.id.updatePassword_acticity_newPasswordCheckTxt); // 새 비밀번호 확인 텍스트뷰
         Button updatePassword_acticity_updateBtn = findViewById(R.id.updatePassword_acticity_updateBtn); // 비밀번호 변경 버튼
         Button updateNickname_back_btn = findViewById(R.id.updateNickname_back_btn); // 백 버튼
+        final TextView updatePassword_acticity_nowPasswordTxt = findViewById(R.id.updatePassword_acticity_nowPasswordTxt); // 현재비밀번호 텍스트뷰
 
         // 뒤로가기 버튼
         updateNickname_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -106,48 +116,176 @@ public class UpdateNicknameActivity extends AppCompatActivity {
         myPage_activity_userDeleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 회원 탈퇴를 다시 한번 물어보는 다이얼로그
-                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateNicknameActivity.this);
-                builder.setTitle("정말로 회원 탈퇴하시겠습니까?");
-                builder.setPositiveButton("네", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        // DB에서 users 정보 삭제
-                        DatabaseQueryClass.UserInfo.deleteUser(User.getUser().getusersMapName(), new MyOnSuccessListener() {
-                            @Override
-                            public void onSuccess() {
-                                // 계정 삭제 (탈퇴)
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                user.delete()
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.e("계정탈퇴", "성공");
-                                                // User클래스 유저정보 삭제
-                                                User.getUser().clearUser();
-                                                Toast.makeText(UpdateNicknameActivity.this, "계정이 삭제되었습니다.", Toast.LENGTH_LONG).show();
-                                                // 로그인 화면으로 이동
-                                                ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
-                                                startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
+                // 로그인 계정 정보
+                final String loginAccount = User.getUser().getLoginAccount();
+                // 사용자 재인증 정보
+                final AuthCredential[] credential = {null};
+
+                // 이메일 계정 사용자 재인증 후 계정탈퇴
+                if(loginAccount.equals("email")) {
+
+                    final EditText edittext = new EditText(UpdateNicknameActivity.this);
+                    // 사용자 재인증을 위해 현재 비밀번호를 입력받을 다이얼로그
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(UpdateNicknameActivity.this);
+                    builder.setTitle("현재 비밀번호를 입력해 주세요.");
+                    builder.setView(edittext);
+                    final FirebaseUser finalUser = FirebaseAuth.getInstance().getCurrentUser();
+                    builder.setPositiveButton("입력",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(final DialogInterface dialog, int which) {
+
+                                    String password = edittext.getText().toString().trim();
+                                    if(password.equals(""))
+                                        dialog.dismiss(); // 창 닫음
+                                    else {
+                                        credential[0] = EmailAuthProvider.getCredential(finalUser.getEmail(), password);
+                                        dialog.dismiss(); // 창 닫음
+
+                                        // 회원 탈퇴를 다시 한번 물어보는 다이얼로그
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateNicknameActivity.this);
+                                        builder.setTitle("정말로 회원 탈퇴하시겠습니까?");
+                                        builder.setPositiveButton("네", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+                                                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                // 사용자 재인증
+                                                user.reauthenticate(credential[0])
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                // 재인증 성공
+                                                                if(task.isSuccessful()) {
+                                                                    Log.e("사용자 재인증", "성공");
+
+                                                                    // DB에서 users 정보 삭제
+                                                                    DatabaseQueryClass.UserInfo.deleteUser(User.getUser().getusersMapName(), new MyOnSuccessListener() {
+                                                                        @Override
+                                                                        public void onSuccess() {
+                                                                            // 재인증한 사용자 계정 삭제 (탈퇴)
+                                                                            user.delete()
+                                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                        @Override
+                                                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                                                            if (task.isSuccessful()) {
+                                                                                                Log.e("계정탈퇴", "성공");
+                                                                                                // User클래스 유저정보 삭제
+                                                                                                User.getUser().clearUser();
+                                                                                                Toast.makeText(UpdateNicknameActivity.this, "계정이 삭제되었습니다.", Toast.LENGTH_LONG).show();
+                                                                                                // 로그인 화면으로 이동
+                                                                                                ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
+                                                                                                startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
+                                                                                            }
+                                                                                        }
+                                                                                    });
+
+                                                                        }
+                                                                    });
+                                                                } else if(task.getException() != null) {
+                                                                    // 재인증 실패
+                                                                    Log.e("사용자 재인증", "실패");
+                                                                    Toast.makeText(UpdateNicknameActivity.this, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                                                }
+
+                                                            }
+                                                        });
+
+
                                             }
-                                        }
-                                    });
+                                        });
+                                        builder.setNegativeButton("아니요", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            { }
+                                        });
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
 
                                 }
-                        });
+                            });
+                    builder.setNegativeButton("취소",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss(); // 창 닫음
+                                }
+                            });
+                    builder.show();
+                }
+
+                // 구글/페이스북 계정 사용자 재인증 및 회원탈퇴
+                if(loginAccount.equals("google") || loginAccount.equals("facebook")) {
+                    // 회원 탈퇴를 다시 한번 물어보는 다이얼로그
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateNicknameActivity.this);
+                    builder.setTitle("정말로 회원 탈퇴하시겠습니까?");
+                    builder.setPositiveButton("네", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            // 토큰 가져오기
+                            // 로그인 계정 종류 별로 사용자 재인증
+                            if(loginAccount.equals("google")) {
+                                credential[0] = GoogleAuthProvider.getCredential(User.getUser().getIdToken(), null);
+                                Log.e("google Token", "getToken Task is successful => "+credential[0].getProvider());
+                            } else if(loginAccount.equals("facebook")) {
+                                credential[0] = FacebookAuthProvider.getCredential(User.getUser().getIdToken());
+                                Log.e("facebook Token", "getToken Task is successful => "+credential[0].getProvider());
+                            }
+
+                            // 사용자 재인증
+                            user.reauthenticate(credential[0]).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        // 재인증 성공
+                                        Log.e("사용자 재인증", "성공");
+
+                                        // DB에서 users 정보 삭제
+                                        DatabaseQueryClass.UserInfo.deleteUser(User.getUser().getusersMapName(), new MyOnSuccessListener() {
+                                            @Override
+                                            public void onSuccess() {
+                                                Log.e("사용자DB삭제", "성공");
+                                                // 재인증한 사용자 계정 삭제 (탈퇴)
+                                                user.delete()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    Log.e("계정탈퇴", "성공");
+                                                                    // User클래스 유저정보 삭제
+                                                                    User.getUser().clearUser();
+                                                                    Toast.makeText(UpdateNicknameActivity.this, "계정이 삭제되었습니다.", Toast.LENGTH_LONG).show();
+                                                                    // 로그인 화면으로 이동
+                                                                    ActivityCompat.finishAffinity(UpdateNicknameActivity.this);
+                                                                    startActivity(new Intent(UpdateNicknameActivity.this, LoginActivity.class));
+                                                                } else
+                                                                    Log.e("계정탈퇴 실패", task.getException().toString());
+
+                                                            }
+                                                        });
+
+                                            }
+                                        });
+                                    } else
+                                        Log.e("사용자 재인증 실패", task.getException().toString());
 
 
-                    }
-                });
-                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    { }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                                }
+                            });
+
+                        }
+                    });
+                    builder.setNegativeButton("아니요", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        { }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                }
+
             }
         });
 
@@ -163,10 +301,11 @@ public class UpdateNicknameActivity extends AppCompatActivity {
         updatePassword_acticity_updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String password = updatePassword_acticity_newPasswordTxt.getText().toString();
-                String passwordCheck = updatePassword_acticity_newPasswordCheckTxt.getText().toString();
+                final String password = updatePassword_acticity_newPasswordTxt.getText().toString().trim();
+                String passwordCheck = updatePassword_acticity_newPasswordCheckTxt.getText().toString().trim();
+                String nowPassword = updatePassword_acticity_nowPasswordTxt.getText().toString().trim();
 
-                if(password.equals("") || passwordCheck.equals("")) {
+                if(password.equals("") || passwordCheck.equals("") || nowPassword.equals("")) {
                     // 비었는지 체크
                     Toast.makeText(UpdateNicknameActivity.this, "비밀번호를 입력해주십시오.", Toast.LENGTH_SHORT).show();
                     return;
@@ -178,24 +317,44 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                     //비밀번호 형식 체크
                     Toast.makeText(UpdateNicknameActivity.this,"비밀번호 형식을 지켜주세요.",Toast.LENGTH_SHORT).show();
                     return;
+                } else {
+                    // 현재 비밀번호 진위판단
+                    // 비밀번호 변경
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), nowPassword);
+                    user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Log.e("사용자 재인증", "성공");
+                                        user.updatePassword(password)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Log.e("비밀번호 변경", "성공");
+                                                            Toast.makeText(UpdateNicknameActivity.this,"비밀번호가 변경되었습니다.",Toast.LENGTH_SHORT).show();
+                                                            // 홈 화면으로 이동
+                                                            finish();
+                                                            MainActivity.getInstance().finish();
+                                                            startActivity(new Intent(UpdateNicknameActivity.this, MainActivity.class));
+                                                        }
+                                                    }
+                                                });
+
+                                    } else if(task.getException() != null) {
+                                        // 재인증 실패
+                                        Log.e("사용자 재인증", "실패");
+                                        Toast.makeText(UpdateNicknameActivity.this, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
+
                 }
 
-                // 비밀번호 변경
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                user.updatePassword(password)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.e("비밀번호 변경", "성공");
-                                    Toast.makeText(UpdateNicknameActivity.this,"비밀번호가 변경되었습니다.",Toast.LENGTH_SHORT).show();
-                                    // 홈 화면으로 이동
-                                    finish();
-                                    MainActivity.getInstance().finish();
-                                    startActivity(new Intent(UpdateNicknameActivity.this, MainActivity.class));
-                                }
-                            }
-                        });
+
 
             }
         });
