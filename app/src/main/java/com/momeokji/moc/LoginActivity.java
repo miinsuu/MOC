@@ -311,7 +311,6 @@ public class LoginActivity extends AppCompatActivity {
                             //페이스북 사용자 정보 추출 (사용자이름=닉네임)
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             String nickname = null;
-                            String idToken = token.getToken();
                             String userUID = user.getUid();
                             if (user != null) {
                                 for (UserInfo profile : user.getProviderData()) {
@@ -319,7 +318,7 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // 페이스북계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "facebook", idToken);
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "facebook");
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
 
@@ -364,7 +363,6 @@ public class LoginActivity extends AppCompatActivity {
                             //Google 사용자 정보 추출 (사용자이름=닉네임)
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             String nickname = null;
-                            String idToken = acct.getIdToken();
                             String userUID = user.getUid();
                             if (user != null) {
                                 for (UserInfo profile : user.getProviderData()) {
@@ -372,7 +370,7 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                                 }
                                 // Google계정으로 첫 로그인인지 DB에 저장된 유저정보 중복체크후 저장
-                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "google", idToken);
+                                DatabaseQueryClass.UserInfo.checkUserDuplication(userUID, nickname, "google");
                                 // 파이어베이스 userUID로 DB에 있는 닉네임, 유저uid 정보 불러오기
                                 User.getUser().putUserInfo(userUID);
                                 Log.e("구글체크!","account:"+User.getUser().getLoginAccount()+", nickname:"+User.getUser().getNickName()+", getUserUID():"+User.getUser().getUserUID());

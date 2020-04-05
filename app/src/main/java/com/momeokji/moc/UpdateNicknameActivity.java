@@ -226,11 +226,13 @@ public class UpdateNicknameActivity extends AppCompatActivity {
                             // 토큰 가져오기
                             // 로그인 계정 종류 별로 사용자 재인증
                             if(loginAccount.equals("google")) {
-                                credential[0] = GoogleAuthProvider.getCredential(User.getUser().getIdToken(), null);
+                                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UpdateNicknameActivity.this);
+                                credential[0] = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                                 Log.e("google Token", "getToken Task is successful => "+credential[0].getProvider());
                             } else if(loginAccount.equals("facebook")) {
-                                credential[0] = FacebookAuthProvider.getCredential(User.getUser().getIdToken());
-                                Log.e("facebook Token", "getToken Task is successful => "+credential[0].getProvider());
+                                // 추후 facebook 사용 시 추가구현 필요
+//                                credential[0] = FacebookAuthProvider.getCredential(token);
+//                                Log.e("facebook Token", "getToken Task is successful => "+credential[0].getProvider());
                             }
 
                             // 사용자 재인증
