@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -51,10 +52,17 @@ public class CardNewsActivity extends AppCompatActivity {
         ArrayList<Map<String, Object>> imgUriArrayTmp = cardNews.getCardNewsImageUri();
         String[] imgUriArray = new String[imgUriArrayTmp.size()];
 
-        // 카드뉴스 이미지 순서대로 재정렬
-        for(int i = 0; i < imgUriArrayTmp.size(); i++) {
-            imgUriArray[(int)imgUriArrayTmp.get(i).get("index")] = imgUriArrayTmp.get(i).get("imageUri").toString();
+        try {
+            // 카드뉴스 이미지 순서대로 재정렬
+            for(int i = 0; i < imgUriArrayTmp.size(); i++) {
+                imgUriArray[(int)imgUriArrayTmp.get(i).get("index")] = imgUriArrayTmp.get(i).get("imageUri").toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(CardNewsActivity.this, "카드 뉴스 이미지 로딩완료\n\n다시 선택해 주세요!", Toast.LENGTH_SHORT).show();
+            finish();
         }
+
 
         // 어댑터에 정렬된 이미지 적용
         adapterCardNews.setImgUriList(imgUriArray);

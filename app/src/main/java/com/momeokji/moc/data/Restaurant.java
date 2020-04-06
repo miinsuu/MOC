@@ -9,6 +9,7 @@ import com.google.gson.JsonPrimitive;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -91,6 +92,17 @@ public class Restaurant implements Serializable {
 
     }
 
+    // 가게이름 오름차순 정렬
+    static class NameAscCompare implements Comparator<Restaurant> {
+
+        @Override
+        public int compare(Restaurant arg0, Restaurant arg1) {
+            // TODO Auto-generated method stub
+            return arg0.getRestaurantName().compareTo(arg1.getRestaurantName());
+        }
+
+    }
+
     public String getRestaurantName() {
         return this.restaurantName;
     }
@@ -147,3 +159,7 @@ public class Restaurant implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 }
+
+
+
+

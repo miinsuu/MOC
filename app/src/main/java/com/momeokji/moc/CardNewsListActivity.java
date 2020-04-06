@@ -62,21 +62,18 @@ public class CardNewsListActivity extends AppCompatActivity {
             }
         });
 
-        // DB에서 카드뉴스 불러오기
-        getCardNewsFromDB();
+        // MainActivity에서 미리 가져온 카드뉴스 데이터 어댑터에 추가 & 리사이클러뷰에 적용
+        adapterCardNewsList.setCardNewsList(MainActivity.cardNewsList);
+        cardNewsList_recyclerView.setAdapter(adapterCardNewsList);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-    // DB에서 카드뉴스 불러오기
-    private void getCardNewsFromDB() {
-        DatabaseQueryClass.OtherInfoDB.getCardNews(new DataListener() {
-            @Override
-            public void getData(Object data, String id) {
-                adapterCardNewsList.addCardNews(new CardNews(data.toString(), id));
-                cardNewsList_recyclerView.setAdapter(adapterCardNewsList);
-            }
-        });
+        adapterCardNewsList.setCardNewsList(MainActivity.cardNewsList);
+        cardNewsList_recyclerView.setAdapter(adapterCardNewsList);
     }
 
     // 뒤로가기 애니메이션

@@ -56,7 +56,7 @@ public class CardNews implements Parcelable {
                     cardNewsImage.put("index", index);
                     cardNewsImage.put("imageUri", uri.toString());
                     cardNewsImageUri.add(cardNewsImage);
-                    //Log.d("Uri다운 성공", finalI +"번째 "+uri.toString());
+                    Log.e("Uri다운 성공", uri.toString());
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

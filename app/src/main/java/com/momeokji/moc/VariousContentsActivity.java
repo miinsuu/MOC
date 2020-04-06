@@ -4,8 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.momeokji.moc.Database.DataListener;
+import com.momeokji.moc.Database.DatabaseQueryClass;
+import com.momeokji.moc.data.CardNews;
+
+import java.util.ArrayList;
 
 public class VariousContentsActivity extends AppCompatActivity {
 
@@ -41,7 +48,7 @@ public class VariousContentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 고민사거리 카드뉴스 리스트 페이지로 이동
-                startActivity(new Intent(getApplicationContext(), CardNewsListActivity.class));
+                startActivity(new Intent(VariousContentsActivity.this, CardNewsListActivity.class));
                 overridePendingTransition(R.anim.anim_slide_in_right_with_main_fragment, R.anim.anim_slide_out_left_with_main_fragment);
             }
         });
