@@ -207,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
         login_with_facebook_imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(loginActivity, "신종 코로나바이러스로 인해 페이스북 로그인 앱 검수 지연 중입니다 ㅠㅠ", Toast.LENGTH_LONG).show();
+                Toast.makeText(loginActivity, "신종 코로나바이러스로 인해\n페이스북 본사 측 앱 검수가\n지연 중입니다 ㅠㅠ", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -298,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
     // 사용자가 정상적으로 로그인한 후 페이스북 로그인 버튼의 onSuccess 콜백 메소드에서 로그인한 사용자의
     // 액세스 토큰을 가져와서 Firebase 사용자 인증 정보로 교환하고,
     // Firebase 사용자 인증 정보를 사용해 Firebase에 인증.
-    private void handleFacebookAccessToken(AccessToken token) {
+    private void handleFacebookAccessToken(final AccessToken token) {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential)
@@ -350,7 +350,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // 사용자가 정상적으로 로그인한 후에 GoogleSignInAccount 개체에서 ID 토큰을 가져와서
     // Firebase 사용자 인증 정보로 교환하고 Firebase 사용자 인증 정보를 사용해 Firebase에 인증
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential)

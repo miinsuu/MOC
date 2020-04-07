@@ -87,4 +87,8 @@ public class RecyclerViewAdapter_CardNewsList extends RecyclerView.Adapter<Recyc
     public void addCardNews(CardNews cardNews){
         cardNewsList.add(cardNews);
     }
+
+    public void setCardNewsList(ArrayList<CardNews> cardNewsList) {
+        this.cardNewsList = cardNewsList;
+    }
 }

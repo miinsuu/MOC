@@ -1,9 +1,13 @@
 package com.momeokji.moc.data;
 
+import android.util.Log;
+
 import com.momeokji.moc.Database.DataListener;
 import com.momeokji.moc.Database.DatabaseQueryClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class DATA {
     public ArrayList<Restaurant> KoreanRestaurantList;
@@ -30,7 +34,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getKoreanShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 KoreanRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -40,7 +44,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getChineseShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 ChineseRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -50,7 +54,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getJapaneseShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 JapaneseRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -60,7 +64,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getChickenShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 ChickenRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -70,7 +74,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getSnackShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 SnackRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -80,7 +84,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getWesternShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 WesternRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -90,7 +94,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getNightShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 NightRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -100,7 +104,7 @@ public class DATA {
         DatabaseQueryClass.ShopFromDB.getFastShopList(new DataListener() {
             @Override
             public void getData(Object data, String id) {
-                //Log.e("데이터DB등록", data.toString());
+                Log.e("데이터DB등록", data.toString());
                 FastRestaurantList.add(new Restaurant(data.toString()));
             }
         });
@@ -138,6 +142,9 @@ public class DATA {
             }
 
         }
+
+        // 중복제거된 가게리스트를 가게이름 기준 오름차순 정렬
+        Collections.sort(ResultRestaurantList, new Restaurant.NameAscCompare());
 
         return ResultRestaurantList;
     }

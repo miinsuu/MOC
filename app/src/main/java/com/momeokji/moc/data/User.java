@@ -68,4 +68,5 @@ public class User {
     public void setLoginAccount(String loginAccount) {
         this.loginAccount = loginAccount;
     }
+
 }

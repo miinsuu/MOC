@@ -206,7 +206,7 @@ public class DatabaseQueryClass {
                     });
         }
 
-        // 이메일로 DB에 저장된 닉네임, 사용자ID를 가져옴
+        // userUID로 DB에 저장된 사용자정보를 가져옴
         public static void getUserInfoByUserUID(final String userUID, final DataListener dataListener) {
             db.collection("users")
                     .whereEqualTo("userUID", userUID)
@@ -306,7 +306,8 @@ public class DatabaseQueryClass {
         public static void createReview(final String reviewMenuName,
                                       final String reviewText,
                                       final String reviewImageUrl,
-                                      final String reviewShopName, final MyOnSuccessListener myOnSuccessListener)
+                                      final String reviewShopName,
+                                        String reviewImageName, final MyOnSuccessListener myOnSuccessListener)
         {
 
             Map<String, Object> review  = new HashMap<>();
@@ -317,6 +318,7 @@ public class DatabaseQueryClass {
             review.put("date",  (new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date())));
             review.put("nick", User.getUser().getNickName());
             review.put("userUID", User.getUser().getUserUID());
+            review.put("imgName", reviewImageName);
             review.put("createdAt",  Long.parseLong( new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) );
             Log.e("리뷰upload", review.toString());
 
