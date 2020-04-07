@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@drawable/bbobki_background"
     tools:context=".RouletteFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/bbobki_background">
+        android:layout_height="match_parent">
 
         <GridLayout
             android:id="@+id/roulette_items_gridLayout"
@@ -201,5 +199,4 @@
                 android:textColor="@color/bbobki_text"/>
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

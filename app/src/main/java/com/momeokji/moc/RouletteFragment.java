@@ -2,13 +2,17 @@ package com.momeokji.moc;
 
 
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +107,17 @@ public class RouletteFragment extends Fragment {
             }
         });
         roulette_drawing_txt = view.findViewById(R.id.roulette_drawing_txt);
+
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        params.height = size.y - (int)(Constants.XML_DESIGN.NAVIGATION_BAR_HEIGHT_IN_DP*displayMetrics.density);
+        view.setLayoutParams(params);
+
         return view;
     }
 
