@@ -9,7 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="618dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <View
+            android:id="@+id/roulette_top_margin_view"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <GridLayout
             android:id="@+id/roulette_items_gridLayout"
@@ -20,7 +27,7 @@
             app:layout_constraintBottom_toTopOf="@+id/roulette_drawing_relativeLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/roulette_top_margin_view">
 
             <LinearLayout style="@style/roulette_relativeLayout">
 
@@ -141,62 +148,68 @@
             android:id="@+id/roulette_drawing_relativeLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/bbobki_lever_plate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:background="@drawable/bbobki_lever_plate">
+            app:layout_constraintRight_toRightOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/roulette_lever_constraintLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bbobki_lever_slider"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:background="@drawable/bbobki_lever_slider"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <View
                     android:id="@+id/roulette_lever_center_view"
                     android:layout_width="1dp"
                     android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageButton
                     android:id="@+id/roulette_lever_up_imgbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/roulette_lever_center_view"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/bbobki_lever_up"/>
+                    android:background="@drawable/bbobki_lever_up"
+                    app:layout_constraintBottom_toTopOf="@+id/roulette_lever_center_view"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
                 <ImageButton
                     android:id="@+id/roulette_lever_down_imgbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bbobki_lever_down"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/roulette_lever_center_view"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/bbobki_lever_down"/>
+                    app:layout_constraintTop_toTopOf="@+id/roulette_lever_center_view" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/roulette_drawing_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/roulette_lever_constraintLayout"
-                android:layout_marginTop="75dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="75dp"
+                android:layout_toRightOf="@+id/roulette_lever_constraintLayout"
                 android:text="랜덤뽑기"
-                android:textStyle="bold"
+                android:textColor="@color/bbobki_text"
                 android:textSize="15dp"
-                android:textColor="@color/bbobki_text"/>
+                android:textStyle="bold" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
