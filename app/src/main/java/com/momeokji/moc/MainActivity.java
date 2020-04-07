@@ -2,6 +2,7 @@ package com.momeokji.moc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +11,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.momeokji.moc.Database.DataListener;
+import com.momeokji.moc.Database.DatabaseQueryClass;
 import com.momeokji.moc.Helper.Constants;
 import com.momeokji.moc.Helper.DisplayedFragmentManager;
 import com.momeokji.moc.Helper.FragmentStackManager;
+import com.momeokji.moc.data.CardNews;
 import com.momeokji.moc.data.DATA;
 import com.momeokji.moc.data.User;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static DisplayedFragmentManager displayedFragmentManager;
     public static FragmentStackManager fragmentStackManager;
     public static FloatingActionButton myList_btn;
+    public static ArrayList<CardNews> cardNewsList; // 카드뉴스 데이터
 
     public DATA restaurantDATA;
 
@@ -43,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         restaurantDATA = new DATA();
+        cardNewsList = new ArrayList<CardNews>(); // 카드뉴스 데이터
+
+        getCardNewsFromDB(); // DB에서 카드뉴스 데이터 불러오기
 
         /*- 초기 Fragment 등록 -*/
         displayedFragmentManager.fragmentManagers[0] = getSupportFragmentManager();
@@ -65,7 +75,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    // DB에서 카드뉴스 불러오기
+    private void getCardNewsFromDB() {
+        DatabaseQueryClass.OtherInfoDB.getCardNews(new DataListener() {
+            @Override
+            public void getData(Object data, String id) {
+                cardNewsList.add(new CardNews(data.toString(), id));
+            }
+        });
     }
 
     @Override

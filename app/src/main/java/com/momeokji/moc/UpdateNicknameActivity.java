@@ -269,8 +269,11 @@ public class UpdateNicknameActivity extends AppCompatActivity {
 
                                             }
                                         });
-                                    } else
+                                    } else {
                                         Log.e("사용자 재인증 실패", task.getException().toString());
+                                        Toast.makeText(UpdateNicknameActivity.this, "로그인 기록이 오래되었습니다.\n\n재 로그인 후, 회원 탈퇴해 주십시오.", Toast.LENGTH_LONG).show();
+                                    }
+
 
 
                                 }

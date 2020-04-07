@@ -6,6 +6,8 @@ import com.momeokji.moc.Database.DataListener;
 import com.momeokji.moc.Database.DatabaseQueryClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class DATA {
     public ArrayList<Restaurant> KoreanRestaurantList;
@@ -140,6 +142,9 @@ public class DATA {
             }
 
         }
+
+        // 중복제거된 가게리스트를 가게이름 기준 오름차순 정렬
+        Collections.sort(ResultRestaurantList, new Restaurant.NameAscCompare());
 
         return ResultRestaurantList;
     }

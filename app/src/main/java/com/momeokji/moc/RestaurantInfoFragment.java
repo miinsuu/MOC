@@ -1,20 +1,29 @@
 package com.momeokji.moc;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +39,9 @@ import com.momeokji.moc.data.Restaurant;
 
 import java.io.IOException;
 import java.util.List;
+
+import static android.content.Context.WINDOW_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class RestaurantInfoFragment extends Fragment {
@@ -66,17 +78,66 @@ public class RestaurantInfoFragment extends Fragment {
         ImageButton callBtn = view.findViewById(R.id.call_btn);
         Button addressMapBtn = view.findViewById(R.id.restaurantInfoPage_addressMapBtn);
         Button restaurantInfo_back_btn = view.findViewById(R.id.restaurantInfo_back_btn);
+        final TextView restaurantInfoPage_detailPreviewTxt = view.findViewById(R.id.restaurantInfoPage_detailPreviewTxt);
+        final HorizontalScrollView preview_horizontalScrollView = view.findViewById(R.id.preview_horizontalScrollView);
+        LinearLayout restaurantInfoPage_detailPreview_linearLayout = view.findViewById(R.id.restaurantInfoPage_detailPreview_linearLayout);
+        RelativeLayout address_phone_relativeLayout = view.findViewById(R.id.address_phone_relativeLayout);
 
         restaurantInfo_ToolbarNameTxt = view.findViewById(R.id.restaurantInfo_ToolbarNameTxt);
         AppBarLayout restaurantInfo_AppbarLayout = view.findViewById(R.id.restaurantInfo_AppbarLayout);
 
+
+        // 화면 폭 dp 구하기
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width  = size.x;
+        float density = getContext().getResources().getDisplayMetrics().density;
+        int dpWidth  = (int)((float)width/density);
+        dpWidth = dpWidth - 20;
+
+        // 주소 전화 레이아웃 너비 설정
+        ViewGroup.LayoutParams addressLayoutParams = address_phone_relativeLayout.getLayoutParams();
+        int addressNewWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpWidth, getResources().getDisplayMetrics());
+        addressLayoutParams.width = addressNewWidth;
+
+        // 리뷰 더보기 레이아웃 너비 설정
+        ViewGroup.LayoutParams reviewLayoutParams = restaurantInfoPage_detailPreview_linearLayout.getLayoutParams();
+        int reviewNewWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpWidth, getResources().getDisplayMetrics());
+        reviewLayoutParams.width = reviewNewWidth;
+
+
         //선택한 가게의 정보를 화면에 뿌려주기
         restaurantPage_restaurantName_txt.setText(selectedRestaurant.getRestaurantName());
         minMaxPrice.setText(selectedRestaurant.getMinMaxPrice());
+        restaurantInfoPage_detailPreviewTxt.setText(selectedRestaurant.getPreview());
+        restaurantInfoPage_detailPreviewTxt.setMovementMethod(new ScrollingMovementMethod());
+
+        final float[] PosX = new float[1];
+        restaurantInfoPage_detailPreviewTxt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    PosX[0] = event.getX();
+                    preview_horizontalScrollView.requestDisallowInterceptTouchEvent(true);
+                    //스크롤뷰가 텍스트뷰의 터치이벤트를 가져가지 못하게 함
+                } else if(event.getAction() == MotionEvent.ACTION_MOVE) {
+                    if(Math.abs(PosX[0] - event.getX()) > 50)
+                        preview_horizontalScrollView.requestDisallowInterceptTouchEvent(false);
+                }
+
+
+                return false;
+            }
+        });
         preview.setText(selectedRestaurant.getPreview());
         preview.setSelected(true);
         address.setText(selectedRestaurant.getAddress());
         phoneNumber.setText(selectedRestaurant.getPhoneNumber());
+
+        if(restaurantInfoPage_detailPreviewTxt.getText().toString().trim().equals(""))
+            restaurantInfoPage_detailPreviewTxt.setText("\""+selectedRestaurant.getRestaurantName()+"\""+" 많은 이용 부탁드립니다 ^^");
 
         restaurantInfo_ToolbarNameTxt.setText(selectedRestaurant.getRestaurantName());
         restaurantInfo_AppbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {

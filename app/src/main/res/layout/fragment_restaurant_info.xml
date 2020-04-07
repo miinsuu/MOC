@@ -103,72 +103,117 @@
 
                 </LinearLayout>
 
-                <RelativeLayout
+                <HorizontalScrollView
+                    android:id="@+id/preview_horizontalScrollView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/shop_info">
+                    android:fillViewport="true">
 
-
-                    <TextView
-                        android:id="@+id/addressStaticText"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:lineSpacingExtra="10dp"
-                        android:textSize="14dp"
-                        android:text="주소" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/phoneStaticText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/addressStaticText"
-                        android:layout_alignBaseline="@id/restaurantInfoPage_phoneNumberTxt"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="13dp"
-                        android:textSize="14dp"
-                        android:text="전화" />
+                        <RelativeLayout
+                            android:id="@+id/address_phone_relativeLayout"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/shop_info">
+
+                            <TextView
+                                android:id="@+id/addressStaticText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="13dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:lineSpacingExtra="10dp"
+                                android:textSize="14dp"
+                                android:text="주소" />
+
+                            <TextView
+                                android:id="@+id/phoneStaticText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/addressStaticText"
+                                android:layout_alignBaseline="@id/restaurantInfoPage_phoneNumberTxt"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="13dp"
+                                android:textSize="14dp"
+                                android:text="전화" />
+
+                            <TextView
+                                android:id="@+id/restaurantInfoPage_addressTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/addressStaticText"
+                                android:layout_alignBaseline="@id/addressStaticText"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="13dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="TextView"
+                                android:textSize="14dp"
+                                android:textColor="#222222"
+                                android:textIsSelectable="true" />
+
+                            <TextView
+                                android:id="@+id/restaurantInfoPage_phoneNumberTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/restaurantInfoPage_addressTxt"
+                                android:layout_alignStart="@id/restaurantInfoPage_addressTxt"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginBottom="13dp"
+                                android:text="TextView"
+                                android:textSize="14dp"
+                                android:textColor="#222222"
+                                android:textIsSelectable="true" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/restaurantInfoPage_detailPreview_linearLayout"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/shop_info"
+                            >
+                            <TextView
+                                android:id="@+id/restaurantInfoPage_detailPreviewTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:lineSpacingExtra="5dp"
+                                android:minLines="1"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/black"
+                                android:scrollbars="vertical"
+                                android:scrollbarAlwaysDrawVerticalTrack="true"
+                                android:fadeScrollbars="false"
+                                android:scrollbarStyle="insideInset"
+                                android:textIsSelectable="false"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
 
 
 
-                    <TextView
-                        android:id="@+id/restaurantInfoPage_addressTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/addressStaticText"
-                        android:layout_alignBaseline="@id/addressStaticText"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="TextView"
-                        android:textSize="14dp"
-                        android:textColor="#222222"
-                        android:textIsSelectable="true" />
 
-                    <TextView
-                        android:id="@+id/restaurantInfoPage_phoneNumberTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/restaurantInfoPage_addressTxt"
-                        android:layout_alignStart="@id/restaurantInfoPage_addressTxt"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="13dp"
-                        android:text="TextView"
-                        android:textSize="14dp"
-                        android:textColor="#222222"
-                        android:textIsSelectable="true" />
-                </RelativeLayout>
             </LinearLayout>
 
 
