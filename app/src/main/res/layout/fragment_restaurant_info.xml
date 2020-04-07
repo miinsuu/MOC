@@ -115,7 +115,8 @@
                         android:orientation="horizontal">
 
                         <RelativeLayout
-                            android:layout_width="330dp"
+                            android:id="@+id/address_phone_relativeLayout"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
@@ -179,7 +180,8 @@
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:layout_width="330dp"
+                            android:id="@+id/restaurantInfoPage_detailPreview_linearLayout"
+                            android:layout_width="200dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
