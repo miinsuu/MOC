@@ -64,15 +64,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/moreInfo_fragment_userNicknameTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/seoulnamsanm"
                         android:text="NickName"
-                        android:fontFamily="@font/nanumsquareround_otfb"
                         android:textColor="#222222"
-                        android:textSize="18dp"/>
+                        android:textSize="18dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
