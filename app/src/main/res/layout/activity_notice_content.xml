@@ -75,6 +75,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="60dp"
+                android:minLines="1"
+                android:inputType="textMultiLine"
                 android:padding="17dp"
                 android:background="@drawable/shop_info"
                 android:text="reviewText"

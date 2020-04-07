@@ -34,7 +34,9 @@ public class NoticeContentActivity extends AppCompatActivity {
         noticeContent_titleTxt.setText(intent.getStringExtra("title"));
         noticeTitle.setText(intent.getStringExtra("title"));
         noticeCreateAt.setText(intent.getStringExtra("createAt"));
-        noticeContent.setText(intent.getStringExtra("content"));
+        String content = intent.getStringExtra("content").toString();
+        content = content.replaceAll("<N>",System.lineSeparator());
+        noticeContent.setText(content);
     }
 
     // 뒤로가기 애니메이션
