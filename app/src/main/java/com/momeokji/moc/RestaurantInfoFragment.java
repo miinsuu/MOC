@@ -127,7 +127,6 @@ public class RestaurantInfoFragment extends Fragment {
                         preview_horizontalScrollView.requestDisallowInterceptTouchEvent(false);
                 }
 
-
                 return false;
             }
         });
